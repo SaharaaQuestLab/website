@@ -12,7 +12,6 @@ uniform float uTime;
 uniform vec3 uMouse;
 uniform float uPixelRatio;
 
-
 #include "../../lygia/generative/random.glsl";
 #include "../../lygia/generative/cnoise.glsl";
 
@@ -34,9 +33,9 @@ vec2 bezier2(vec2 p0, vec2 p1, vec2 p2, float t) {
   float tt = t * t;
   float uu = u * u;
 
-  vec2 p = uu * p0; // 第一项
-  p += 2.0 * u * t * p1; // 第二项
-  p += tt * p2; // 第三项
+  vec2 p = uu * p0; // first param
+  p += 2.0 * u * t * p1; // second param
+  p += tt * p2; // third param
 
   return p;
 }

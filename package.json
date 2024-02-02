@@ -4,27 +4,31 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "pull:shader": "npx degit https://github.com/patriciogonzalezvivo/lygia.git lygia"
+    "dev": "astro dev --host",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lygia": "npx degit https://github.com/patriciogonzalezvivo/lygia.git lygia --force"
   },
   "devDependencies": {
-    "@types/three": "^0.160.0",
-    "autoprefixer": "^10.4.16",
-    "tailwindcss": "^3.4.0",
+    "@astrojs/check": "^0.4.1",
+    "@astrojs/sitemap": "^3.0.5",
+    "@astrojs/tailwind": "^5.1.0",
+    "@types/three": "^0.161.2",
+    "astro": "^4.3.1",
+    "astro-favicons": "^2.0.2",
+    "astro-icon": "^1.0.4",
+    "astro-seo": "^0.8.0",
+    "cross-env": "^7.0.3",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3",
-    "vite": "^5.0.10",
     "vite-plugin-glsl": "^1.2.1"
   },
   "dependencies": {
     "bowser": "^2.11.0",
-    "dat.gui": "^0.7.9",
     "eventemitter3": "^5.0.1",
-    "glsl-noise": "^0.0.0",
-    "gsap": "^3.12.4",
-    "postprocessing": "6.34.1",
-    "stats.js": "^0.17.0",
-    "three": "^0.160.0"
+    "gsap": "^3.12.5",
+    "three": "^0.161.0"
   }
 }

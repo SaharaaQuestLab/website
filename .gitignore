@@ -7,6 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# generated types
+.astro/
+
 node_modules
 dist
 dist-ssr
@@ -24,4 +27,3 @@ dist-ssr
 *.sw?
 
 # Project
-lygia/

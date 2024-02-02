@@ -1,0 +1,15 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+// import LaptopHeader from "../components/LaptopHeader.astro";
+// import MobileHeader from "../components/MobileHeader.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<BaseLayout title={title} barColor="#000">
+  <slot />
+</BaseLayout>
