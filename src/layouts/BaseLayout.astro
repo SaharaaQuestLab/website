@@ -35,8 +35,10 @@ const { title, description, barColor = "#000" } = Astro.props;
 			@import "../css/style.css";
 		</style>
 		<script>
-			import Bowser from "bowser";
-			window.env = Bowser.parse(window.navigator.userAgent);
+			// import Bowser from "bowser";
+			import env from "@/utils/bowser.utils";
+			// window.env = Bowser.parse(window.navigator.userAgent);
+			window.env = env;
 			window.document.documentElement.setAttribute(
 				"data-browser",
 				window.env.browser.name || "unknown",

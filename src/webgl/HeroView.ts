@@ -6,7 +6,11 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
 import { createGroundParticle } from './geometry/GroundParticle';
 import { createUpParticle } from './geometry/FallParticle';
+import env from '@/utils/bowser.utils';
 
+export interface HeroViewOptions {
+  platform?: 'mobile' | 'desktop'
+}
 
 export default class HeroView {
   private _el: Window | HTMLElement;
@@ -18,7 +22,7 @@ export default class HeroView {
   private _requestAnimationId?: number;
   private _requestCallback?: () => void;
 
-  constructor(el: Window | HTMLElement) {
+  constructor(el: Window | HTMLElement, options: HeroViewOptions = {}) {
     this._el = el;
     this._render = this.createRender();
     this._scene = this.createScene();
@@ -130,12 +134,24 @@ export default class HeroView {
       groundMaterial.uniforms.uPixelRatio.value = window.devicePixelRatio;
     })
 
-    this._render.domElement.addEventListener('pointermove', (e) => {
-      if (e.isPrimary === false) return;
-      const normalizeX = ((e.clientX + this.renderRect.x) / this.renderRect.width) * 2 - 1;
-      this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
-      (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
-    })
+    if (env.platform.type === 'mobile') {
+      this._render.domElement.addEventListener('touchmove', (e) => {
+        // if (e.isPrimary === false) return;
+        const p = e.touches[0];
+        const normalizeX = ((p.clientX + this.renderRect.x) / this.renderRect.width) * 2 - 1;
+        this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
+        (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
+      })
+    } else {
+      this._render.domElement.addEventListener('pointermove', (e) => {
+        // if (e.isPrimary === false) return;
+        // const p = e.touches[0];
+        const normalizeX = ((e.clientX + this.renderRect.x) / this.renderRect.width) * 2 - 1;
+        this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
+        (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
+      })
+    }
+
   }
 
   public play() {

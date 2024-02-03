@@ -2,13 +2,14 @@
 
 ---
 
-<div id="hero" class="w-screen h-screen"></div>
+<div id="hero" class="w-full h-screen"></div>
 
 <script>
   import HeroView from "@/webgl/HeroView";
   const heroEl = document.getElementById("hero");
+
   if (heroEl) {
-    const viewer = new HeroView(heroEl);
+    const viewer = new HeroView(heroEl, {});
     viewer.useSetup();
     viewer.play();
   }
