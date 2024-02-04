@@ -4,7 +4,7 @@ import * as THREE from 'three';
 // import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
 // import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
-import { DepthOfFieldEffect, DepthEffect, EffectPass, EffectComposer, RenderPass, BlendFunction } from 'postprocessing';
+import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass } from 'postprocessing';
 import { createGroundParticle } from './geometry/GroundParticle';
 import { createSkyParticle } from './geometry/SkyParticle';
 import env from '@/utils/bowser.utils';
@@ -23,7 +23,7 @@ export default class HeroView {
   private _requestAnimationId?: number;
   private _requestCallback?: () => void;
 
-  constructor(el: Window | HTMLElement, options: HeroViewOptions = {}) {
+  constructor(el: Window | HTMLElement) {
     this._el = el;
     this._render = this.createRender();
     this._scene = this.createScene();
@@ -60,7 +60,7 @@ export default class HeroView {
     const houdiniFocalLength = 80;
     const houdiniAperture = 41.4214;
     const fov = 2 * Math.atan(houdiniAperture / (2 * houdiniFocalLength)) * (180 / Math.PI);
-    const camera = new THREE.PerspectiveCamera(fov, this.renderRect.width / this.renderRect.height, 0.1, 10);
+    const camera = new THREE.PerspectiveCamera(fov, this.renderRect.width / this.renderRect.height, 0.1, 1000);
     return camera;
   }
 
@@ -90,15 +90,14 @@ export default class HeroView {
   }
 
   public useSetup() {
+    // create ground
     const [groundParticles, groundMaterial] = createGroundParticle();
     this._scene.add(groundParticles);
     groundParticles.position.set(0, 0, 0);
-    // const [fallParticles, fallMaterial] = createFallParticle();
-    // this._scene.add(fallParticles);
-    // fallParticles.position.set(0, 0.6, 0);
-    const [skyParticles, skyMaterial] = createSkyParticle(1.2);
+    // create sky
+    const [skyParticles, skyMaterial] = createSkyParticle();
     this._scene.add(skyParticles);
-    skyParticles.position.set(0, 2.4, 0);
+    skyParticles.position.set(0, 0, 0);
 
     this._camera.position.set(0, 0.95, 4);
 
@@ -113,8 +112,8 @@ export default class HeroView {
       focalLength: 0.9,
       bokehScale: 25.0
     });
-    const depthEffect = new DepthEffect({ blendFunction: BlendFunction.SKIP });
-    const effectPass = new EffectPass(this._camera);
+    // const depthEffect = new DepthEffect({ blendFunction: BlendFunction.SKIP });
+    const effectPass = new EffectPass(this._camera, dofEffect);
     // const outputPass = new OutputPass();
     this._composer?.addPass(renderPass);
     this._composer?.addPass(effectPass);

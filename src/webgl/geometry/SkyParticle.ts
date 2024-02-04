@@ -3,14 +3,14 @@ import VertexShader from '@/shaders/sky.vert';
 import FragmentShader from '@/shaders/sky.frag';
 import { randomGaussian } from '@/utils/gaussian.utils';
 
-const SphereXCount = 50;
-const SphereYCount = 50;
+const SphereXCount = 100;
+const SphereYCount = 100;
 const SphereRadius = 1.2;
 const GaussianRadius = 0.1;
-const GaussianXCount = 40;
-const GaussianYCount = 40;
+const GaussianXCount = 0;
+const GaussianYCount = 0;
 
-export const createSkyParticle: (radius: number) => [THREE.Points, THREE.ShaderMaterial] = (radius: number = 1.2) => {
+export const createSkyParticle: () => [THREE.Points, THREE.ShaderMaterial] = () => {
 
   const particleGeometry = new THREE.BufferGeometry();
 
