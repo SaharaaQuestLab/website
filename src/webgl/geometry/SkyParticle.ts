@@ -1,44 +1,68 @@
 import * as THREE from 'three';
-import SkyVertexShader from '@/shaders/sky.vert';
-import SkyFragmentShader from '@/shaders/sky.frag';
+import VertexShader from '@/shaders/sky.vert';
+import FragmentShader from '@/shaders/sky.frag';
+import { randomGaussian } from '@/utils/gaussian.utils';
 
-export const createSkyParticle: (radius: number) => [THREE.Points, THREE.ShaderMaterial] = (radius: number = 0.5) => {
-  const width = 50;
-  const height = 50;
-  const skyGeometry = new THREE.SphereGeometry(radius, width, height);
+const SphereXCount = 50;
+const SphereYCount = 50;
+const SphereRadius = 1.2;
+const GaussianRadius = 0.1;
+const GaussianXCount = 40;
+const GaussianYCount = 40;
+
+export const createSkyParticle: (radius: number) => [THREE.Points, THREE.ShaderMaterial] = (radius: number = 1.2) => {
+
   const particleGeometry = new THREE.BufferGeometry();
 
-  const total = skyGeometry.getAttribute("position").count;
-  const indices = new Uint16Array(total);
-  // const offsets = new Float32Array(total * 3);
-  const size = new Float32Array(total);
-  // const angles = new Float32Array(numVisible);
+  // sphere geometry
+  const skyGeometry = new THREE.SphereGeometry(SphereRadius, SphereXCount, SphereYCount);
 
-  for (let i = 0, j = 0; i < total; i++) {
-    size[i] = i;
-    // offsets[j * 3 + 0] = i % width;
-    // offsets[j * 3 + 1] = Math.floor(i / width);
 
-    indices[j] = i;
+  const total_sphere = skyGeometry.getAttribute("position").count;
+  const total_gaussian = GaussianXCount * GaussianYCount;
+  const total_point = total_sphere + total_gaussian;
+  const indices = new Uint16Array(total_point);
+  const point_array = new Float32Array(total_point * 3);
 
-    // angles[j] = Math.random() * Math.PI;
+  let i = 0;
+  let j = 0;
 
+  // create ground point
+  point_array.set(skyGeometry.getAttribute("position").array);
+  while (i < total_sphere) {
+    indices[j] = j;
     j++;
+    i++;
   }
 
-  particleGeometry.setAttribute('pindex', new THREE.BufferAttribute(indices, 1, false));
-  particleGeometry.setAttribute('position', new THREE.BufferAttribute(skyGeometry.getAttribute("position").array, 3));
-  particleGeometry.setAttribute('a_size', new THREE.BufferAttribute(size, 1));
+  // create gaussian point
+  i = 0;
+  while (i < total_gaussian) {
+    indices[j] = j;
+    point_array[j * 3] = randomGaussian(0, 1) * GaussianRadius;
+    point_array[j * 3 + 1] = -SphereRadius;
+    point_array[j * 3 + 2] = randomGaussian(0, 1) * GaussianRadius;
+    j++;
+    i++;
+  }
+
+  particleGeometry.setAttribute('a_index', new THREE.BufferAttribute(indices, 1, false));
+  particleGeometry.setAttribute('position', new THREE.BufferAttribute(point_array, 3));
+
+
 
   const particleMaterial = new THREE.ShaderMaterial({
     uniforms: {
-      'uTotal': { value: total },
-      'uTime': { value: 0 }
+      'uTotal': { value: total_point },
+      'uTime': { value: 0 },
+      'uPixelRatio': { value: window.devicePixelRatio }
     },
-    vertexShader: SkyVertexShader,
-    fragmentShader: SkyFragmentShader,
-    depthTest: false,
+    vertexShader: VertexShader,
+    fragmentShader: FragmentShader,
+    depthTest: true,
+    depthWrite: false,
     transparent: true,
+    blending: THREE.AdditiveBlending,
     wireframe: false
   })
   return [new THREE.Points(particleGeometry, particleMaterial), particleMaterial];

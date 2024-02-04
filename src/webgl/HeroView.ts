@@ -1,11 +1,12 @@
 import * as THREE from 'three';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
-import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+// import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+// import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+// import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
+// import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
+import { DepthOfFieldEffect, DepthEffect, EffectPass, EffectComposer, RenderPass, BlendFunction } from 'postprocessing';
 import { createGroundParticle } from './geometry/GroundParticle';
-import { createUpParticle } from './geometry/FallParticle';
+import { createSkyParticle } from './geometry/SkyParticle';
 import env from '@/utils/bowser.utils';
 
 export interface HeroViewOptions {
@@ -59,7 +60,7 @@ export default class HeroView {
     const houdiniFocalLength = 80;
     const houdiniAperture = 41.4214;
     const fov = 2 * Math.atan(houdiniAperture / (2 * houdiniFocalLength)) * (180 / Math.PI);
-    const camera = new THREE.PerspectiveCamera(fov, this.renderRect.width / this.renderRect.height, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(fov, this.renderRect.width / this.renderRect.height, 0.1, 10);
     return camera;
   }
 
@@ -88,50 +89,47 @@ export default class HeroView {
     this._requestAnimationId = requestAnimationFrame(() => this._animate())
   }
 
-  public useComposer() {
-    const renderPass = new RenderPass(this._scene, this._camera);
-    const bokehPass = new BokehPass(this._scene, this._camera, {
-      focus: 0,
-      aperture: 5 * 0.00001,
-      maxblur: 0.01
-    });
-    const outputPass = new OutputPass();
-    const composer = new EffectComposer(this._render);
-    composer.addPass(renderPass);
-    composer.addPass(bokehPass);
-    composer.addPass(outputPass);
-    this._composer = composer;
-  }
-
   public useSetup() {
     const [groundParticles, groundMaterial] = createGroundParticle();
     this._scene.add(groundParticles);
     groundParticles.position.set(0, 0, 0);
-    const [upParticles, upMaterial] = createUpParticle();
-    this._scene.add(upParticles);
-    upParticles.position.set(0, 0, 0);
+    // const [fallParticles, fallMaterial] = createFallParticle();
+    // this._scene.add(fallParticles);
+    // fallParticles.position.set(0, 0.6, 0);
+    const [skyParticles, skyMaterial] = createSkyParticle(1.2);
+    this._scene.add(skyParticles);
+    skyParticles.position.set(0, 2.4, 0);
 
     this._camera.position.set(0, 0.95, 4);
 
     const renderPass = new RenderPass(this._scene, this._camera);
-    const bokehPass = new BokehPass(this._scene, this._camera, {
-      focus: 0,
-      aperture: 5 * 0.00001,
-      maxblur: 0.01
+    // const bokehPass = new BokehPass(this._scene, this._camera, {
+    //   focus: 0,
+    //   aperture: 5 * 0.00001,
+    //   maxblur: 0.01
+    // });
+    const dofEffect = new DepthOfFieldEffect(this._camera, {
+      focusDistance: 0.9,
+      focalLength: 0.9,
+      bokehScale: 25.0
     });
-    const outputPass = new OutputPass();
+    const depthEffect = new DepthEffect({ blendFunction: BlendFunction.SKIP });
+    const effectPass = new EffectPass(this._camera);
+    // const outputPass = new OutputPass();
     this._composer?.addPass(renderPass);
-    this._composer?.addPass(bokehPass);
-    this._composer?.addPass(outputPass);
+    this._composer?.addPass(effectPass);
+    // this._composer?.addPass(outputPass);
 
     this._requestCallback = () => {
       const elapse = this._clock.getElapsedTime();
       groundMaterial.uniforms.uTime.value = elapse;
-      upMaterial.uniforms.uTime.value = elapse;
+      skyMaterial.uniforms.uTime.value = elapse;
+      // fallMaterial.uniforms.uTime.value = elapse;
     }
 
     window.addEventListener("resize", () => {
       groundMaterial.uniforms.uPixelRatio.value = window.devicePixelRatio;
+      skyMaterial.uniforms.uPixelRatio.value = window.devicePixelRatio;
     })
 
     if (env.platform.type === 'mobile') {
@@ -140,15 +138,17 @@ export default class HeroView {
         const p = e.touches[0];
         const normalizeX = ((p.clientX + this.renderRect.x) / this.renderRect.width) * 2 - 1;
         this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
-        (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
+
+        // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
       })
     } else {
       this._render.domElement.addEventListener('pointermove', (e) => {
-        // if (e.isPrimary === false) return;
-        // const p = e.touches[0];
+        if (e.isPrimary === false) return;
         const normalizeX = ((e.clientX + this.renderRect.x) / this.renderRect.width) * 2 - 1;
         this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
-        (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
+        // dofEffect.bokehScale = (Math.abs(normalizeX)) * 20;
+        // dofEffect.cocMaterial.uniforms.focalLength.value = (Math.abs(normalizeX));
+        // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
       })
     }
 

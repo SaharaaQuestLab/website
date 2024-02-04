@@ -1,28 +1,12 @@
 precision highp float;
 
-uniform float uTime;
-
 varying vec3 v_position;
-varying float radius;
-
-#include "../../lygia/draw/circle.glsl";
-
-mat2 scale(vec2 _scale) {
-  return mat2(_scale.x, 0.0, 0.0, _scale.y);
-}
-
+varying float v_color;
 
 void main() {
-
-  vec2 coord = gl_PointCoord;
-
-  // vec2 translate = vec2(cos(uTime), sin(uTime));
-  // coord += translate * 0.35;
-
-  // coord = scale(vec2(sin(uTime) * 0.5 + 1.0)) * coord;
-  float rad = abs(0.5 * sin(uTime)) + 0.1;
-
-  vec3 color = vec3(0.0) + circle(coord, rad);
-  gl_FragColor = vec4(color,0.6);
-
+  float dist = length(gl_PointCoord - vec2(0.5, 0.5));
+  float radius = 0.5;
+  float edge = 0.1;
+  float alpha = 1.0 - 2.0 * smoothstep(radius - edge, radius, dist);
+  gl_FragColor = vec4(vec3(1.0) * v_color, alpha);
 }

@@ -14,6 +14,9 @@ dependencies:
   gsap:
     specifier: ^3.12.5
     version: 3.12.5
+  postprocessing:
+    specifier: 6.34.1
+    version: 6.34.1(three@0.161.0)
   three:
     specifier: ^0.161.0
     version: 0.161.0
@@ -3454,6 +3457,15 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
     dev: true
+
+  /postprocessing@6.34.1(three@0.161.0):
+    resolution: {integrity: sha512-xae6A2XNs61V3ohGHR+i9sQDvB4dWaoG/AICw0hg8sOYQWAYDlf+esWMRmO4hixMaYo3AJBJ9WAA7JF7OiGakw==}
+    engines: {node: '>= 0.13.2'}
+    peerDependencies:
+      three: '>= 0.138.0 < 0.161.0'
+    dependencies:
+      three: 0.161.0
+    dev: false
 
   /prebuild-install@7.1.1:
     resolution: {integrity: sha512-jAXscXWMcCK8GgCoHOfIr0ODh5ai8mj63L2nWrjuAgXE6tDyYGnx4/8o/rCgU+B4JSyZBKbeZqzhtwtC3ovxjw==}
