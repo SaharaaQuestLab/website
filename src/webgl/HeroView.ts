@@ -92,8 +92,8 @@ export default class HeroView {
     settings.translation.damping = 0.1;
   }
 
-  private _animate(timestamp: number) {
-    if (this._controls) this._controls.update(timestamp);
+  private _animate(timestamp?: number) {
+    if (this._controls) this._controls.update(timestamp || 0);
     if (this._requestCallback) this._requestCallback();
     if (this._composer) {
       this._composer.render(this._clock.getElapsedTime());
@@ -134,7 +134,7 @@ export default class HeroView {
     // });
 
     const dofEffect = new DepthOfFieldEffect(this._camera, {
-      worldFocusDistance: 4,
+      worldFocusDistance: 4.5,
       worldFocusRange: 2,
       bokehScale: 3.0,
       resolutionScale: 0.75
