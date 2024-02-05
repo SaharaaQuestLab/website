@@ -1,0 +1,34 @@
+---
+import PageMeta from "@/data/footer";
+const { authorization, privacyPolicy, followUs, email, subscribe } = PageMeta;
+---
+
+<div class="footer px-40 text-[#979EA8]">
+  <div class="flex text-base py-2 justify-between">
+    <div class="leading-[2.625rem]">
+      {followUs}
+    </div>
+    <div class="border border-[#474040] flex px-4 py-2 bg-[#121315] rounded-xl w-[40rem] justify-between">
+      <div>
+        {email}
+      </div>
+      <div>
+        {subscribe}
+      </div>
+    </div>
+  </div>
+  <div class="footer-border flex justify-between text-sm">
+    <div class="px-3 py-2.5">
+      {authorization}
+    </div>
+    <div class="px-3 py-2.5">
+      {privacyPolicy}
+    </div>
+  </div>
+</div>
+
+<style>
+.footer-border {
+  border-top: 1px solid rgba(71, 64, 64,.4);
+}
+</style>
