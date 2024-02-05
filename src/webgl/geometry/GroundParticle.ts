@@ -63,10 +63,12 @@ export const createGroundParticle: () => [THREE.Points, THREE.ShaderMaterial] = 
     vertexShader: VertexShader,
     fragmentShader: FragmentShader,
     depthTest: true,
-    depthWrite: false,
+    depthWrite: true,
     transparent: true,
     blending: THREE.AdditiveBlending,
     wireframe: false
   })
-  return [new THREE.Points(particleGeometry, particleMaterial), particleMaterial];
+  const points = new THREE.Points(particleGeometry, particleMaterial);
+  // points.customDepthMaterial = new THREE.MeshDepthMaterial();
+  return [points, particleMaterial];
 }

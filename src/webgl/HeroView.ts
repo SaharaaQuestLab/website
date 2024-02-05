@@ -4,10 +4,11 @@ import * as THREE from 'three';
 // import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
 // import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
-import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass } from 'postprocessing';
+import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, DepthEffect, BlendFunction } from 'postprocessing';
 import { createGroundParticle } from './geometry/GroundParticle';
 import { createSkyParticle } from './geometry/SkyParticle';
 import env from '@/utils/bowser.utils';
+import { SpatialControls } from 'spatial-controls';
 
 export interface HeroViewOptions {
   platform?: 'mobile' | 'desktop'
@@ -22,6 +23,7 @@ export default class HeroView {
   private _composer?: EffectComposer;
   private _requestAnimationId?: number;
   private _requestCallback?: () => void;
+  private _controls?: SpatialControls;
 
   constructor(el: Window | HTMLElement) {
     this._el = el;
@@ -30,6 +32,7 @@ export default class HeroView {
     this._camera = this.createCamera();
     this.createComposer();
     this.createEvent();
+    this.createControls();
   }
 
   get renderRect() {
@@ -60,7 +63,8 @@ export default class HeroView {
     const houdiniFocalLength = 80;
     const houdiniAperture = 41.4214;
     const fov = 2 * Math.atan(houdiniAperture / (2 * houdiniFocalLength)) * (180 / Math.PI);
-    const camera = new THREE.PerspectiveCamera(fov, this.renderRect.width / this.renderRect.height, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(fov, this.renderRect.width / this.renderRect.height, 0.1, 2000);
+    camera.updateProjectionMatrix();
     return camera;
   }
 
@@ -71,6 +75,7 @@ export default class HeroView {
       this._render.setPixelRatio(window.devicePixelRatio);
       this._camera.aspect = width / height;
       this._camera.updateProjectionMatrix();
+      if (this._composer) this._composer.setSize(width, height);
     })
   }
 
@@ -79,14 +84,23 @@ export default class HeroView {
     this._composer = new EffectComposer(this._render);
   }
 
-  private _animate() {
+  private createControls() {
+    this._controls = new SpatialControls(this._camera.position, this._camera.quaternion, this._render.domElement);
+    const settings = this._controls.settings;
+    settings.rotation.sensitivity = 2.2;
+    settings.rotation.damping = 0.05;
+    settings.translation.damping = 0.1;
+  }
+
+  private _animate(timestamp: number) {
+    if (this._controls) this._controls.update(timestamp);
     if (this._requestCallback) this._requestCallback();
     if (this._composer) {
       this._composer.render(this._clock.getElapsedTime());
     } else {
       this._render.render(this._scene, this._camera);
     }
-    this._requestAnimationId = requestAnimationFrame(() => this._animate())
+    this._requestAnimationId = requestAnimationFrame((time: number) => this._animate(time))
   }
 
   public useSetup() {
@@ -99,19 +113,33 @@ export default class HeroView {
     this._scene.add(skyParticles);
     skyParticles.position.set(0, 0, 0);
 
+    // const planeGeo = new THREE.PlaneGeometry(3, 3, 25, 25);
+    // const plane = new THREE.Points(planeGeo, new THREE.PointsMaterial({ color: "yellow", size: 0.05 }));
+    // this._scene.add(plane);
+    // plane.position.set(0, 0, 0);
+
+    // const plane2 = new THREE.Points(planeGeo, new THREE.PointsMaterial({ color: "red", size: 0.05 }));
+    // this._scene.add(plane2);
+    // plane2.position.set(0, 0, -1);
+
     this._camera.position.set(0, 0.95, 4);
+    this._controls?.position.set(0, 0.95, 4);
+    this._controls?.lookAt(0, 0.95, 0);
 
     const renderPass = new RenderPass(this._scene, this._camera);
     // const bokehPass = new BokehPass(this._scene, this._camera, {
     //   focus: 0,
-    //   aperture: 5 * 0.00001,
-    //   maxblur: 0.01
+    //   aperture: 0.01,
+    //   maxblur: 0.1
     // });
+
     const dofEffect = new DepthOfFieldEffect(this._camera, {
-      focusDistance: 0.9,
-      focalLength: 0.9,
-      bokehScale: 25.0
+      worldFocusDistance: 4,
+      worldFocusRange: 2,
+      bokehScale: 3.0,
+      resolutionScale: 0.75
     });
+
     // const depthEffect = new DepthEffect({ blendFunction: BlendFunction.SKIP });
     const effectPass = new EffectPass(this._camera, dofEffect);
     // const outputPass = new OutputPass();
@@ -131,25 +159,25 @@ export default class HeroView {
       skyMaterial.uniforms.uPixelRatio.value = window.devicePixelRatio;
     })
 
-    if (env.platform.type === 'mobile') {
-      this._render.domElement.addEventListener('touchmove', (e) => {
-        // if (e.isPrimary === false) return;
-        const p = e.touches[0];
-        const normalizeX = ((p.clientX + this.renderRect.x) / this.renderRect.width) * 2 - 1;
-        this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
+    // if (env.platform.type === 'mobile') {
+    //   this._render.domElement.addEventListener('touchmove', (e) => {
+    //     // if (e.isPrimary === false) return;
+    //     const p = e.touches[0];
+    //     const normalizeX = ((p.clientX + this.renderRect.x) / this.renderRect.width) * 2 - 1;
+    //     this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
 
-        // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
-      })
-    } else {
-      this._render.domElement.addEventListener('pointermove', (e) => {
-        if (e.isPrimary === false) return;
-        const normalizeX = ((e.clientX + this.renderRect.x) / this.renderRect.width) * 2 - 1;
-        this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
-        // dofEffect.bokehScale = (Math.abs(normalizeX)) * 20;
-        // dofEffect.cocMaterial.uniforms.focalLength.value = (Math.abs(normalizeX));
-        // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
-      })
-    }
+    //     // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
+    //   })
+    // } else {
+    //   this._render.domElement.addEventListener('pointermove', (e) => {
+    //     if (e.isPrimary === false) return;
+    //     const normalizeX = ((e.clientX + this.renderRect.x) / this.renderRect.width) * 2 - 1;
+    //     this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
+    //     // dofEffect.bokehScale = (Math.abs(normalizeX)) * 20;
+    //     // dofEffect.cocMaterial.worldFocusDistance = (Math.abs(normalizeX)) * 10;
+    //     // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
+    //   })
+    // }
 
   }
 
