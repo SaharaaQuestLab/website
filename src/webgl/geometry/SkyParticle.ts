@@ -55,7 +55,8 @@ export const createSkyParticle: () => [THREE.Points, THREE.ShaderMaterial] = () 
     uniforms: {
       'uTotal': { value: total_point },
       'uTime': { value: 0 },
-      'uPixelRatio': { value: window.devicePixelRatio }
+      'uPixelRatio': { value: window.devicePixelRatio },
+      'uMouse': { value: new THREE.Vector3(999, 999, 0) }
     },
     vertexShader: VertexShader,
     fragmentShader: FragmentShader,

@@ -8,6 +8,7 @@ varying float v_color;
 uniform float uTotal;
 uniform float uTime;
 uniform float uPixelRatio;
+uniform vec3 uMouse;
 
 #include "../../lygia/generative/snoise.glsl";
 #include "../../lygia/generative/random.glsl";
@@ -58,5 +59,9 @@ void main() {
 	noise_layer_4 = remap(noise_layer_4, -1.0, 1.0, 0.15, 1.0);
 	dest_pos.y -= down_offset(dest_pos.xz) * noise_layer_4 * 5.5;
 
-	gl_Position = projectionMatrix * modelViewMatrix * vec4(dest_pos.xyz, 1.0);
+	vec4 world_pos = modelMatrix * vec4(dest_pos.xyz, 1.0);
+	float dispalce = length(world_pos.xy - uMouse.xy);
+	vec3 dir = normalize(world_pos.xyz - uMouse.xyz);
+	world_pos.xyz += dir * 0.2 * smoothstep(0.3, 0.0, dispalce);
+	gl_Position = projectionMatrix * modelViewMatrix * world_pos;
 }

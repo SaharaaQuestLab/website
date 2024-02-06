@@ -8,7 +8,12 @@ import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, DepthEffect
 import { createGroundParticle } from './geometry/GroundParticle';
 import { createSkyParticle } from './geometry/SkyParticle';
 import env from '@/utils/bowser.utils';
-import { SpatialControls } from 'spatial-controls';
+// import { SpatialControls } from 'spatial-controls';
+
+function easeOutQuad(t: number): number {
+  const x = Math.abs(t);
+  return (1 - (1 - x) * (1 - x)) * Math.sign(t);
+}
 
 export interface HeroViewOptions {
   platform?: 'mobile' | 'desktop'
@@ -23,7 +28,8 @@ export default class HeroView {
   private _composer?: EffectComposer;
   private _requestAnimationId?: number;
   private _requestCallback?: () => void;
-  private _controls?: SpatialControls;
+  // private _controls?: SpatialControls;
+  private _isMouseMove?: boolean = false;
 
   constructor(el: Window | HTMLElement) {
     this._el = el;
@@ -32,7 +38,7 @@ export default class HeroView {
     this._camera = this.createCamera();
     this.createComposer();
     this.createEvent();
-    this.createControls();
+    // this.createControls();
   }
 
   get renderRect() {
@@ -84,16 +90,16 @@ export default class HeroView {
     this._composer = new EffectComposer(this._render);
   }
 
-  private createControls() {
-    this._controls = new SpatialControls(this._camera.position, this._camera.quaternion, this._render.domElement);
-    const settings = this._controls.settings;
-    settings.rotation.sensitivity = 2.2;
-    settings.rotation.damping = 0.05;
-    settings.translation.damping = 0.1;
-  }
+  // private createControls() {
+  //   this._controls = new SpatialControls(this._camera.position, this._camera.quaternion, this._render.domElement);
+  //   const settings = this._controls.settings;
+  //   settings.rotation.sensitivity = 2.2;
+  //   settings.rotation.damping = 0.05;
+  //   settings.translation.damping = 0.1;
+  // }
 
   private _animate(timestamp?: number) {
-    if (this._controls) this._controls.update(timestamp || 0);
+    // if (this._controls) this._controls.update(timestamp || 0);
     if (this._requestCallback) this._requestCallback();
     if (this._composer) {
       this._composer.render(this._clock.getElapsedTime());
@@ -123,8 +129,8 @@ export default class HeroView {
     // plane2.position.set(0, 0, -1);
 
     this._camera.position.set(0, 0.95, 4);
-    this._controls?.position.set(0, 0.95, 4);
-    this._controls?.lookAt(0, 0.95, 0);
+    // this._controls?.position.set(0, 0.95, 4);
+    // this._controls?.lookAt(0, 0.95, 0);
 
     const renderPass = new RenderPass(this._scene, this._camera);
     // const bokehPass = new BokehPass(this._scene, this._camera, {
@@ -147,6 +153,9 @@ export default class HeroView {
     this._composer?.addPass(effectPass);
     // this._composer?.addPass(outputPass);
 
+    const raycaster = new THREE.Raycaster();
+    const interactPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1));
+
     this._requestCallback = () => {
       const elapse = this._clock.getElapsedTime();
       groundMaterial.uniforms.uTime.value = elapse;
@@ -159,25 +168,44 @@ export default class HeroView {
       skyMaterial.uniforms.uPixelRatio.value = window.devicePixelRatio;
     })
 
-    // if (env.platform.type === 'mobile') {
-    //   this._render.domElement.addEventListener('touchmove', (e) => {
-    //     // if (e.isPrimary === false) return;
-    //     const p = e.touches[0];
-    //     const normalizeX = ((p.clientX + this.renderRect.x) / this.renderRect.width) * 2 - 1;
-    //     this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
+    if (env.platform.type === 'mobile') {
+      this._render.domElement.addEventListener('touchmove', (event) => {
+        // if (e.isPrimary === false) return;
+        const e = event.touches[0];
+        const normalizeX = ((e.clientX - this.renderRect.left) / this.renderRect.width) * 2 - 1;
+        const normalizeY = -((e.clientY - this.renderRect.top) / this.renderRect.height) * 2 + 1;
+        // this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
 
-    //     // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
-    //   })
-    // } else {
-    //   this._render.domElement.addEventListener('pointermove', (e) => {
-    //     if (e.isPrimary === false) return;
-    //     const normalizeX = ((e.clientX + this.renderRect.x) / this.renderRect.width) * 2 - 1;
-    //     this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
-    //     // dofEffect.bokehScale = (Math.abs(normalizeX)) * 20;
-    //     // dofEffect.cocMaterial.worldFocusDistance = (Math.abs(normalizeX)) * 10;
-    //     // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
-    //   })
-    // }
+        // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
+      })
+    } else {
+      this._render.domElement.addEventListener('pointerenter', () => { this._isMouseMove = true });
+      this._render.domElement.addEventListener('pointerleave', () => {
+        this._isMouseMove = false;
+        const NonePoint = new THREE.Vector3(999);
+        skyMaterial.uniforms.uMouse.value = NonePoint;
+        groundMaterial.uniforms.uMouse.value = NonePoint;
+      })
+      this._render.domElement.addEventListener('pointermove', (event) => {
+        if (event.isPrimary === false) return;
+        if (!this._isMouseMove) return;
+        const e = event;
+        const normalizeX = ((e.clientX - this.renderRect.left) / this.renderRect.width) * 2 - 1;
+        const normalizeY = -((e.clientY - this.renderRect.top) / this.renderRect.height) * 2 + 1;
+        raycaster.setFromCamera(new THREE.Vector2(normalizeX, normalizeY), this._camera);
+        const targetPoint = new THREE.Vector3();
+        raycaster.ray.intersectPlane(interactPlane, targetPoint);
+        skyMaterial.uniforms.uMouse.value = targetPoint;
+        groundMaterial.uniforms.uMouse.value = targetPoint;
+        // const mouse3D = new THREE.Vector3(normalizeX, normalizeY, 4);
+        // mouse3D.unproject(this._camera);
+        // console.log(mouse3D);
+        this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * easeOutQuad(normalizeX) / 120);
+        // dofEffect.bokehScale = (Math.abs(normalizeX)) * 20;
+        // dofEffect.cocMaterial.worldFocusDistance = (Math.abs(normalizeX)) * 10;
+        // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
+      })
+    }
 
   }
 

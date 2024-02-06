@@ -58,7 +58,8 @@ export const createGroundParticle: () => [THREE.Points, THREE.ShaderMaterial] = 
       'uTotal': { value: total_point },
       'uTime': { value: 0 },
       'uPixelRatio': { value: window.devicePixelRatio },
-      'uMouse': { value: new THREE.Vector3(10) }
+      'uMouse': { value: new THREE.Vector3(999, 999, 0) },
+      'uTouch': { value: null },
     },
     vertexShader: VertexShader,
     fragmentShader: FragmentShader,

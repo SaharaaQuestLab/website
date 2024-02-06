@@ -11,17 +11,28 @@ const routes = navData.nav.map((nav) => ({
 }));
 ---
 
-<div class="px-[1.75rem] py-6 header w-full flex fixed z-10 justify-between">
+<div
+  class="px-[1.75rem] py-6 header w-full flex fixed z-10 justify-between pointer-events-none"
+>
   <div class="flex">
     {
       routes.map((item) => (
         <a
           href={item.path}
-          class:list={["text-[#979EA8] text-base px-3 py-2.5 block cursor-pointer hover:text-[#E1E4E7]", {"text-[#E1E4E7]": active === item.flag} ]}>{item.name}</a>
+          class:list={[
+            "text-[#979EA8] text-base px-3 py-2.5 block cursor-pointer hover:text-[#E1E4E7]",
+            { "text-[#E1E4E7]": active === item.flag },
+          ]}
+        >
+          {item.name}
+        </a>
       ))
     }
   </div>
-  <div class="border whitespace-nowrap border-[#474040] text-base cursor-pointer py-2.5 px-4 flex items-center rounded-xl text-[#E1E4E7]">
+  <div class="flex-1 pointer-events-none"></div>
+  <div
+    class="border whitespace-nowrap border-[#474040] text-base cursor-pointer py-2.5 px-4 flex items-center rounded-xl text-[#E1E4E7]"
+  >
     Claim Sahara ID
   </div>
 </div>

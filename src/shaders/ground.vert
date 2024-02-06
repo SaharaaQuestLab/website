@@ -7,6 +7,7 @@ varying float v_color;
 
 uniform float uTime;
 uniform float uPixelRatio;
+uniform vec3 uMouse;
 
 #include "../../lygia/generative/random.glsl";
 #include "../../lygia/generative/cnoise.glsl";
@@ -63,5 +64,10 @@ void main() {
   // vec3 dir = normalize(v_position.xyz - uMouse.xyz);
   // v_position.xyz += dir * 0.5 * smoothstep(0.3, 0.0, dispalce);
 
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(v_position, 1.0);
+  // gl_Position = projectionMatrix * modelViewMatrix * vec4(v_position, 1.0);
+  vec4 world_pos = modelMatrix * vec4(v_position.xyz, 1.0);
+  float dispalce = length(world_pos.xy - uMouse.xy);
+  vec3 dir = normalize(world_pos.xyz - uMouse.xyz);
+  world_pos.xyz += dir * 0.2 * smoothstep(0.3, 0.0, dispalce);
+  gl_Position = projectionMatrix * modelViewMatrix * world_pos;
 }
