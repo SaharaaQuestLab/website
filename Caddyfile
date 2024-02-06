@@ -1,0 +1,84 @@
+null-studio.cn {
+	route /manager* {
+		uri strip_prefix /manager
+		reverse_proxy 172.17.0.2:9000
+	}
+
+	handle /test* {
+		rewrite /test/* /{http.request.uri.path.relative}
+		root * /data/test
+		file_server
+	}
+
+	redir / /en
+
+	encode zstd gzip {
+		match {
+			header Content-Type text/*
+			header Content-Type application/json*
+			header Content-Type application/javascript*
+			header Content-Type application/xhtml+xml*
+			header Content-Type application/atom+xml*
+			header Content-Type application/rss+xml*
+			header Content-Type image/svg+xml*
+			header Content-Type image/png
+			header Content-Type image/jepg
+			header Content-Type application/vnd.apple.mpegurl
+			header Content-Type text/vnd.trolltech.linguist
+			header Content-Type font/ttf
+		}
+	}
+
+	# # Set this path to your site's directory
+
+	root * /data/sites
+
+	# # Enable the static file server
+
+	file_server
+
+	handle_errors {
+		@404 {
+			expression {http.error.status_code} == 404
+		}
+		rewrite @404 /404.html
+		file_server
+	}
+}
+
+gaoding.xyz {
+	redir / /en
+
+	encode zstd gzip {
+		match {
+			header Content-Type text/*
+			header Content-Type application/json*
+			header Content-Type application/javascript*
+			header Content-Type application/xhtml+xml*
+			header Content-Type application/atom+xml*
+			header Content-Type application/rss+xml*
+			header Content-Type image/svg+xml*
+			header Content-Type image/png
+			header Content-Type image/jepg
+			header Content-Type application/vnd.apple.mpegurl
+			header Content-Type text/vnd.trolltech.linguist
+			header Content-Type font/ttf
+		}
+	}
+
+	# Set this path to your site's directory
+
+	root * /data/sites
+
+	# Enable the static file server
+
+	file_server
+
+	handle_errors {
+		@404 {
+			expression {http.error.status_code} == 404
+		}
+		rewrite @404 /404.html
+		file_server
+	}
+}
