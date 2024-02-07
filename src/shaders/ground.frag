@@ -10,5 +10,5 @@ void main() {
   float alpha = 1.0 - 2.0 * smoothstep(radius - edge, radius, dist);
   if(alpha < 0.1)
     discard;
-  gl_FragColor = vec4(vec3(1.0) * v_color * 0.5, alpha);
+  gl_FragColor = vec4(vec3(1.0) * v_color * 0.35, alpha);
 }

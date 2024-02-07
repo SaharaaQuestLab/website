@@ -122,7 +122,7 @@ export default class HeroView {
 
     // black sphere
     const sphereGeo = new THREE.SphereGeometry(0.25, 32, 32);
-    const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+    const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x121315 });
     const sphere = new THREE.Mesh(sphereGeo, sphereMaterial);
     this._scene.add(sphere);
     sphere.position.set(-0.8, 0.3, 0.0);
@@ -149,14 +149,14 @@ export default class HeroView {
 
     const dofEffect = new DepthOfFieldEffect(this._camera, {
       worldFocusDistance: 4.5,
-      worldFocusRange: 1.5,
-      bokehScale: 4.0,
+      worldFocusRange: 1.0,
+      bokehScale: 3.0,
       resolutionScale: 1.0
     });
 
     const vignetteEffect = new VignetteEffect({
 			eskil: false,
-			offset: 0.2,
+			offset: 0.25,
 			darkness: 0.75
 		});
     
