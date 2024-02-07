@@ -155,16 +155,30 @@ export default class HeroView {
     });
 
     const vignetteEffect = new VignetteEffect({
-			eskil: false,
-			offset: 0.25,
-			darkness: 0.75
-		});
-    
+      eskil: false,
+      offset: 0.25,
+      darkness: 0.75
+    });
 
+
+    const outlineEffect = new OutlineEffect(this._scene, this._camera, {
+      blendFunction: BlendFunction.SCREEN,
+      multisampling: Math.min(4, this._render.capabilities.maxSamples),
+      edgeStrength: 0.3,
+      pulseSpeed: 0.0,
+      visibleEdgeColor: 0x666666,
+      hiddenEdgeColor: 0x000000,
+      height: 480,
+      blur: true,
+      xRay: true
+    });
+
+    outlineEffect.selection.set([sphere]);
 
     // const depthEffect = new DepthEffect({ blendFunction: BlendFunction.SKIP });
-    const effectPass = new EffectPass(this._camera, dofEffect, vignetteEffect);
+    const effectPass = new EffectPass(this._camera, dofEffect, outlineEffect);
     // const outputPass = new OutputPass();
+
     this._composer?.addPass(renderPass);
     this._composer?.addPass(effectPass);
     // this._composer?.addPass(outputPass);
@@ -176,6 +190,7 @@ export default class HeroView {
       const elapse = this._clock.getElapsedTime();
       groundMaterial.uniforms.uTime.value = elapse;
       skyMaterial.uniforms.uTime.value = elapse;
+      sphere.position.y += Math.sin(elapse) * 0.0005;
       // fallMaterial.uniforms.uTime.value = elapse;
     }
 

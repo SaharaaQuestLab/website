@@ -5,7 +5,7 @@ import ringMeshTongMaterial from "../material/RingMeshTong";
 
 
 export const createRing = () => {
-  const ringGeometry = new TorusGeometry(0.7, 0.1, 4, 40);
+  const ringGeometry = new TorusGeometry(0.35, 0.1, 4, 40);
   const ringMaterial = new ShaderMaterial({
     vertexShader: VertexShader,
     fragmentShader: FragmentShader,

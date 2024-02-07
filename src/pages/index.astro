@@ -1,5 +1,7 @@
 ---
 import TitleComponent from "@/components/TitleComponent.astro";
+// import HeroSection from "@/components/HeroSection.astro";
+// import AutomateSection from "@/components/AutomateSection.astro";
 import Hero3DSection from "@/components/3DHeroSection.astro";
 import Ring3DSection from "@/components/3DRingSection.astro";
 import AutomateSection from "@/components/AutomateSection.astro";
@@ -41,7 +43,9 @@ const { titles } = PageMeta;
         </li>
       </ul>
     </div>
-    <div class="flex-1 bg-white"></div>
+    <div class="flex-1 bg-gray-400">
+      <Ring3DSection />
+    </div>
   </div>
 
   <div

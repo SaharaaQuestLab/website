@@ -1,8 +1,35 @@
-import { Color, MeshToonMaterial } from "three";
+import { Color, MeshToonMaterial, CanvasTexture } from "three";
 // import VertexShader from "@/shaders/ring.vert";
 // import FragmentShader from "@/shaders/ring.frag";
 
-const ringMeshTongMaterial = new MeshToonMaterial();
+function createGradientTexture() {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  const gradient = ctx.createLinearGradient(0, 0, 256, 0); // 创建横向渐变
+
+  // 添加颜色断点
+  gradient.addColorStop(0.35, '#000000');
+  // gradient.addColorStop(0.5, '#aaaaaa');
+  gradient.addColorStop(0.7, '#ffffff');
+
+  // 设置canvas大小
+  canvas.width = 256;
+  canvas.height = 1;
+
+  // 填充渐变
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 256, 1);
+
+  // 使用canvas创建纹理
+  return new CanvasTexture(canvas);
+}
+
+
+const ringMeshTongMaterial = new MeshToonMaterial({
+  gradientMap: createGradientTexture(),
+  color: 0xffffff
+});
 
 ringMeshTongMaterial.onBeforeCompile = function (shader) {
   shader.vertexShader = shader.vertexShader.replace(
@@ -48,12 +75,11 @@ ringMeshTongMaterial.onBeforeCompile = function (shader) {
     '#include <dithering_fragment>',
     `
     #include <dithering_fragment>
-      float noise = voronoi(v_position.xy * 200.0).x;
+      float noise = voronoi(v_position.xy * 150.0).x;
       float color_p = step(0.5, noise);
       // outgoingLight = outgoingLight * color_p;
       // gl_FragColor = vec4(outgoingLight * color_p, 1.0);
-      gl_FragColor = gl_FragColor * color_p;
-      
+      gl_FragColor = vec4(gl_FragColor.xyz * color_p,1.0);      
     `
   );
 

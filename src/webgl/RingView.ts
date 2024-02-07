@@ -55,7 +55,7 @@ export default class RingView {
 
   private createScene() {
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x000000);
+    scene.background = new THREE.Color(0x121315);
     return scene;
   }
 
@@ -111,12 +111,12 @@ export default class RingView {
 
     this.setSceneOne();
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // 第二个参数是光照强度
-    this._scene.add(ambientLight);
+    // const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // 第二个参数是光照强度
+    // this._scene.add(ambientLight);
 
     // 添加一个定向光源
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(0, 1, 4); // 设置光源的位置
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+    directionalLight.position.set(2, 2, -1); // 设置光源的位置
     this._scene.add(directionalLight);
 
     // this._camera.position.set(0, 0.5, 4);
@@ -127,15 +127,15 @@ export default class RingView {
     const outlineEffect = new OutlineEffect(this._scene, this._camera, {
       blendFunction: BlendFunction.SCREEN,
       multisampling: Math.min(4, this._render.capabilities.maxSamples),
-      edgeStrength: 2.5,
+      edgeStrength: 0.5,
       pulseSpeed: 0.0,
-      visibleEdgeColor: 0xffff00,
+      visibleEdgeColor: 0xffffff,
       hiddenEdgeColor: 0x22090a,
       height: 480,
       blur: false,
       xRay: true
     });
-    outlineEffect.selection.set([this._rings[0]]);
+    outlineEffect.selection.set(this._rings);
     const renderPass = new RenderPass(this._scene, this._camera);
     const outlinePass = new EffectPass(this._camera, outlineEffect);
     this._composer?.addPass(renderPass);
@@ -179,9 +179,9 @@ export default class RingView {
     this._scene.remove(...this._rings);
     const [ring1, ring2] = this._rings;
     this._scene.add(ring1, ring2);
-    ring1.position.set(-0.5, 0, 0);
+    ring1.position.set(-0.25, 0, 0);
     ring1.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI / 2);
-    ring2.position.set(0.5, 0, 0);
+    ring2.position.set(0.25, 0, 0);
   }
 
   public setSceneTwo() {
