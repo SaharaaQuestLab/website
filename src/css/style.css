@@ -2,9 +2,31 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: IBMPlexMono;
+  font-style: normal;
+  src: url(../assets//fonts/IBMPlexMono-Regular.ttf);
+}
+
+@font-face {
+  font-family: IBMPlexMono-Medium;
+  font-style: normal;
+  src: url(../assets//fonts/IBMPlexMono-Medium.ttf);
+}
+
+@font-face {
+  font-family: Manrope;
+  font-style: normal;
+  src: url(../assets//fonts/Manrope-VariableFont_wght.ttf);
+}
+
 html,
 body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+}
+body {
+  font-family: IBMPlexMono;
+  color: #E1E4E7;
 }

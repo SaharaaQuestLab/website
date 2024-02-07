@@ -1,23 +1,41 @@
 ---
+import { Icon } from "astro-icon/components";
 import PageMeta from "@/data/footer";
-const { authorization, privacyPolicy, followUs, email, subscribe } = PageMeta;
+const { authorization, privacyPolicy, email, subscribe } = PageMeta;
 ---
 
-<div class="footer px-40 text-[#979EA8]">
-  <div class="flex text-base py-2 justify-between">
-    <div class="leading-[2.625rem]">
-      {followUs}
+<div class="footer px-40 text-[#979EA8] pt-[3.75rem]">
+  <div class="flex text-base justify-between my-[3.75rem]">
+    <div class="flex">
+      <div class="leading-[2.625rem] text-[Manrope] text-[#F9F9F9] pr-5">
+        Follow us to get the latest updates
+      </div>
+      <div class="flex gap-1 ml-5">
+        <a class="p-3">
+          <Icon class="w-5 h-5" name="twitter"/>
+        </a>
+        <a class="p-3">
+          <Icon class="w-5 h-5" name="linkedin"/>
+        </a>
+        <a class="p-3">
+          <Icon class="w-5 h-5" name="dicord"/>
+        </a>
+        <a class="p-3">
+          <Icon class="w-5 h-5" name="telegram"/>
+        </a>
+      </div>
     </div>
     <div class="border border-[#474040] flex px-4 py-2 bg-[#121315] rounded-xl w-[40rem] justify-between">
       <div>
         {email}
       </div>
-      <div>
+      <div class="cursor-pointer flex text-[#E1E4E7] items-center">
         {subscribe}
+        <Icon class="w-5 h-5" name="arrowRightUp"/>
       </div>
     </div>
   </div>
-  <div class="footer-border flex justify-between text-sm">
+  <div class="footer-border flex justify-between text-sm mt-5">
     <div class="px-3 py-2.5">
       {authorization}
     </div>

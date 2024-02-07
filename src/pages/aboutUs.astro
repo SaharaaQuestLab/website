@@ -3,12 +3,12 @@ import TitleComponent from "@/components/TitleComponent.astro";
 import HeroSection from "@/components/HeroSection.astro";
 // import AutomateSection from "@/components/AutomateSection.astro";
 import Layout from "../layouts/PageLayout.astro";
-import PageMeta from "@/data/personal";
+import PageMeta from "@/data/aboutUs";
 const {titles} = PageMeta;
 
 ---
 
-<Layout title="saharaa.ai" active="personal">
+<Layout title="saharaa.ai" active="aboutUs">
   <TitleComponent titles={titles} />
   <HeroSection />
   <!-- <AutomateSection /> -->

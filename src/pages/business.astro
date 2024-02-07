@@ -1,0 +1,28 @@
+---
+import TitleComponent from "@/components/TitleComponent.astro";
+import HeroSection from "@/components/HeroSection.astro";
+// import AutomateSection from "@/components/AutomateSection.astro";
+import Layout from "../layouts/PageLayout.astro";
+import PageMeta from "@/data/business";
+const {titles} = PageMeta;
+
+
+---
+
+<Layout title="saharaa.ai" active="business">
+  <TitleComponent titles={titles} />
+  <HeroSection />
+  <!-- <AutomateSection /> -->
+  <div class="px-40">
+    <h1 class="gradient-text">Your Ultimate Partner</h1>
+    <h1 class="gradient-text">for High Value Data</h1>
+  </div>
+</Layout>
+<style>
+  .gradient-text {
+    white-space: nowrap;
+    font-size: 6.875rem;
+    line-height: 6.375rem;
+    font-family: Manrope;
+  }
+</style>

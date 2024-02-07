@@ -14,7 +14,7 @@ const Routes = {
     },
     {
       "name": "About us",
-      "path": "about"
+      "path": "aboutUs"
     }
   ] as const
 }
