@@ -5,6 +5,23 @@ null-studio.cn {
 	}
 
 	handle /test* {
+		encode zstd gzip {
+			match {
+				header Content-Type text/*
+				header Content-Type application/json*
+				header Content-Type application/javascript*
+				header Content-Type application/xhtml+xml*
+				header Content-Type application/atom+xml*
+				header Content-Type application/rss+xml*
+				header Content-Type image/svg+xml*
+				header Content-Type image/png
+				header Content-Type image/jepg
+				header Content-Type application/vnd.apple.mpegurl
+				header Content-Type text/vnd.trolltech.linguist
+				header Content-Type font/ttf
+			}
+		}
+
 		rewrite /test/* /{http.request.uri.path.relative}
 		root * /data/test
 		file_server

@@ -1,7 +1,8 @@
 ---
 import TitleComponent from "@/components/TitleComponent.astro";
-import HeroSection from "@/components/HeroSection.astro";
-// import AutomateSection from "@/components/AutomateSection.astro";
+import Hero3DSection from "@/components/3DHeroSection.astro";
+import Ring3DSection from "@/components/3DRingSection.astro";
+import AutomateSection from "@/components/AutomateSection.astro";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/index";
 import { Icon } from "astro-icon/components";
@@ -10,7 +11,7 @@ const { titles } = PageMeta;
 
 <Layout title="saharaa.ai">
   <TitleComponent titles={titles} />
-  <HeroSection />
+  <Hero3DSection />
   <div class="flex mx-40 mt-[10rem] mb-[3.75rem]">
     <div class="scroll-selector w-[36.125rem]">
       <ul class="font-[Manrope]">
@@ -18,28 +19,29 @@ const { titles } = PageMeta;
           <h1 class="text-[5.625rem] leading-[5.125rem]">Own your</h1>
           <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
           <div class="mt-7">
-            Use blockchain infrastructure that's trustless, permissionless, and privacy-preserving so your information stays under your control.
+            Use blockchain infrastructure that's trustless, permissionless, and
+            privacy-preserving so your information stays under your control.
           </div>
         </li>
         <li>
           <h1 class="text-[5.625rem] leading-[5.125rem]">Scale your</h1>
           <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
           <div class="mt-7">
-            Create autonomous Al agents that expand the impact of your knowledge base, skills, and expertise and are customized to meet your needs.
+            Create autonomous Al agents that expand the impact of your knowledge
+            base, skills, and expertise and are customized to meet your needs.
           </div>
         </li>
         <li>
           <h1 class="text-[5.625rem] leading-[5.125rem]">Monetize your</h1>
           <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
           <div class="mt-7">
-            Join the decentralized ecosystem of global knowledge capital to leverage your data for novel income opportunities.
+            Join the decentralized ecosystem of global knowledge capital to
+            leverage your data for novel income opportunities.
           </div>
         </li>
       </ul>
     </div>
-    <div class="flex-1 bg-white">
-
-    </div>
+    <div class="flex-1 bg-white"></div>
   </div>
 
   <div
@@ -126,7 +128,6 @@ const { titles } = PageMeta;
     <h1 class="gradient-text">Start Your</h1>
     <h1 class="gradient-text">Sahara Journey</h1>
   </div>
-  <!-- <AutomateSection /> -->
 </Layout>
 <script>
   import { gsap } from "gsap";
@@ -156,7 +157,8 @@ const { titles } = PageMeta;
   scrollSelector.addEventListener("wheel", (event) => {
     event.preventDefault(); // 阻止默认滚动行为
     const scrollDirection = event.deltaY < 0 ? 1 : -1; // 判断滚动方向
-    let targetIndex = Math.round(scrollSelector.scrollTop / height) + scrollDirection;
+    let targetIndex =
+      Math.round(scrollSelector.scrollTop / height) + scrollDirection;
 
     // 确保目标索引在有效范围内
     targetIndex = Math.min(Math.max(0, targetIndex), cityList.length - 1);

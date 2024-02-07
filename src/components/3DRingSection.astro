@@ -1,0 +1,16 @@
+---
+
+---
+
+<div id="ring3D" class="w-full h-screen"></div>
+
+<script>
+  import RingView from "@/webgl/RingView";
+  const canvasEl = document.getElementById("ring3D");
+
+  if (canvasEl) {
+    const viewer = new RingView(canvasEl);
+    viewer.useSetup();
+    viewer.play();
+  }
+</script>

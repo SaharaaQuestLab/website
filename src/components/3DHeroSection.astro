@@ -1,0 +1,16 @@
+---
+
+---
+
+<div id="hero3D" class="w-full h-screen"></div>
+
+<script>
+  import HeroView from "@/webgl/HeroView";
+  const canvasEl = document.getElementById("hero3D");
+
+  if (canvasEl) {
+    const viewer = new HeroView(canvasEl);
+    viewer.useSetup();
+    viewer.play();
+  }
+</script>
