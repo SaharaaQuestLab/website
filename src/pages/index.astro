@@ -15,10 +15,12 @@ const { titles } = PageMeta;
   <TitleComponent titles={titles} />
   <Hero3DSection />
   <div class="flex mx-40 mt-[10rem] mb-[3.75rem]">
+    <div class="mr-[3.75rem]"></div>
     <div class="scroll-selector w-[36.125rem]">
-      <ul class="font-[Manrope]">
+      <ul class="font-[Manrope] flex flex-col gap-[1.125rem]">
+        <li></li>
         <li>
-          <h1 class="text-[5.625rem] leading-[5.125rem]">Own your</h1>
+          <h1 class="text-[5.625rem] leading-[5.125rem] mb-[0.875rem]">Own your</h1>
           <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
           <div class="mt-7">
             Use blockchain infrastructure that's trustless, permissionless, and
@@ -26,7 +28,7 @@ const { titles } = PageMeta;
           </div>
         </li>
         <li>
-          <h1 class="text-[5.625rem] leading-[5.125rem]">Scale your</h1>
+          <h1 class="text-[5.625rem] leading-[5.125rem] mb-[0.875rem]">Scale your</h1>
           <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
           <div class="mt-7">
             Create autonomous Al agents that expand the impact of your knowledge
@@ -34,7 +36,7 @@ const { titles } = PageMeta;
           </div>
         </li>
         <li>
-          <h1 class="text-[5.625rem] leading-[5.125rem]">Monetize your</h1>
+          <h1 class="text-[5.625rem] leading-[5.125rem] mb-[0.875rem] whitespace-nowrap">Monetize your</h1>
           <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
           <div class="mt-7">
             Join the decentralized ecosystem of global knowledge capital to
@@ -128,7 +130,7 @@ const { titles } = PageMeta;
       </div>
     </div>
   </div>
-  <div class="px-40">
+  <div slot="footer">
     <h1 class="gradient-text">Start Your</h1>
     <h1 class="gradient-text">Sahara Journey</h1>
   </div>
@@ -182,6 +184,7 @@ const { titles } = PageMeta;
   });
   scrollSelector.addEventListener("scroll", () => {
     const currentIndex = Math.round(scrollSelector.scrollTop / height);
+    console.log(currentIndex)
     cityList.forEach((li, index) => {
       li.classList.toggle("active", index === currentIndex);
     });
@@ -229,6 +232,7 @@ const { titles } = PageMeta;
     font-size: 6.875rem;
     line-height: 6.375rem;
     font-family: Manrope;
+    color: #E1E4E7;
   }
   .scroll-selector {
     position: relative;

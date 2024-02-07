@@ -13,10 +13,12 @@ const routes = navData.nav.map((nav) => ({
 }));
 ---
 
-<div class="px-[1.75rem] py-6 header w-full flex fixed z-10 justify-between">
+<div
+  class="px-[1.75rem] pt-6 pb-[3.25rem] header w-full flex fixed z-10 justify-between"
+>
   <div class="flex text-[#404347]">
     <a href="/" class="logo mr-12 w-11 h-full">
-      <img class="w-full" src="" alt="logo">
+      <img class="w-full" src="" alt="logo" />
     </a>
     <div class="text-base leading-6 py-2.5 px-3">/</div>
     {
@@ -37,7 +39,12 @@ const routes = navData.nav.map((nav) => ({
   <div
     class="border whitespace-nowrap border-[#474040] text-base leading-5 cursor-pointer py-2.5 px-4 flex items-center rounded-xl text-[#E1E4E7]"
   >
-  Join waitlist
-  <Icon class="w-5 h-5" name="arrowRightUp"/>
+    Join waitlist
+    <Icon class="w-5 h-5" name="arrowRightUp" />
   </div>
 </div>
+<style>
+  .header {
+    background: linear-gradient(to bottom, rgba(18, 19, 21,1), rgba(18, 19, 21,0));
+  }
+</style>

@@ -4,14 +4,78 @@ import Hero3DSection from "@/components/3DHeroSection.astro";
 // import AutomateSection from "@/components/AutomateSection.astro";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/business";
+import { Icon } from "astro-icon/components";
+import titleIcon_01 from "@/assets/icons/titleIcon_01.jpg";
+import titleIcon_02 from "@/assets/icons/titleIcon_02.jpg";
+import titleIcon_03 from "@/assets/icons/titleIcon_03.jpg";
 const { titles } = PageMeta;
 ---
 
 <Layout title="saharaa.ai" active="business">
   <TitleComponent titles={titles} />
   <Hero3DSection />
+  <h1 class="gradient-text text-center pt-40 pb-[7.5rem]">
+    Automate Your business
+  </h1>
+  <div class="px-40 flex gap-[3.125rem] font-[Manrope] mb-[3.75rem]">
+    <div class="flex-1">
+      <div class="w-[7.5rem] mb-[3.75rem]">
+        <img class="w-full" src={titleIcon_01.src} alt="logo" />
+      </div>
+      <h2 class="text-4xl">Create</h2>
+      <h2 class="text-4xl">Proprietary AI Agents</h2>
+      <div
+        class="text-lg text-[#979EA8] mt-7 pb-[3.75rem] border-b border-b-[#404347]"
+      >
+        Build Sahara Knowledge Agents as custom on-premise AI solutions that
+        save costs, drive growth, and enable new business opportunities.
+      </div>
+    </div>
+    <div class="flex-1">
+      <div class="w-[7.5rem] mb-[3.75rem]">
+        <img class="w-full" src={titleIcon_02.src} alt="logo" />
+      </div>
+      <h2 class="text-4xl">Maximize</h2>
+      <h2 class="text-4xl">Business Efficiency</h2>
+      <div
+        class="text-lg text-[#979EA8] mt-7 pb-[3.75rem] border-b border-b-[#404347]"
+      >
+      Elevate productivity through workflow automation, predictive analytics, personalized experiences, resource optimization, and supply chain enhancement.
+      </div>
+    </div>
+    <div class="flex-1">
+      <div class="w-[7.5rem] mb-[3.75rem]">
+        <img class="w-full" src={titleIcon_03.src} alt="logo" />
+      </div>
+      <h2 class="text-4xl">Leverage</h2>
+      <h2 class="text-4xl">Global Knowledge Capital </h2>
+      <div
+        class="text-lg text-[#979EA8] mt-7 pb-[3.75rem] border-b border-b-[#404347]"
+      >
+        Participate in Sahara Data, a trustless, permissionless, and privacy-preserving platform for high-value datasets and data services to train AI. 
+      </div>
+    </div>
+  </div>
+  <div
+    class="mx-auto w-[27.25rem] border whitespace-nowrap border-[#474040] text-base leading-5 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-[#E1E4E7]"
+  >
+  Book a Demo
+    <Icon class="w-5 h-5" name="arrowRightUp" />
+  </div>
+  <div class="flex px-40 mt-40 mb-20">
+    <div class="py-[7.25rem] w-[40rem] font-[Manrope]">
+      <div class="gradient-text text-[#878A8D]">Sahara</div>
+      <div class="gradient-text">Knowledge</div>
+      <div class="gradient-text">Agent (KA)</div>
+      <div class="text-[#979EA8] mt-[3.75rem]">
+        Sahara KA Business extends far beyond conversational capabilities, autonomously analyzing both external and internal proprietary data to offer reliable decision-making tailored to specific needs.
+      </div>
+
+    </div>
+    <div class="flex-1 bg-white"></div>
+  </div>
   <!-- <AutomateSection /> -->
-  <div class="px-40">
+  <div slot="footer">
     <h1 class="gradient-text">Your Ultimate Partner</h1>
     <h1 class="gradient-text">for High Value Data</h1>
   </div>
@@ -22,5 +86,6 @@ const { titles } = PageMeta;
     font-size: 6.875rem;
     line-height: 6.375rem;
     font-family: Manrope;
+    color: #e1e4e7;
   }
 </style>

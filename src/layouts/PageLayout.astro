@@ -17,7 +17,8 @@ const { title, active } = Astro.props;
   <LaptopHeader active={active} />
   <MobileHeader />
   <slot />
-  <slot name="footer">
-    <CommonFooter />
-  </slot>
+  <CommonFooter>
+    <slot slot="footer" name="footer"></slot>
+  </CommonFooter>
+
 </BaseLayout>
