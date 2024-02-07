@@ -3,8 +3,9 @@ import * as THREE from 'three';
 // import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 // import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
 // import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+// import { OutlinePass } from 'three/addons/postprocessing/OutlinePass.js';
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
-import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, DepthEffect, BlendFunction } from 'postprocessing';
+import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, DepthEffect, BlendFunction, VignetteEffect, OutlineEffect } from 'postprocessing';
 import { createGroundParticle } from './geometry/GroundParticle';
 import { createSkyParticle } from './geometry/SkyParticle';
 import env from '@/utils/bowser.utils';
@@ -61,7 +62,7 @@ export default class HeroView {
 
   private createScene() {
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x000000);
+    scene.background = new THREE.Color(0x121315);
     return scene;
   }
 
@@ -119,6 +120,13 @@ export default class HeroView {
     this._scene.add(skyParticles);
     skyParticles.position.set(0, 0, 0);
 
+    // black sphere
+    const sphereGeo = new THREE.SphereGeometry(0.25, 32, 32);
+    const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+    const sphere = new THREE.Mesh(sphereGeo, sphereMaterial);
+    this._scene.add(sphere);
+    sphere.position.set(-0.8, 0.3, 0.0);
+
     // const planeGeo = new THREE.PlaneGeometry(3, 3, 25, 25);
     // const plane = new THREE.Points(planeGeo, new THREE.PointsMaterial({ color: "yellow", size: 0.05 }));
     // this._scene.add(plane);
@@ -141,13 +149,21 @@ export default class HeroView {
 
     const dofEffect = new DepthOfFieldEffect(this._camera, {
       worldFocusDistance: 4.5,
-      worldFocusRange: 2,
-      bokehScale: 3.0,
-      resolutionScale: 0.75
+      worldFocusRange: 1.5,
+      bokehScale: 4.0,
+      resolutionScale: 1.0
     });
 
+    const vignetteEffect = new VignetteEffect({
+			eskil: false,
+			offset: 0.2,
+			darkness: 0.75
+		});
+    
+
+
     // const depthEffect = new DepthEffect({ blendFunction: BlendFunction.SKIP });
-    const effectPass = new EffectPass(this._camera, dofEffect);
+    const effectPass = new EffectPass(this._camera, dofEffect, vignetteEffect);
     // const outputPass = new OutputPass();
     this._composer?.addPass(renderPass);
     this._composer?.addPass(effectPass);
@@ -200,7 +216,7 @@ export default class HeroView {
         // const mouse3D = new THREE.Vector3(normalizeX, normalizeY, 4);
         // mouse3D.unproject(this._camera);
         // console.log(mouse3D);
-        this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * easeOutQuad(normalizeX) / 120);
+        //this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * easeOutQuad(normalizeX) / 120);
         // dofEffect.bokehScale = (Math.abs(normalizeX)) * 20;
         // dofEffect.cocMaterial.worldFocusDistance = (Math.abs(normalizeX)) * 10;
         // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
