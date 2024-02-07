@@ -1,5 +1,7 @@
 ---
 import navData, { type PageRoutes } from "../data/nav";
+import { Icon } from "astro-icon/components";
+
 interface Props {
   active?: PageRoutes;
 }
@@ -11,16 +13,18 @@ const routes = navData.nav.map((nav) => ({
 }));
 ---
 
-<div
-  class="px-[1.75rem] py-6 header w-full flex fixed z-10 justify-between pointer-events-none"
->
-  <div class="flex">
+<div class="px-[1.75rem] py-6 header w-full flex fixed z-10 justify-between">
+  <div class="flex text-[#404347]">
+    <a href="/" class="logo mr-12 w-11 h-full">
+      <img class="w-full" src="" alt="logo">
+    </a>
+    <div class="text-base leading-6 py-2.5 px-3">/</div>
     {
       routes.map((item) => (
         <a
           href={item.path}
           class:list={[
-            "text-[#979EA8] text-base px-3 py-2.5 block cursor-pointer hover:text-[#E1E4E7]",
+            "text-[#979EA8] whitespace-nowrap text-base leading-6 px-3 py-2.5 block cursor-pointer hover:text-[#E1E4E7]",
             { "text-[#E1E4E7]": active === item.flag },
           ]}
         >
@@ -31,8 +35,9 @@ const routes = navData.nav.map((nav) => ({
   </div>
   <div class="flex-1 pointer-events-none"></div>
   <div
-    class="border whitespace-nowrap border-[#474040] text-base cursor-pointer py-2.5 px-4 flex items-center rounded-xl text-[#E1E4E7]"
+    class="border whitespace-nowrap border-[#474040] text-base leading-5 cursor-pointer py-2.5 px-4 flex items-center rounded-xl text-[#E1E4E7]"
   >
-    Claim Sahara ID
+  Join waitlist
+  <Icon class="w-5 h-5" name="arrowRightUp"/>
   </div>
 </div>
