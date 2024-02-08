@@ -8,7 +8,9 @@ import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
 import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, DepthEffect, BlendFunction, VignetteEffect, OutlineEffect } from 'postprocessing';
 import { createGroundParticle } from './geometry/GroundParticle';
 import { createSkyParticle } from './geometry/SkyParticle';
+import { createBackgroundParticle } from './geometry/BackgroundParticle';
 import env from '@/utils/bowser.utils';
+
 // import { SpatialControls } from 'spatial-controls';
 
 function easeOutQuad(t: number): number {
@@ -120,6 +122,10 @@ export default class HeroView {
     this._scene.add(skyParticles);
     skyParticles.position.set(0, 0, 0);
 
+    const [backgroundParticles, backgroundMaterial] = createBackgroundParticle();
+    this._scene.add(backgroundParticles);
+    backgroundParticles.position.set(0, 0, 0);
+
     // black sphere
     const sphereGeo = new THREE.SphereGeometry(0.25, 32, 32);
     const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x121315 });
@@ -141,11 +147,6 @@ export default class HeroView {
     // this._controls?.lookAt(0, 0.95, 0);
 
     const renderPass = new RenderPass(this._scene, this._camera);
-    // const bokehPass = new BokehPass(this._scene, this._camera, {
-    //   focus: 0,
-    //   aperture: 0.01,
-    //   maxblur: 0.1
-    // });
 
     const dofEffect = new DepthOfFieldEffect(this._camera, {
       worldFocusDistance: 4.5,
@@ -190,6 +191,7 @@ export default class HeroView {
       const elapse = this._clock.getElapsedTime();
       groundMaterial.uniforms.uTime.value = elapse;
       skyMaterial.uniforms.uTime.value = elapse;
+      backgroundMaterial.uniforms.uTime.value = elapse;
       sphere.position.y += Math.sin(elapse) * 0.0005;
       // fallMaterial.uniforms.uTime.value = elapse;
     }
@@ -197,6 +199,7 @@ export default class HeroView {
     window.addEventListener("resize", () => {
       groundMaterial.uniforms.uPixelRatio.value = window.devicePixelRatio;
       skyMaterial.uniforms.uPixelRatio.value = window.devicePixelRatio;
+      backgroundMaterial.uniforms.uPixelRatio.value = window.devicePixelRatio;
     })
 
     if (env.platform.type === 'mobile') {
@@ -216,6 +219,7 @@ export default class HeroView {
         const NonePoint = new THREE.Vector3(999);
         skyMaterial.uniforms.uMouse.value = NonePoint;
         groundMaterial.uniforms.uMouse.value = NonePoint;
+        backgroundMaterial.uniforms.uMouse.value = NonePoint;
       })
       this._render.domElement.addEventListener('pointermove', (event) => {
         if (event.isPrimary === false) return;
@@ -228,6 +232,8 @@ export default class HeroView {
         raycaster.ray.intersectPlane(interactPlane, targetPoint);
         skyMaterial.uniforms.uMouse.value = targetPoint;
         groundMaterial.uniforms.uMouse.value = targetPoint;
+        backgroundMaterial.uniforms.uMouse.value = targetPoint;
+
         // const mouse3D = new THREE.Vector3(normalizeX, normalizeY, 4);
         // mouse3D.unproject(this._camera);
         // console.log(mouse3D);

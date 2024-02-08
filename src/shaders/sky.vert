@@ -42,16 +42,17 @@ void main() {
 	float noise_scale = snoise(v_position.xyz);
 	v_color = noise_color(v_position.xyz);
 
+	noise_scale = remap(noise_scale, -1.0, 1.0, 0.2, 1.0);
 	float rnd = random(a_index);
 	noise_scale = rnd < 0.00001 ? 3.0 * noise_scale : noise_scale;
-	gl_PointSize = 5.0 * uPixelRatio * noise_scale;
+	gl_PointSize = 4.0 * uPixelRatio * noise_scale;
 
     // noise and normal
 	vec3 dest_pos = v_position;
 	dest_pos.y -= 1.0;
 	float offset_x_layer1 = 0.02 * uTime;
 	vec3 sample_pos_layer1 = vec3(dest_pos.x + offset_x_layer1, dest_pos.y, dest_pos.z);
-	vec3 noise_pos = snoise3((dest_pos.xyz + sample_pos_layer1)* noise_layer_1_freq) * noise_layer_1_amp;
+	vec3 noise_pos = snoise3((dest_pos.xyz + sample_pos_layer1) * noise_layer_1_freq) * noise_layer_1_amp;
 
 	// float dist = distance(v_position.xz, vec2(0.0, 0.0));
 	// vec3 dest_pos = v_position.xyz + step(0.1, dist) * rnd3 * 2.2;
@@ -59,7 +60,7 @@ void main() {
 	dest_pos.xyz = dest_pos.xyz * 1.3 / distance(dest_pos.xyz, vec3(0.0, 0.0, 0.0));
 
 	// detail noise
-	vec3 noise_pos_detail = snoise3(v_position.xyz* noise_layer_3_freq) * noise_layer_3_amp;
+	vec3 noise_pos_detail = snoise3(v_position.xyz * noise_layer_3_freq) * noise_layer_3_amp;
 	dest_pos.xyz += noise_pos_detail;
 
 	// move up

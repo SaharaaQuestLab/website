@@ -63,7 +63,7 @@ export const createSkyParticle: () => [THREE.Points, THREE.ShaderMaterial] = () 
     depthTest: true,
     depthWrite: true,
     transparent: true,
-    blending: THREE.AdditiveBlending,
+    blending: THREE.NormalBlending,
     wireframe: false
   })
   const points = new THREE.Points(particleGeometry, particleMaterial);
