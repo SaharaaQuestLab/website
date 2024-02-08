@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
 import env from '@/utils/bowser.utils';
 // import { EffectPass, EffectComposer, RenderPass } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { createRing } from './geometry/CircleRing';
-import { SpatialControls } from 'spatial-controls';
+import { CircleRing } from './geometry/CircleRing';
+// import { SpatialControls } from 'spatial-controls';
 import { OutlineEffect } from 'three/examples/jsm/Addons.js';
 
 // import { EffectComposer, OutlineEffect, EffectPass, RenderPass, BlendFunction } from 'postprocessing';
@@ -22,19 +22,17 @@ export default class RingView {
   private _composer?: OutlineEffect;
   private _requestAnimationId?: number;
   private _requestCallback?: () => void;
-  private _controls?: SpatialControls;
-  private _isMouseMove?: boolean = false;
-  private _rings: Array<THREE.Mesh<THREE.TorusGeometry>> = [];
+  // private _controls?: SpatialControls;
+  // private _isMouseMove?: boolean = false;
+  private _rings: Array<CircleRing> = [];
 
   constructor(el: Window | HTMLElement) {
     this._el = el;
     this._render = this.createRender();
     this._scene = this.createScene();
     this._camera = this.createCamera();
-    // this.createComposer();
     this.createEvent();
     this.createRings();
-    this.createControls();
   }
 
   get renderRect() {
@@ -66,7 +64,6 @@ export default class RingView {
     const houdiniAperture = 41.4214;
     const fov = 2 * Math.atan(houdiniAperture / (2 * houdiniFocalLength)) * (180 / Math.PI);
     const camera = new THREE.PerspectiveCamera(fov, this.renderRect.width / this.renderRect.height, 0.1, 2000);
-    camera.updateProjectionMatrix();
     return camera;
   }
 
@@ -87,19 +84,19 @@ export default class RingView {
   }
 
   private createRings() {
-    this._rings = Array(5).fill(undefined).map(() => createRing());
+    this._rings = Array(5).fill(undefined).map(() => new CircleRing());
   }
 
-  private createControls() {
-    this._controls = new SpatialControls(this._camera.position, this._camera.quaternion, this._render.domElement);
-    const settings = this._controls.settings;
-    settings.rotation.sensitivity = 2.2;
-    settings.rotation.damping = 0.05;
-    settings.translation.damping = 0.1;
-  }
+  // private createControls() {
+  //   this._controls = new SpatialControls(this._camera.position, this._camera.quaternion, this._render.domElement);
+  //   const settings = this._controls.settings;
+  //   settings.rotation.sensitivity = 2.2;
+  //   settings.rotation.damping = 0.05;
+  //   settings.translation.damping = 0.1;
+  // }
 
   private _animate(timestamp?: number) {
-    if (this._controls) this._controls.update(timestamp || 0);
+    // if (this._controls) this._controls.update(timestamp || 0);
     if (this._requestCallback) this._requestCallback();
     if (this._composer) {
       this._composer.render(this._scene, this._camera);
@@ -113,7 +110,6 @@ export default class RingView {
 
     this.setSceneOne();
 
-
     // 添加一个定向光源
     const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
     directionalLight.position.set(2, 2, -0.5); // 设置光源的位置
@@ -124,9 +120,8 @@ export default class RingView {
     pointLight.position.set(-1.0, -0.3, 0);
     this._scene.add(pointLight);
 
-    // this._camera.position.set(0, 0.5, 4);
-    this._controls?.position.set(0, 0.5, 4);
-    this._controls?.lookAt(0, 0.5, 0);
+    this._camera.position.set(0, 0, 4);
+    this._camera.lookAt(0, 0, 0);
 
 
     // const outlineEffect = new OutlineEffect(this._scene, this._camera, {
@@ -148,61 +143,34 @@ export default class RingView {
     // this._composer?.addPass(outlinePass);
     this._composer = new OutlineEffect(this._render, { defaultColor: [3 / 16, 3 / 16, 3 / 16] });
 
+
+
     this._requestCallback = () => {
-      const elapse = this._clock.getDelta();
-      const [ring1] = this._rings;
-      ring1.rotateOnAxis(new THREE.Vector3(0, 1, 0), elapse * Math.PI / 80)
-      // fallMaterial.uniforms.uTime.value = elapse;
+      const elapse = this._clock.getElapsedTime();
+      const delta = this._clock.getDelta();
+      const [ring1, ring2] = this._rings;
+      const deltaRotate = Math.PI / 90;
+      // ring1.update(0.35 + 0.1 * Math.sin(elapse));
+      ring1.rotate(new THREE.Vector3(1, 0, 0), deltaRotate);
+      // ring2.update(0.35 + 0.1 * Math.sin(elapse));
+      ring2.rotate(new THREE.Vector3(0, 1, 0), deltaRotate);
     }
 
     window.addEventListener("resize", () => {
 
     })
-
-    if (env.platform.type === 'mobile') {
-      this._render.domElement.addEventListener('touchmove', (event) => {
-        // if (e.isPrimary === false) return;
-        const e = event.touches[0];
-        const normalizeX = ((e.clientX - this.renderRect.left) / this.renderRect.width) * 2 - 1;
-        const normalizeY = -((e.clientY - this.renderRect.top) / this.renderRect.height) * 2 + 1;
-        // this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
-
-        // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
-      })
-    } else {
-      this._render.domElement.addEventListener('pointerenter', () => { this._isMouseMove = true });
-      this._render.domElement.addEventListener('pointerleave', () => {
-        this._isMouseMove = false;
-      })
-      this._render.domElement.addEventListener('pointermove', (event) => {
-        if (event.isPrimary === false) return;
-        if (!this._isMouseMove) return;
-        const e = event;
-        const normalizeX = ((e.clientX - this.renderRect.left) / this.renderRect.width) * 2 - 1;
-        const normalizeY = -((e.clientY - this.renderRect.top) / this.renderRect.height) * 2 + 1;
-      })
-    }
   }
 
   public setSceneOne() {
-    this._scene.remove(...this._rings);
+    this._scene.remove(...this._rings.map(r => r.mesh));
     const [ring1, ring2] = this._rings;
-    this._scene.add(ring1, ring2);
-    ring1.position.set(-0.25, 0, 0);
-    ring1.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI / 2);
-    ring2.position.set(0.25, 0, 0);
+    this._scene.add(ring1.mesh, ring2.mesh);
+    ring1.move(-0.125, 0, 0);
+    ring2.move(0.125, 0, 0);
   }
 
   public setSceneTwo() {
-    this._scene.remove(...this._rings);
-    const [ring1, ring2, ring3] = this._rings;
-    this._scene.add(ring1, ring2, ring3);
-    ring1.geometry.scale(1 / 0.7, 1 / 0.7, 1 / 0.7);
-    ring1.position.set(0, 0, 0);
-    ring2.geometry.scale(0.7 / 0.6, 0.7 / 0.6, 0.7 / 0.6)
-    ring2.position.set(0, 0, 0);
-    ring3.geometry.scale(0.2 / 0.7, 0.2 / 0.7, 0.2 / 0.7)
-    ring3.position.set(0, 0, 0);
+
   }
 
   public setSceneThree() {

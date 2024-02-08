@@ -57,13 +57,13 @@ function createGradientTexture() {
 //   color: 0xffffff,
 // });
 
-const ringMeshStandardMatrial = new MeshStandardMaterial({
+const ringMeshStandardMaterial = new MeshStandardMaterial({
   color: 0xffffff,
   flatShading: true,
   blending: AdditiveBlending
 })
 
-ringMeshStandardMatrial.onBeforeCompile = function (shader) {
+ringMeshStandardMaterial.onBeforeCompile = function (shader) {
   shader.vertexShader = shader.vertexShader.replace(
     '#include <common>',
     `varying vec3 v_position;
@@ -75,7 +75,7 @@ ringMeshStandardMatrial.onBeforeCompile = function (shader) {
       'vec3 transformed = vec3(position);'
     ].join('\n')
   );
-  console.log(shader.fragmentShader);
+
   shader.fragmentShader = shader.fragmentShader.replace(
     '#include <common>',
     `#include <common>
@@ -122,15 +122,6 @@ ringMeshStandardMatrial.onBeforeCompile = function (shader) {
       gl_FragColor = vec4(vec3(fragColorGreyScale, fragColorGreyScale, fragColorGreyScale),1.0);      
     `
   );
-
-  // .concat(
-  //   `
-  //   float noise = voronoi(v_position.xy * 200.0).x;
-  //   float color = step(0.4, noise);
-  //   gl_FragColor = vec4(vec3(color), 1.0);
-  //   `
-  // )
-  console.log(shader.fragmentShader);
 }
 
-export default ringMeshStandardMatrial;
+export default ringMeshStandardMaterial;

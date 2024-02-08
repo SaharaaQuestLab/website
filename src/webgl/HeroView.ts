@@ -177,9 +177,7 @@ export default class HeroView {
 
     outlineEffect.selection.set([sphere]);
 
-    // const depthEffect = new DepthEffect({ blendFunction: BlendFunction.SKIP });
     const effectPass = new EffectPass(this._camera, dofEffect, outlineEffect);
-    // const outputPass = new OutputPass();
 
     this._composer?.addPass(renderPass);
     this._composer?.addPass(effectPass);
@@ -194,7 +192,6 @@ export default class HeroView {
       skyMaterial.uniforms.uTime.value = elapse;
       backgroundMaterial.uniforms.uTime.value = elapse;
       sphere.position.y += Math.sin(elapse) * 0.0005;
-      // fallMaterial.uniforms.uTime.value = elapse;
     }
 
     window.addEventListener("resize", () => {
@@ -205,14 +202,10 @@ export default class HeroView {
 
     if (env.platform.type === 'mobile') {
       this._render.domElement.addEventListener('touchmove', (event) => {
-        // if (e.isPrimary === false) return;
         const e = event.touches[0];
         const normalizeX = ((e.clientX - this.renderRect.left) / this.renderRect.width) * 2 - 1;
         const normalizeY = -((e.clientY - this.renderRect.top) / this.renderRect.height) * 2 + 1;
-        // this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * normalizeX / 80);
-
-        // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
-      })
+      });
     } else {
       this._render.domElement.addEventListener('pointerenter', () => { this._isMouseMove = true });
       this._render.domElement.addEventListener('pointerleave', () => {
@@ -221,7 +214,7 @@ export default class HeroView {
         skyMaterial.uniforms.uMouse.value = NonePoint;
         groundMaterial.uniforms.uMouse.value = NonePoint;
         backgroundMaterial.uniforms.uMouse.value = NonePoint;
-      })
+      });
       this._render.domElement.addEventListener('pointermove', (event) => {
         if (event.isPrimary === false) return;
         if (!this._isMouseMove) return;
@@ -235,14 +228,13 @@ export default class HeroView {
         groundMaterial.uniforms.uMouse.value = targetPoint;
         backgroundMaterial.uniforms.uMouse.value = targetPoint;
 
-        // const mouse3D = new THREE.Vector3(normalizeX, normalizeY, 4);
-        // mouse3D.unproject(this._camera);
-        // console.log(mouse3D);
         //this._camera.setRotationFromAxisAngle(new THREE.Vector3(0, 1, 0), - Math.PI * easeOutQuad(normalizeX) / 120);
-        // dofEffect.bokehScale = (Math.abs(normalizeX)) * 20;
-        // dofEffect.cocMaterial.worldFocusDistance = (Math.abs(normalizeX)) * 10;
-        // (bokehPass.uniforms as { focus: { value: number } }).focus.value = (Math.abs(normalizeX)) * 200;
-      })
+        const x = 4 * Math.sin(Math.PI * easeOutQuad(normalizeX) / 80);
+        const y = this._camera.position.y;
+        const z = 4 * Math.cos(Math.PI * easeOutQuad(normalizeX) / 80);
+        this._camera.position.set(x, y, z);
+        this._camera.lookAt(new THREE.Vector3(0, y, 0));
+      }, { passive: true });
     }
 
   }
