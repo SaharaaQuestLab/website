@@ -4,7 +4,9 @@ import env from '@/utils/bowser.utils';
 // import { EffectPass, EffectComposer, RenderPass } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { createRing } from './geometry/CircleRing';
 import { SpatialControls } from 'spatial-controls';
-import { EffectComposer, OutlineEffect, EffectPass, RenderPass, BlendFunction } from 'postprocessing';
+import { OutlineEffect } from 'three/examples/jsm/Addons.js';
+
+// import { EffectComposer, OutlineEffect, EffectPass, RenderPass, BlendFunction } from 'postprocessing';
 
 
 export interface HeroViewOptions {
@@ -17,7 +19,7 @@ export default class RingView {
   private _scene: Scene;
   private _camera: PerspectiveCamera;
   private _clock = new THREE.Clock();
-  private _composer?: EffectComposer;
+  private _composer?: OutlineEffect;
   private _requestAnimationId?: number;
   private _requestCallback?: () => void;
   private _controls?: SpatialControls;
@@ -29,7 +31,7 @@ export default class RingView {
     this._render = this.createRender();
     this._scene = this.createScene();
     this._camera = this.createCamera();
-    this.createComposer();
+    // this.createComposer();
     this.createEvent();
     this.createRings();
     this.createControls();
@@ -81,7 +83,7 @@ export default class RingView {
 
   private createComposer() {
     if (this._composer) return;
-    this._composer = new EffectComposer(this._render);
+    // this._composer = new EffectComposer(this._render);
   }
 
   private createRings() {
@@ -100,7 +102,7 @@ export default class RingView {
     if (this._controls) this._controls.update(timestamp || 0);
     if (this._requestCallback) this._requestCallback();
     if (this._composer) {
-      this._composer.render(this._clock.getElapsedTime());
+      this._composer.render(this._scene, this._camera);
     } else {
       this._render.render(this._scene, this._camera);
     }
@@ -127,23 +129,24 @@ export default class RingView {
     this._controls?.lookAt(0, 0.5, 0);
 
 
-    const outlineEffect = new OutlineEffect(this._scene, this._camera, {
-      blendFunction: BlendFunction.SCREEN,
-      multisampling: Math.min(4, this._render.capabilities.maxSamples),
-      edgeStrength: 10.0,
-      pulseSpeed: 0.0,
-      visibleEdgeColor: 0x333333,
-      hiddenEdgeColor: 0x000000,
-      width: this.renderRect.width,
-      height: this.renderRect.height,
-      blur: false,
-      xRay: false
-    });
-    outlineEffect.selection.set(this._rings);
-    const renderPass = new RenderPass(this._scene, this._camera);
-    const outlinePass = new EffectPass(this._camera, outlineEffect);
-    this._composer?.addPass(renderPass);
-    this._composer?.addPass(outlinePass);
+    // const outlineEffect = new OutlineEffect(this._scene, this._camera, {
+    //   blendFunction: BlendFunction.SCREEN,
+    //   multisampling: Math.min(4, this._render.capabilities.maxSamples),
+    //   edgeStrength: 10.0,
+    //   pulseSpeed: 0.0,
+    //   visibleEdgeColor: 0x333333,
+    //   hiddenEdgeColor: 0x000000,
+    //   width: this.renderRect.width,
+    //   height: this.renderRect.height,
+    //   blur: false,
+    //   xRay: false
+    // });
+    // outlineEffect.selection.set(this._rings);
+    // const renderPass = new RenderPass(this._scene, this._camera);
+    // const outlinePass = new EffectPass(this._camera, outlineEffect);
+    // this._composer?.addPass(renderPass);
+    // this._composer?.addPass(outlinePass);
+    this._composer = new OutlineEffect(this._render, { defaultColor: [3 / 16, 3 / 16, 3 / 16] });
 
     this._requestCallback = () => {
       const elapse = this._clock.getDelta();
