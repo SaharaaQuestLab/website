@@ -169,7 +169,8 @@ export default class HeroView {
       pulseSpeed: 0.0,
       visibleEdgeColor: 0x666666,
       hiddenEdgeColor: 0x000000,
-      height: 480,
+      height: this.renderRect.height,
+      width: this.renderRect.width,
       blur: true,
       xRay: true
     });

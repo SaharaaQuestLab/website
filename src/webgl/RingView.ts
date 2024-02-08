@@ -111,13 +111,16 @@ export default class RingView {
 
     this.setSceneOne();
 
-    // const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // 第二个参数是光照强度
-    // this._scene.add(ambientLight);
 
     // 添加一个定向光源
     const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-    directionalLight.position.set(2, 2, -1); // 设置光源的位置
+    directionalLight.position.set(2, 2, -0.5); // 设置光源的位置
     this._scene.add(directionalLight);
+
+    // add point light
+    const pointLight = new THREE.PointLight(0xffffff, 0.5, 20);
+    pointLight.position.set(-1.0, -0.3, 0);
+    this._scene.add(pointLight);
 
     // this._camera.position.set(0, 0.5, 4);
     this._controls?.position.set(0, 0.5, 4);
@@ -127,13 +130,14 @@ export default class RingView {
     const outlineEffect = new OutlineEffect(this._scene, this._camera, {
       blendFunction: BlendFunction.SCREEN,
       multisampling: Math.min(4, this._render.capabilities.maxSamples),
-      edgeStrength: 0.5,
+      edgeStrength: 10.0,
       pulseSpeed: 0.0,
-      visibleEdgeColor: 0xffffff,
-      hiddenEdgeColor: 0x22090a,
-      height: 480,
+      visibleEdgeColor: 0x333333,
+      hiddenEdgeColor: 0x000000,
+      width: this.renderRect.width,
+      height: this.renderRect.height,
       blur: false,
-      xRay: true
+      xRay: false
     });
     outlineEffect.selection.set(this._rings);
     const renderPass = new RenderPass(this._scene, this._camera);
@@ -142,7 +146,9 @@ export default class RingView {
     this._composer?.addPass(outlinePass);
 
     this._requestCallback = () => {
-      const elapse = this._clock.getElapsedTime();
+      const elapse = this._clock.getDelta();
+      const [ring1] = this._rings;
+      ring1.rotateOnAxis(new THREE.Vector3(0, 1, 0), elapse * Math.PI / 80)
       // fallMaterial.uniforms.uTime.value = elapse;
     }
 

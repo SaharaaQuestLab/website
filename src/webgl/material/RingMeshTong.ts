@@ -1,6 +1,32 @@
-import { Color, MeshToonMaterial, CanvasTexture } from "three";
+import { Color, MeshToonMaterial, CanvasTexture, MeshStandardMaterial, AdditiveBlending, DataTexture } from "three";
 // import VertexShader from "@/shaders/ring.vert";
 // import FragmentShader from "@/shaders/ring.frag";
+
+function createStepTexture() {
+
+  const steps = [
+    0x000000,
+    0x222222,
+    0xaaaaaa,
+    0xffffff
+  ]
+
+  const size = steps.length;
+  const data = new Uint8Array(4 * size);
+
+  for (let i = 0; i < size; i++) {
+    const v = steps[i];
+    const stride = i * 4;
+    data[stride] = v;
+    data[stride + 1] = v;
+    data[stride + 2] = v;
+    data[stride + 3] = 255;
+
+  }
+  const texture = new DataTexture(data, size, 1);
+  texture.needsUpdate = true;
+  return texture;
+}
 
 function createGradientTexture() {
   const canvas = document.createElement('canvas');
@@ -9,7 +35,7 @@ function createGradientTexture() {
   const gradient = ctx.createLinearGradient(0, 0, 256, 0); // 创建横向渐变
 
   // 添加颜色断点
-  gradient.addColorStop(0.35, '#000000');
+  gradient.addColorStop(0.5, '#000000');
   // gradient.addColorStop(0.5, '#aaaaaa');
   gradient.addColorStop(0.7, '#ffffff');
 
@@ -26,12 +52,18 @@ function createGradientTexture() {
 }
 
 
-const ringMeshTongMaterial = new MeshToonMaterial({
-  gradientMap: createGradientTexture(),
-  color: 0xffffff
-});
+// const ringMeshTongMaterial = new MeshToonMaterial({
+//   gradientMap: createGradientTexture(),
+//   color: 0xffffff,
+// });
 
-ringMeshTongMaterial.onBeforeCompile = function (shader) {
+const ringMeshStandardMatrial = new MeshStandardMaterial({
+  color: 0xffffff,
+  flatShading: true,
+  blending: AdditiveBlending
+})
+
+ringMeshStandardMatrial.onBeforeCompile = function (shader) {
   shader.vertexShader = shader.vertexShader.replace(
     '#include <common>',
     `varying vec3 v_position;
@@ -48,38 +80,46 @@ ringMeshTongMaterial.onBeforeCompile = function (shader) {
     '#include <common>',
     `#include <common>
     varying vec3 v_position;
+
+    float remap(float value, float sourceMin, float sourceMax, float targetMin, float targetMax) {
+      float normalized = (value - sourceMin) / (sourceMax - sourceMin);
+      return targetMin + normalized * (targetMax - targetMin);
+    }
+
     vec2 hash(vec2 p) {
       //p = mod(p, 4.0); // tile
-    p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
-    return fract(sin(p) * 18.5453);
-  }
+      p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
+      return fract(sin(p) * 18.5453);
+    }
 
-  vec2 voronoi(in vec2 x) {
-    vec2 n = floor(x);
-    vec2 f = fract(x);
+    vec2 voronoi(in vec2 x) {
+      vec2 n = floor(x);
+      vec2 f = fract(x);
 
-    vec3 m = vec3(8.0);
-    for(int j = -1; j <= 1; j++) for(int i = -1; i <= 1; i++) {
-        vec2 g = vec2(float(i), float(j));
-        vec2 o = hash(n + g);
-        //vec2  r = g - f + o;
-        vec2 r = g - f + (0.5 + 0.5 * sin(6.2831 * o));
-        float d = dot(r, r);
-        if(d < m.x)
-          m = vec3(d, o);
-      }
+      vec3 m = vec3(8.0);
+      for(int j = -1; j <= 1; j++) for(int i = -1; i <= 1; i++) {
+          vec2 g = vec2(float(i), float(j));
+          vec2 o = hash(n + g);
+          //vec2  r = g - f + o;
+          vec2 r = g - f + (0.5 + 0.5 * sin(6.2831 * o));
+          float d = dot(r, r);
+          if(d < m.x)
+            m = vec3(d, o);
+        }
 
-    return vec2(sqrt(m.x), m.y + m.z);
-  }`
+      return vec2(sqrt(m.x), m.y + m.z);
+    }`
   ).replace(
     '#include <dithering_fragment>',
     `
     #include <dithering_fragment>
-      float noise = voronoi(v_position.xy * 150.0).x;
+      float noise = voronoi(vec2(v_position.x, 2.0 * v_position.y) * 350.0).x;
       float color_p = step(0.5, noise);
-      // outgoingLight = outgoingLight * color_p;
-      // gl_FragColor = vec4(outgoingLight * color_p, 1.0);
-      gl_FragColor = vec4(gl_FragColor.xyz * color_p,1.0);      
+
+      float fragColorGreyScale = gl_FragColor.x * color_p;
+      fragColorGreyScale = remap(fragColorGreyScale, 0.1, 0.9, 0.0, 0.75);
+
+      gl_FragColor = vec4(vec3(fragColorGreyScale, fragColorGreyScale, fragColorGreyScale),1.0);      
     `
   );
 
@@ -93,4 +133,4 @@ ringMeshTongMaterial.onBeforeCompile = function (shader) {
   console.log(shader.fragmentShader);
 }
 
-export default ringMeshTongMaterial;
+export default ringMeshStandardMatrial;
