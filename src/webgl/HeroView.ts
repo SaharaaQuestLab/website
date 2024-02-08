@@ -165,12 +165,12 @@ export default class HeroView {
     const outlineEffect = new OutlineEffect(this._scene, this._camera, {
       blendFunction: BlendFunction.SCREEN,
       multisampling: Math.min(4, this._render.capabilities.maxSamples),
-      edgeStrength: 0.3,
+      edgeStrength: 2.3,
       pulseSpeed: 0.0,
       visibleEdgeColor: 0x666666,
       hiddenEdgeColor: 0x000000,
-      height: this.renderRect.height,
-      width: this.renderRect.width,
+      height: 720,
+      // width: this.renderRect.width / 4,
       blur: true,
       xRay: true
     });

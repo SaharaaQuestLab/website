@@ -20,6 +20,7 @@ export class CircleRing {
 
   public mesh: Mesh;
   public geometry: TorusGeometry;
+  public selfRotateAxis: Vector3;
   // public material: Material;
 
   constructor(options?: Partial<CircleRingOptions>) {
@@ -27,6 +28,7 @@ export class CircleRing {
     this.tubularSegments = options?.tubularSegments || 40;
     this.geometry = new TorusGeometry(options?.radius || 0.35, options?.tube || 0.1, this.radialSegments, this.tubularSegments);
     this.mesh = new Mesh(this.geometry, ringMeshStandardMaterial);
+    this.selfRotateAxis = new Vector3(1, 0, 0);
   }
 
 
@@ -50,8 +52,23 @@ export class CircleRing {
     return this;
   }
 
+  public moveTo(x: number, y: number, z: number): this {
+    this.curPosition = this.mesh.position.set(x, y, z);
+    return this;
+  }
+
   public rotate(axis: Vector3, angle: number) {
     const quaternion = new Quaternion().setFromAxisAngle(axis, angle);
+    this.curQuaternion = this.mesh.quaternion.multiplyQuaternions(quaternion, this.mesh.quaternion);
+  }
+
+  public setSelfRotateAxis(x: number, y: number, z: number) {
+    this.selfRotateAxis = new Vector3(x, y, z);
+    return this;
+  }
+
+  public selfRotate(angle: number) {
+    const quaternion = new Quaternion().setFromAxisAngle(this.selfRotateAxis, angle);
     this.curQuaternion = this.mesh.quaternion.multiplyQuaternions(quaternion, this.mesh.quaternion);
   }
 }

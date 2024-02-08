@@ -8,6 +8,9 @@ import { OutlineEffect } from 'three/examples/jsm/Addons.js';
 
 // import { EffectComposer, OutlineEffect, EffectPass, RenderPass, BlendFunction } from 'postprocessing';
 
+function easeInOut(t: number) {
+  return 3 * t ** 2 - 2 * t ** 3;
+}
 
 export interface HeroViewOptions {
   platform?: 'mobile' | 'desktop'
@@ -21,10 +24,14 @@ export default class RingView {
   private _clock = new THREE.Clock();
   private _composer?: OutlineEffect;
   private _requestAnimationId?: number;
-  private _requestCallback?: () => void;
+  private _requestCallback?: (timestamp: number) => void;
+  private _transCallback: ((progress: number) => void) | null = null;
+  private _transStartTime: number | null = null;
+  private _transDuration: number = 1000;
   // private _controls?: SpatialControls;
-  // private _isMouseMove?: boolean = false;
+  // private _isMouseMove?: boolean = false;s
   private _rings: Array<CircleRing> = [];
+  private _ringsInRunning: Array<CircleRing> = [];
 
   constructor(el: Window | HTMLElement) {
     this._el = el;
@@ -84,7 +91,8 @@ export default class RingView {
   }
 
   private createRings() {
-    this._rings = Array(5).fill(undefined).map(() => new CircleRing());
+    this._rings = Array(2).fill(undefined).map(() => new CircleRing());
+    this._rings.push(...Array(3).fill(undefined).map(() => new CircleRing({ radius: 0 })));
   }
 
   // private createControls() {
@@ -97,7 +105,7 @@ export default class RingView {
 
   private _animate(timestamp?: number) {
     // if (this._controls) this._controls.update(timestamp || 0);
-    if (this._requestCallback) this._requestCallback();
+    if (this._requestCallback) this._requestCallback(timestamp || 0);
     if (this._composer) {
       this._composer.render(this._scene, this._camera);
     } else {
@@ -142,18 +150,29 @@ export default class RingView {
     // this._composer?.addPass(renderPass);
     // this._composer?.addPass(outlinePass);
     this._composer = new OutlineEffect(this._render, { defaultColor: [3 / 16, 3 / 16, 3 / 16] });
+    // this._transCallback = (progress) => console.log(progress);
+    setTimeout(() => {
+      this.setSceneTwo();
+    }, 2000);
 
 
-
-    this._requestCallback = () => {
+    this._requestCallback = (timestamp: number) => {
       const elapse = this._clock.getElapsedTime();
       const delta = this._clock.getDelta();
-      const [ring1, ring2] = this._rings;
-      const deltaRotate = Math.PI / 90;
-      // ring1.update(0.35 + 0.1 * Math.sin(elapse));
-      ring1.rotate(new THREE.Vector3(1, 0, 0), deltaRotate);
-      // ring2.update(0.35 + 0.1 * Math.sin(elapse));
-      ring2.rotate(new THREE.Vector3(0, 1, 0), deltaRotate);
+      const deltaRotate = Math.PI / 480;
+      if (this._transCallback) {
+        if (this._transStartTime === null) this._transStartTime = timestamp;
+        const progress = (timestamp - this._transStartTime) / this._transDuration;
+        if (progress >= 1) {
+          this._transCallback(1);
+          this._transCallback = null;
+          this._transStartTime = null;
+        } else {
+          this._transCallback(progress);
+          this._transStartTime += delta * 1000;
+        }
+      }
+      this._ringsInRunning.forEach((ring) => ring.selfRotate(deltaRotate));
     }
 
     window.addEventListener("resize", () => {
@@ -165,12 +184,29 @@ export default class RingView {
     this._scene.remove(...this._rings.map(r => r.mesh));
     const [ring1, ring2] = this._rings;
     this._scene.add(ring1.mesh, ring2.mesh);
-    ring1.move(-0.125, 0, 0);
-    ring2.move(0.125, 0, 0);
+    this._ringsInRunning.push(ring1, ring2);
+    ring1.move(-0.175, 0, 0);
+    ring2.rotate(new THREE.Vector3(1, 0, 0), Math.PI / 2);
+    ring2.move(0.175, 0, 0);
+  }
+
+  public transToSceneTwo(progress: number) {
+    // progress = easeInOut(progress);
+    const [ring1, ring2, ring3] = this._rings;
+    ring1.update(0.35 + (0.5 - 0.35) * progress, 0.1 - 0.025 * progress)
+      .moveTo((-0.125 + (0.125) * progress), 0, 0)
+      .setSelfRotateAxis(1 + (-1 - 1) * progress, 0 + (1 - 0) * progress, 0)
+    ring2.update(0.35 + (0.3 - 0.35), 0.1 - 0.025 * progress)
+      .moveTo(0.125 + (-0.125) * progress, 0, 0)
+      .setSelfRotateAxis(1, 0, -1 * progress);
+    ring3.update(0.1 * progress, 0.1 - 0.025 * progress)
+      .setSelfRotateAxis(1 - progress, 1 * progress, 1 * progress);
   }
 
   public setSceneTwo() {
-
+    this._scene.add(this._rings[2].mesh);
+    this._ringsInRunning.push(this._rings[2]);
+    this._transCallback = this.transToSceneTwo;
   }
 
   public setSceneThree() {
