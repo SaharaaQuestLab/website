@@ -4,12 +4,15 @@ import * as THREE from 'three';
 // import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
 // import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 // import { OutlinePass } from 'three/addons/postprocessing/OutlinePass.js';
+import { AdditiveBlending } from "three";
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
-import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, DepthEffect, BlendFunction, VignetteEffect, OutlineEffect } from 'postprocessing';
+import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, DepthEffect, BlendFunction, VignetteEffect, OutlineEffect,} from 'postprocessing';
 import { createGroundParticle } from './geometry/GroundParticle';
 import { createSkyParticle } from './geometry/SkyParticle';
 import { createBackgroundParticle } from './geometry/BackgroundParticle';
 import env from '@/utils/bowser.utils';
+import BlackSphereVertexShader from '@/shaders/blacksphere.vert';
+import BlackSphereFragmentShader from '@/shaders/blacksphere.frag';
 
 // import { SpatialControls } from 'spatial-controls';
 
@@ -115,6 +118,7 @@ export default class HeroView {
   public useSetup() {
     // create ground
     const [groundParticles, groundMaterial] = createGroundParticle();
+    const cameraPosition = new THREE.Vector3(0, 0.95, 4);
     this._scene.add(groundParticles);
     groundParticles.position.set(0, 0, 0);
     // create sky
@@ -127,11 +131,38 @@ export default class HeroView {
     backgroundParticles.position.set(0, 0, 0);
 
     // black sphere
-    const sphereGeo = new THREE.SphereGeometry(0.25, 32, 32);
-    const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x121315 });
-    const sphere = new THREE.Mesh(sphereGeo, sphereMaterial);
-    this._scene.add(sphere);
-    sphere.position.set(-0.8, 0.3, 0.0);
+    const sphereGeo01 = new THREE.SphereGeometry(0.25, 32, 32);
+    const sphereGeo02 = new THREE.SphereGeometry(0.15, 24, 24);
+    //const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x121315 });
+    const sphereMaterial01 = new THREE.ShaderMaterial({
+      uniforms:{
+        outlineColor:{
+          value: new THREE.Color(0x666666)
+        },
+        camPosition:{
+          value: new THREE.Vector3(0.9, 0.65, 4.0)
+        }
+      },
+      vertexShader: BlackSphereVertexShader,
+      fragmentShader: BlackSphereFragmentShader
+    });
+    const sphereMaterial02 = new THREE.ShaderMaterial({
+      uniforms:{
+        outlineColor:{
+          value: new THREE.Color(0x666666)
+        },
+        camPosition:{
+          value: new THREE.Vector3(-0.6, -0.45, 4.0)
+        }
+      },
+      vertexShader: BlackSphereVertexShader,
+      fragmentShader: BlackSphereFragmentShader
+    });
+    const sphere01 = new THREE.Mesh(sphereGeo01, sphereMaterial01);
+    const sphere02 = new THREE.Mesh(sphereGeo02, sphereMaterial02);
+    this._scene.add(sphere01, sphere02);
+    sphere01.position.set(-1.0, 0.3, -0.7);
+    sphere02.position.set(0.6, 1.5, 0.2);
 
     // const planeGeo = new THREE.PlaneGeometry(3, 3, 25, 25);
     // const plane = new THREE.Points(planeGeo, new THREE.PointsMaterial({ color: "yellow", size: 0.05 }));
@@ -142,7 +173,7 @@ export default class HeroView {
     // this._scene.add(plane2);
     // plane2.position.set(0, 0, -1);
 
-    this._camera.position.set(0, 0.95, 4);
+    this._camera.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
     // this._controls?.position.set(0, 0.95, 4);
     // this._controls?.lookAt(0, 0.95, 0);
 
@@ -175,7 +206,7 @@ export default class HeroView {
       xRay: true
     });
 
-    outlineEffect.selection.set([sphere]);
+    //outlineEffect.selection.set([sphere01]);
 
     const effectPass = new EffectPass(this._camera, dofEffect, outlineEffect);
 
@@ -191,7 +222,7 @@ export default class HeroView {
       groundMaterial.uniforms.uTime.value = elapse;
       skyMaterial.uniforms.uTime.value = elapse;
       backgroundMaterial.uniforms.uTime.value = elapse;
-      sphere.position.y += Math.sin(elapse) * 0.0005;
+      sphere01.position.y += Math.sin(elapse) * 0.0005;
     }
 
     window.addEventListener("resize", () => {
