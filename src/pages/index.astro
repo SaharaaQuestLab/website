@@ -75,7 +75,9 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div class="text-center font-[Manrope] mx-auto mb-[6.25rem]">
-    <div class="h-8 mb-10"></div>
+    <div class="h-7 mb-10 flex justify-center">
+      <Icon class="w-7 h-7" name="brandLogo"/>
+    </div>
     <h1 class="text-[5.625rem] leading-[5.125rem] text-[#878A8D]">
       An ecosystem
     </h1>
@@ -88,19 +90,16 @@ const { titles } = PageMeta;
   </div>
   <div class="mb-[18.125rem] h-[7.5rem] slider-container">
     <div class="flex sliders gap-10">
-      <div class="slide">1</div>
-      <div class="slide">2</div>
-      <div class="slide">3</div>
-      <div class="slide">4</div>
-      <div class="slide">5</div>
-      <div class="slide">6</div>
-      <div class="slide">1</div>
-      <div class="slide">2</div>
-      <div class="slide">3</div>
-      <div class="slide">4</div>
-      <div class="slide">5</div>
-      <div class="slide">6</div>
-      <div class="slide">1</div>
+      <div class="slide"><img src="/partners/geekcartel.jpg" alt=""></div>
+      <div class="slide"><img src="/partners/samsung.jpg" alt=""></div>
+      <div class="slide"><img src="/partners/nomad.jpg" alt=""></div>
+      <div class="slide"><img src="/partners/canonical.jpg" alt=""></div>
+      <div class="slide"><img src="/partners/dispersion.jpg" alt=""></div>
+      <div class="slide"><img src="/partners/alumni.jpg" alt=""></div>
+      <div class="slide"><img src="/partners/tangent.jpg" alt=""></div>
+      <div class="slide"><img src="/partners/motherson.jpg" alt=""></div>
+      <div class="slide"><img src="/partners/coho.jpg" alt=""></div>
+      <div class="slide"><img src="/partners/sandeep.jpg" alt=""></div>
     </div>
   </div>
   <div class="flex flex-col items-center font-[Manrope] mb-[4.125rem]">
@@ -111,8 +110,9 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div class="flex gap-12 px-40 py-[3.125rem] mb-[34.875rem] font-[Manrope]">
-    <div>
-      <div class="w-5 mr-8"></div>
+    <div class="flex">
+      <div class="w-5 mr-7">
+        <Icon class="w-5 h-5" name="brandLogo"/></div>
       <div class="">
         <div class="text-[1rem] leading-none mb-2">Q2 2024</div>
         <div class="text-[2rem] leading-[3rem]">
@@ -120,8 +120,9 @@ const { titles } = PageMeta;
         </div>
       </div>
     </div>
-    <div>
-      <div class="w-5 mr-8"></div>
+    <div class="flex">
+      <div class="w-5 mr-7">
+        <Icon class="w-5 h-5" name="brandLogo"/></div>
       <div class="">
         <div class="text-[1rem] leading-none mb-2">Q3 2024</div>
         <div class="text-[2rem] leading-[3rem]">
@@ -129,8 +130,9 @@ const { titles } = PageMeta;
         </div>
       </div>
     </div>
-    <div>
-      <div class="w-5 mr-8"></div>
+    <div class="flex">
+      <div class="w-5 mr-7">
+        <Icon class="w-7 h-7" name="brandLogo"/></div>
       <div class="">
         <div class="text-[1rem] leading-none mb-2">Q4 2024</div>
         <div class="text-[2rem] leading-[3rem]">
@@ -148,15 +150,15 @@ const { titles } = PageMeta;
   import { gsap } from "gsap";
   import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-  gsap.registerPlugin(ScrollToPlugin);
-  const sliderContainer = document.querySelector(".sliders") as HTMLDivElement;
-  const slideWidth = sliderContainer.offsetWidth / 6; //
-  console.log(slideWidth);
-  gsap.timeline({ repeat: -1, yoyo: true }).to(sliderContainer, {
-    duration: 10,
-    x: -slideWidth,
-    ease: "linear",
-  });
+  // gsap.registerPlugin(ScrollToPlugin);
+  // const sliderContainer = document.querySelector(".sliders") as HTMLDivElement;
+  // const slideWidth = sliderContainer.offsetWidth / 6; //
+  // console.log(slideWidth);
+  // gsap.timeline({ repeat: -1, yoyo: true }).to(sliderContainer, {
+  //   duration: 10,
+  //   x: -slideWidth,
+  //   ease: "linear",
+  // });
 
   const scrollSelector = document.querySelector(
     ".scroll-selector",
@@ -210,31 +212,17 @@ const { titles } = PageMeta;
     width: 20rem;
     border-radius: 0.75rem;
   }
-
-  .slider-container {
-    overflow: hidden;
-    width: 100%;
-  }
-  .sliders {
-    height: 100%;
-    width: 100%;
-    animation: scroll 10s linear infinite;
-  }
-
-  /* 关键帧动画，用于无缝滚动 */
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
   .slide {
     min-width: 16.25rem;
     max-width: 16.25rem;
+    height: 7.5rem;
+    border: 1px solid #62666D;
+    border-radius: 1.25rem;
+    overflow: hidden;
+  }
+  .slide img {
     height: 100%;
-    border: 1px solid red;
+    width: auto;
   }
   .gradient-text {
     white-space: nowrap;
