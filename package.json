@@ -13,11 +13,12 @@
     "lygia": "npx degit https://github.com/patriciogonzalezvivo/lygia.git lygia --force"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.4.1",
+    "@astrojs/check": "^0.5.3",
     "@astrojs/sitemap": "^3.0.5",
     "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/vue": "^4.0.8",
     "@types/three": "^0.161.2",
-    "astro": "^4.3.2",
+    "astro": "^4.3.6",
     "astro-favicons": "^2.0.2",
     "astro-icon": "^1.1.0",
     "astro-seo": "^0.8.0",
@@ -30,8 +31,9 @@
     "bowser": "^2.11.0",
     "eventemitter3": "^5.0.1",
     "gsap": "^3.12.5",
-    "postprocessing": "6.34.2",
+    "postprocessing": "^6.34.3",
     "spatial-controls": "^6.1.1",
-    "three": "^0.161.0"
+    "three": "^0.161.0",
+    "vue": "^3.4.18"
   }
 }

@@ -1,0 +1,9 @@
+---
+import JobList from "@/components/JobList.vue";
+
+const jobs = ["job1", "job2", "job3", "job4"];
+---
+
+<div>
+  <JobList client:load list={jobs} />
+</div>

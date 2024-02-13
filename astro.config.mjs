@@ -4,8 +4,9 @@ import favicons from "astro-favicons";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import glsl from 'vite-plugin-glsl';
+import vue from "@astrojs/vue";
+const base_url = process.env.BUILD_MODE === "test" ? "test-saharaa" : "";
 
-const base_url = process.env.BUILD_MODE === "test" ? "test-saharaa" : ""
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,27 +18,21 @@ export default defineConfig({
   },
   base: base_url,
   vite: {
-    plugins: [
-      glsl({
-        warnDuplicatedImports: false,
-        compress: true
-      })
-    ]
+    plugins: [glsl({
+      warnDuplicatedImports: false,
+      compress: true
+    })]
   },
-  integrations: [
-    tailwind(),
-    icon({
-      iconDir: 'src/assets/icons'
-    }),
-    favicons({
-      masterPicture: "./src/assets/favicon.svg",
-      emitAssets: true,
-      appName: "saharaa.ai",
-      appShortName: "saharaa.ai",
-      appDescription: "saharaa.ai",
-      developerName: "Null Studio",
-      faviconsDarkMode: false,
-      background: '#000'
-    }),
-    sitemap()]
+  integrations: [tailwind(), icon({
+    iconDir: 'src/assets/icons'
+  }), favicons({
+    masterPicture: "./src/assets/favicon.svg",
+    emitAssets: true,
+    appName: "saharaa.ai",
+    appShortName: "saharaa.ai",
+    appDescription: "saharaa.ai",
+    developerName: "Null Studio",
+    faviconsDarkMode: false,
+    background: '#000'
+  }), sitemap(), vue()]
 });
