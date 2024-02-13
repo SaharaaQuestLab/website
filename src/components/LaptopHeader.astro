@@ -16,21 +16,33 @@ const routes = navData.nav.map((nav) => ({
 <div
   class="px-[1.75rem] pt-6 pb-[3.25rem] header w-screen flex fixed z-10 justify-between"
 >
-  <div class="flex text-[#404347]">
+  <div class="flex">
     <a href="/" class="logo mr-12 w-11 h-full">
-      <Icon class="w-11 h-11 text-white" name="brandLogo"/>
+      <Icon class="w-11 h-11 text-white" name="brandLogo" />
     </a>
-    <div class="text-base leading-6 py-2.5 px-3">/</div>
+    <div class="text-base leading-6 py-2.5 px-3 text-[#404347]">/</div>
     {
       routes.map((item) => (
         <a
           href={item.path}
           class:list={[
-            "text-[#979EA8] whitespace-nowrap text-base leading-6 px-3 py-2.5 block cursor-pointer hover:text-[#E1E4E7]",
-            { "text-[#E1E4E7]": active === item.flag },
+            "whitespace-nowrap text-base leading-6 relative overflow-hidden  px-3 py-2.5 block cursor-pointer hover:overflow-visible hover:border-b border-b-[#E1E4E7]",
+            { "border-b": active === item.flag },
           ]}
         >
           {item.name}
+          {item.flag === "aboutUs" && (
+            <div class="border absolute top-11 left-1/2 mt-[1px] -translate-x-1/2 bg-[#121315]  w-[8.125rem] rounded-xl text-sm leading-6 px-4 py-3 border-[rgba(71,64,64,0.4)]">
+              <div class="flex items-center">
+                Team
+                <Icon class="w-5 h-5" name="arrowRightUp" />
+              </div>
+              <div class="flex items-center">
+                Career
+                <Icon class="w-5 h-5" name="arrowRightUp" />
+              </div>
+            </div>
+          )}
         </a>
       ))
     }
@@ -45,6 +57,10 @@ const routes = navData.nav.map((nav) => ({
 </div>
 <style>
   .header {
-    background: linear-gradient(to bottom, rgba(18, 19, 21,1), rgba(18, 19, 21,0));
+    background: linear-gradient(
+      to bottom,
+      rgba(18, 19, 21, 1),
+      rgba(18, 19, 21, 0)
+    );
   }
 </style>

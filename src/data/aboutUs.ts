@@ -3,14 +3,13 @@ export default {
   titles: {
    texts:  [
      'The people',
-     'behind the AI'
+     'behind sahara'
     ],
-    description: 'Sahara is about',
+    description: 'Sahara is a human-AI collaboration network',
     remarks: [
-      "a fantastic experience"
     ],
     button: {
-      text: 'Join Us Today',
+      text: 'Join The Team',
       path: ''
      }
   }
