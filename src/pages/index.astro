@@ -1,7 +1,9 @@
 ---
 import TitleComponent from "@/components/TitleComponent.astro";
-import Hero3DSection from "@/components/3DHeroSection.astro";
+// import Hero3DSection from "@/components/3DHeroSection.astro";
 import Ring3DSection from "@/components/3DRingSection.astro";
+// import ScrollSection from "@/components/ScrollSection.astro";
+import SwiperSection from "@/components/SwiperSection.astro";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/index";
 import { Icon } from "astro-icon/components";
@@ -15,7 +17,7 @@ const { titles } = PageMeta;
     <Ring3DSection />
   </div>
   <div
-    class="flex items-center justify-between mx-40 pt-[1.875rem] mb-[16.25rem] border-t border-t-[#E1E4E7] border-opacity-40"
+    class="flex items-center justify-between mx-40 pt-[1.875rem] mb-[16.25rem] border-t border-t-light-100 border-opacity-40"
   >
     <div class="font-[Manrope]">Learn more about how you can use Sahara:</div>
     <div class="flex">
@@ -43,23 +45,10 @@ const { titles } = PageMeta;
       Human-Al collaboration.
     </div>
   </div>
-  <div class="mb-[18.125rem] h-[7.5rem] slider-container">
-    <div class="flex sliders gap-10">
-      <div class="slide"><img src="/partners/geekcartel.jpg" alt="" /></div>
-      <div class="slide"><img src="/partners/samsung.jpg" alt="" /></div>
-      <div class="slide"><img src="/partners/nomad.jpg" alt="" /></div>
-      <div class="slide"><img src="/partners/canonical.jpg" alt="" /></div>
-      <div class="slide"><img src="/partners/dispersion.jpg" alt="" /></div>
-      <div class="slide"><img src="/partners/alumni.jpg" alt="" /></div>
-      <div class="slide"><img src="/partners/tangent.jpg" alt="" /></div>
-      <div class="slide"><img src="/partners/motherson.jpg" alt="" /></div>
-      <div class="slide"><img src="/partners/coho.jpg" alt="" /></div>
-      <div class="slide"><img src="/partners/sandeep.jpg" alt="" /></div>
-    </div>
-  </div>
+  <SwiperSection/>
   <div class="flex flex-col items-center font-[Manrope] mb-[4.125rem]">
     <h1 class="text-[5.625rem] leading-[5.125rem]">Sahara Roadmap</h1>
-    <div class="w-[28.75rem] text-center mt-5 text-[#979EA8]">
+    <div class="w-[28.75rem] text-center mt-5 text-light-200">
       Navigate journey across the digital dunes of innovation in the Sahara of
       tomorrow.
     </div>
@@ -104,46 +93,6 @@ const { titles } = PageMeta;
     <h1 class="gradient-text">Sahara Journey</h1>
   </div>
 </Layout>
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import HeroView from "@/webgl/HeroView";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const heroEl = document.getElementById("sectionHero");
-  if (heroEl) {
-    const viewer = new HeroView(heroEl);
-    viewer.useSetup();
-    viewer.play();
-    gsap.to(heroEl, {
-      scrollTrigger: {
-        trigger: "#sectionRing",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
-        onEnterBack: () => {
-          viewer.play();
-        },
-        onLeave: () => {
-          viewer.stop();
-        },
-      },
-      opacity: 0,
-      // onComplete: () => {
-      //   viewer.stop();
-      // },
-    });
-  }
-
-  const sliderContainer = document.querySelector(".sliders") as HTMLDivElement;
-  const slideWidth = sliderContainer.offsetWidth / 6; //
-  gsap.timeline({ repeat: -1, yoyo: true }).to(sliderContainer, {
-    duration: 10,
-    x: -slideWidth,
-    ease: "linear",
-  });
-</script>
 <style>
   .with-button {
     border: 1px solid #474040;
@@ -155,42 +104,11 @@ const { titles } = PageMeta;
     width: 20rem;
     border-radius: 0.75rem;
   }
-  .slide {
-    min-width: 16.25rem;
-    max-width: 16.25rem;
-    height: 7.5rem;
-    border: 1px solid #62666d;
-    border-radius: 1.25rem;
-    overflow: hidden;
-  }
-  .slide img {
-    height: 100%;
-    width: auto;
-  }
   .gradient-text {
     white-space: nowrap;
     font-size: 6.875rem;
     line-height: 6.375rem;
     font-family: Manrope;
     color: #e1e4e7;
-  }
-  .scroll-selector {
-    position: relative;
-    overflow: hidden;
-    height: 50rem;
-  }
-
-  .scroll-selector ul {
-    position: absolute;
-    width: 100%;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    transition: transform 0.3s ease-in-out; /* 平滑滚动效果 */
-  }
-
-  .scroll-selector li {
-    height: 20.875rem;
-    cursor: pointer;
   }
 </style>

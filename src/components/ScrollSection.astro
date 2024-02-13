@@ -1,0 +1,111 @@
+---
+
+---
+
+<div class="flex items-center">
+  <div class="mr-[3.75rem] h-[20rem] w-0.5 bg-dark-100">
+    <div class="h-1/3 w-full bg-light-100"></div>
+  </div>
+  <div class="scroll-selector w-[36.125rem]">
+    <ul class="font-[Manrope] flex flex-col gap-[1.125rem]">
+      <li></li>
+      <li>
+        <h1 class="text-[5.625rem] leading-[5.125rem] mb-[0.875rem]">
+          Own your
+        </h1>
+        <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
+        <div class="mt-7">
+          Use blockchain infrastructure that's trustless, permissionless, and
+          privacy-preserving so your information stays under your control.
+        </div>
+      </li>
+      <li>
+        <h1 class="text-[5.625rem] leading-[5.125rem] mb-[0.875rem]">
+          Scale your
+        </h1>
+        <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
+        <div class="mt-7">
+          Create autonomous Al agents that expand the impact of your knowledge
+          base, skills, and expertise and are customized to meet your needs.
+        </div>
+      </li>
+      <li>
+        <h1
+          class="text-[5.625rem] leading-[5.125rem] mb-[0.875rem] whitespace-nowrap"
+        >
+          Monetize your
+        </h1>
+        <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
+        <div class="mt-7">
+          Join the decentralized ecosystem of global knowledge capital to
+          leverage your data for novel income opportunities.
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<script>
+  import { gsap } from "gsap";
+  import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+  const scrollSelector = document.querySelector(
+    ".scroll-selector",
+  ) as HTMLDivElement;
+  const cityList = Array.from(scrollSelector.querySelectorAll("li"));
+  let currentScrollPosition = 0;
+
+  // 初始化GSAP的TweenMax
+  gsap.registerPlugin(ScrollToPlugin); // 确保你已经引入了ScrollToPlugin
+
+  const height = 334;
+  // 滚轮事件监听器
+  scrollSelector.addEventListener("wheel", (event) => {
+    event.preventDefault(); // 阻止默认滚动行为
+    const scrollDirection = event.deltaY < 0 ? 1 : -1; // 判断滚动方向
+    let targetIndex =
+      Math.round(scrollSelector.scrollTop / height) + scrollDirection;
+
+    // 确保目标索引在有效范围内
+    targetIndex = Math.min(Math.max(0, targetIndex), cityList.length - 1);
+
+    // 计算目标位置
+    const targetPosition = targetIndex * height;
+
+    // 使用GSAP平滑滚动到目标位置
+    gsap.to(scrollSelector, {
+      duration: 0.3, // 动画持续时间
+      scrollTo: { y: targetPosition, autoKill: true }, // 滚动到目标位置
+      ease: "power1.inOut", // 缓动函数
+    });
+
+    // 更新当前滚动位置
+    currentScrollPosition = targetPosition;
+  });
+  scrollSelector.addEventListener("scroll", () => {
+    const currentIndex = Math.round(scrollSelector.scrollTop / height);
+    console.log(currentIndex);
+    cityList.forEach((li, index) => {
+      li.classList.toggle("active", index === currentIndex);
+    });
+  });
+</script>
+<style>
+  .scroll-selector {
+    position: relative;
+    overflow: hidden;
+    height: 50rem;
+  }
+
+  .scroll-selector ul {
+    position: absolute;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.3s ease-in-out; /* 平滑滚动效果 */
+  }
+
+  .scroll-selector li {
+    height: 20.875rem;
+    cursor: pointer;
+  }
+</style>

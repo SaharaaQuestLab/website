@@ -4,11 +4,11 @@ import PageMeta from "@/data/footer";
 const { authorization, privacyPolicy, email, subscribe } = PageMeta;
 ---
 
-<div class="footer px-40 text-[#979EA8]">
+<div class="footer px-40 text-light-200">
   <slot name="footer"></slot>
   <div class="flex text-base justify-between my-[3.75rem]  pt-[3.75rem]">
     <div class="flex">
-      <div class="leading-[2.625rem] text-[Manrope] text-[#F9F9F9] pr-5">
+      <div class="leading-[2.625rem] text-[Manrope] pr-5">
         Follow us to get the latest updates
       </div>
       <div class="flex gap-1 ml-5">
@@ -26,17 +26,18 @@ const { authorization, privacyPolicy, email, subscribe } = PageMeta;
         </a>
       </div>
     </div>
-    <div class="border border-[#474040] flex px-4 py-2 bg-[#121315] rounded-xl w-[40rem] justify-between">
-      <div>
+    <div class="border border-light-100 flex px-4 py-2 bg-dark-400 rounded-xl w-[40rem] justify-between">
+      <div class="text-light-200 flex items-center">
+        <Icon class="w-5 h-5 mr-1.5" name="email"/>
         {email}
       </div>
-      <div class="cursor-pointer flex text-[#E1E4E7] items-center">
+      <div class="cursor-pointer flex text-light-100 items-center">
         {subscribe}
         <Icon class="w-5 h-5" name="arrowRightUp"/>
       </div>
     </div>
   </div>
-  <div class="footer-border flex justify-between text-sm mt-5">
+  <div class="border-t border-t-dark-100 border-opacity-40 flex justify-between text-sm mt-5">
     <div class="px-3 py-2.5">
       {authorization}
     </div>
@@ -47,9 +48,7 @@ const { authorization, privacyPolicy, email, subscribe } = PageMeta;
 </div>
 
 <style>
-.footer-border {
-  border-top: 1px solid rgba(71, 64, 64,.4);
-}
+
 .footer {
   background: linear-gradient(to top, rgba(18, 19, 21,1), rgba(18, 19, 21,0));
 }

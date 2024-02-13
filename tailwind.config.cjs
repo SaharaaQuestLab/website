@@ -8,6 +8,19 @@ module.exports = {
 			'tablet': { max: '768px' },
 			'mobile': { max: '375px' },
 		},
+		colors: {
+			dark: {
+				400: '#121315',
+				300: '#1B1D1F',
+				200: '#242629',
+				100: '#404347'
+			},
+			light: {
+				300: '#62666D',
+				200: '#979EA8',
+				100: '#E1E4E7'
+			}
+		},
 		extend: {},
 	},
 	plugins: [],
