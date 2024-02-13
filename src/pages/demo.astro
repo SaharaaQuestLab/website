@@ -1,0 +1,146 @@
+---
+import Layout from "../layouts/PageLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Ring3DSection from "@/components/3DRingSection.astro";
+---
+
+<!-- <Layout title="saharaa.ai"> -->
+<BaseLayout title="gsap">
+  <section class="orange">
+    <div class="text">This is some text inside of a div block.</div>
+  </section>
+  <Ring3DSection />
+  <section class="blue"></section>
+</BaseLayout>
+
+<!-- </Layout> -->
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+</script>
+<style>
+  .orange {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100vh;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #753500;
+  }
+
+  .text {
+    color: #fff;
+  }
+
+  .black {
+    display: flex;
+    height: 100vh;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #070707;
+  }
+
+  .blue {
+    height: 100vh;
+    background-color: #00026d;
+  }
+
+  .text-wrap {
+    position: relative;
+    overflow: hidden;
+    width: 450px;
+    height: 80vh;
+  }
+
+  .panel-text {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: 900;
+    text-align: center;
+    background-color: #070707;
+
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  .panel-text.blue-text {
+    color: blue;
+  }
+
+  .panel-text.red-text {
+    color: red;
+  }
+
+  .panel-text.purple-text {
+    color: purple;
+  }
+
+  .panel-text.orange-text {
+    color: orange;
+  }
+
+  .p-wrap {
+    position: relative;
+    overflow: hidden;
+    width: 450px;
+    height: 80vh;
+  }
+
+  .panel {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .panel._2 {
+    z-index: 1;
+  }
+
+  .panel.blue {
+    z-index: auto;
+  }
+
+  .panel.red {
+    z-index: auto;
+    background-color: red;
+    background-image: none;
+  }
+
+  .panel.orange {
+    z-index: auto;
+    background-color: #cf5d00;
+    background-image: none;
+  }
+
+  .panel.purple {
+    z-index: auto;
+    background-color: #808;
+    background-image: none;
+  }
+</style>

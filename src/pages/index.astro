@@ -1,10 +1,7 @@
 ---
 import TitleComponent from "@/components/TitleComponent.astro";
-// import HeroSection from "@/components/HeroSection.astro";
-// import AutomateSection from "@/components/AutomateSection.astro";
 import Hero3DSection from "@/components/3DHeroSection.astro";
 import Ring3DSection from "@/components/3DRingSection.astro";
-import AutomateSection from "@/components/AutomateSection.astro";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/index";
 import { Icon } from "astro-icon/components";
@@ -13,52 +10,10 @@ const { titles } = PageMeta;
 
 <Layout title="saharaa.ai">
   <TitleComponent titles={titles} />
-  <!-- <Ring3DSection /> -->
-  <Hero3DSection />
-  <div class="flex mx-40 mt-[10rem] mb-[3.75rem]">
-    <div class="mr-[3.75rem]"></div>
-    <div class="scroll-selector w-[36.125rem]">
-      <ul class="font-[Manrope] flex flex-col gap-[1.125rem]">
-        <li></li>
-        <li>
-          <h1 class="text-[5.625rem] leading-[5.125rem] mb-[0.875rem]">
-            Own your
-          </h1>
-          <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
-          <div class="mt-7">
-            Use blockchain infrastructure that's trustless, permissionless, and
-            privacy-preserving so your information stays under your control.
-          </div>
-        </li>
-        <li>
-          <h1 class="text-[5.625rem] leading-[5.125rem] mb-[0.875rem]">
-            Scale your
-          </h1>
-          <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
-          <div class="mt-7">
-            Create autonomous Al agents that expand the impact of your knowledge
-            base, skills, and expertise and are customized to meet your needs.
-          </div>
-        </li>
-        <li>
-          <h1
-            class="text-[5.625rem] leading-[5.125rem] mb-[0.875rem] whitespace-nowrap"
-          >
-            Monetize your
-          </h1>
-          <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
-          <div class="mt-7">
-            Join the decentralized ecosystem of global knowledge capital to
-            leverage your data for novel income opportunities.
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="flex-1 bg-gray-400">
-      <Ring3DSection />
-    </div>
+  <div id="sectionHero" class="w-full h-screen absolute"></div>
+  <div id="sectionRing" style="margin-top: 100vh;">
+    <Ring3DSection />
   </div>
-
   <div
     class="flex items-center justify-between mx-40 pt-[1.875rem] mb-[16.25rem] border-t border-t-[#E1E4E7] border-opacity-40"
   >
@@ -76,7 +31,7 @@ const { titles } = PageMeta;
   </div>
   <div class="text-center font-[Manrope] mx-auto mb-[6.25rem]">
     <div class="h-7 mb-10 flex justify-center">
-      <Icon class="w-7 h-7" name="brandLogo"/>
+      <Icon class="w-7 h-7" name="brandLogo" />
     </div>
     <h1 class="text-[5.625rem] leading-[5.125rem] text-[#878A8D]">
       An ecosystem
@@ -90,16 +45,16 @@ const { titles } = PageMeta;
   </div>
   <div class="mb-[18.125rem] h-[7.5rem] slider-container">
     <div class="flex sliders gap-10">
-      <div class="slide"><img src="/partners/geekcartel.jpg" alt=""></div>
-      <div class="slide"><img src="/partners/samsung.jpg" alt=""></div>
-      <div class="slide"><img src="/partners/nomad.jpg" alt=""></div>
-      <div class="slide"><img src="/partners/canonical.jpg" alt=""></div>
-      <div class="slide"><img src="/partners/dispersion.jpg" alt=""></div>
-      <div class="slide"><img src="/partners/alumni.jpg" alt=""></div>
-      <div class="slide"><img src="/partners/tangent.jpg" alt=""></div>
-      <div class="slide"><img src="/partners/motherson.jpg" alt=""></div>
-      <div class="slide"><img src="/partners/coho.jpg" alt=""></div>
-      <div class="slide"><img src="/partners/sandeep.jpg" alt=""></div>
+      <div class="slide"><img src="/partners/geekcartel.jpg" alt="" /></div>
+      <div class="slide"><img src="/partners/samsung.jpg" alt="" /></div>
+      <div class="slide"><img src="/partners/nomad.jpg" alt="" /></div>
+      <div class="slide"><img src="/partners/canonical.jpg" alt="" /></div>
+      <div class="slide"><img src="/partners/dispersion.jpg" alt="" /></div>
+      <div class="slide"><img src="/partners/alumni.jpg" alt="" /></div>
+      <div class="slide"><img src="/partners/tangent.jpg" alt="" /></div>
+      <div class="slide"><img src="/partners/motherson.jpg" alt="" /></div>
+      <div class="slide"><img src="/partners/coho.jpg" alt="" /></div>
+      <div class="slide"><img src="/partners/sandeep.jpg" alt="" /></div>
     </div>
   </div>
   <div class="flex flex-col items-center font-[Manrope] mb-[4.125rem]">
@@ -112,7 +67,8 @@ const { titles } = PageMeta;
   <div class="flex gap-12 px-40 py-[3.125rem] mb-[34.875rem] font-[Manrope]">
     <div class="flex">
       <div class="w-5 mr-7">
-        <Icon class="w-5 h-5" name="brandLogo"/></div>
+        <Icon class="w-5 h-5" name="brandLogo" />
+      </div>
       <div class="">
         <div class="text-lg mb-2">Q2 2024</div>
         <div class="text-[2rem] leading-[3rem]">
@@ -122,7 +78,8 @@ const { titles } = PageMeta;
     </div>
     <div class="flex">
       <div class="w-5 mr-7">
-        <Icon class="w-5 h-5" name="brandLogo"/></div>
+        <Icon class="w-5 h-5" name="brandLogo" />
+      </div>
       <div class="">
         <div class="text-lg mb-2">Q3 2024</div>
         <div class="text-[2rem] leading-[3rem]">
@@ -132,7 +89,8 @@ const { titles } = PageMeta;
     </div>
     <div class="flex">
       <div class="w-5 mr-7">
-        <Icon class="w-5 h-5" name="brandLogo"/></div>
+        <Icon class="w-5 h-5" name="brandLogo" />
+      </div>
       <div class="">
         <div class="text-lg mb-2">Q4 2024</div>
         <div class="text-[2rem] leading-[3rem]">
@@ -148,57 +106,42 @@ const { titles } = PageMeta;
 </Layout>
 <script>
   import { gsap } from "gsap";
-  import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import HeroView from "@/webgl/HeroView";
 
-  // gsap.registerPlugin(ScrollToPlugin);
-  // const sliderContainer = document.querySelector(".sliders") as HTMLDivElement;
-  // const slideWidth = sliderContainer.offsetWidth / 6; //
-  // console.log(slideWidth);
-  // gsap.timeline({ repeat: -1, yoyo: true }).to(sliderContainer, {
-  //   duration: 10,
-  //   x: -slideWidth,
-  //   ease: "linear",
-  // });
+  gsap.registerPlugin(ScrollTrigger);
 
-  const scrollSelector = document.querySelector(
-    ".scroll-selector",
-  ) as HTMLDivElement;
-  const cityList = Array.from(scrollSelector.querySelectorAll("li"));
-  let currentScrollPosition = 0;
-
-  // 初始化GSAP的TweenMax
-  gsap.registerPlugin(ScrollToPlugin); // 确保你已经引入了ScrollToPlugin
-
-  const height = 334;
-  // 滚轮事件监听器
-  scrollSelector.addEventListener("wheel", (event) => {
-    event.preventDefault(); // 阻止默认滚动行为
-    const scrollDirection = event.deltaY < 0 ? 1 : -1; // 判断滚动方向
-    let targetIndex =
-      Math.round(scrollSelector.scrollTop / height) + scrollDirection;
-
-    // 确保目标索引在有效范围内
-    targetIndex = Math.min(Math.max(0, targetIndex), cityList.length - 1);
-
-    // 计算目标位置
-    const targetPosition = targetIndex * height;
-
-    // 使用GSAP平滑滚动到目标位置
-    gsap.to(scrollSelector, {
-      duration: 0.3, // 动画持续时间
-      scrollTo: { y: targetPosition, autoKill: true }, // 滚动到目标位置
-      ease: "power1.inOut", // 缓动函数
+  const heroEl = document.getElementById("sectionHero");
+  if (heroEl) {
+    const viewer = new HeroView(heroEl);
+    viewer.useSetup();
+    viewer.play();
+    gsap.to(heroEl, {
+      scrollTrigger: {
+        trigger: "#sectionRing",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+        onEnterBack: () => {
+          viewer.play();
+        },
+        onLeave: () => {
+          viewer.stop();
+        },
+      },
+      opacity: 0,
+      // onComplete: () => {
+      //   viewer.stop();
+      // },
     });
+  }
 
-    // 更新当前滚动位置
-    currentScrollPosition = targetPosition;
-  });
-  scrollSelector.addEventListener("scroll", () => {
-    const currentIndex = Math.round(scrollSelector.scrollTop / height);
-    console.log(currentIndex);
-    cityList.forEach((li, index) => {
-      li.classList.toggle("active", index === currentIndex);
-    });
+  const sliderContainer = document.querySelector(".sliders") as HTMLDivElement;
+  const slideWidth = sliderContainer.offsetWidth / 6; //
+  gsap.timeline({ repeat: -1, yoyo: true }).to(sliderContainer, {
+    duration: 10,
+    x: -slideWidth,
+    ease: "linear",
   });
 </script>
 <style>
@@ -216,7 +159,7 @@ const { titles } = PageMeta;
     min-width: 16.25rem;
     max-width: 16.25rem;
     height: 7.5rem;
-    border: 1px solid #62666D;
+    border: 1px solid #62666d;
     border-radius: 1.25rem;
     overflow: hidden;
   }

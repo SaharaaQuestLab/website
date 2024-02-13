@@ -1,4 +1,4 @@
-import { AdditiveBlending, Material, Mesh, NormalBlending, Quaternion, ShaderMaterial, TorusGeometry, Vector3 } from "three";
+import { AdditiveBlending, Euler, Material, Mesh, NormalBlending, Quaternion, ShaderMaterial, TorusGeometry, Vector3 } from "three";
 import VertexShader from '@/shaders/ring.vert';
 import FragmentShader from "@/shaders/ring.frag";
 import ringMeshTongMaterial from "../material/RingMeshTong";
@@ -7,8 +7,8 @@ import ringMeshStandardMaterial from "../material/RingMeshTong";
 interface CircleRingOptions {
   radius: number,
   tube: number,
-  radialSegments: number,
-  tubularSegments: number
+  radialSegments?: number,
+  tubularSegments?: number
 }
 
 export class CircleRing {
@@ -18,15 +18,16 @@ export class CircleRing {
   private curPosition: Vector3 | null = null;
   private curQuaternion: Quaternion | null = null;
 
+  public cacheRotation: Euler = new Euler();
   public mesh: Mesh;
   public geometry: TorusGeometry;
   public selfRotateAxis: Vector3;
   // public material: Material;
 
-  constructor(options?: Partial<CircleRingOptions>) {
+  constructor(options?: CircleRingOptions) {
     this.radialSegments = options?.radialSegments || 4;
     this.tubularSegments = options?.tubularSegments || 40;
-    this.geometry = new TorusGeometry(options?.radius || 0.35, options?.tube || 0.1, this.radialSegments, this.tubularSegments);
+    this.geometry = new TorusGeometry(options?.radius, options?.tube, this.radialSegments, this.tubularSegments);
     this.mesh = new Mesh(this.geometry, ringMeshStandardMaterial);
     this.selfRotateAxis = new Vector3(1, 0, 0);
   }
@@ -40,6 +41,7 @@ export class CircleRing {
     this.geometry = new TorusGeometry(radius, tube, this.radialSegments, this.tubularSegments);
     this.mesh = new Mesh(this.geometry, ringMeshStandardMaterial);
     this.mesh.matrixAutoUpdate = true;
+    this.mesh.visible = radius > 0.005;
 
     if (this.curPosition) this.mesh.position.copy(this.curPosition);
     if (this.curQuaternion) this.mesh.setRotationFromQuaternion(this.curQuaternion);
@@ -57,10 +59,24 @@ export class CircleRing {
     return this;
   }
 
-  public rotate(axis: Vector3, angle: number) {
+  public rotateByAxis(axis: Vector3, angle: number) {
     const quaternion = new Quaternion().setFromAxisAngle(axis, angle);
     this.curQuaternion = this.mesh.quaternion.multiplyQuaternions(quaternion, this.mesh.quaternion);
   }
+
+  public rotateByXYZ(x: number, y: number, z: number) {
+    // const euler = new Euler(x, y, z);
+    const euler = this.mesh.rotation.set(x, y, z);
+    this.curQuaternion = new Quaternion().setFromEuler(euler);
+    // const quaternion = new Quaternion().setFromEuler(euler);
+    // this.curQuaternion = this.mesh.quaternion.multiplyQuaternions(quaternion, this.mesh.quaternion);
+  }
+
+  public updateCacheRotation() {
+    if (this.curQuaternion) this.cacheRotation = new Euler().setFromQuaternion(this.curQuaternion);
+  }
+
+
 
   public setSelfRotateAxis(x: number, y: number, z: number) {
     this.selfRotateAxis = new Vector3(x, y, z);

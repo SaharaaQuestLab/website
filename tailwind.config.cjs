@@ -4,8 +4,9 @@ module.exports = {
 	safelist: [],
 	theme: {
 		screens: {
-			'laptop': { max: '1316px' },
-			'mobile': { max: '600px' },
+			'desktop': { max: '1728px' },
+			'tablet': { max: '768px' },
+			'mobile': { max: '375px' },
 		},
 		extend: {},
 	},

@@ -2,15 +2,133 @@
 
 ---
 
-<div id="ring3D" class="w-full h-full"></div>
+<div
+  id="ringSection"
+  class="h-screen w-full flex justify-around items-center px-4"
+>
+  <div class="w-1 h-[520px] bg-white"></div>
+
+  <ul class="h-[50rem] relative w-[36.125rem] font-[Manrope]">
+    <li class="section h-[50rem] absolute inset-0 translate-y-full opacity-0">
+      <h1 class="text-[5.625rem] leading-[5.125rem] mb-[0.875rem]">Own your</h1>
+      <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
+      <div class="mt-7">
+        Use blockchain infrastructure that's trustless, permissionless, and
+        privacy-preserving so your information stays under your control.
+      </div>
+    </li>
+    <li class="section h-[50rem] absolute inset-0 translate-y-full opacity-0">
+      <h1 class="text-[5.625rem] leading-[5.125rem] mb-[0.875rem]">
+        Scale your
+      </h1>
+      <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
+      <div class="mt-7">
+        Create autonomous Al agents that expand the impact of your knowledge
+        base, skills, and expertise and are customized to meet your needs.
+      </div>
+    </li>
+    <li class="section h-[50rem] absolute inset-0 translate-y-full opacity-0">
+      <h1
+        class="text-[5.625rem] leading-[5.125rem] mb-[0.875rem] whitespace-nowrap"
+      >
+        Monetize your
+      </h1>
+      <h1 class="text-[5.625rem] leading-[5.125rem]">knowledge</h1>
+      <div class="mt-7">
+        Join the decentralized ecosystem of global knowledge capital to leverage
+        your data for novel income opportunities.
+      </div>
+    </li>
+  </ul>
+
+  <div class="flex w-[520px] justify-center items-center">
+    <div id="ring3D" class="w-[520px] h-[520px]"></div>
+  </div>
+</div>
 
 <script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
   import RingView from "@/webgl/RingView";
+
+  gsap.registerPlugin(ScrollTrigger);
+
   const canvasEl = document.getElementById("ring3D");
 
-  if (canvasEl) {
-    const viewer = new RingView(canvasEl);
-    viewer.useSetup();
-    viewer.play();
-  }
+  const viewer = new RingView(canvasEl || document.createElement("div"));
+  viewer.useSetup();
+
+  const sections = gsap.utils.toArray("#ringSection .section");
+
+  sections.forEach((section, i) => {
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#ringSection",
+        start: () => `top -${window.innerHeight * i}px`,
+        end: () => `+=${window.innerHeight}px`,
+        scrub: true,
+        toggleActions: "play none reverse none",
+        invalidateOnRefresh: true,
+      },
+    });
+
+    tl.to(section as HTMLElement, {
+      duration: 0.33,
+      opacity: 1,
+      y: "35%",
+      onComplete: () => {
+        if (i === 0) {
+          viewer.play();
+        } else if (i === 1) {
+          viewer.setSceneTwo();
+        } else if (i === 2) {
+          viewer.setSceneThree();
+        }
+      },
+    }).to(
+      section as HTMLElement,
+      {
+        duration: 0.33,
+        opacity: 0.2,
+        y: "-50%",
+      },
+      0.66,
+    );
+  });
+
+  ScrollTrigger.create({
+    trigger: "#ringSection",
+    scrub: true,
+    start: "top bottom",
+    end: "bottom top",
+    onEnter: () => {
+      viewer.play();
+    },
+    onLeaveBack: () => {
+      viewer.stop();
+    },
+  });
+
+  ScrollTrigger.create({
+    trigger: "#ringSection",
+    scrub: true,
+    markers: true,
+    pin: true,
+    start: () => "top top",
+    end: () => `+=${sections.length * window.innerHeight}px`,
+    onLeave: () => {
+      console.log("leave");
+      viewer.stop();
+    },
+    onEnterBack: () => {
+      console.log("back enter");
+      viewer.play();
+    },
+    // onLeaveBack: () => {
+    //   console.log("back leave");
+    //   viewer.stop();
+    // },
+    invalidateOnRefresh: true,
+    anticipatePin: 1,
+  });
 </script>

@@ -6,7 +6,7 @@ import * as THREE from 'three';
 // import { OutlinePass } from 'three/addons/postprocessing/OutlinePass.js';
 import { AdditiveBlending } from "three";
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
-import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, DepthEffect, BlendFunction, VignetteEffect, OutlineEffect,} from 'postprocessing';
+import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, DepthEffect, BlendFunction, VignetteEffect, OutlineEffect, } from 'postprocessing';
 import { createGroundParticle } from './geometry/GroundParticle';
 import { createSkyParticle } from './geometry/SkyParticle';
 import { createBackgroundParticle } from './geometry/BackgroundParticle';
@@ -36,6 +36,7 @@ export default class HeroView {
   private _requestCallback?: () => void;
   // private _controls?: SpatialControls;
   private _isMouseMove?: boolean = false;
+  private _status: 'playing' | 'pausing' = 'pausing';
 
   constructor(el: Window | HTMLElement) {
     this._el = el;
@@ -105,6 +106,7 @@ export default class HeroView {
   // }
 
   private _animate(timestamp?: number) {
+    if (this._status === 'pausing') return;
     // if (this._controls) this._controls.update(timestamp || 0);
     if (this._requestCallback) this._requestCallback();
     if (this._composer) {
@@ -135,11 +137,11 @@ export default class HeroView {
     const sphereGeo02 = new THREE.SphereGeometry(0.15, 24, 24);
     //const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x121315 });
     const sphereMaterial01 = new THREE.ShaderMaterial({
-      uniforms:{
-        outlineColor:{
+      uniforms: {
+        outlineColor: {
           value: new THREE.Color(0x666666)
         },
-        camPosition:{
+        camPosition: {
           value: new THREE.Vector3(0.9, 0.65, 4.0)
         }
       },
@@ -147,11 +149,11 @@ export default class HeroView {
       fragmentShader: BlackSphereFragmentShader
     });
     const sphereMaterial02 = new THREE.ShaderMaterial({
-      uniforms:{
-        outlineColor:{
+      uniforms: {
+        outlineColor: {
           value: new THREE.Color(0x666666)
         },
-        camPosition:{
+        camPosition: {
           value: new THREE.Vector3(-0.6, -0.45, 4.0)
         }
       },
@@ -271,10 +273,17 @@ export default class HeroView {
   }
 
   public play() {
+    this._status = 'playing';
     this._animate();
   }
 
+  public stop() {
+    this._status = 'pausing';
+    if (this._requestAnimationId) cancelAnimationFrame(this._requestAnimationId);
+  }
+
   public destroy() {
+    this._status = 'pausing';
     if (this._requestAnimationId) cancelAnimationFrame(this._requestAnimationId);
   }
 
