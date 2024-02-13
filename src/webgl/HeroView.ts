@@ -1,10 +1,4 @@
 import * as THREE from 'three';
-// import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-// import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-// import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
-// import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-// import { OutlinePass } from 'three/addons/postprocessing/OutlinePass.js';
-import { AdditiveBlending } from "three";
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
 import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, DepthEffect, BlendFunction, VignetteEffect, OutlineEffect, } from 'postprocessing';
 import { createGroundParticle } from './geometry/GroundParticle';
