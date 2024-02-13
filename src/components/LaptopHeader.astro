@@ -14,9 +14,9 @@ const routes = navData.nav.map((nav) => ({
 ---
 
 <div
-  class="px-[1.75rem] pt-6 pb-[3.25rem] header w-screen flex fixed z-10 justify-between"
+  class="px-[1.75rem] pt-6 pb-[3.25rem] header w-screen flex fixed z-10 justify-between pointer-events-none"
 >
-  <div class="flex">
+  <div class="flex pointer-events-auto">
     <a href="/" class="logo mr-12 w-11 h-full">
       <Icon class="w-11 h-11 text-white" name="brandLogo" />
     </a>
@@ -49,7 +49,7 @@ const routes = navData.nav.map((nav) => ({
   </div>
   <div class="flex-1 pointer-events-none"></div>
   <div
-    class="border whitespace-nowrap w-40 border-[#474040] text-sm cursor-pointer py-2.5 px-4 flex items-center rounded-xl text-light-100"
+    class="border whitespace-nowrap w-40 border-[#474040] text-sm cursor-pointer py-2.5 px-4 flex items-center rounded-xl text-light-100 pointer-events-auto"
   >
     Join waitlist
     <Icon class="w-5 h-5" name="arrowRightUp" />

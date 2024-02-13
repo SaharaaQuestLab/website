@@ -11,6 +11,19 @@ import Ring3DSection from "@/components/3DRingSection.astro";
   </section>
   <Ring3DSection />
   <section class="blue"></section>
+  <section class="h-screen w-screen flex justify-center items-center bg-white">
+    <div class="text-container relative h-5 w-full overflow-hidden">
+      <div class="line absolute top-0 left-0 opacity-1 text-black" id="line1">
+        Line 1
+      </div>
+      <div class="line absolute top-0 left-0 opacity-0 text-black" id="line2">
+        Line 2
+      </div>
+      <div class="line absolute top-0 left-0 opacity-0 text-black" id="line3">
+        Line 3
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <!-- </Layout> -->
@@ -19,6 +32,25 @@ import Ring3DSection from "@/components/3DRingSection.astro";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
+
+  const lines = gsap.utils.toArray(".line");
+
+  // 创建一个 GSAP 时间线
+  const tl = gsap.timeline({ repeat: -1, delay: 1 });
+
+  // 对每一行文本创建动画
+  lines.forEach((line, index) => {
+    tl.fromTo(
+      line as HTMLElement,
+      { opacity: 0, y: "100%" },
+      { duration: 0.5, opacity: 1, y: "0%" },
+    ) // 渐显当前行
+      .to(
+        line as HTMLElement,
+        { duration: 0.5, opacity: 0, delay: 0.5, y: "-100%" },
+        "+=1",
+      ); // 1秒后渐隐当前行
+  });
 </script>
 <style>
   .orange {

@@ -22,6 +22,7 @@ export default class RingView {
   private _composer?: OutlineEffect;
   private _requestAnimationId?: number;
   private _status: 'playing' | 'pausing' = 'pausing';
+  private _stage: number = 0;
   private _requestCallback?: (timestamp: number) => void;
   private _updateCallback: ((ring: CircleRing) => void) | null = null;
   // private _controls?: SpatialControls;
@@ -151,6 +152,8 @@ export default class RingView {
   }
 
   public setSceneOne() {
+    if (this._stage > 1) return;
+    this._stage = 1;
     this._scene.remove(...this._rings.map(r => r.mesh));
     const [ring1, ring2] = this._rings;
     this._scene.add(ring1.mesh, ring2.mesh);
@@ -161,11 +164,15 @@ export default class RingView {
   }
 
   public setSceneTwo() {
+    if (this._stage > 2) return;
+    this._stage = 2;
     this._scene.add(this._rings[2].mesh);
     this.transToSceneTwo();
   }
 
   public setSceneThree() {
+    if (this._stage === 3) return;
+    this._stage = 3;
     const [ring1, ring2, ring3, ring4, ring5] = this._rings;
     ring1.updateCacheRotation();
     ring2.updateCacheRotation();

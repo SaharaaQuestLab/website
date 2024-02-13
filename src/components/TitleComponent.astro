@@ -3,33 +3,38 @@ import { Icon } from "astro-icon/components";
 
 interface Props {
   titles: {
-    texts: string[],
-    description: string,
+    texts: string[];
+    description: string;
     button?: {
-      text: string
-    }
+      text: string;
+    };
   };
 }
-const {texts, description, button} = Astro.props.titles;
-
+const { texts, description, button } = Astro.props.titles;
 ---
 
-<div class="w-0 h-screen flex flex-col items-center justify-center relative top-0 left-1/2 -mb-[100vh]">
+<div
+  class="h-screen flex flex-col items-center justify-center relative top-0 left-0 pointer-events-none"
+>
   {
     texts.map((item) => (
-    <h1 class="gradient-text pointer-events-none">{item}</h1>
-  ))
+      <h1 class="gradient-text pointer-events-none">{item}</h1>
+    ))
   }
 
-  <div class="text-light-200 text-lg w-[28.75rem] pointer-events-none text-center mt-10 font-[Manrope]">
+  <div
+    class="text-light-200 text-lg w-[28.75rem] pointer-events-none text-center mt-10 font-[Manrope]"
+  >
     {description}
   </div>
+
+  <!-- link button -->
   {
     button && (
-    <div class="border w-max whitespace-nowrap border-[#474040] text-base cursor-pointer py-2.5 px-4 flex items-center rounded-xl mt-10 text-[#FFFFFF]">
-      {button.text}
-      <Icon class="w-5 h-5" name="arrowRightUp"/>
-    </div>
+      <div class="border w-max whitespace-nowrap border-[#474040] text-base cursor-pointer py-2.5 px-4 flex items-center rounded-xl mt-10 text-[#FFFFFF] pointer-events-auto">
+        {button.text}
+        <Icon class="w-5 h-5" name="arrowRightUp" />
+      </div>
     )
   }
 </div>
