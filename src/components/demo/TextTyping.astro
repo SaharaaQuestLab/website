@@ -1,0 +1,63 @@
+---
+interface Props {
+  text?: string;
+}
+
+const {
+  text = "这是通过 GSAP 实现的打字动画效果.这是通过 GSAP 实现的打字动画效果.这是通过 GSAP 实现的打字动画效果",
+} = Astro.props;
+---
+
+<div class="w-screen h-screen flex justify-center items-center">
+  <p>
+    <span id="typewriter" data-text={text}></span><span class="cursor">|</span>
+  </p>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { TextPlugin } from "gsap/TextPlugin";
+
+  gsap.registerPlugin(TextPlugin);
+
+  const typewriter = document.getElementById("typewriter");
+
+  if (typewriter) {
+    // 执行打字动画
+    const typewriterEffect = gsap.timeline({
+      scrollTrigger: {
+        trigger: typewriter,
+        start: "top bottom",
+      },
+      repeat: 0,
+      repeatDelay: 1,
+    });
+
+    typewriterEffect.to(typewriter, {
+      duration: 5, // 根据文本长度和期望的打字速度调整
+      text: typewriter.dataset.text,
+      ease: "none", // 线性动画以保持稳定的打字速度
+      onComplete: () => {
+        gsap.set(".cursor", { display: "none", duration: 0.01 });
+      },
+    });
+  }
+</script>
+<style>
+  .cursor {
+    opacity: 1;
+    animation: blink 0.7s infinite; /* 光标闪烁动画 */
+  }
+
+  /* 光标闪烁关键帧 */
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    50.1%,
+    100% {
+      opacity: 0;
+    }
+  }
+</style>

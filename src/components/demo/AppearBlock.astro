@@ -1,0 +1,32 @@
+---
+
+---
+
+<div class="w-screen h-screen flex justify-around items-center">
+  <div
+    id="block1"
+    class="h-[520px] w-[200px] flex justify-center items-center bg-[#aa0000] text-light-100"
+  >
+    block1
+  </div>
+  <div
+    id="block2"
+    class="h-[520px] w-[200px] flex justify-center items-center bg-[#00aa00] text-light-100"
+  >
+    block2
+  </div>
+  <div
+    id="block3"
+    class="h-[520px] w-[200px] flex justify-center items-center bg-[#0000aa] text-light-100"
+  >
+    block3
+  </div>
+</div>
+
+<script>
+  import { makeAppearEffect } from "@/utils/gsap.utils";
+
+  ["#block1", "#block2", "#block3"].forEach((el) => {
+    makeAppearEffect(el);
+  });
+</script>
