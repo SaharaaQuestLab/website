@@ -8,7 +8,8 @@ import PageMeta from "@/data/index";
 import { Icon } from "astro-icon/components";
 const { titles } = PageMeta;
 ---
-
+<div class=" items-center py-2.5 hidden tablet:flex bg-light-100 relative z-50 justify-center text-dark-400">Sahara raises $6M in seed round led by Polychain Capital
+  <Icon class="w-5 h-5" name="arrowRightUp" /></div>
 <Layout title="saharaa.ai">
   <div id="sectionHero" class="w-full h-screen top-0 left-0 fixed"></div>
 
@@ -47,9 +48,9 @@ const { titles } = PageMeta;
     <div class="h-7 mb-10 tablet:mb-4 flex justify-center">
       <Icon class="w-7 h-7" name="brandLogo" />
     </div>
-    <h1 class="text-h2 tablet:text-h4 text-light-200">An ecosystem</h1>
-    <h1 class="text-h2 tablet:text-h4">for collaborative</h1>
-    <h1 class="text-h2 tablet:text-h4">intelligence</h1>
+    <h1 class="text-h2 tablet:text-h5 text-light-200">An ecosystem</h1>
+    <h1 class="text-h2 tablet:text-h5">for collaborative</h1>
+    <h1 class="text-h2 tablet:text-h5">intelligence</h1>
     <div class="w-[28.75rem] mx-auto mt-10 tablet:mt-4">
       Your knowledge is part of a broader effort to build the next generation of
       Human-Al collaboration.
@@ -59,7 +60,7 @@ const { titles } = PageMeta;
   <div
     class="flex flex-col items-center font-[Manrope] mt-[18.125rem] tablet:mt-[7.5rem] mb-[4.125rem] tablet:mb-11"
   >
-    <h1 class="text-h2 tablet:text-h4">Sahara Roadmap</h1>
+    <h1 class="text-h2 tablet:text-h5">Sahara Roadmap</h1>
     <div class="w-[28.75rem] text-center mt-5 tablet:mt-4 text-light-200">
       Navigate journey across the digital dunes of innovation in the Sahara of
       tomorrow.
@@ -124,7 +125,7 @@ const { titles } = PageMeta;
   </div>
 </Layout>
 <div class="border-t border-t-dark-200 fixed bg-dark-400 bottom-0 p-6 w-full hidden tablet:block">
-  <div class="font-[Manrope] text-[1.5rem] leading-6">Our website uses cookies</div>
+  <div class="font-[Manrope] text-h6 leading-6">Our website uses cookies</div>
   <div class="font-[Manrope] text-light-200 text-[1rem] leading-7">
     Which are necessary for stable operation of the site
   </div>

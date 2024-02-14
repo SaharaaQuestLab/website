@@ -18,10 +18,24 @@ module.exports = {
 			h3: ['4.375rem', {
 				lineHeight: '4rem'
 			}],
-			h4: ['2.25rem', {
+			h4: ['3.5rem', {
+				lineHeight: '3.125rem'
+			}],
+			h5: ['2.25rem', {
 				lineHeight: '2.25rem'
+			}],
+			h6: ['1.5rem', {
+				lineHeight: '2.25rem'
+			}],
+			h7: ['1.125rem', {
+				lineHeight: '1.75rem'
+			}],
+			h8: ['0.875rem', {
+				lineHeight: '1.5rem'
+			}],
+			h9: ['0.75rem', {
+				lineHeight: '1.125rem'
 			}]
-
 		},
 		colors: {
 			dark: {
