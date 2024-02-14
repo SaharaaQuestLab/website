@@ -121,21 +121,21 @@ export default class RingView {
   public useSetup() {
 
     // 添加一个定向光源
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-    directionalLight.position.set(2, 2, -0.5); // 设置光源的位置
-    this._scene.add(directionalLight);
+    // const directionalLight = new THREE.DirectionalLight(0xffffff, 5);
+    // directionalLight.position.set(-3, 1.5, -3); // 设置光源的位置
+    // this._scene.add(directionalLight);
 
     // add point light
-    // const pointLight = new THREE.PointLight(0xffffff, 0.5, 20);
-    // pointLight.position.set(-1.0, -0.3, 0);
-    // this._scene.add(pointLight);
+    const pointLight = new THREE.PointLight(0xffffff, 30.0, 100);
+    pointLight.position.set(-2.0, 1.5, -2.0);
+    this._scene.add(pointLight);
 
-    this._camera.position.set(0, 0, 4);
+    this._camera.position.set(-2, 2, 3);
     this._camera.lookAt(0, 0, 0);
 
     this.setSceneOne();
 
-    this._composer = new OutlineEffect(this._render, { defaultColor: [3 / 16, 3 / 16, 3 / 16] });
+    this._composer = new OutlineEffect(this._render, { defaultColor: [8 / 16, 8 / 16, 8 / 16] });
 
     this._requestCallback = (timestamp: number) => {
       if (this._updateCallback !== null) {

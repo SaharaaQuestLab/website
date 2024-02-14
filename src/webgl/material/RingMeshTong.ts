@@ -1,4 +1,4 @@
-import { Color, MeshToonMaterial, CanvasTexture, MeshStandardMaterial, AdditiveBlending, DataTexture } from "three";
+import { Color, MeshToonMaterial, CanvasTexture, MeshStandardMaterial, AdditiveBlending, DataTexture, NormalBlending } from "three";
 // import VertexShader from "@/shaders/ring.vert";
 // import FragmentShader from "@/shaders/ring.frag";
 
@@ -59,19 +59,21 @@ function createGradientTexture() {
 
 const ringMeshStandardMaterial = new MeshStandardMaterial({
   color: 0xffffff,
-  flatShading: true,
-  blending: AdditiveBlending
+  flatShading: false,
+  blending: NormalBlending
 })
 
 ringMeshStandardMaterial.onBeforeCompile = function (shader) {
   shader.vertexShader = shader.vertexShader.replace(
     '#include <common>',
     `varying vec3 v_position;
+     varying vec2 v_uv;
 #include <common>`
   ).replace(
     '#include <begin_vertex>',
     [
       'v_position = position;',
+      'v_uv = uv;',
       'vec3 transformed = vec3(position);'
     ].join('\n')
   );
@@ -80,6 +82,7 @@ ringMeshStandardMaterial.onBeforeCompile = function (shader) {
     '#include <common>',
     `#include <common>
     varying vec3 v_position;
+    varying vec2 v_uv;
 
     float remap(float value, float sourceMin, float sourceMax, float targetMin, float targetMax) {
       float normalized = (value - sourceMin) / (sourceMax - sourceMin);
@@ -108,18 +111,33 @@ ringMeshStandardMaterial.onBeforeCompile = function (shader) {
         }
 
       return vec2(sqrt(m.x), m.y + m.z);
-    }`
+    }
+    
+    vec3 overlayBlend(vec3 baseColor, vec3 blendColor){
+      vec3 result;
+      for(int i=0; i<3; i++){
+        if(baseColor[i] < 0.5){
+          result[i] = 2.0 * baseColor[i] * blendColor[i];
+        }else{
+          result[i] = 1.0 - 2.0 * (1.0 - baseColor[i]) * (1.0 - blendColor[i]);
+        }
+      }
+      return result;
+    }
+    `
   ).replace(
     '#include <dithering_fragment>',
     `
     #include <dithering_fragment>
-      float noise = voronoi(vec2(v_position.x, 2.0 * v_position.y) * 350.0).x;
-      float color_p = step(0.5, noise);
+      vec3 bgColor = vec3(0.08, 0.083, 0.09);
+      float noise = voronoi(vec2(v_uv.x, 0.2 * v_uv.y) * 450.0).x;
+      float color_p = step(0.4, noise);
+      vec3 noiseColor = vec3(color_p, color_p, color_p);
 
-      float fragColorGreyScale = gl_FragColor.x * color_p;
-      fragColorGreyScale = remap(fragColorGreyScale, 0.1, 0.9, 0.0, 0.75);
+      vec3 baseColor = vec3(gl_FragColor.x, gl_FragColor.y, gl_FragColor.z);
 
-      gl_FragColor = vec4(vec3(fragColorGreyScale, fragColorGreyScale, fragColorGreyScale),1.0);      
+      vec3 fragColor = overlayBlend(baseColor, noiseColor) + bgColor;
+      gl_FragColor = vec4(fragColor.xyz, 1.0);      
     `
   );
 }
