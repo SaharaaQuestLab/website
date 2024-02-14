@@ -17,7 +17,9 @@ const { titles } = PageMeta;
 <Layout title="saharaa.ai" active="business">
   <TitleComponent titles={titles} />
   <Hero3DSection />
-  <h1 class="gradient-text text-center pt-40 pb-[7.5rem]">
+  <h1
+    class="text-h1 whitespace-nowrap font-[Manrope] text-center pt-40 pb-[7.5rem]"
+  >
     Automate Your business
   </h1>
   <div class="px-40 flex gap-[3.125rem] font-[Manrope] mb-[3.75rem]">
@@ -64,16 +66,18 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    class="mx-auto w-[27.25rem] border whitespace-nowrap border-[#474040] text-base leading-5 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
+    class="mx-auto w-[27.25rem] border whitespace-nowrap border-light-100 text-base leading-5 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
   >
     Book a Demo
     <Icon class="w-5 h-5" name="arrowRightUp" />
   </div>
   <div class="flex px-40 mt-40 mb-20">
     <div class="py-[7.25rem] w-[40rem] font-[Manrope]">
-      <div class="gradient-text text-[#878A8D]">Sahara</div>
-      <div class="gradient-text">Knowledge</div>
-      <div class="gradient-text">Agent (KA)</div>
+      <div class="text-h1 whitespace-nowrap font-[Manrope] text-light-200">
+        Sahara
+      </div>
+      <div class="text-h1 whitespace-nowrap font-[Manrope]">Knowledge</div>
+      <div class="text-h1 whitespace-nowrap font-[Manrope]">Agent (KA)</div>
       <div class="text-light-200 mt-[3.75rem]">
         Sahara KA Business extends far beyond conversational capabilities,
         autonomously analyzing both external and internal proprietary data to
@@ -85,17 +89,15 @@ const { titles } = PageMeta;
   <div
     class="grid grid-cols-12 gap-x-10 mx-40 py-[3.75rem] font-[Manrope] border-b mb-[7.5rem] border-b-light-100"
   >
-    <div
-      class="col-span-4 text-[5.625rem] leading-[5.125rem] flex flex-col justify-center"
-    >
+    <div class="col-span-4 text-h2 flex flex-col justify-center">
       <div>Sahara</div>
       <div>Data</div>
     </div>
     <div class="col-span-3 gap-x-4 flex items-center">
-      <Icon class="w-7 h-7" name="brandLogo"/>
-      <Icon class="w-7 h-7 text-light-200" name="brandLogo"/>
-      <Icon class="w-7 h-7 text-light-300" name="brandLogo"/>
-      <Icon class="w-7 h-7 text-light-300" name="brandLogo"/>
+      <Icon class="w-7 h-7" name="brandLogo" />
+      <Icon class="w-7 h-7 text-light-200" name="brandLogo" />
+      <Icon class="w-7 h-7 text-light-300" name="brandLogo" />
+      <Icon class="w-7 h-7 text-light-300" name="brandLogo" />
     </div>
     <div class="col-span-5 text-light-200">
       <div class="mb-10">
@@ -110,27 +112,37 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div class="font-[Manrope] px-40 mb-[7.5rem]">
-    <div class="text-light-200 text-[2.25rem] leading-[3rem] mb-[3.75rem]">Sahara Data by Uses</div>
+    <div class="text-light-200 text-[2.25rem] leading-[3rem] mb-[3.75rem]">
+      Sahara Data by Uses
+    </div>
     <div class="mb-8 grid grid-cols-12 gap-x-7">
       <div class="flex items-center text-[2rem] col-span-4">
         <Icon class="min-w-8 h-8 mr-5" name="text" />
         Text
       </div>
-      <div class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4">
-        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin"/>
+      <div
+        class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4"
+      >
+        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-[1rem] leading-6">Objection detection</span>
       </div>
-      <div class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4">
-        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin"/>
+      <div
+        class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4"
+      >
+        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-[1rem] leading-6">Multimedia classification</span>
       </div>
-      <div class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4">
-        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin"/>
+      <div
+        class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4"
+      >
+        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-[1rem] leading-6">Image collection</span>
       </div>
-      <div class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4">
-        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin"/>
-        <span class="text-[1rem] leading-6">Semantic segmentation </span>
+      <div
+        class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4"
+      >
+        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
+        <span class="text-[1rem] leading-6">Semantic segmentation</span>
       </div>
     </div>
     <div class="mb-8 grid grid-cols-12 gap-x-7">
@@ -139,17 +151,25 @@ const { titles } = PageMeta;
         Image & Video
       </div>
       <div class="col-span-2"></div>
-      <div class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4">
-        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin"/>
+      <div
+        class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4"
+      >
+        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-[1rem] leading-6">Multilingual audio collection</span>
       </div>
-      <div class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4">
-        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin"/>
+      <div
+        class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4"
+      >
+        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-[1rem] leading-6">Audio classification</span>
       </div>
-      <div class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4">
-        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin"/>
-        <span class="text-[1rem] leading-6">Image collection / Audio transcription</span>
+      <div
+        class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4"
+      >
+        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
+        <span class="text-[1rem] leading-6"
+          >Image collection / Audio transcription</span
+        >
       </div>
     </div>
     <div class="grid grid-cols-12 gap-x-7">
@@ -157,26 +177,36 @@ const { titles } = PageMeta;
         <Icon class="w-8 h-8 mr-5" name="music" />
         Audio
       </div>
-      <div class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4">
-        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin"/>
+      <div
+        class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4"
+      >
+        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-[1rem] leading-6">RLHF for LLM</span>
       </div>
-      <div class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4">
-        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin"/>
+      <div
+        class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4"
+      >
+        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-[1rem] leading-6">Multimodal prompt generation</span>
       </div>
-      <div class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4">
-        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin"/>
+      <div
+        class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4"
+      >
+        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-[1rem] leading-6">LLM bias detection</span>
       </div>
-      <div class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4">
-        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin"/>
+      <div
+        class="col-span-2 border border-light-300 rounded-[1.25rem] h-40 flex relative items-end p-4"
+      >
+        <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-[1rem] leading-6">Content moderation</span>
       </div>
     </div>
   </div>
   <div class="font-[Manrope] px-40 mb-[16.25rem]">
-    <div class="text-light-200 text-[2.25rem] leading-[3rem] mb-[3.75rem]">Sahara Data by numbers</div>
+    <div class="text-light-200 text-[2.25rem] leading-[3rem] mb-[3.75rem]">
+      Sahara Data by numbers
+    </div>
     <div class="gap-x-7 grid grid-cols-5">
       <div>
         <div class="text-[3.5rem] leading-[3.25rem]">31+</div>
@@ -203,16 +233,16 @@ const { titles } = PageMeta;
   <div
     class="grid grid-cols-12 gap-x-10 mx-40 py-[3.75rem] font-[Manrope] border-b mb-[7.5rem] border-b-light-100"
   >
-    <div class="col-span-4 text-[5.625rem] leading-[5.125rem]">
+    <div class="col-span-4 text-h2">
       <div>Why</div>
       <div>Sahara</div>
       <div>Data</div>
     </div>
     <div class="col-span-3 gap-x-4 flex items-center">
-      <Icon class="w-7 h-7" name="brandLogo"/>
-      <Icon class="w-7 h-7 text-light-200" name="brandLogo"/>
-      <Icon class="w-7 h-7 text-light-300" name="brandLogo"/>
-      <Icon class="w-7 h-7 text-light-300" name="brandLogo"/>
+      <Icon class="w-7 h-7" name="brandLogo" />
+      <Icon class="w-7 h-7 text-light-200" name="brandLogo" />
+      <Icon class="w-7 h-7 text-light-300" name="brandLogo" />
+      <Icon class="w-7 h-7 text-light-300" name="brandLogo" />
     </div>
     <div class="col-span-5 text-light-200 flex flex-col justify-center">
       Sahara Data harnesses advanced AI and blockchain technology to optimize
@@ -220,11 +250,47 @@ const { titles } = PageMeta;
       price.
     </div>
   </div>
-  <div class="mt-[3.75rem] mx-40 border border-light-300 rounded-[3.125rem] font-[Manrope]">
-   <div class="flex flex-nowrap overflow-hidden">
-    <div class="flex col-span-1 gap-x-32 min-w-full p-[3.75rem] pb-0" id="content1">
-      <div class="flex-1 flex items-center" >
-        <img class="w-full" src={graph_01.src} alt="">
+  <div
+    class="mt-[3.75rem] mx-40 border border-light-300 rounded-[3.125rem] font-[Manrope]"
+  >
+    <div class="flex flex-nowrap overflow-hidden">
+      <div
+        class="grid grid-cols-2 col-span-1 gap-x-32 min-w-full p-[3.75rem] pb-0"
+        id="content1"
+      >
+        <div class="col-span-1 flex items-center">
+          <img class="w-full" src={graph_01.src} alt="" />
+        </div>
+
+        <div class="col-span-1 flex flex-col justify-center">
+          <div class="text-[2.25rem] leading-[3rem] mb-11">
+            Redefine Human-AI Collaboration 
+          </div>
+          <div class="flex items-center text-[2rem] mb-1.5">
+            <Icon class="w-7 h-7 mr-7" name="brandLogo" />
+            Automatic Labeling
+          </div>
+          <div class="pl-14 text-light-200 text-base mb-10">
+            Proprietary models fuel auto-labeling that matches human
+            performance on mainstream tasks.
+          </div>
+          <div class="flex items-center text-[2rem] mb-1.5">
+            <Icon class="w-7 h-7 mr-7" name="brandLogo" />
+            Human-in-the-loop Infrastructure
+          </div>
+          <div class="pl-14 text-light-200 text-base mb-10">
+            Humans meticulously check and refine auto-labeling results until
+            the desired quality is achieved.
+          </div>
+          <div class="flex items-center text-[2rem] mb-1.5">
+            <Icon class="w-7 h-7 mr-7" name="brandLogo" />
+            Continuous Learning
+          </div>
+          <div class="pl-14 text-light-200 text-base">
+            Models learn from human input, iteratively improving the labeling
+            quality.
+          </div>
+        </div>
       </div>
       <div
         class="flex col-span-1 gap-x-32 min-w-full p-[3.75rem] pb-0"
@@ -233,44 +299,19 @@ const { titles } = PageMeta;
         <div class="flex-1 flex items-center">
           <img class="w-full" src={graph_02.src} alt="" />
         </div>
-        <div class="flex items-center text-[2rem] mb-1.5">
-          <Icon class="w-7 h-7 mr-7" name="brandLogo"/>
-          Automatic Labeling
-        </div>
-        <div class="pl-14 text-light-200 text-base mb-10">
-          Proprietary models fuel auto-labeling that matches human performance on mainstream tasks.
-        </div>
-        <div class="flex items-center text-[2rem] mb-1.5">
-          <Icon class="w-7 h-7 mr-7" name="brandLogo"/>
-          Human-in-the-loop Infrastructure
-        </div>
-        <div class="pl-14 text-light-200 text-base mb-10">
-          Humans meticulously check and refine auto-labeling results until the desired quality is achieved. 
-        </div>
-        <div class="flex items-center text-[2rem] mb-1.5">
-          <Icon class="w-7 h-7 mr-7" name="brandLogo"/>
-          Continuous Learning
-        </div>
-        <div class="pl-14 text-light-200 text-base">
-          Models learn from human input, iteratively improving the labeling quality. 
+        <div class="flex-1 flex flex-col justify-center">
+          <div class="text-[2.25rem] leading-[3rem] mb-11">
+            Optimal Balance Between AI and Human Input
+          </div>
+          <div class="flex items-center text-base text-light-200">
+            <Icon class="w-7 min-w-7 h-7 mr-7" name="brandLogo" />
+            Sahara Data incorporates human input with precision until optimal quality
+            is achieved. This way, you won’t spend extra time or money while still
+            obtaining the best quality.
+          </div>
         </div>
       </div>
     </div>
-    <div class="flex col-span-1 gap-x-32 min-w-full p-[3.75rem] pb-0" id="content2">
-      <div class="flex-1 flex items-center">
-        <img class="w-full" src={graph_02.src} alt="">
-      </div>
-      <div class="flex-1 flex flex-col justify-center">
-        <div class="text-[2.25rem] leading-[3rem] mb-11">
-          Optimal Balance Between AI and Human Input
-        </div>
-        <div class="flex items-center text-base text-light-200">
-          <Icon class="w-7 h-7 mr-7" name="brandLogo"/>
-          Sahara Data incorporates human input with precision until optimal quality is achieved. This way, you won’t spend extra time or money while still obtaining the best quality. 
-        </div>
-      </div>
-    </div>
-   </div>
     <div class="py-[2.5rem] flex items-center justify-center">
       <div
         class="bg-[#D9D9D9] w-2.5 h-2.5 rounded-full mr-2.5 cursor-pointer"
@@ -284,14 +325,21 @@ const { titles } = PageMeta;
       </div>
     </div>
   </div>
-  <div class="mb-[7.5rem] mx-40 py-[3.75rem] font-[Manrope] flex flex-col items-center">
-    <div class="bg-light-200 rounded-[1.25rem] w-[21.875rem] py-2.5 text-[2.25rem] leading-8 flex justify-center items-center"><div class="w-2.5 h-2.5 bg-light-100 rounded-full mr-4"></div>Sahara Data is live</div>
+  <div
+    class="mb-[7.5rem] mx-40 py-[3.75rem] font-[Manrope] flex flex-col items-center"
+  >
+    <div
+      class="bg-light-200 rounded-[1.25rem] w-[21.875rem] py-2.5 text-[2.25rem] leading-8 flex justify-center items-center"
+    >
+      <div class="w-2.5 h-2.5 bg-light-100 rounded-full mr-4"></div>Sahara Data
+      is live
+    </div>
     <div class="my-11 text-4xl leading-[3rem]">
       Talk to us today about the unique data solution for your AI training
       needs.
     </div>
     <div
-      class="mx-auto w-36 border whitespace-nowrap border-[#474040] font-[IBMPlexMono-Medium] text-sm leading-6 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
+      class="mx-auto w-36 border whitespace-nowrap border-light-100 font-[IBMPlexMono-Medium] text-sm leading-6 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
     >
       Book a Demo
       <Icon class="w-5 h-5" name="arrowRightUp" />
@@ -299,8 +347,8 @@ const { titles } = PageMeta;
   </div>
   <!-- <AutomateSection /> -->
   <div slot="footer">
-    <h1 class="gradient-text">Your Ultimate Partner</h1>
-    <h1 class="gradient-text">for High Value Data</h1>
+    <h1 class="text-h1 font-[Manrope]">Your Ultimate Partner</h1>
+    <h1 class="text-h1 font-[Manrope]">for High Value Data</h1>
   </div>
 </Layout>
 <script>
@@ -345,12 +393,4 @@ const { titles } = PageMeta;
     slider2.classList.toggle("bg-opacity-40");
   });
 </script>
-<style>
-  .gradient-text {
-    white-space: nowrap;
-    font-size: 6.875rem;
-    line-height: 6.375rem;
-    font-family: Manrope;
-    color: #e1e4e7;
-  }
-</style>
+<style></style>

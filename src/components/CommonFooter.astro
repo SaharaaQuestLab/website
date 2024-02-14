@@ -4,14 +4,14 @@ import PageMeta from "@/data/footer";
 const { authorization, privacyPolicy, email, subscribe } = PageMeta;
 ---
 
-<div class="footer px-40 text-light-200">
+<div class="footer px-40 tablet:px-7">
   <slot name="footer"></slot>
-  <div class="flex text-base justify-between my-[3.75rem]  pt-[3.75rem]">
-    <div class="flex">
-      <div class="leading-[2.625rem] text-[Manrope] pr-5">
+  <div class="flex tablet:flex-col tablet:items-center text-base text-light-200 justify-between my-[3.75rem] tablet:my-7 pt-[3.75rem] tablet:pt-5">
+    <div class="flex tablet:flex-col tablet:items-center">
+      <div class="leading-[2.625rem] text-[Manrope] pr-5 whitespace-nowrap">
         Follow us to get the latest updates
       </div>
-      <div class="flex gap-1 ml-5">
+      <div class="flex gap-1 ml-5 tablet:ml-0 tablet:mt-4 tablet:mb-5 tablet:items-center">
         <a class="p-3">
           <Icon class="w-5 h-5" name="twitter"/>
         </a>
@@ -26,7 +26,7 @@ const { authorization, privacyPolicy, email, subscribe } = PageMeta;
         </a>
       </div>
     </div>
-    <div class="border border-light-100 flex px-4 py-2 bg-dark-400 rounded-xl w-[40rem] justify-between">
+    <div class="border border-light-100 flex px-4 py-2 bg-dark-400 rounded-xl w-[40rem] tablet:w-full justify-between">
       <div class="text-light-200 flex items-center">
         <Icon class="w-5 h-5 mr-1.5" name="email"/>
         {email}
@@ -37,7 +37,7 @@ const { authorization, privacyPolicy, email, subscribe } = PageMeta;
       </div>
     </div>
   </div>
-  <div class="border-t border-t-dark-100 border-opacity-40 flex justify-between text-sm mt-5">
+  <div class="border-t text-light-200 border-t-dark-100 border-opacity-40 flex justify-between text-sm mt-5">
     <div class="px-3 py-2.5">
       {authorization}
     </div>

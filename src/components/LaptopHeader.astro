@@ -14,7 +14,7 @@ const routes = navData.nav.map((nav) => ({
 ---
 
 <div
-  class="px-[1.75rem] pt-6 pb-[3.25rem] header w-screen flex fixed z-10 justify-between pointer-events-none"
+  class="px-[1.75rem] pt-6 pb-[3.25rem] header w-screen tablet:hidden flex fixed z-10 justify-between pointer-events-none"
 >
   <div class="flex pointer-events-auto">
     <a href="/" class="logo mr-12 w-11 h-full">
@@ -32,7 +32,7 @@ const routes = navData.nav.map((nav) => ({
         >
           {item.name}
           {item.flag === "aboutUs" && (
-            <div class="border absolute top-11 left-1/2 mt-[1px] -translate-x-1/2 bg-dark-400  w-[8.125rem] rounded-xl text-sm leading-6 px-4 py-3 border-dark-100 border-opacity-40">
+            <div class="border absolute top-11 left-1/2 mt-[2px] -translate-x-1/2 bg-dark-400  w-[8.125rem] rounded-xl text-sm leading-6 px-4 py-3 border-dark-100 border-opacity-40">
               <div class="flex items-center">
                 Team
                 <Icon class="w-5 h-5" name="arrowRightUp" />
@@ -49,10 +49,10 @@ const routes = navData.nav.map((nav) => ({
   </div>
   <div class="flex-1 pointer-events-none"></div>
   <div
-    class="border whitespace-nowrap w-40 border-[#474040] text-sm cursor-pointer py-2.5 px-4 flex items-center rounded-xl text-light-100 pointer-events-auto"
+    class="border whitespace-nowrap w-40 border-linght-100 font-[IBMPlexMono-Medium] text-[0.875rem] cursor-pointer py-2.5 px-4 flex items-center rounded-xl text-light-100 pointer-events-auto"
   >
     Join waitlist
-    <Icon class="w-5 h-5" name="arrowRightUp" />
+    <Icon class="min-w-5 h-5" name="arrowRightUp" />
   </div>
 </div>
 <style>

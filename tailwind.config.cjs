@@ -8,6 +8,21 @@ module.exports = {
 			'tablet': { max: '768px' },
 			'mobile': { max: '375px' },
 		},
+		fontSize: {
+			h1: ['6.875rem', {
+				lineHeight: '6.375rem'
+			}],
+			h2: ['5.625rem', {
+				lineHeight: '5.125rem'
+			}],
+			h3: ['4.375rem', {
+				lineHeight: '4rem'
+			}],
+			h4: ['2.25rem', {
+				lineHeight: '2.25rem'
+			}]
+
+		},
 		colors: {
 			dark: {
 				400: '#121315',
