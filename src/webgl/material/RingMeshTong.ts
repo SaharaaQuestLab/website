@@ -57,11 +57,17 @@ function createGradientTexture() {
 //   color: 0xffffff,
 // });
 
+// const ringMeshStandardMaterial = new MeshStandardMaterial({
+//   color: 0xffffff,
+//   flatShading: true,
+//   blending: NormalBlending
+// })
+
 const ringMeshStandardMaterial = new MeshStandardMaterial({
-  color: 0xffffff,
-  flatShading: false,
-  blending: NormalBlending
-})
+    color: 0xffffff,
+    flatShading: true,
+    blending: NormalBlending
+  })
 
 ringMeshStandardMaterial.onBeforeCompile = function (shader) {
   shader.vertexShader = shader.vertexShader.replace(

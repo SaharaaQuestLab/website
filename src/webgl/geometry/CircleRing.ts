@@ -14,7 +14,7 @@ interface CircleRingOptions {
 export class CircleRing {
 
   private radialSegments: number = 4;
-  private tubularSegments: number = 40;
+  private tubularSegments: number = 96;
   private curPosition: Vector3 | null = null;
   private curQuaternion: Quaternion | null = null;
 
@@ -26,7 +26,7 @@ export class CircleRing {
 
   constructor(options?: CircleRingOptions) {
     this.radialSegments = options?.radialSegments || 4;
-    this.tubularSegments = options?.tubularSegments || 40;
+    this.tubularSegments = options?.tubularSegments || 96;
     this.geometry = new TorusGeometry(options?.radius, options?.tube, this.radialSegments, this.tubularSegments);
     this.mesh = new Mesh(this.geometry, ringMeshStandardMaterial);
     this.selfRotateAxis = new Vector3(1, 0, 0);
