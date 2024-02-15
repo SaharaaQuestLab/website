@@ -16,151 +16,104 @@ const { titles } = PageMeta;
   >
     <TitleComponent titles={titles} />
   </div>
-
-  <div id="sectionTeam" class="text-center mt-40 mb-10 text-h2 font-[Manrope]">
+  <TitleComponent titles={titles} />
+  <Icon class="w-0 h-0" name="brandLogo"/>
+  <div  id="sectionTeam" class="text-center mt-40 mb-10 tablet:mt-[3.75rem] tablet:mb-8 tablet:text-h4 text-h2 font-[Manrope]">
     Meet The Team
   </div>
-  <div
-    class="text-light-200 mb-20 text-center mx-auto w-[57.5rem] text-h6 font-[Manrope]"
-  >
+  <div class="text-light-200 mb-20 tablet:mb-7 tablet:pb-7 text-center mx-auto w-[57.5rem] text-h6 font-[Manrope] tablet:text-h8 tablet:w-[30rem]">
     Sahara team is formed by experts from both AI and Web3 industries, bringing
     years of experience from leading tech companies and distinguished research
     institutions.
   </div>
-  <div class="grid mx-40 grid-cols-2 gap-32 font-[Manrope]">
+  <div class="grid px-40 grid-cols-2 gap-32 font-[Manrope] tablet:px-6 tablet:gap-[3.75rem]">
     <div>
-      <img class="w-full mb-11" src="/image.png" alt="" />
-      <div
-        class="text-[3.5rem] leading-[3.125rem] mb-3 flex items-center justify-between"
-      >
-        Sean Ren
-        <span class="flex"
-          ><Icon class="w-5 h-5 m-3" name="twitter" />
-          <Icon class="w-5 h-5 m-3" name="linkedin" /></span
-        >
+      <img class="w-full mb-11 tablet:mb-2.5" src="/image.png" alt="">
+      <div class="text-h4 tablet:text-h6 mb-3 tablet:mb-1 flex items-center justify-between">Sean Ren
+        <span class="flex"><Icon class="w-5 h-5 m-3" name="twitter"/> <Icon class="w-5 h-5 m-3"  name="linkedin"/></span>
       </div>
-      <div class="text-2xl">Co-founder CEO</div>
+      <div class="text-h6 tablet:text-h9">Co-founder CEO</div>
     </div>
     <div>
-      <img class="w-full mb-11" src="/image.png" alt="" />
-      <div
-        class="text-[3.5rem] leading-[3.125rem] mb-3 flex items-center justify-between"
-      >
-        Tyler Zhou
-        <span class="flex"
-          ><Icon class="w-5 h-5 m-3" name="twitter" />
-          <Icon class="w-5 h-5 m-3" name="linkedin" /></span
-        >
+      <img class="w-full mb-11 tablet:mb-2.5" src="/image.png" alt="">
+      <div class="text-h4 tablet:text-h6 mb-3 tablet:mb-1 flex items-center justify-between">Tyler Zhou
+        <span class="flex"><Icon class="w-5 h-5 m-3" name="twitter"/> <Icon class="w-5 h-5 m-3"  name="linkedin"/></span>
       </div>
-      <div class="text-2xl">Co-founder CEO</div>
+      <div class="text-h6 tablet:text-h9">Co-founder CEO</div>
     </div>
   </div>
-  <div
-    class="grid grid-cols-5 gap-7 teamBackground mx-40 mt-40 pb-[3.75rem] border-b border-b-light-200"
-  >
+  <div class="grid grid-cols-5 gap-7 teamBackground mx-40 mt-40 pb-[3.75rem] tablet:mx-6 tablet:mt-[3.75rem] border-b border-b-dark-200 tablet:border-none tablet:gap-3 tablet:grid-cols-4 tablet:py-5">
     <div>
-      <img src="/teamBackground/USC.jpg" />
+      <img src="/teamBackground/USC.jpg"/>
     </div>
     <div>
-      <img src="/teamBackground/snap.jpg" />
+      <img src="/teamBackground/snap.jpg"/>
     </div>
     <div>
-      <img src="/teamBackground/Berkeley.jpg" />
+      <img src="/teamBackground/Berkeley.jpg"/>
     </div>
     <div>
-      <img src="/teamBackground/illinois.jpg" />
+      <img src="/teamBackground/illinois.jpg"/>
     </div>
     <div>
-      <img src="/teamBackground/toloka.jpg" />
+      <img src="/teamBackground/toloka.jpg"/>
     </div>
     <div>
-      <img src="/teamBackground/Microsoft.jpg" />
+      <img src="/teamBackground/Microsoft.jpg"/>
     </div>
     <div>
-      <img src="/teamBackground/A12.jpg" />
+      <img src="/teamBackground/A12.jpg"/>
     </div>
     <div>
-      <img src="/teamBackground/paypal.jpg" />
+      <img src="/teamBackground/paypal.jpg"/>
     </div>
     <div>
-      <img src="/teamBackground/binance.jpg" />
+      <img src="/teamBackground/binance.jpg"/>
     </div>
     <div>
-      <img src="/teamBackground/snap.jpg" />
+      <img src="/teamBackground/snap.jpg"/>
     </div>
   </div>
   <!-- <AutomateSection /> -->
-  <div class="mx-40 mt-40 border-b border-b-light-200">
-    <div class="mt-8 mb-7 py-1.5 flex gap-x-4 justify-center">
-      <Icon class="w-7 h-7" name="brandLogo" />
-      <Icon class="w-7 h-7 text-light-200" name="brandLogo" />
-      <Icon class="w-7 h-7 text-light-300" name="brandLogo" />
-      <Icon class="w-7 h-7 text-light-300" name="brandLogo" />
+  <div class="flex mx-40 tablet:mx-6 mt-40 pb-[3.75rem] tablet:mt-[3.75rem] tablet:pb-7 border-b border-b-dark-200">
+    <div class="flex-1 text-h2 tablet:text-h4">Careers</div>
+    <div class="pr-[3.75rem] tablet:pr-0">
+      <div class="text-h7 tablet:text-h8 text-light-200 mb-7 font-[Manrope] w-[37rem] tablet:w-[22rem]">Become a part of the team and work with us to build the future of global knowledge capital.</div>
+      <div class="w-max tablet:w-full border whitespace-nowrap border-light-100 font-[IBMPlexMono-Medium] text-sm leading-6 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100">Open Positions
+        <Icon class="w-5 h-5" name="arrowRightUp" /></div>
+    </div>
+  </div>
+  <div class="flex mx-40 tablet:mx-6 py-[3.75rem] tablet:py-7 border-b border-b-dark-200">
+    <div class="flex-1 text-h2 tablet:text-h4">Vision</div>
+    <div class="pr-[3.75rem] tablet:pr-0">
+      <div class="text-h7 tablet:text-h8 text-light-200 mb-7 font-[Manrope] w-[37rem] tablet:w-[22rem]">Sahara envisions a world where the seamless merge of AI and blockchain technologies maximizes human potential and enables knowledge to be a shared and valued resource for every human. </div>
+    </div>
+  </div>
+  <div class="mx-40 mt-40 border-b border-b-dark-200 tablet:mx-auto tablet:w-[33.125rem] tablet:mb-7 tablet:mt-[3.75rem]">
+    <div class="my-7 py-1.5 flex gap-x-4 justify-center">
+      <Icon class="w-7 h-7 tablet:w-5 tablet:h-5" name="brandLogo"/>
+      <Icon class="w-7 h-7 tablet:w-5 tablet:h-5 text-light-200" name="brandLogo"/>
+      <Icon class="w-7 h-7 tablet:w-5 tablet:h-5 text-light-300" name="brandLogo"/>
+      <Icon class="w-7 h-7 tablet:w-5 tablet:h-5 text-light-300" name="brandLogo"/>
     </div>
     <div
-      class="font-[Manrope] text-2xl leading-9 flex mx-auto w-[50rem] mb-[6.25rem]"
+      class="font-[Manrope] text-2xl leading-9 flex mx-auto w-[50rem] tablet:w-[33.125rem] mb-[6.25rem] tablet:mb-[3.125rem]"
     >
-      <div class="mr-[3.125rem]">
+      <div class="mr-[3.125rem] tablet:mr-5">
         <Icon class="w-6 h-6" name="quotes" />
       </div>
-      <div class="font-[Manrope] text-center">
-        The name ‘Sahara’ embodies our commitment to fairness and unity,
-        reflecting how the myriad grains of sand form the desert's expansive and
-        awe-inspiring terrain, paralleling the immense diversity of knowledge
-        found within individuals in society.
+      <div class="font-[Manrope] text-center  tablet:text-h8">
+        The name ‘Sahara’ embodies our commitment to fairness and unity, reflecting how the myriad grains of sand form the desert's expansive and awe-inspiring terrain, paralleling the immense diversity of knowledge found within individuals in society.
       </div>
-      <div class="ml-[3.125rem] flex items-end">
+      <div class="ml-[3.125rem]  tablet:ml-5 flex items-end">
         <Icon class="w-6 h-6 rotate-180" name="quotes" />
       </div>
     </div>
   </div>
 </Layout>
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import HeroView from "@/webgl/HeroView";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const heroEl = document.getElementById("sectionHero");
-  if (heroEl) {
-    const viewer = new HeroView(heroEl);
-    viewer.useSetup();
-    viewer.play();
-    gsap.to(heroEl, {
-      scrollTrigger: {
-        trigger: "#sectionTeam",
-        start: "top bottom",
-        end: "top top-=30",
-        scrub: true,
-        onEnterBack: () => {
-          viewer.play();
-        },
-        onLeave: () => {
-          viewer.stop();
-        },
-      },
-      opacity: 0,
-    });
-  }
-
-  const titleEl = document.getElementById("sectionTitle");
-  if (titleEl) {
-    gsap.to(titleEl, {
-      scrollTrigger: {
-        trigger: "#sectionTeam",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
-      },
-      opacity: 0,
-      y: "-50%",
-    });
-  }
-</script>
 <style>
-  .teamBackground > div {
-    border: 1px solid #62666d;
+  .teamBackground > div{
+    border: 1px solid #62666D;
     border-radius: 1.25rem;
     overflow: hidden;
   }

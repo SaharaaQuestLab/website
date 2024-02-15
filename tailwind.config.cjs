@@ -30,7 +30,7 @@ module.exports = {
 			h7: ['1.125rem', {
 				lineHeight: '1.75rem'
 			}],
-			h8: ['1rem', {
+			h8: ['0.875rem', {
 				lineHeight: '1.5rem'
 			}],
 			h9: ['0.75rem', {
