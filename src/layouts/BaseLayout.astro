@@ -4,7 +4,7 @@ import { SEO } from "astro-seo";
 interface Props {
 	title: string;
 	description?: string;
-	// iphone 顶部栏颜色
+	// iphone topbar color
 	barColor?: string;
 }
 
@@ -45,7 +45,7 @@ const { title, description, barColor = "#000" } = Astro.props;
 			);
 		</script>
 	</head>
-	<body class="bg-dark-400 h-screen w-screen overflow-x-hidden">
+	<body class="bg-dark-400 h-screen w-screen overflow-x-hidden relative">
 		<slot />
 	</body>
 </html>

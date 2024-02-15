@@ -14,9 +14,19 @@ const Routes = {
     },
     {
       "name": "About us",
-      "path": "aboutUs"
+      "path": "aboutUs",
+      "subPath": [
+        {
+          "name": "Team",
+          "path": "team"
+        },
+        {
+          "name": "Career",
+          "path": "career"
+        }
+      ]
     }
-  ] as const
+  ] as const,
 }
 
 

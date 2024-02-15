@@ -6,11 +6,27 @@ interface Props {
   active?: PageRoutes;
 }
 const { active } = Astro.props;
-const routes = navData.nav.map((nav) => ({
-  name: nav.name,
-  path: nav.path,
-  flag: nav.path,
-}));
+
+const routes: Array<{ name: string; path: string; flag: string }> = [];
+const aboutUsRoutes: Array<{ name: string; path: string; flag: string }> = [];
+
+navData.nav.forEach((nav) => {
+  if (nav.name !== "About us") {
+    routes.push({
+      name: nav.name,
+      path: `${import.meta.env.BASE_URL}${nav.path}`,
+      flag: nav.path,
+    });
+  } else {
+    aboutUsRoutes.push(
+      ...nav.subPath.map((nav) => ({
+        name: nav.name,
+        path: `${import.meta.env.BASE_URL}${nav.path}`,
+        flag: nav.path,
+      })),
+    );
+  }
+});
 ---
 
 <div
@@ -31,21 +47,30 @@ const routes = navData.nav.map((nav) => ({
           ]}
         >
           {item.name}
-          {item.flag === "aboutUs" && (
-            <div class="border absolute top-11 left-1/2 mt-[2px] -translate-x-1/2 bg-dark-400  w-[8.125rem] rounded-xl text-sm leading-6 px-4 py-3 border-dark-100 border-opacity-40">
-              <div class="flex items-center">
-                Team
-                <Icon class="w-5 h-5" name="arrowRightUp" />
-              </div>
-              <div class="flex items-center">
-                Career
-                <Icon class="w-5 h-5" name="arrowRightUp" />
-              </div>
-            </div>
-          )}
         </a>
       ))
     }
+    <!-- about us -->
+    <span
+      class:list={[
+        "whitespace-nowrap text-base leading-6 relative overflow-hidden  px-3 py-2.5 block cursor-pointer hover:overflow-visible hover:border-b border-b-light-100",
+        { "border-b": active === "aboutUs" },
+      ]}
+    >
+      About us
+      <div
+        class="border absolute top-11 left-1/2 mt-[2px] -translate-x-1/2 bg-dark-400 w-[8.125rem] rounded-xl text-sm leading-6 px-4 py-3 border-dark-100 border-opacity-40"
+      >
+        {
+          aboutUsRoutes.map((item) => (
+            <a href={item.path} class="flex items-center">
+              {item.name}
+              <Icon class="w-5 h-5" name="arrowRightUp" />
+            </a>
+          ))
+        }
+      </div>
+    </span>
   </div>
   <div class="flex-1 pointer-events-none"></div>
   <div

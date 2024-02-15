@@ -10,12 +10,19 @@ import { Icon } from "astro-icon/components";
 ---
 
 <Layout title="saharaa.ai" active="research">
-  <TitleComponent titles={titles} />
-  <Hero3DSection />
-  <div class="mx-40 mt-40 mb-[5.25rem] tablet:mb-7 border-b border-b-dark-200 tablet:mx-auto tablet:w-[33.125rem]">
-    <Icon class="w-0 h-0" name="brandLogo"/>
-    <div class="mt-10 text-light-200 text-h8 text-center tablet:text-h9 py-2.5 mb-4 tablet:mt-6 tablet:mb-3">
-      Sean Ren
+  <div id="sectionHero" class="w-screen h-screen"></div>
+
+  <div
+    id="sectionTitle"
+    class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
+  >
+    <TitleComponent titles={titles} />
+  </div>
+
+  <div id="sectionDescription" class="mx-40 mt-40 border-b border-b-light-200">
+    <Icon class="w-0 h-0" name="brandLogo" />
+    <div class="mt-10 text-light-200 text-base leading-[2.75rem] text-center">
+      Our Reseachers
     </div>
     <div
       class="font-[Manrope] text-h6 flex mx-auto w-[50rem] tablet:w-[33.125rem] mb-[6.25rem] tablet:mb-[3.125rem]"
@@ -24,90 +31,209 @@ import { Icon } from "astro-icon/components";
         <Icon class="w-6 h-6" name="quotes" />
       </div>
       <div class="font-[Manrope] text-center tablet:text-h8">
-        AI development is at an inflection point that on many fronts, AI has started surpassing human performance and automating more and more parts of our life. In the new era, It is critically important to protect the privacy of users, guarantee the provenance of the data and model, and establish a decentralized and trustless network of AI and humans.
+        AI development is at an inflection point that on many fronts, AI has
+        started surpassing human performance and automating more and more parts
+        of our life. In the new era, It is critically important to protect the
+        privacy of users, guarantee the provenance of the data and model, and
+        establish a decentralized and trustless network of AI and humans.
       </div>
-      <div class="ml-[3.125rem]  tablet:ml-5 flex items-end">
+      <div class="ml-[3.125rem] tablet:ml-5 flex items-end">
         <Icon class="w-6 h-6 rotate-180" name="quotes" />
       </div>
     </div>
   </div>
   <div class="py-40 mx-40 font-[Manrope] tablet:mx-6 tablet:py-20">
-    <div class="grid gap-x-32 grid-cols-2 mb-20 tablet:flex items-center flex-col tablet:mb-6">
+    <div
+      class="grid gap-x-32 grid-cols-2 mb-20 tablet:flex items-center flex-col tablet:mb-6"
+    >
       <div class="col-span-1 tablet:text-center tablet:mb-11">
         <div class="text-h2 font-[Manrope] tablet:text-h4 w-[30rem]">
           <TextTyping text="Research Areas" />
         </div>
       </div>
-      <div class="col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0">
-        <div class="mb-[3.75rem] w-[7.5rem] h-[7.5rem] tablet:w-20 tablet:h-20 tablet:mb-7">
+      <div
+        class="col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0"
+      >
+        <div
+          class="mb-[3.75rem] w-[7.5rem] h-[7.5rem] tablet:w-20 tablet:h-20 tablet:mb-7"
+        >
           <Icon class="w-full h-full text-light-200" name="brandLogo" />
         </div>
-        <div class="text-h5 tablet:text-h6">
-          Privacy-First
+        <div class="text-h5">Privacy-First</div>
+        <div class="mb-7 text-h5">Decentralized Learning</div>
+        <div class="mb-7 text-light-200 text-base">
+          In the ever-progressing field of Large Language Models (LLMs), there
+          has been a significant shift towards addressing the critical concerns
+          of data privacy and over-centralized model learning. As these models
+          become more intricate and widely used, the necessity of handling
+          sensitive information securely and distributing the learning process
+          becomes paramount.
         </div>
-        <div class="mb-7 text-h5  tablet:text-h6 tablet:mb-4">Decentralized Learning</div>
-        <div class="mb-7 text-light-200 text-base tablet:mb-4 tablet:text-h8 tablet:w-[30rem]">
-          In the ever-progressing field of Large Language Models (LLMs), there has been a significant shift towards addressing the critical concerns of data privacy and over-centralized model learning. As these models become more intricate and widely used, the necessity of handling sensitive information securely and distributing the learning process becomes paramount.
+        <div
+          class="border mb-5 border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+        >
+          Dataless Knowledge Fusion by Merging Weights of Language Models
+          <Icon class="min-w-5 h-5" name="arrowRightUp" />
         </div>
-        <div class="border mb-5 border-light-100 text-h8 w-full cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100">Dataless Knowledge Fusion by Merging Weights of Language Models
-          <Icon class="min-w-5 h-5" name="arrowRightUp" /></div>
-        <div class="border border-light-100 text-h8 cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100">FedNLP: Benchmarking Federated Learning Methods for Natural Language Processing Tasks
-          <Icon class="min-w-5 h-5" name="arrowRightUp" /></div>
+        <div
+          class="border border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+        >
+          FedNLP: Benchmarking Federated Learning Methods for Natural Language
+          Processing Tasks
+          <Icon class="min-w-5 h-5" name="arrowRightUp" />
+        </div>
       </div>
     </div>
-    <div class="grid gap-x-32 grid-cols-2 mb-20 tablet:flex items-center flex-col tablet:mb-6 ">
-      <div class="col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0 tablet:mb-6 tablet:mt-11">
-        <div class="mb-[3.75rem] w-[7.5rem] h-[7.5rem] tablet:w-20 tablet:h-20 tablet:mb-7">
+    <div
+      class="grid gap-x-32 grid-cols-2 mb-20 tablet:flex items-center flex-col tablet:mb-6"
+    >
+      <div
+        class="col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0 tablet:mb-6 tablet:mt-11"
+      >
+        <div
+          class="mb-[3.75rem] w-[7.5rem] h-[7.5rem] tablet:w-20 tablet:h-20 tablet:mb-7"
+        >
           <Icon class="w-full h-full text-light-200" name="brandLogo" />
         </div>
-        <div class="text-h5 tablet:text-h6">
-          AI agents
+        <div class="text-h5">AI agents</div>
+        <div class="mb-7 text-light-200 text-base">
+          LLM-powered knowledge agents are offering unprecedented capabilities
+          in various applications ranging from personal assistant to autonomous
+          research and data analysis. As these agents grow in complexity and
+          ubiquity, their ability for problem-solving and global planning is the
+          key to user experience.
         </div>
-        <div class="mb-7 text-light-200 text-base tablet:mb-4 tablet:text-h8 tablet:w-[30rem]">
-          LLM-powered knowledge agents are offering unprecedented capabilities in various applications ranging from personal assistant to autonomous research and data analysis. As these agents grow in complexity and ubiquity, their ability for problem-solving and global planning is the key to user experience.
+        <div
+          class="border mb-5 border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+        >
+          SwiftSage: A Generative Agent with Fast and Slow Thinking for Complex
+          Interactive Tasks
+          <Icon class="min-w-5 h-5" name="arrowRightUp" />
         </div>
-        <div class="border mb-5 border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100">SwiftSage: A Generative Agent with Fast and Slow Thinking for Complex Interactive Tasks
-          <Icon class="min-w-5 h-5" name="arrowRightUp" /></div>
-        <div class="border border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100">Bootstrap Your Own Skills: Learning to Solve New Tasks with Large Language Model Guidance
-          <Icon class="min-w-5 h-5" name="arrowRightUp" /></div>
+        <div
+          class="border border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+        >
+          Bootstrap Your Own Skills: Learning to Solve New Tasks with Large
+          Language Model Guidance
+          <Icon class="min-w-5 h-5" name="arrowRightUp" />
+        </div>
       </div>
-      <div class="col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0 tablet:mt-11">
-        <div class="mb-[3.75rem] w-[7.5rem] h-[7.5rem] tablet:w-20 tablet:h-20 tablet:mb-7">
+      <div
+        class="col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0 tablet:mt-11"
+      >
+        <div
+          class="mb-[3.75rem] w-[7.5rem] h-[7.5rem] tablet:w-20 tablet:h-20 tablet:mb-7"
+        >
           <Icon class="w-full h-full text-light-200" name="brandLogo" />
         </div>
-        <div class="text-h5 tablet:text-h6">
-          Human-AI collaboration
+        <div class="text-h5">Human-AI collaboration</div>
+        <div class="mb-7 text-light-200 text-base">
+          The intersection of human intelligence and artificial intelligence,
+          particularly in the context of Large Language Models (LLMs), presents
+          a landscape rich with opportunities and challenges. Understanding the
+          dynamics of Human-AI collaboration is essential for leveraging the
+          capabilities of LLMs while addressing potential risks.
         </div>
-        <div class="mb-7 text-light-200 text-base tablet:mb-4 tablet:text-h8 tablet:w-[30rem]">
-          The intersection of human intelligence and artificial intelligence, particularly in the context of Large Language Models (LLMs), presents a landscape rich with opportunities and challenges. Understanding the dynamics of Human-AI collaboration is essential for leveraging the capabilities of LLMs while addressing potential risks.
+        <div
+          class="border mb-5 border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+        >
+          Relying on the Unreliable: The Impact of Language Models' Reluctance
+          to Express Uncertainty
+          <Icon class="min-w-5 h-5" name="arrowRightUp" />
         </div>
-        <div class="border mb-5 border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100">Relying on the Unreliable: The Impact of Language Models' Reluctance to Express Uncertainty
-          <Icon class="min-w-5 h-5" name="arrowRightUp" /></div>
-        <div class="border mb-5  w-full border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100">How FaR Are Large Language Models From Agents with Theory-of-Mind?
-          <Icon class="min-w-5 h-5" name="arrowRightUp" /></div>
-          <div class="border w-full border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100">Refining Language Models with Compositional Explanations
-            <Icon class="min-w-5 h-5" name="arrowRightUp" /></div>
+        <div
+          class="border mb-5 border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+        >
+          How FaR Are Large Language Models From Agents with Theory-of-Mind?
+          <Icon class="min-w-5 h-5" name="arrowRightUp" />
+        </div>
+        <div
+          class="border border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+        >
+          Refining Language Models with Compositional Explanations
+          <Icon class="min-w-5 h-5" name="arrowRightUp" />
+        </div>
       </div>
     </div>
-    <div class="grid gap-x-32 grid-cols-2 mb-20 tablet:flex items-center flex-col tablet:mb-6 tablet:mt-11">
-      <div class="col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0">
-        <div class="mb-[3.75rem] w-[7.5rem] h-[7.5rem] tablet:w-20 tablet:h-20 tablet:mb-7">
+    <div
+      class="grid gap-x-32 grid-cols-2 mb-20 tablet:flex items-center flex-col tablet:mb-6 tablet:mt-11"
+    >
+      <div
+        class="col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0"
+      >
+        <div
+          class="mb-[3.75rem] w-[7.5rem] h-[7.5rem] tablet:w-20 tablet:h-20 tablet:mb-7"
+        >
           <Icon class="w-full h-full text-light-200" name="brandLogo" />
         </div>
-        <div class="text-h5 tablet:text-h6">
-          Continuous learning
+        <div class="text-h5">Continuous learning</div>
+        <div class="mb-7 text-light-200 text-base">
+          The concept of continuous learning represents a pivotal advancement in
+          the development and application of Large Language Models (LLMs),
+          addressing the need for these models to adapt and evolve in response
+          to ever-changing data landscapes. This area of research is
+          particularly crucial in ensuring that LLMs remain relevant, accurate,
+          and efficient in real-world applications.
         </div>
-        <div class="mb-7 text-light-200 text-base tablet:mb-4 tablet:text-h8 tablet:w-[30rem]">
-          The concept of continuous learning represents a pivotal advancement in the development and application of Large Language Models (LLMs), addressing the need for these models to adapt and evolve in response to ever-changing data landscapes. This area of research is particularly crucial in ensuring that LLMs remain relevant, accurate, and efficient in real-world applications.
+        <div
+          class="border mb-5 border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+        >
+          Lifelong Pretraining: Continually Adapting Language Models to Emerging
+          Corpora
+          <Icon class="min-w-5 h-5" name="arrowRightUp" />
         </div>
-        <div class="border mb-5 border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100">Lifelong Pretraining: Continually Adapting Language Models to Emerging Corpora
-          <Icon class="min-w-5 h-5" name="arrowRightUp" /></div>
-        <div class="border w-full border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100">On Continual Model Refinement in Out-of-Distribution Data Streams
-          <Icon class="min-w-5 h-5" name="arrowRightUp" /></div>
+        <div
+          class="border border-light-100 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+        >
+          On Continual Model Refinement in Out-of-Distribution Data Streams
+          <Icon class="min-w-5 h-5" name="arrowRightUp" />
+        </div>
       </div>
-
     </div>
   </div>
   <!-- <AutomateSection /> -->
 </Layout>
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import HeroView from "@/webgl/HeroView";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const heroEl = document.getElementById("sectionHero");
+  if (heroEl) {
+    const viewer = new HeroView(heroEl);
+    viewer.useSetup();
+    viewer.play();
+    gsap.to(heroEl, {
+      scrollTrigger: {
+        trigger: "#sectionDescription",
+        start: "top bottom",
+        end: "top top-=30",
+        scrub: true,
+        onEnterBack: () => {
+          viewer.play();
+        },
+        onLeave: () => {
+          viewer.stop();
+        },
+      },
+      opacity: 0,
+    });
+  }
+
+  const titleEl = document.getElementById("sectionTitle");
+  if (titleEl) {
+    gsap.to(titleEl, {
+      scrollTrigger: {
+        trigger: "#sectionDescription",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+      },
+      opacity: 0,
+      y: "-50%",
+    });
+  }
+</script>
 <style></style>

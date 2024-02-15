@@ -8,7 +8,7 @@ interface Props {
 const { active } = Astro.props;
 const routes = navData.nav.map((nav) => ({
   name: nav.name,
-  path: nav.path,
+  path: `${import.meta.env.BASE_URL}${nav.path}`,
   flag: nav.path,
 }));
 ---
@@ -46,9 +46,7 @@ const routes = navData.nav.map((nav) => ({
       />
     </div>
   </div>
-  <div
-    class="text-h6 font-[Manrope] px-6 py-1.5 border-b border-b-dark-200"
-  >
+  <div class="text-h6 font-[Manrope] px-6 py-1.5 border-b border-b-dark-200">
     Menu
   </div>
   {
@@ -66,14 +64,18 @@ const routes = navData.nav.map((nav) => ({
     <div class="font-[Manrope] text-light-200 text-[1rem] leading-7">
       Subscribe to the Sahara newsletter for exclusive updates.
     </div>
-    <div
-      class="mt-[0.875rem] flex"
-    >
-      <div class="border flex-1 border-light-100 flex px-4 py-2.5 items-center  bg-dark-400 rounded-xl text-sm ">
+    <div class="mt-[0.875rem] flex">
+      <div
+        class="border flex-1 border-light-100 flex px-4 py-2.5 items-center bg-dark-400 rounded-xl text-sm"
+      >
         <Icon class="w-5 h-5 mr-1.5" name="email" />
         Your e-mail
       </div>
-      <div class="flex ml-2 items-center bg-light-100 px-4 py-2.5 rounded-xl text-dark-400">Subscribe<Icon class="w-5 h-5" name="arrowRightUp"/></div>
+      <div
+        class="flex ml-2 items-center bg-light-100 px-4 py-2.5 rounded-xl text-dark-400"
+      >
+        Subscribe<Icon class="w-5 h-5" name="arrowRightUp" />
+      </div>
     </div>
   </div>
 </div>

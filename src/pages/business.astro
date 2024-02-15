@@ -2,7 +2,6 @@
 import TitleComponent from "@/components/TitleComponent.astro";
 import Hero3DSection from "@/components/3DHeroSection.astro";
 import TextTyping from "@/components/TextTyping.astro";
-// import AutomateSection from "@/components/AutomateSection.astro";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/business";
 import { Icon } from "astro-icon/components";
@@ -16,9 +15,17 @@ const { titles } = PageMeta;
 ---
 
 <Layout title="saharaa.ai" active="business">
-  <TitleComponent titles={titles} />
-  <Hero3DSection />
+  <div id="sectionHero" class="w-screen h-screen"></div>
+
+  <div
+    id="sectionTitle"
+    class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
+  >
+    <TitleComponent titles={titles} />
+  </div>
+
   <h1
+    id="sectionBusiness"
     class="text-h2 font-[Manrope] text-center pt-40 pb-[7.5rem] tablet:text-h5 tablet:pt-[3.75rem] tablet:pb-11"
   >
     Automate Your business
@@ -119,16 +126,25 @@ const { titles } = PageMeta;
       <div class="mt-3 text-h9">Optimize Industrial Operations</div>
     </div>
   </div>
-  <div class="flex flex-col  font-[Manrope] justify-center items-center mt-[7.5rem] mb-[9.5rem] tablet:mt-10">
-    <div class="bg-dark-200 flex items-center w-max px-5 py-2.5 mb-11 tablet:mb-7 text-h5 tablet:text-h6 rounded-[1.25rem]">
-      <div class="w-2.5 h-2.5 bg-light-100 rounded-full mr-2.5 "></div>
+  <div
+    class="flex flex-col font-[Manrope] justify-center items-center mt-[7.5rem] mb-[9.5rem] tablet:mt-10"
+  >
+    <div
+      class="bg-dark-200 flex items-center w-max px-5 py-2.5 mb-11 tablet:mb-7 text-h5 tablet:text-h6 rounded-[1.25rem]"
+    >
+      <div class="w-2.5 h-2.5 bg-light-100 rounded-full mr-2.5"></div>
       Sahara KA Business is live
     </div>
     <div class="text-h6 w-[68rem] text-center tablet:text-h9 tablet:w-[25rem]">
-      Build your Sahara KAs today as custom on-premise AI solutions that save costs, drive growth, and enable new business opportunities.
+      Build your Sahara KAs today as custom on-premise AI solutions that save
+      costs, drive growth, and enable new business opportunities.
     </div>
-    <div class="mx-auto mt-11 tablet:mt-7 mb-[3.75rem] w-[27rem] tablet:w-[30rem] flex border whitespace-nowrap  border-dark-100 text-base leading-5 cursor-pointer py-2.5 px-4 items-center justify-center rounded-xl text-light-100">Book a Demo
-      <Icon class="w-5 h-5" name="arrowRightUp" /></div>
+    <div
+      class="mx-auto mt-11 tablet:mt-7 mb-[3.75rem] w-[27rem] tablet:w-[30rem] flex border whitespace-nowrap border-dark-100 text-base leading-5 cursor-pointer py-2.5 px-4 items-center justify-center rounded-xl text-light-100"
+    >
+      Book a Demo
+      <Icon class="w-5 h-5" name="arrowRightUp" />
+    </div>
   </div>
   <div
     class="grid grid-cols-12 tablet:flex tablet:flex-col gap-x-10 mx-40 py-[3.75rem] font-[Manrope] border-b mb-[7.5rem] border-b-light-100 tablet:border-none"
@@ -138,7 +154,9 @@ const { titles } = PageMeta;
         <TextTyping text="Sahara Data." />
       </div>
     </div>
-    <div class="col-span-3 gap-x-4 flex items-center tablet:justify-center tablet:my-8">
+    <div
+      class="col-span-3 gap-x-4 flex items-center tablet:justify-center tablet:my-8"
+    >
       <Icon class="w-7 h-7" name="brandLogo" />
       <Icon class="w-7 h-7 text-light-200" name="brandLogo" />
       <Icon class="w-7 h-7 text-light-300" name="brandLogo" />
@@ -161,8 +179,13 @@ const { titles } = PageMeta;
       Sahara Data by Uses
     </div>
     <div class="mb-8 grid grid-cols-12 gap-x-7 tablet:gap-x-2">
-      <div class="flex items-center text-[2rem] col-span-4 tablet:text-h7 tablet:mb-3 tablet:col-span-12">
-        <Icon class="min-w-8 h-8 tablet:w-6 tablet:h-6 mr-5 tablet:mr-3" name="text" />
+      <div
+        class="flex items-center text-[2rem] col-span-4 tablet:text-h7 tablet:mb-3 tablet:col-span-12"
+      >
+        <Icon
+          class="min-w-8 h-8 tablet:w-6 tablet:h-6 mr-5 tablet:mr-3"
+          name="text"
+        />
         Text
       </div>
       <div
@@ -191,11 +214,18 @@ const { titles } = PageMeta;
       </div>
     </div>
     <div class="mb-8 grid grid-cols-12 gap-x-7 tablet:gap-x-2">
-      <div class="flex items-center text-[2rem] col-span-4 tablet:text-h7 tablet:mb-3 tablet:col-span-12">
-        <Icon class="w-8 h-8 tablet:w-6 tablet:h-6 mr-5 tablet:mr-3" name="image" />
+      <div
+        class="flex items-center text-[2rem] col-span-4 tablet:text-h7 tablet:mb-3 tablet:col-span-12"
+      >
+        <Icon
+          class="w-8 h-8 tablet:w-6 tablet:h-6 mr-5 tablet:mr-3"
+          name="image"
+        />
         Image & Video
       </div>
-      <div class="col-span-2 tablet:col-span-3 border border-light-300 rounded-[1.25rem] h-40 tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3">
+      <div
+        class="col-span-2 tablet:col-span-3 border border-light-300 rounded-[1.25rem] h-40 tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
+      >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-h7 tablet:text-h9">Objection dection</span>
       </div>
@@ -203,7 +233,8 @@ const { titles } = PageMeta;
         class="col-span-2 tablet:col-span-3 border border-light-300 rounded-[1.25rem] h-40 tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
-        <span class="text-h7 tablet:text-h9">Multilingual audio collection</span>
+        <span class="text-h7 tablet:text-h9">Multilingual audio collection</span
+        >
       </div>
       <div
         class="col-span-2 tablet:col-span-3 border border-light-300 rounded-[1.25rem] h-40 tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
@@ -221,8 +252,13 @@ const { titles } = PageMeta;
       </div>
     </div>
     <div class="grid grid-cols-12 gap-x-7 tablet:gap-x-2">
-      <div class="flex items-center text-[2rem] col-span-4 tablet:text-h7 tablet:mb-3 tablet:col-span-12">
-        <Icon class="w-8 h-8 tablet:w-6 tablet:h-6 mr-5 tablet:mr-3" name="music" />
+      <div
+        class="flex items-center text-[2rem] col-span-4 tablet:text-h7 tablet:mb-3 tablet:col-span-12"
+      >
+        <Icon
+          class="w-8 h-8 tablet:w-6 tablet:h-6 mr-5 tablet:mr-3"
+          name="music"
+        />
         Audio
       </div>
       <div
@@ -251,8 +287,12 @@ const { titles } = PageMeta;
       </div>
     </div>
   </div>
-  <div class="font-[Manrope] px-40 mb-[16.25rem] tablet:px-6 tablet:mb-[3.75rem]">
-    <div class="text-light-200 text-h5 leading-[3rem] mb-[3.75rem] tablet:text-h6 tablet:mb-7">
+  <div
+    class="font-[Manrope] px-40 mb-[16.25rem] tablet:px-6 tablet:mb-[3.75rem]"
+  >
+    <div
+      class="text-light-200 text-h5 leading-[3rem] mb-[3.75rem] tablet:text-h6 tablet:mb-7"
+    >
       Sahara Data by numbers
     </div>
     <div class="gap-x-7 grid grid-cols-5 tablet:gap-0">
@@ -292,7 +332,9 @@ const { titles } = PageMeta;
       <Icon class="w-7 h-7 text-light-300" name="brandLogo" />
       <Icon class="w-7 h-7 text-light-300" name="brandLogo" />
     </div>
-    <div class="col-span-5 text-light-200 flex flex-col justify-center tablet:text-h8 tablet:text-center tablet:w-[25rem]">
+    <div
+      class="col-span-5 text-light-200 flex flex-col justify-center tablet:text-h8 tablet:text-center tablet:w-[25rem]"
+    >
       Sahara Data harnesses advanced AI and blockchain technology to optimize
       labeling workflow and offer unparalleled data quality at a competitive
       price.
@@ -315,26 +357,41 @@ const { titles } = PageMeta;
             Redefine Human-AI Collaboration
           </div>
           <div class="flex items-center text-[2rem] mb-1.5 tablet:text-h8">
-            <Icon class="w-7 h-7 mr-7 tablet:w-5 tablet:h-5 tablet:mr-3" name="brandLogo" />
+            <Icon
+              class="w-7 h-7 mr-7 tablet:w-5 tablet:h-5 tablet:mr-3"
+              name="brandLogo"
+            />
             Automatic Labeling
           </div>
-          <div class="pl-14 tablet:pl-8 text-light-200 text-base mb-10 tablet:text-h9 tablet:mb-5">
+          <div
+            class="pl-14 tablet:pl-8 text-light-200 text-base mb-10 tablet:text-h9 tablet:mb-5"
+          >
             Proprietary models fuel auto-labeling that matches human performance
             on mainstream tasks.
           </div>
           <div class="flex items-center text-[2rem] mb-1.5 tablet:text-h8">
-            <Icon class="w-7 h-7 mr-7 tablet:min-w-5 tablet:h-5 tablet:mr-3" name="brandLogo" />
+            <Icon
+              class="w-7 h-7 mr-7 tablet:min-w-5 tablet:h-5 tablet:mr-3"
+              name="brandLogo"
+            />
             Human-in-the-loop Infrastructure
           </div>
-          <div class="pl-14 tablet:pl-8 text-light-200 text-base mb-10 tablet:text-h9 tablet:mb-5">
+          <div
+            class="pl-14 tablet:pl-8 text-light-200 text-base mb-10 tablet:text-h9 tablet:mb-5"
+          >
             Humans meticulously check and refine auto-labeling results until the
             desired quality is achieved.
           </div>
           <div class="flex items-center text-[2rem] mb-1.5 tablet:text-h8">
-            <Icon class="w-7 h-7 mr-7 tablet:min-w-5 tablet:h-5 tablet:mr-3" name="brandLogo" />
+            <Icon
+              class="w-7 h-7 mr-7 tablet:min-w-5 tablet:h-5 tablet:mr-3"
+              name="brandLogo"
+            />
             Continuous Learning
           </div>
-          <div class="pl-14 tablet:pl-8 text-light-200 text-base tablet:text-h9 ">
+          <div
+            class="pl-14 tablet:pl-8 text-light-200 text-base tablet:text-h9"
+          >
             Models learn from human input, iteratively improving the labeling
             quality.
           </div>
@@ -395,12 +452,56 @@ const { titles } = PageMeta;
   </div>
   <!-- <AutomateSection /> -->
   <div slot="footer">
-    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">Your Ultimate Partner</h1>
-    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">for High Value Data</h1>
+    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
+      Your Ultimate Partner
+    </h1>
+    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
+      for High Value Data
+    </h1>
   </div>
 </Layout>
 <script>
   import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import HeroView from "@/webgl/HeroView";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const heroEl = document.getElementById("sectionHero");
+  if (heroEl) {
+    const viewer = new HeroView(heroEl);
+    viewer.useSetup();
+    viewer.play();
+    gsap.to(heroEl, {
+      scrollTrigger: {
+        trigger: "#sectionBusiness",
+        start: "top bottom",
+        end: "top top-=30",
+        scrub: true,
+        onEnterBack: () => {
+          viewer.play();
+        },
+        onLeave: () => {
+          viewer.stop();
+        },
+      },
+      opacity: 0,
+    });
+  }
+
+  const titleEl = document.getElementById("sectionTitle");
+  if (titleEl) {
+    gsap.to(titleEl, {
+      scrollTrigger: {
+        trigger: "#sectionBusiness",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+      },
+      opacity: 0,
+      y: "-50%",
+    });
+  }
 
   // 获取元素
   const slider1 = document.getElementById("slider1") as HTMLElement;
