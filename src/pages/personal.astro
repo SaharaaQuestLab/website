@@ -2,6 +2,7 @@
 import TitleComponent from "@/components/TitleComponent.astro";
 import Hero3DSection from "@/components/3DHeroSection.astro";
 import Ring3DSection from "@/components/3DRingSection.astro";
+import TextTyping from "@/components/TextTyping.astro";
 // import AutomateSection from "@/components/AutomateSection.astro";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/personal";
@@ -71,8 +72,9 @@ const { titles } = PageMeta;
   <div class="flex px-40 mt-40 tablet:mt-[3.75rem] tablet:flex-col">
     <div class="py-[7.25rem] w-[40rem] font-[Manrope] tablet:py-[3.75rem] tablet:w-full tablet:text-center">
       <div class="text-h2 font-[Manrope] text-light-200 tablet:text-h4">Sahara</div>
-      <div class="text-h2 font-[Manrope] tablet:text-h4">Knowledge</div>
-      <div class="text-h2 font-[Manrope] tablet:text-h4">Agents</div>
+      <div class="text-h2 font-[Manrope] tablet:text-h4 w-[30rem]">
+        <TextTyping text="Knowledge Agents" />
+      </div>
       <div class="py-7 flex items-center tablet:py-4 tablet:justify-center">
         <div class="bg-[#D9D9D9] rounded-full w-2.5 h-2.5 mr-2"></div>
         Coming soon

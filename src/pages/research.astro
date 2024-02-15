@@ -1,6 +1,7 @@
 ---
 import TitleComponent from "@/components/TitleComponent.astro";
 import Hero3DSection from "@/components/3DHeroSection.astro";
+import TextTyping from "@/components/TextTyping.astro";
 // import AutomateSection from "@/components/AutomateSection.astro";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/research";
@@ -36,8 +37,10 @@ import { Icon } from "astro-icon/components";
   </div>
   <div class="my-40 mx-40 font-[Manrope]">
     <div class="grid gap-x-32 grid-cols-2 mb-20">
-      <div class="text-h2 col-span-1">
-        Research Areas
+      <div class="col-span-1">
+        <div class="text-h2 font-[Manrope] tablet:text-h4 w-[30rem]">
+          <TextTyping text="Research Areas" />
+        </div>
       </div>
       <div class="col-span-1 pr-[3.75rem]">
         <div class="mb-[3.75rem] w-[7.5rem] h-[7.5rem]">

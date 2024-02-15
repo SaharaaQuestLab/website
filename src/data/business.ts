@@ -7,6 +7,7 @@ export default {
     description: 'Sahara is for individuals who want their own AI',
     remarks: [
       "for work and research"
-    ]
+    ],
+    subDescriptions: ['Optimize decision-making', 'Automate workflow processes', 'Personalize customer experiences', 'Unlock business opportunities']
   }
  }

@@ -1,0 +1,41 @@
+---
+interface Props {
+  list: string[];
+}
+const { list } = Astro.props;
+---
+
+<div class="text-container relative h-5 w-full overflow-hidden">
+  {
+    list.map((item) => (
+      <div class="line absolute top-0 left-0 opacity-0 text-black w-full flex justify-center">
+        {item}
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  import { gsap } from "gsap";
+
+  const lines = gsap.utils.toArray(".line");
+
+  // 创建一个 GSAP 时间线
+  const tl = gsap.timeline({ repeat: -1, delay: 1 });
+
+  // 对每一行文本创建动画
+  lines.forEach((line, index) => {
+    tl.fromTo(
+      line as HTMLElement,
+      { opacity: 0, y: "100%" },
+      { duration: 0.5, opacity: 1, y: "0%" },
+    ) // 渐显当前行
+      .to(
+        line as HTMLElement,
+        { duration: 0.5, opacity: 0, delay: 0.5, y: "-100%" },
+        "+=1",
+      ); // 1秒后渐隐当前行
+  });
+</script>
+
+<style></style>

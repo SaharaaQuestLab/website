@@ -1,6 +1,7 @@
 ---
 import TitleComponent from "@/components/TitleComponent.astro";
 import Hero3DSection from "@/components/3DHeroSection.astro";
+import TextTyping from "@/components/TextTyping.astro";
 // import AutomateSection from "@/components/AutomateSection.astro";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/business";
@@ -133,8 +134,9 @@ const { titles } = PageMeta;
     class="grid grid-cols-12 tablet:flex tablet:flex-col gap-x-10 mx-40 py-[3.75rem] font-[Manrope] border-b mb-[7.5rem] border-b-light-100 tablet:border-none"
   >
     <div class="col-span-4 text-h2 flex flex-col justify-center items-center">
-      <div>Sahara</div>
-      <div>Data.</div>
+      <div class="w-[20rem]">
+        <TextTyping text="Sahara Data." />
+      </div>
     </div>
     <div class="col-span-3 gap-x-4 flex items-center tablet:justify-center tablet:my-8">
       <Icon class="w-7 h-7" name="brandLogo" />

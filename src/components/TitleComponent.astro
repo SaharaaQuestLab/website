@@ -1,16 +1,18 @@
 ---
 import { Icon } from "astro-icon/components";
+import TextCarousel from "./TextCarousel.astro";
 
 interface Props {
   titles: {
     texts: string[];
+    subDescriptions: string[];
     description: string;
     button?: {
       text: string;
     };
   };
 }
-const { texts, description, button } = Astro.props.titles;
+const { texts, description, button, subDescriptions } = Astro.props.titles;
 ---
 
 <div class="h-screen flex flex-col items-center justify-center relative top-0 left-0 pointer-events-none">
@@ -23,6 +25,9 @@ const { texts, description, button } = Astro.props.titles;
   <div class="text-light-200 text-lg w-[28.75rem] pointer-events-none text-center mt-10 tablet:mt-7 font-[Manrope]">
     {description}
   </div>
+  {
+    subDescriptions && <TextCarousel list={subDescriptions} />
+  }
 
   <!-- link button -->
   {
