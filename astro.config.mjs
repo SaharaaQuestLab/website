@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import glsl from 'vite-plugin-glsl';
 import vue from "@astrojs/vue";
-const base_url = process.env.BUILD_MODE === "test" ? "test-saharaa" : "";
+const base_url = process.env.BUILD_MODE === "test" ? "test-saharaa/" : "";
 
 
 // https://astro.build/config

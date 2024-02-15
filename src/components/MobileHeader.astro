@@ -6,6 +6,7 @@ interface Props {
   active?: PageRoutes;
 }
 const { active } = Astro.props;
+const homeUrl = `${import.meta.env.BASE_URL}`;
 const routes = navData.nav.map((nav) => ({
   name: nav.name,
   path: `${import.meta.env.BASE_URL}${nav.path}`,
@@ -17,7 +18,7 @@ const routes = navData.nav.map((nav) => ({
   class="px-[1.5rem] pt-3 pb-[0.75rem] header w-screen hidden tablet:flex h-0 fixed z-10 justify-between"
 >
   <div class="flex">
-    <a href="/" class="logo w-8">
+    <a href={homeUrl} class="logo w-8">
       <Icon class="w-8 h-8 text-white" name="brandLogo" />
     </a>
   </div>
