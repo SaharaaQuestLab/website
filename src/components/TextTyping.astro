@@ -6,36 +6,48 @@ interface Props {
 const { text = "" } = Astro.props;
 ---
 
-<span id="typewriter" data-text={text}></span><span class="cursor">|</span>
+<text-typing>
+  <span id="typewriter" data-text={text}></span><span class="cursor">|</span>
+</text-typing>
 
 <script>
   import { gsap } from "gsap";
   import { TextPlugin } from "gsap/TextPlugin";
 
-  gsap.registerPlugin(TextPlugin);
+  // 为我们的新 HTML 自定义元素定义行为。
+  class TextTyping extends HTMLElement {
+    constructor() {
+      super();
+      this.init();
+    }
+    init = () => {
+      gsap.registerPlugin(TextPlugin);
 
-  const typewriter = document.getElementById("typewriter");
+      const typewriter = this.querySelector(`#typewriter`);
 
-  if (typewriter) {
-    // 执行打字动画
-    const typewriterEffect = gsap.timeline({
-      scrollTrigger: {
-        trigger: typewriter,
-        start: "top bottom",
-      },
-      repeat: 0,
-      repeatDelay: 1,
-    });
+      if (typewriter) {
+        // 执行打字动画
+        const typewriterEffect = gsap.timeline({
+          scrollTrigger: {
+            trigger: typewriter,
+            start: "top bottom",
+          },
+          repeat: 0,
+          repeatDelay: 1,
+        });
 
-    typewriterEffect.to(typewriter, {
-      duration: 5, // 根据文本长度和期望的打字速度调整
-      text: typewriter.dataset.text,
-      ease: "none", // 线性动画以保持稳定的打字速度
-      onComplete: () => {
-        gsap.set(".cursor", { display: "none", duration: 0.01 });
-      },
-    });
+        typewriterEffect.to(typewriter, {
+          duration: 5, // 根据文本长度和期望的打字速度调整
+          text: typewriter.dataset.text,
+          ease: "none", // 线性动画以保持稳定的打字速度
+          onComplete: () => {
+            gsap.set(".cursor", { display: "none", duration: 0.01 });
+          },
+        });
+      }
+    };
   }
+  customElements.define("text-typing", TextTyping);
 </script>
 <style>
   .cursor {
