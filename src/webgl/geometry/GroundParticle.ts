@@ -11,12 +11,14 @@ const GaussianRadius = 0.1;
 const GaussianXCount = 30;
 const GaussianYCount = 30;
 
-export const createGroundParticle: () => [THREE.Points, THREE.ShaderMaterial] = () => {
+export const createGroundParticle: (options: { xCount: number, yCount: number, shaders: { centerHeight: number } }) => [THREE.Points, THREE.ShaderMaterial] = ({
+  xCount, yCount, shaders
+}) => {
 
   const particleGeometry = new THREE.BufferGeometry();
 
   // ground geometry
-  const groundGeometry = new THREE.PlaneGeometry(GroundWidth, GroundHeight, GroundXCount, GroundYCount);
+  const groundGeometry = new THREE.PlaneGeometry(GroundWidth, GroundHeight, xCount || GroundXCount, yCount || GroundYCount);
   groundGeometry.rotateX(Math.PI / 2);
   groundGeometry.rotateY(Math.PI / 4);
   //groundGeometry.rotateX(-Math.PI / 60);
@@ -61,6 +63,7 @@ export const createGroundParticle: () => [THREE.Points, THREE.ShaderMaterial] = 
       'uPixelRatio': { value: window.devicePixelRatio },
       'uMouse': { value: new THREE.Vector3(999, 999, 0) },
       'uTouch': { value: null },
+      'uCenterHeight': { value: shaders.centerHeight },
     },
     vertexShader: VertexShader,
     fragmentShader: FragmentShader,

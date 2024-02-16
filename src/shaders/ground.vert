@@ -8,6 +8,7 @@ varying float v_color;
 uniform float uTime;
 uniform float uPixelRatio;
 uniform vec3 uMouse;
+uniform float uCenterHeight;
 
 #include "../../lygia/generative/random.glsl";
 #include "../../lygia/generative/cnoise.glsl";
@@ -49,17 +50,17 @@ void main() {
   vec3 sample_pos_layer1 = vec3(v_position.x + offset_x_layer1, v_position.y + 3.0, v_position.z);
   vec3 sample_pos_layer2 = vec3(v_position.x - offset_x_layer2, v_position.y, v_position.z);
   vec3 sample_pos_layer4 = vec3(v_position.x - offset_x_layer4, v_position.y, v_position.z);
-  vec3 sample_pos_color = vec3(v_position.x + 3.0, v_position.y - offset_color, 2.5* v_position.z);
+  vec3 sample_pos_color = vec3(v_position.x + 3.0, v_position.y - offset_color, 2.5 * v_position.z);
   vec3 sample_pos_scale = vec3(v_position.x - offset_color, v_position.y + 1.0, v_position.z);
   float noise_layer_1 = snoise(sample_pos_layer1 * noise_layer_1_freq) * noise_layer_1_amp;
   float noise_layer_2 = snoise(sample_pos_layer2 * noise_layer_2_freq) * noise_layer_2_amp;
   float noise_layer_3 = cnoise(v_position.xyz * noise_layer_3_freq) * noise_layer_3_amp;
   float noise_layer_4 = cnoise(sample_pos_layer4 * noise_layer_4_freq) * noise_layer_4_amp;
   float noise_scale = cnoise(sample_pos_scale * noise_scale_freq + 1.0) * noise_scale_amp;
-  
+
   float noise_color = cnoise(sample_pos_color * noise_color_freq) * noise_color_amp;
   v_color = remap(noise_color, -1.0, 1.0, 0.1, 1.0);
-  
+
   noise_scale = remap(noise_scale, -1.0, 1.0, 0.2, 1.0);
   float rnd = random(a_index);
   noise_scale = rnd < 0.00001 ? 3.0 * noise_scale : noise_scale;
@@ -70,7 +71,7 @@ void main() {
   v_position.x += noise_layer_3 * 3.0;
 
   noise_layer_4 = remap(noise_layer_4, 0.0, 1.0, 0.15, 1.0);
-  v_position.y += up_offset(v_position.xz) * noise_layer_4 * 4.5;
+  v_position.y += up_offset(v_position.xz) * noise_layer_4 * uCenterHeight;
 
   // float dispalce = length(v_position.xyz - uMouse.xyz);
   // vec3 dir = normalize(v_position.xyz - uMouse.xyz);
@@ -84,6 +85,6 @@ void main() {
   vec3 sample_pos_interact = vec3(v_position.x - offset_interact, v_position.y, v_position.z);
   float noise_displace = snoise(sample_pos_interact * noise_interact_freq);
   noise_displace = remap(noise_displace, -1.0, 1.0, 0.05, 0.6);
-  world_pos.xyz += dir * 0.2 * smoothstep(noise_displace*noise_displace, 0.0, dispalce);
+  world_pos.xyz += dir * 0.2 * smoothstep(noise_displace * noise_displace, 0.0, dispalce);
   gl_Position = projectionMatrix * modelViewMatrix * world_pos;
 }

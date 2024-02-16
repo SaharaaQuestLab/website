@@ -9,6 +9,7 @@ uniform float uTotal;
 uniform float uTime;
 uniform float uPixelRatio;
 uniform vec3 uMouse;
+uniform float uCenterHeight;
 
 #include "../../lygia/generative/snoise.glsl";
 #include "../../lygia/generative/random.glsl";
@@ -71,7 +72,7 @@ void main() {
 	vec3 sample_pos_layer4 = vec3(v_position.x - offset_x_layer4, v_position.y, v_position.z);
 	float noise_layer_4 = cnoise(sample_pos_layer4 * noise_layer_4_freq) * noise_layer_4_amp;
 	noise_layer_4 = remap(noise_layer_4, -1.0, 1.0, 0.15, 1.0);
-	dest_pos.y -= down_offset(dest_pos.xz) * noise_layer_4 * 2.5;
+	dest_pos.y -= down_offset(dest_pos.xz) * noise_layer_4 * uCenterHeight;
 
 	vec4 world_pos = modelMatrix * vec4(dest_pos.xyz, 1.0);
 	float dispalce = length(world_pos.xy - uMouse.xy);

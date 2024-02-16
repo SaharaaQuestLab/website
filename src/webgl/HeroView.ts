@@ -5,8 +5,9 @@ import { createGroundParticle } from './geometry/GroundParticle';
 import { createSkyParticle } from './geometry/SkyParticle';
 import { createBackgroundParticle } from './geometry/BackgroundParticle';
 import env from '@/utils/bowser.utils';
-import BlackSphereVertexShader from '@/shaders/blacksphere.vert';
-import BlackSphereFragmentShader from '@/shaders/blacksphere.frag';
+import BlackSphereVertexShader from '@/shaders/black-sphere.vert';
+import BlackSphereFragmentShader from '@/shaders/black-sphere.frag';
+import { DesktopOptions, MobileOptions, type HeroOptions } from './HeroOptions';
 
 // import { SpatialControls } from 'spatial-controls';
 
@@ -15,9 +16,8 @@ function easeOutQuad(t: number): number {
   return (1 - (1 - x) * (1 - x)) * Math.sign(t);
 }
 
-export interface HeroViewOptions {
-  platform?: 'mobile' | 'desktop'
-}
+const heroOptions: HeroOptions = env.platform.type === 'mobile' ? MobileOptions : DesktopOptions;
+
 
 export default class HeroView {
   private _el: Window | HTMLElement;
@@ -113,42 +113,61 @@ export default class HeroView {
 
   public useSetup() {
     // create ground
-    const [groundParticles, groundMaterial] = createGroundParticle();
-    const cameraPosition = new THREE.Vector3(0, 0.95, 4);
+    const [groundParticles, groundMaterial] = createGroundParticle({
+      xCount: heroOptions.ground.xCount,
+      yCount: heroOptions.ground.yCount,
+      shaders: heroOptions.ground.shaders
+    });
+
     this._scene.add(groundParticles);
-    groundParticles.position.set(0, 0, 0);
+    const groundPos = heroOptions.ground.position;
+    groundParticles.position.set(groundPos.x, groundPos.y, groundPos.z);
+
     // create sky
-    const [skyParticles, skyMaterial] = createSkyParticle();
+    const [skyParticles, skyMaterial] = createSkyParticle({
+      xCount: heroOptions.sky.xCount,
+      yCount: heroOptions.sky.yCount,
+      shaders: heroOptions.sky.shaders
+    });
     this._scene.add(skyParticles);
-    skyParticles.position.set(0, 0, 0);
+    const skyPos = heroOptions.sky.position;
+    skyParticles.position.set(skyPos.x, skyPos.y, skyPos.z);
 
     const [backgroundParticles, backgroundMaterial] = createBackgroundParticle();
     this._scene.add(backgroundParticles);
     backgroundParticles.position.set(0, 0, 0);
 
     // black sphere
-    const sphereGeo01 = new THREE.SphereGeometry(0.25, 32, 32);
-    const sphereGeo02 = new THREE.SphereGeometry(0.15, 24, 24);
-    //const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x121315 });
+    const sphereGeo01 = new THREE.SphereGeometry(
+      heroOptions.sphere1.radius,
+      heroOptions.sphere1.xCount,
+      heroOptions.sphere1.yCount);
+    const sphereGeo02 = new THREE.SphereGeometry(
+      heroOptions.sphere2.radius,
+      heroOptions.sphere2.xCount,
+      heroOptions.sphere2.yCount);
+
+    const sphere1CamPos = heroOptions.sphere1.shaders.camPosition;
     const sphereMaterial01 = new THREE.ShaderMaterial({
       uniforms: {
         outlineColor: {
           value: new THREE.Color(0x666666)
         },
         camPosition: {
-          value: new THREE.Vector3(0.9, 0.65, 4.0)
-        }
+          value: new THREE.Vector3(sphere1CamPos.x, sphere1CamPos.y, sphere1CamPos.z)
+        },
       },
       vertexShader: BlackSphereVertexShader,
       fragmentShader: BlackSphereFragmentShader
     });
+    const sphere2CamPos = heroOptions.sphere2.shaders.camPosition;
     const sphereMaterial02 = new THREE.ShaderMaterial({
       uniforms: {
         outlineColor: {
           value: new THREE.Color(0x666666)
         },
         camPosition: {
-          value: new THREE.Vector3(-0.6, -0.45, 4.0)
+          value: new THREE.Vector3(sphere2CamPos.x, sphere2CamPos.y, sphere2CamPos.z)
         }
       },
       vertexShader: BlackSphereVertexShader,
@@ -157,18 +176,12 @@ export default class HeroView {
     const sphere01 = new THREE.Mesh(sphereGeo01, sphereMaterial01);
     const sphere02 = new THREE.Mesh(sphereGeo02, sphereMaterial02);
     this._scene.add(sphere01, sphere02);
-    sphere01.position.set(-1.0, 0.3, -0.7);
-    sphere02.position.set(0.6, 1.5, 0.2);
+    const sphere1Pos = heroOptions.sphere1.position;
+    sphere01.position.set(sphere1Pos.x, sphere1Pos.y, sphere1Pos.z);
+    const sphere2Pos = heroOptions.sphere2.position;
+    sphere02.position.set(sphere2Pos.x, sphere2Pos.y, sphere2Pos.z);
 
-    // const planeGeo = new THREE.PlaneGeometry(3, 3, 25, 25);
-    // const plane = new THREE.Points(planeGeo, new THREE.PointsMaterial({ color: "yellow", size: 0.05 }));
-    // this._scene.add(plane);
-    // plane.position.set(0, 0, 0);
-
-    // const plane2 = new THREE.Points(planeGeo, new THREE.PointsMaterial({ color: "red", size: 0.05 }));
-    // this._scene.add(plane2);
-    // plane2.position.set(0, 0, -1);
-
+    const cameraPosition = heroOptions.cameraPosition;
     this._camera.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
     // this._controls?.position.set(0, 0.95, 4);
     // this._controls?.lookAt(0, 0.95, 0);
@@ -176,17 +189,17 @@ export default class HeroView {
     const renderPass = new RenderPass(this._scene, this._camera);
 
     const dofEffect = new DepthOfFieldEffect(this._camera, {
-      worldFocusDistance: 4.5,
+      worldFocusDistance: heroOptions.dofEffect.focusDistance,
       worldFocusRange: 1.0,
       bokehScale: 3.0,
       resolutionScale: 1.0
     });
 
-    const vignetteEffect = new VignetteEffect({
-      eskil: false,
-      offset: 0.25,
-      darkness: 0.75
-    });
+    // const vignetteEffect = new VignetteEffect({
+    //   eskil: false,
+    //   offset: 0.25,
+    //   darkness: 0.75
+    // });
 
 
     const outlineEffect = new OutlineEffect(this._scene, this._camera, {
@@ -228,11 +241,11 @@ export default class HeroView {
     })
 
     if (env.platform.type === 'mobile') {
-      this._render.domElement.addEventListener('touchmove', (event) => {
-        const e = event.touches[0];
-        const normalizeX = ((e.clientX - this.renderRect.left) / this.renderRect.width) * 2 - 1;
-        const normalizeY = -((e.clientY - this.renderRect.top) / this.renderRect.height) * 2 + 1;
-      });
+      // this._render.domElement.addEventListener('touchmove', (event) => {
+      //   const e = event.touches[0];
+      //   const normalizeX = ((e.clientX - this.renderRect.left) / this.renderRect.width) * 2 - 1;
+      //   const normalizeY = -((e.clientY - this.renderRect.top) / this.renderRect.height) * 2 + 1;
+      // });
     } else {
       this._render.domElement.addEventListener('pointerenter', () => { this._isMouseMove = true });
       this._render.domElement.addEventListener('pointerleave', () => {

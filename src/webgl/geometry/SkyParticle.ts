@@ -10,12 +10,14 @@ const GaussianRadius = 0.1;
 const GaussianXCount = 0;
 const GaussianYCount = 0;
 
-export const createSkyParticle: () => [THREE.Points, THREE.ShaderMaterial] = () => {
+export const createSkyParticle: (options: { xCount: number, yCount: number, shaders: { centerHeight: number } }) => [THREE.Points, THREE.ShaderMaterial] = ({
+  xCount, yCount, shaders
+}) => {
 
   const particleGeometry = new THREE.BufferGeometry();
 
   // sphere geometry
-  const skyGeometry = new THREE.SphereGeometry(SphereRadius, SphereXCount, SphereYCount);
+  const skyGeometry = new THREE.SphereGeometry(SphereRadius, xCount || SphereXCount, yCount || SphereYCount);
 
 
   const total_sphere = skyGeometry.getAttribute("position").count;
@@ -56,7 +58,8 @@ export const createSkyParticle: () => [THREE.Points, THREE.ShaderMaterial] = () 
       'uTotal': { value: total_point },
       'uTime': { value: 0 },
       'uPixelRatio': { value: window.devicePixelRatio },
-      'uMouse': { value: new THREE.Vector3(999, 999, 0) }
+      'uMouse': { value: new THREE.Vector3(999, 999, 0) },
+      'uCenterHeight': { value: shaders.centerHeight }
     },
     vertexShader: VertexShader,
     fragmentShader: FragmentShader,
