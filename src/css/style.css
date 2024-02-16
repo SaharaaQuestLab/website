@@ -25,3 +25,7 @@ body {
   font-family: IBMPlexMono;
   color: #E1E4E7;
 }
+
+.common-up-move {
+  opacity: 0;
+}
