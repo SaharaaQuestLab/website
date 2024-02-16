@@ -25,12 +25,12 @@ import { Icon } from "astro-icon/components";
       Our Reseachers
     </div>
     <div
-      class="font-[Manrope] text-h6 flex mx-auto w-[50rem] tablet:w-[33.125rem] mb-[6.25rem] tablet:mb-[3.125rem]"
+      class="font-[Manrope] text-s3 flex mx-auto w-[50rem] tablet:w-[33.125rem] mb-[6.25rem] tablet:mb-[3.125rem]"
     >
       <div class="mr-[3.125rem] tablet:mr-5">
         <Icon class="w-6 h-6" name="quotes" />
       </div>
-      <div class="font-[Manrope] text-center tablet:text-h8">
+      <div class="font-[Manrope] text-center tablet:text-sm">
         AI development is at an inflection point that on many fronts, AI has
         started surpassing human performance and automating more and more parts
         of our life. In the new era, It is critically important to protect the
@@ -198,7 +198,7 @@ import { Icon } from "astro-icon/components";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import HeroView from "@/webgl/HeroView";
   import { makeCommonAppearEffect } from "@/utils/gsap.utils";
-  
+
   gsap.registerPlugin(ScrollTrigger);
   makeCommonAppearEffect();
 
