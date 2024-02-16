@@ -119,9 +119,9 @@ const { titles } = PageMeta;
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import HeroView from "@/webgl/HeroView";
   import { makeCommonAppearEffect } from "@/utils/gsap.utils";
-  makeCommonAppearEffect();
 
   gsap.registerPlugin(ScrollTrigger);
+  makeCommonAppearEffect();
 
   const heroEl = document.getElementById("sectionHero");
   if (heroEl) {

@@ -112,7 +112,11 @@ const { titles } = PageMeta;
   </div>
 </Layout>
 <script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
   import { makeCommonAppearEffect } from "@/utils/gsap.utils";
+
+  gsap.registerPlugin(ScrollTrigger);
   makeCommonAppearEffect();
 </script>
 <style>
