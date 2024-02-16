@@ -55,9 +55,9 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const viewEl = document.getElementById("ring-3d");
-  const viewer = new RingView(viewEl || document.createElement("div"));
-  viewer.useSetup();
+  // const viewEl = document.getElementById("ring-3d");
+  // const viewer = new RingView(viewEl || document.createElement("div"));
+  // viewer.useSetup();
 
   //head section
   gsap
@@ -97,7 +97,7 @@
       opacity: 1,
       y: "33.333%",
       onComplete: () => {
-        viewer.setSceneTwo();
+        // viewer.setSceneTwo();
       },
     })
     .to(
@@ -130,7 +130,7 @@
       opacity: 1,
       y: "33.333%",
       onComplete: () => {
-        viewer.setSceneThree();
+        // viewer.setSceneThree();
       },
     });
 
@@ -140,10 +140,10 @@
     start: "top bottom",
     end: "bottom top",
     onEnter: () => {
-      viewer.play();
+      // viewer.play();
     },
     onLeaveBack: () => {
-      viewer.stop();
+      // viewer.stop();
     },
   });
 
@@ -156,11 +156,11 @@
     end: () => `+=${4 * window.innerHeight}px`,
     onEnterBack: () => {
       console.log("back enter");
-      viewer.play();
+      // viewer.play();
     },
     onLeave: () => {
       console.log("leave");
-      viewer.stop();
+      // viewer.stop();
     },
     // onLeaveBack: () => {
     //   console.log("back leave");

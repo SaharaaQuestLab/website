@@ -52,7 +52,7 @@ import { Icon } from "astro-icon/components";
         </div>
       </div>
       <div
-        class="col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0"
+        class="common-up-move col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0"
       >
         <div
           class="mb-[3.75rem] w-[7.5rem] h-[7.5rem] tablet:w-20 tablet:h-20 tablet:mb-7"
@@ -88,7 +88,7 @@ import { Icon } from "astro-icon/components";
       class="grid gap-x-32 grid-cols-2 mb-20 tablet:flex items-center flex-col tablet:mb-6"
     >
       <div
-        class="col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0 tablet:mb-6 tablet:mt-11"
+        class="common-up-move col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0 tablet:mb-6 tablet:mt-11"
       >
         <div
           class="mb-[3.75rem] w-[7.5rem] h-[7.5rem] tablet:w-20 tablet:h-20 tablet:mb-7"
@@ -119,7 +119,7 @@ import { Icon } from "astro-icon/components";
         </div>
       </div>
       <div
-        class="col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0 tablet:mt-11"
+        class="common-up-move col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0 tablet:mt-11"
       >
         <div
           class="mb-[3.75rem] w-[7.5rem] h-[7.5rem] tablet:w-20 tablet:h-20 tablet:mb-7"
@@ -159,7 +159,7 @@ import { Icon } from "astro-icon/components";
       class="grid gap-x-32 grid-cols-2 mb-20 tablet:flex items-center flex-col tablet:mb-6 tablet:mt-11"
     >
       <div
-        class="col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0"
+        class="common-up-move col-span-1 pr-[3.75rem] tablet:flex flex-col items-center tablet:pr-0"
       >
         <div
           class="mb-[3.75rem] w-[7.5rem] h-[7.5rem] tablet:w-20 tablet:h-20 tablet:mb-7"
@@ -197,6 +197,8 @@ import { Icon } from "astro-icon/components";
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import HeroView from "@/webgl/HeroView";
+  import { makeCommonAppearEffect } from "@/utils/gsap.utils";
+  makeCommonAppearEffect();
 
   gsap.registerPlugin(ScrollTrigger);
 

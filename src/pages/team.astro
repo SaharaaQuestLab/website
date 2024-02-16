@@ -27,14 +27,14 @@ const { titles } = PageMeta;
     institutions.
   </div>
   <div class="grid px-40 grid-cols-2 gap-32 font-[Manrope] tablet:px-6 tablet:gap-[3.75rem]">
-    <div>
+    <div class="common-up-move">
       <img class="w-full mb-11 tablet:mb-2.5" src="/image.png" alt="">
       <div class="text-h4 tablet:text-h6 mb-3 tablet:mb-1 flex items-center justify-between">Sean Ren
         <span class="flex"><Icon class="w-5 h-5 m-3" name="twitter"/> <Icon class="w-5 h-5 m-3"  name="linkedin"/></span>
       </div>
       <div class="text-h6 tablet:text-h9">Co-founder CEO</div>
     </div>
-    <div>
+    <div class="common-up-move">
       <img class="w-full mb-11 tablet:mb-2.5" src="/image.png" alt="">
       <div class="text-h4 tablet:text-h6 mb-3 tablet:mb-1 flex items-center justify-between">Tyler Zhou
         <span class="flex"><Icon class="w-5 h-5 m-3" name="twitter"/> <Icon class="w-5 h-5 m-3"  name="linkedin"/></span>
@@ -42,7 +42,7 @@ const { titles } = PageMeta;
       <div class="text-h6 tablet:text-h9">Co-founder CEO</div>
     </div>
   </div>
-  <div class="grid grid-cols-5 gap-7 teamBackground mx-40 mt-40 pb-[3.75rem] tablet:mx-6 tablet:mt-[3.75rem] border-b border-b-dark-200 tablet:border-none tablet:gap-3 tablet:grid-cols-4 tablet:py-5">
+  <div class="common-up-move grid grid-cols-5 gap-7 teamBackground mx-40 mt-40 pb-[3.75rem] tablet:mx-6 tablet:mt-[3.75rem] border-b border-b-dark-200 tablet:border-none tablet:gap-3 tablet:grid-cols-4 tablet:py-5">
     <div>
       <img src="/teamBackground/USC.jpg"/>
     </div>
@@ -111,6 +111,10 @@ const { titles } = PageMeta;
     </div>
   </div>
 </Layout>
+<script>
+  import { makeCommonAppearEffect } from "@/utils/gsap.utils";
+  makeCommonAppearEffect();
+</script>
 <style>
   .teamBackground > div{
     border: 1px solid #62666D;

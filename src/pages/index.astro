@@ -77,7 +77,7 @@ const { titles } = PageMeta;
   <div
     class="flex gap-12 px-40 tablet:px-7 py-[3.125rem] tablet:py-0 mb-[34.875rem] tablet:mb-[7.5rem] font-[Manrope]"
   >
-    <div class="flex tablet:flex-col tablet:items-center">
+    <div class="common-up-move flex tablet:flex-col tablet:items-center">
       <div class="w-5 mr-7 tablet:mr-0 tablet:mb-3">
         <Icon class="w-5 h-5" name="brandLogo" />
       </div>
@@ -92,7 +92,7 @@ const { titles } = PageMeta;
         </div>
       </div>
     </div>
-    <div class="flex tablet:flex-col tablet:items-center">
+    <div class="common-up-move flex tablet:flex-col tablet:items-center">
       <div class="w-5 mr-7 tablet:mr-0 tablet:mb-3">
         <Icon class="w-5 h-5" name="brandLogo" />
       </div>
@@ -107,7 +107,7 @@ const { titles } = PageMeta;
         </div>
       </div>
     </div>
-    <div class="flex tablet:flex-col tablet:items-center">
+    <div class="common-up-move flex tablet:flex-col tablet:items-center">
       <div class="w-5 mr-7 tablet:mr-0 tablet:mb-3">
         <Icon class="w-5 h-5" name="brandLogo" />
       </div>
@@ -156,6 +156,9 @@ const { titles } = PageMeta;
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import HeroView from "@/webgl/HeroView";
+  import { makeCommonAppearEffect } from "@/utils/gsap.utils";
+
+  makeCommonAppearEffect();
 
   gsap.registerPlugin(ScrollTrigger);
 

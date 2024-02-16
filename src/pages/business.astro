@@ -33,7 +33,7 @@ const { titles } = PageMeta;
   <div
     class="px-40 flex gap-x-[3.125rem] font-[Manrope] mb-[3.75rem] tablet:px-6 tablet:flex-col tablet:items-center text-center tablet:mb-0"
   >
-    <div class="flex-1">
+    <div class="common-up-move flex-1">
       <div class="w-[7.5rem] mb-[3.75rem] tablet:mx-auto tablet:mb-4">
         <img class="w-full" src={titleIcon_01.src} alt="logo" />
       </div>
@@ -46,7 +46,7 @@ const { titles } = PageMeta;
         save costs, drive growth, and enable new business opportunities.
       </div>
     </div>
-    <div class="flex-1">
+    <div class="common-up-move flex-1">
       <div class="w-[7.5rem] mb-[3.75rem] tablet:mx-auto tablet:mb-4">
         <img class="w-full" src={titleIcon_02.src} alt="logo" />
       </div>
@@ -60,7 +60,7 @@ const { titles } = PageMeta;
         enhancement.
       </div>
     </div>
-    <div class="flex-1">
+    <div class="common-up-move flex-1">
       <div class="w-[7.5rem] mb-[3.75rem] tablet:mx-auto tablet:mb-4">
         <img class="w-full" src={titleIcon_03.src} alt="logo" />
       </div>
@@ -464,6 +464,8 @@ const { titles } = PageMeta;
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import HeroView from "@/webgl/HeroView";
+  import { makeCommonAppearEffect } from "@/utils/gsap.utils";
+  makeCommonAppearEffect();
 
   gsap.registerPlugin(ScrollTrigger);
 
