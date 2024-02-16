@@ -4,7 +4,7 @@ export const makeAppearEffect = (el: string | HTMLElement) => {
   const target = el instanceof HTMLElement ? el : document.querySelector(el);
   if (!target) return;
   console.log('target', target)
-  gsap.set(target, { y: '30%', opacity: 0 });
+  gsap.set(target, { y: '50%', opacity: 0 });
   gsap.to(target, {
     scrollTrigger: {
       trigger: target,
@@ -12,7 +12,7 @@ export const makeAppearEffect = (el: string | HTMLElement) => {
     },
     y: "0%",
     opacity: 1,
-    duration: 0.33,
+    duration: 0.4,
     delay: 0.1,
   })
 }
