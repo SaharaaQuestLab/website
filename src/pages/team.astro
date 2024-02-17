@@ -20,8 +20,7 @@ const { titles } = PageMeta;
   >
     <TitleComponent titles={titles} />
   </div>
-  <TitleComponent titles={titles} />
-  <Icon class="w-0 h-0" name="brandLogo" />
+
   <div
     id="sectionTeam"
     class="text-center mt-40 mb-10 tablet:mt-[3.75rem] tablet:mb-8 tablet:text-h4 text-h2 font-[Manrope]"
@@ -135,7 +134,7 @@ const { titles } = PageMeta;
         <Icon class="w-6 h-6" name="quotes" />
       </div>
       <div class="font-[Manrope] text-center tablet:text-sm">
-        The name ‘Sahara’ embodies our commitment to fairness and unity,
+        The name 'Sahara' embodies our commitment to fairness and unity,
         reflecting how the myriad grains of sand form the desert's expansive and
         awe-inspiring terrain, paralleling the immense diversity of knowledge
         found within individuals in society.
@@ -150,9 +149,46 @@ const { titles } = PageMeta;
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import { makeCommonAppearEffect } from "@/utils/gsap.utils";
+  import HeroView from "@/webgl/HeroView";
 
   gsap.registerPlugin(ScrollTrigger);
   makeCommonAppearEffect();
+
+  const heroEl = document.getElementById("sectionHero");
+  if (heroEl) {
+    const viewer = new HeroView(heroEl);
+    viewer.useSetup();
+    viewer.play();
+    gsap.to(heroEl, {
+      scrollTrigger: {
+        trigger: "#sectionTeam",
+        start: "top bottom",
+        end: "top top-=30",
+        scrub: true,
+        onEnterBack: () => {
+          viewer.play();
+        },
+        onLeave: () => {
+          viewer.stop();
+        },
+      },
+      opacity: 0,
+    });
+  }
+
+  const titleEl = document.getElementById("sectionTitle");
+  if (titleEl) {
+    gsap.to(titleEl, {
+      scrollTrigger: {
+        trigger: "#sectionTeam",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+      },
+      opacity: 0,
+      y: "-30%",
+    });
+  }
 </script>
 <style>
   .teamBackground > div {
