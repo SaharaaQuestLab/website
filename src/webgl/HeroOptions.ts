@@ -86,7 +86,7 @@ export const DesktopOptions: HeroOptions = {
     yCount: 140,
     position: {
       x: 0,
-      y: 0,
+      y: -0.05,
       z: 0
     },
     shaders: {
@@ -98,7 +98,7 @@ export const DesktopOptions: HeroOptions = {
     yCount: 100,
     position: {
       x: 0,
-      y: 0,
+      y: 0.05,
       z: 0
     },
     shaders: {
@@ -112,7 +112,7 @@ export const DesktopOptions: HeroOptions = {
     position: {
       one: {
         x: -1.0,
-        y: 0.3,
+        y: 0.2,
         z: -0.7
       },
       two: {
