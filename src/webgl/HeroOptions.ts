@@ -36,9 +36,11 @@ export interface HeroOptions {
     xCount: number,
     yCount: number,
     position: {
-      x: number,
-      y: number,
-      z: number
+      [key in 'one' | 'two']: {
+        x: number,
+        y: number,
+        z: number
+      }
     },
     shaders: {
       camPosition: {
@@ -53,9 +55,11 @@ export interface HeroOptions {
     xCount: number,
     yCount: number,
     position: {
-      x: number,
-      y: number,
-      z: number
+      [key in 'one' | 'two']: {
+        x: number,
+        y: number,
+        z: number
+      }
     },
     shaders: {
       camPosition: {
@@ -106,9 +110,16 @@ export const DesktopOptions: HeroOptions = {
     xCount: 32,
     yCount: 32,
     position: {
-      x: -1.0,
-      y: 0.3,
-      z: -0.7
+      one: {
+        x: -1.0,
+        y: 0.3,
+        z: -0.7
+      },
+      two: {
+        x: -1.0,
+        y: 0.3,
+        z: -0.7
+      }
     },
     shaders: {
       camPosition: {
@@ -123,9 +134,16 @@ export const DesktopOptions: HeroOptions = {
     xCount: 24,
     yCount: 24,
     position: {
-      x: 0.6,
-      y: 1.5,
-      z: 0.2
+      one: {
+        x: 0.6,
+        y: 1.5,
+        z: 0.2
+      },
+      two: {
+        x: 0.0,
+        y: 1.5,
+        z: 0.2
+      }
     },
     shaders: {
       camPosition: {
@@ -175,9 +193,16 @@ export const MobileOptions: HeroOptions = {
     xCount: 32,
     yCount: 32,
     position: {
-      x: -0.8,
-      y: -0.3,
-      z: -0.1
+      one: {
+        x: -0.8,
+        y: -0.3,
+        z: -0.1
+      },
+      two: {
+        x: -0.8,
+        y: -0.3,
+        z: -0.1
+      }
     },
     shaders: {
       camPosition: {
@@ -192,9 +217,16 @@ export const MobileOptions: HeroOptions = {
     xCount: 24,
     yCount: 24,
     position: {
-      x: 0.6,
-      y: 2.1,
-      z: 0.2
+      one: {
+        x: 0.6,
+        y: 2.1,
+        z: 0.2
+      },
+      two: {
+        x: 0.6,
+        y: 2.1,
+        z: 0.2
+      }
     },
     shaders: {
       camPosition: {

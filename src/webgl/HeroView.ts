@@ -11,6 +11,10 @@ import { DesktopOptions, MobileOptions, type HeroOptions } from './HeroOptions';
 
 // import { SpatialControls } from 'spatial-controls';
 
+export interface HeroInitOptions {
+  layout: 'one' | 'two'
+}
+
 function easeOutQuad(t: number): number {
   const x = Math.abs(t);
   return (1 - (1 - x) * (1 - x)) * Math.sign(t);
@@ -21,6 +25,7 @@ const heroOptions: HeroOptions = env.platform.type === 'mobile' ? MobileOptions 
 
 export default class HeroView {
   private _el: Window | HTMLElement;
+  private _layout: HeroInitOptions['layout'];
   private _render: WebGLRenderer;
   private _scene: Scene;
   private _camera: PerspectiveCamera;
@@ -32,8 +37,9 @@ export default class HeroView {
   private _isMouseMove?: boolean = false;
   private _status: 'playing' | 'pausing' = 'pausing';
 
-  constructor(el: Window | HTMLElement) {
+  constructor(el: Window | HTMLElement, options?: HeroInitOptions) {
     this._el = el;
+    this._layout = options?.layout || 'one';
     this._render = this.createRender();
     this._scene = this.createScene();
     this._camera = this.createCamera();
@@ -176,9 +182,9 @@ export default class HeroView {
     const sphere01 = new THREE.Mesh(sphereGeo01, sphereMaterial01);
     const sphere02 = new THREE.Mesh(sphereGeo02, sphereMaterial02);
     this._scene.add(sphere01, sphere02);
-    const sphere1Pos = heroOptions.sphere1.position;
+    const sphere1Pos = heroOptions.sphere1.position[this._layout];
     sphere01.position.set(sphere1Pos.x, sphere1Pos.y, sphere1Pos.z);
-    const sphere2Pos = heroOptions.sphere2.position;
+    const sphere2Pos = heroOptions.sphere2.position[this._layout];
     sphere02.position.set(sphere2Pos.x, sphere2Pos.y, sphere2Pos.z);
 
     const cameraPosition = heroOptions.cameraPosition;

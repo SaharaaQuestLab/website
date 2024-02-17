@@ -125,7 +125,7 @@ const { titles } = PageMeta;
 
   const heroEl = document.getElementById("sectionHero");
   if (heroEl) {
-    const viewer = new HeroView(heroEl);
+    const viewer = new HeroView(heroEl, { layout: "two" });
     viewer.useSetup();
     viewer.play();
     gsap.to(heroEl, {

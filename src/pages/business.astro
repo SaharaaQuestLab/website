@@ -1,6 +1,5 @@
 ---
 import TitleComponent from "@/components/TitleComponent.astro";
-import Hero3DSection from "@/components/3DHeroSection.astro";
 import TextTyping from "@/components/TextTyping.astro";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/business";
@@ -233,7 +232,8 @@ const { titles } = PageMeta;
         class="col-span-2 tablet:col-span-3 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
-        <span class="text-base tablet:text-xs">Multilingual audio collection</span
+        <span class="text-base tablet:text-xs"
+          >Multilingual audio collection</span
         >
       </div>
       <div
@@ -271,7 +271,9 @@ const { titles } = PageMeta;
         class="col-span-2 tablet:col-span-3 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
-        <span class="text-base tablet:text-xs">Multimodal prompt generation</span>
+        <span class="text-base tablet:text-xs"
+          >Multimodal prompt generation</span
+        >
       </div>
       <div
         class="col-span-2 tablet:col-span-3 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
@@ -463,7 +465,7 @@ const { titles } = PageMeta;
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import HeroView from "@/webgl/HeroView";
+  import HeroView, { type HeroInitOptions } from "@/webgl/HeroView";
   import { makeCommonAppearEffect } from "@/utils/gsap.utils";
 
   gsap.registerPlugin(ScrollTrigger);
@@ -471,7 +473,7 @@ const { titles } = PageMeta;
 
   const heroEl = document.getElementById("sectionHero");
   if (heroEl) {
-    const viewer = new HeroView(heroEl);
+    const viewer = new HeroView(heroEl, { layout: "two" });
     viewer.useSetup();
     viewer.play();
     gsap.to(heroEl, {

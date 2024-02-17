@@ -1,7 +1,6 @@
 ---
 import JobList from "@/components/JobList.vue";
 import TitleComponent from "@/components/TitleComponent.astro";
-// import AutomateSection from "@/components/AutomateSection.astro";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/aboutUs";
 const { careerTitles } = PageMeta;
@@ -17,7 +16,14 @@ const jobs = ["job1", "job2", "job3", "job4"];
   >
     <TitleComponent titles={careerTitles} />
   </div>
-  <div class="text-center pt-[8.625rem] pb-[11rem] px-40 text-s3 font-[Manrope] text-light-200">None of these apply to you? We’d still love to stay in touch. Follow Sahara on LinkedIn.</div>
+  <div
+    id="sectionCareer"
+    class="text-center pt-[8.625rem] pb-[11rem] px-40 text-s3 font-[Manrope] text-light-200"
+  >
+    None of these apply to you? We'd still love to stay in touch. Follow Sahara
+    on LinkedIn.
+  </div>
+  <JobList client:load list={jobs} />
   <div slot="footer" class="mt-[7.5rem]">
     <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
       Start Your
@@ -27,3 +33,48 @@ const jobs = ["job1", "job2", "job3", "job4"];
     </h1>
   </div>
 </Layout>
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { makeCommonAppearEffect } from "@/utils/gsap.utils";
+  import HeroView from "@/webgl/HeroView";
+
+  gsap.registerPlugin(ScrollTrigger);
+  makeCommonAppearEffect();
+
+  const heroEl = document.getElementById("sectionHero");
+  if (heroEl) {
+    const viewer = new HeroView(heroEl, { layout: "two" });
+    viewer.useSetup();
+    viewer.play();
+    gsap.to(heroEl, {
+      scrollTrigger: {
+        trigger: "#sectionCareer",
+        start: "top bottom",
+        end: "top top-=30",
+        scrub: true,
+        onEnterBack: () => {
+          viewer.play();
+        },
+        onLeave: () => {
+          viewer.stop();
+        },
+      },
+      opacity: 0,
+    });
+  }
+
+  const titleEl = document.getElementById("sectionTitle");
+  if (titleEl) {
+    gsap.to(titleEl, {
+      scrollTrigger: {
+        trigger: "#sectionCareer",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+      },
+      opacity: 0,
+      y: "-30%",
+    });
+  }
+</script>
