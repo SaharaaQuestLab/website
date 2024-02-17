@@ -107,8 +107,8 @@ export const DesktopOptions: HeroOptions = {
   },
   sphere1: {
     radius: 0.25,
-    xCount: 32,
-    yCount: 32,
+    xCount: 24,
+    yCount: 24,
     position: {
       one: {
         x: -1.0,
@@ -116,9 +116,9 @@ export const DesktopOptions: HeroOptions = {
         z: -0.7
       },
       two: {
-        x: -1.0,
-        y: 0.3,
-        z: -0.7
+        x: -0.7,
+        y: 0.2,
+        z: -1.4
       }
     },
     shaders: {
@@ -140,9 +140,9 @@ export const DesktopOptions: HeroOptions = {
         z: 0.2
       },
       two: {
-        x: 0.0,
-        y: 1.5,
-        z: 0.2
+        x: 0.6,
+        y: 0.25,
+        z: 0.3
       }
     },
     shaders: {
@@ -199,7 +199,7 @@ export const MobileOptions: HeroOptions = {
         z: -0.1
       },
       two: {
-        x: -0.8,
+        x: -0.4,
         y: -0.3,
         z: -0.1
       }
@@ -223,8 +223,8 @@ export const MobileOptions: HeroOptions = {
         z: 0.2
       },
       two: {
-        x: 0.6,
-        y: 2.1,
+        x: 0.5,
+        y: -0.4,
         z: 0.2
       }
     },
