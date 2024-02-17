@@ -198,7 +198,7 @@ export const MobileOptions: HeroOptions = {
     },
     shaders: {
       camPosition: {
-        x: -0.6,
+        x: -0.4,
         y: -0.45,
         z: 4.0
       }
