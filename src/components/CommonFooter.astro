@@ -4,7 +4,7 @@ import PageMeta from "@/data/footer";
 const { authorization, privacyPolicy, email, subscribe } = PageMeta;
 ---
 
-<div class="footer px-40 tablet:px-7">
+<div class="footer px-40 tablet:px-7 max-w-[1728px] mx-auto">
   <slot name="footer"></slot>
   <div class="flex tablet:flex-col tablet:items-center text-base text-light-200 justify-between my-[3.75rem] tablet:my-7 pt-[3.75rem] tablet:pt-5">
     <div class="flex tablet:flex-col tablet:items-center">
@@ -27,21 +27,21 @@ const { authorization, privacyPolicy, email, subscribe } = PageMeta;
       </div>
     </div>
     <div class="border border-light-100 flex px-4 py-2 bg-dark-400 rounded-xl w-[40rem] tablet:w-full justify-between">
-      <div class="text-light-200 flex items-center">
+      <div class="text-light-200 flex items-center text-sm">
         <Icon class="w-5 h-5 mr-1.5" name="email"/>
         {email}
       </div>
-      <div class="cursor-pointer flex text-light-100 items-center">
+      <div class="cursor-pointer flex text-light-100 text-sm items-center">
         {subscribe}
         <Icon class="w-5 h-5" name="arrowRightUp"/>
       </div>
     </div>
   </div>
   <div class="border-t text-light-200 border-t-dark-100 border-opacity-40 flex justify-between text-sm mt-5">
-    <div class="px-3 py-2.5">
+    <div class="py-2.5">
       {authorization}
     </div>
-    <div class="px-3 py-2.5">
+    <div class="py-2.5">
       {privacyPolicy}
     </div>
   </div>
@@ -50,6 +50,6 @@ const { authorization, privacyPolicy, email, subscribe } = PageMeta;
 <style>
 
 .footer {
-  background: linear-gradient(to top, rgba(18, 19, 21,1), rgba(18, 19, 21,0));
+  background: linear-gradient(to bottom, rgba(18, 19, 21,1), rgba(18, 19, 21,0));
 }
 </style>

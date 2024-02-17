@@ -22,7 +22,7 @@ module.exports = {
 				lineHeight: '50.6px'
 			}],
 			h5: ['35px', {
-				lineHeight: '37.8px'
+				lineHeight: '36px'
 			}],
 			s1: ['35px', {
 				lineHeight: '50.4px'
