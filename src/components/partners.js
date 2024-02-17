@@ -1,0 +1,11 @@
+import geekcartel from '@/assets/images/partners/geekcartel.jpg';
+import samsung from '@/assets/images/partners/samsung.jpg';
+import nomad from '@/assets/images/partners/nomad.jpg';
+import canonical from '@/assets/images/partners/canonical.jpg';
+import dispersion from '@/assets/images/partners/dispersion.jpg';
+import alumni from '@/assets/images/partners/alumni.jpg';
+import tangent from '@/assets/images/partners/tangent.jpg';
+import motherson from '@/assets/images/partners/motherson.jpg';
+import coho from '@/assets/images/partners/coho.jpg';
+import sandeep from '@/assets/images/partners/sandeep.jpg';
+export default [geekcartel,samsung,nomad,canonical,dispersion,alumni,tangent,motherson,coho,sandeep];

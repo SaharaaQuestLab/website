@@ -1,9 +1,13 @@
 ---
 import TitleComponent from "@/components/TitleComponent.astro";
 // import AutomateSection from "@/components/AutomateSection.astro";
+import teamBackground from "@/components/teamBackground";
+import { Image } from "astro:assets";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/aboutUs";
 import { Icon } from "astro-icon/components";
+import founder01 from "@/assets/images/founder01.jpg";
+import founder02 from "@/assets/images/founder02.jpg";
 const { titles } = PageMeta;
 ---
 
@@ -17,84 +21,112 @@ const { titles } = PageMeta;
     <TitleComponent titles={titles} />
   </div>
   <TitleComponent titles={titles} />
-  <Icon class="w-0 h-0" name="brandLogo"/>
-  <div  id="sectionTeam" class="text-center mt-40 mb-10 tablet:mt-[3.75rem] tablet:mb-8 tablet:text-h4 text-h2 font-[Manrope]">
+  <Icon class="w-0 h-0" name="brandLogo" />
+  <div
+    id="sectionTeam"
+    class="text-center mt-40 mb-10 tablet:mt-[3.75rem] tablet:mb-8 tablet:text-h4 text-h2 font-[Manrope]"
+  >
     Meet The Team
   </div>
-  <div class="text-light-200 mb-20 tablet:mb-7 tablet:pb-7 text-center mx-auto w-[57.5rem] text-s3 font-[Manrope] tablet:text-sm tablet:w-[30rem]">
+  <div
+    class="text-light-200 mb-20 tablet:mb-7 tablet:pb-7 text-center mx-auto w-[57.5rem] text-s3 font-[Manrope] tablet:text-sm tablet:w-[30rem]"
+  >
     Sahara team is formed by experts from both AI and Web3 industries, bringing
     years of experience from leading tech companies and distinguished research
     institutions.
   </div>
-  <div class="grid px-40 grid-cols-2 gap-32 font-[Manrope] tablet:px-6 tablet:gap-[3.75rem]">
+  <div
+    class="grid px-40 grid-cols-2 gap-32 font-[Manrope] tablet:px-6 tablet:gap-[3.75rem]"
+  >
     <div class="common-up-move">
-      <img class="w-full mb-11 tablet:mb-2.5" src="/image.png" alt="">
-      <div class="text-h4 tablet:text-s3 mb-3 tablet:mb-1 flex items-center justify-between">Sean Ren
-        <span class="flex"><Icon class="w-5 h-5 m-3" name="twitter"/> <Icon class="w-5 h-5 m-3"  name="linkedin"/></span>
+      <Image class="w-full mb-11 tablet:mb-2.5" src={founder01} alt="" />
+      <div
+        class="text-h4 tablet:text-s3 mb-3 tablet:mb-1 flex items-center justify-between"
+      >
+        Sean Ren
+        <span class="flex"
+          ><Icon class="w-5 h-5 m-3" name="twitter" />
+          <Icon class="w-5 h-5 m-3" name="linkedin" /></span
+        >
       </div>
       <div class="text-s3 tablet:text-xs">Co-founder CEO</div>
     </div>
     <div class="common-up-move">
-      <img class="w-full mb-11 tablet:mb-2.5" src="/image.png" alt="">
-      <div class="text-h4 tablet:text-s3 mb-3 tablet:mb-1 flex items-center justify-between">Tyler Zhou
-        <span class="flex"><Icon class="w-5 h-5 m-3" name="twitter"/> <Icon class="w-5 h-5 m-3"  name="linkedin"/></span>
+      <Image class="w-full mb-11 tablet:mb-2.5" src={founder02} alt="" />
+      <div
+        class="text-h4 tablet:text-s3 mb-3 tablet:mb-1 flex items-center justify-between"
+      >
+        Tyler Zhou
+        <span class="flex"
+          ><Icon class="w-5 h-5 m-3" name="twitter" />
+          <Icon class="w-5 h-5 m-3" name="linkedin" /></span
+        >
       </div>
       <div class="text-s3 tablet:text-xs">Co-founder CEO</div>
     </div>
   </div>
-  <div class="common-up-move grid grid-cols-5 gap-7 teamBackground mx-40 mt-40 pb-[3.75rem] tablet:mx-6 tablet:mt-[3.75rem] border-b border-b-dark-200 tablet:border-none tablet:gap-3 tablet:grid-cols-4 tablet:py-5">
-    <div>
-      <img src="/teamBackground/USC.jpg"/>
-    </div>
-    <div>
-      <img src="/teamBackground/snap.jpg"/>
-    </div>
-    <div>
-      <img src="/teamBackground/Berkeley.jpg"/>
-    </div>
-    <div>
-      <img src="/teamBackground/illinois.jpg"/>
-    </div>
-    <div>
-      <img src="/teamBackground/toloka.jpg"/>
-    </div>
-    <div>
-      <img src="/teamBackground/Microsoft.jpg"/>
-    </div>
-    <div>
-      <img src="/teamBackground/A12.jpg"/>
-    </div>
-    <div>
-      <img src="/teamBackground/paypal.jpg"/>
-    </div>
-    <div>
-      <img src="/teamBackground/binance.jpg"/>
-    </div>
-    <div>
-      <img src="/teamBackground/snap.jpg"/>
-    </div>
+  <div
+    class="common-up-move grid grid-cols-5 gap-7 teamBackground mx-40 mt-40 pb-[3.75rem] tablet:mx-6 tablet:mt-[3.75rem] border-b border-b-dark-200 tablet:border-none tablet:gap-3 tablet:grid-cols-4 tablet:py-5"
+  >
+    {
+      teamBackground.map((item) => (
+        <div>
+          <Image src={item} alt="" />
+        </div>
+      ))
+    }
   </div>
   <!-- <AutomateSection /> -->
-  <div class="flex mx-40 tablet:mx-6 mt-40 pb-[3.75rem] tablet:mt-[3.75rem] tablet:pb-7 border-b border-b-dark-200">
+  <div
+    class="flex mx-40 tablet:mx-6 mt-40 pb-[3.75rem] tablet:mt-[3.75rem] tablet:pb-7 border-b border-b-dark-200"
+  >
     <div class="flex-1 text-h2 tablet:text-h4">Careers</div>
     <div class="pr-[3.75rem] tablet:pr-0">
-      <div class="text-base tablet:text-sm text-light-200 mb-7 font-[Manrope] w-[37rem] tablet:w-[22rem]">Become a part of the team and work with us to build the future of global knowledge capital.</div>
-      <div class="w-max tablet:w-full border whitespace-nowrap border-light-100 font-[IBMPlexMono-Medium] text-sm leading-6 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100">Open Positions
-        <Icon class="w-5 h-5" name="arrowRightUp" /></div>
+      <div
+        class="text-base tablet:text-sm text-light-200 mb-7 font-[Manrope] w-[37rem] tablet:w-[22rem]"
+      >
+        Become a part of the team and work with us to build the future of global
+        knowledge capital.
+      </div>
+      <div
+        class="w-max tablet:w-full border whitespace-nowrap border-light-100 font-[IBMPlexMono-Medium] text-sm leading-6 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
+      >
+        Open Positions
+        <Icon class="w-5 h-5" name="arrowRightUp" />
+      </div>
     </div>
   </div>
-  <div class="flex mx-40 tablet:mx-6 py-[3.75rem] tablet:py-7 border-b border-b-dark-200">
+  <div
+    class="flex mx-40 tablet:mx-6 py-[3.75rem] tablet:py-7 border-b border-b-dark-200"
+  >
     <div class="flex-1 text-h2 tablet:text-h4">Vision</div>
     <div class="pr-[3.75rem] tablet:pr-0">
-      <div class="text-base tablet:text-sm text-light-200 mb-7 font-[Manrope] w-[37rem] tablet:w-[22rem]">Sahara envisions a world where the seamless merge of AI and blockchain technologies maximizes human potential and enables knowledge to be a shared and valued resource for every human. </div>
+      <div
+        class="text-base tablet:text-sm text-light-200 mb-7 font-[Manrope] w-[37rem] tablet:w-[22rem]"
+      >
+        Sahara envisions a world where the seamless merge of AI and blockchain
+        technologies maximizes human potential and enables knowledge to be a
+        shared and valued resource for every human.
+      </div>
     </div>
   </div>
-  <div class="mx-40 mt-40 border-b border-b-dark-200 tablet:mx-auto tablet:w-[33.125rem] tablet:mb-7 tablet:mt-[3.75rem]">
+  <div
+    class="mx-40 mt-40 border-b border-b-dark-200 tablet:mx-auto tablet:w-[33.125rem] tablet:mb-7 tablet:mt-[3.75rem]"
+  >
     <div class="my-7 py-1.5 flex gap-x-4 justify-center">
-      <Icon class="w-7 h-7 tablet:w-5 tablet:h-5" name="brandLogo"/>
-      <Icon class="w-7 h-7 tablet:w-5 tablet:h-5 text-light-200" name="brandLogo"/>
-      <Icon class="w-7 h-7 tablet:w-5 tablet:h-5 text-light-300" name="brandLogo"/>
-      <Icon class="w-7 h-7 tablet:w-5 tablet:h-5 text-light-300" name="brandLogo"/>
+      <Icon class="w-7 h-7 tablet:w-5 tablet:h-5" name="brandLogo" />
+      <Icon
+        class="w-7 h-7 tablet:w-5 tablet:h-5 text-light-200"
+        name="brandLogo"
+      />
+      <Icon
+        class="w-7 h-7 tablet:w-5 tablet:h-5 text-light-300"
+        name="brandLogo"
+      />
+      <Icon
+        class="w-7 h-7 tablet:w-5 tablet:h-5 text-light-300"
+        name="brandLogo"
+      />
     </div>
     <div
       class="font-[Manrope] text-2xl leading-9 flex mx-auto w-[50rem] tablet:w-[33.125rem] mb-[6.25rem] tablet:mb-[3.125rem]"
@@ -102,10 +134,13 @@ const { titles } = PageMeta;
       <div class="mr-[3.125rem] tablet:mr-5">
         <Icon class="w-6 h-6" name="quotes" />
       </div>
-      <div class="font-[Manrope] text-center  tablet:text-sm">
-        The name ‘Sahara’ embodies our commitment to fairness and unity, reflecting how the myriad grains of sand form the desert's expansive and awe-inspiring terrain, paralleling the immense diversity of knowledge found within individuals in society.
+      <div class="font-[Manrope] text-center tablet:text-sm">
+        The name ‘Sahara’ embodies our commitment to fairness and unity,
+        reflecting how the myriad grains of sand form the desert's expansive and
+        awe-inspiring terrain, paralleling the immense diversity of knowledge
+        found within individuals in society.
       </div>
-      <div class="ml-[3.125rem]  tablet:ml-5 flex items-end">
+      <div class="ml-[3.125rem] tablet:ml-5 flex items-end">
         <Icon class="w-6 h-6 rotate-180" name="quotes" />
       </div>
     </div>
@@ -120,8 +155,8 @@ const { titles } = PageMeta;
   makeCommonAppearEffect();
 </script>
 <style>
-  .teamBackground > div{
-    border: 1px solid #62666D;
+  .teamBackground > div {
+    border: 1px solid #62666d;
     border-radius: 1.25rem;
     overflow: hidden;
   }

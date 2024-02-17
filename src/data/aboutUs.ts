@@ -12,5 +12,17 @@ export default {
       text: 'Join The Team',
       path: ''
      }
-  }
+  },
+  careerTitles: {
+    texts:  [
+      'Join Sahara'
+     ],
+     description: 'Sahara is consistently looking for new talents.Work with the best in the industry today.',
+     remarks: [
+     ],
+     button: {
+       text: 'Open Positions',
+       path: ''
+      }
+   }
  }

@@ -1,9 +1,29 @@
 ---
 import JobList from "@/components/JobList.vue";
-
+import TitleComponent from "@/components/TitleComponent.astro";
+// import AutomateSection from "@/components/AutomateSection.astro";
+import Layout from "../layouts/PageLayout.astro";
+import PageMeta from "@/data/aboutUs";
+const { careerTitles } = PageMeta;
 const jobs = ["job1", "job2", "job3", "job4"];
 ---
 
-<div>
-  <JobList client:load list={jobs} />
-</div>
+<Layout title="saharaa.ai" active="aboutUs">
+  <div id="sectionHero" class="w-screen h-screen"></div>
+
+  <div
+    id="sectionTitle"
+    class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
+  >
+    <TitleComponent titles={careerTitles} />
+  </div>
+  <div class="text-center pt-[8.625rem] pb-[11rem] px-40 text-s3 font-[Manrope] text-light-200">None of these apply to you? We’d still love to stay in touch. Follow Sahara on LinkedIn.</div>
+  <div slot="footer" class="mt-[7.5rem]">
+    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
+      Start Your
+    </h1>
+    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
+      Sahara Journey
+    </h1>
+  </div>
+</Layout>
