@@ -153,7 +153,7 @@ export default class HeroView {
       heroOptions.sphere2.xCount,
       heroOptions.sphere2.yCount);
 
-    const sphere1CamPos = heroOptions.sphere1.shaders.camPosition;
+    const sphere1CamPos = heroOptions.sphere1.shaders.camPosition[this._layout];
     const sphereMaterial01 = new THREE.ShaderMaterial({
       uniforms: {
         outlineColor: {
@@ -166,7 +166,7 @@ export default class HeroView {
       vertexShader: BlackSphereVertexShader,
       fragmentShader: BlackSphereFragmentShader
     });
-    const sphere2CamPos = heroOptions.sphere2.shaders.camPosition;
+    const sphere2CamPos = heroOptions.sphere2.shaders.camPosition[this._layout];
     const sphereMaterial02 = new THREE.ShaderMaterial({
       uniforms: {
         outlineColor: {
