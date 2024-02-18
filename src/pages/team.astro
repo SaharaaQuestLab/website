@@ -33,13 +33,13 @@ const { titles } = PageMeta;
     Meet The Team
   </div>
   <div
-    class="text-light-200 mb-20 tablet:mb-7 tablet:pb-7 text-center mx-auto text-s3 font-[Manrope] tablet:text-sm tablet:w-[30rem] box-border"
+    class="text-light-200 mb-20 tablet:mb-7 tablet:pb-7 text-center mx-auto text-s3 font-[Manrope] tablet:text-sm tablet:w-[30rem] mobile:w-full box-border"
   >
     Sahara team is formed by experts from both AI and Web3 industries, bringing
     years of experience from leading tech companies and distinguished research
     institutions.
   </div>
-  <div class="grid grid-cols-2 gap-32 font-[Manrope] tablet:gap-[3.75rem]">
+  <div class="grid grid-cols-2 gap-32 font-[Manrope] tablet:gap-[3.75rem] mobile:grid-cols-1">
     <div class="common-up-move">
       <Image
         class="w-full mb-11 tablet:mb-2.5 rounded-2xl"
@@ -76,7 +76,7 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    class="common-up-move grid grid-cols-5 gap-7 teamBackground mt-40 pb-[3.75rem] tablet:mt-[3.75rem] border-b border-b-dark-200 tablet:border-none tablet:gap-3 tablet:grid-cols-4 tablet:py-5"
+    class="common-up-move grid grid-cols-5 gap-7 teamBackground mt-40 pb-[3.75rem] tablet:mt-[3.75rem] border-b border-b-dark-200 tablet:border-none tablet:gap-3 tablet:grid-cols-4 tablet:py-5 mobile:grid-cols-2"
   >
     {
       teamBackground.map((item) => (
@@ -88,9 +88,9 @@ const { titles } = PageMeta;
   </div>
   <!-- <AutomateSection /> -->
   <div
-    class="flex mt-40 pb-[3.75rem] tablet:mt-[3.75rem] tablet:pb-7 border-b border-b-dark-200"
+    class="flex mobile:flex-col mt-40 pb-[3.75rem] tablet:mt-[3.75rem] tablet:pb-7 border-b border-b-dark-200"
   >
-    <div class="flex-1 text-h2 tablet:text-h4 font-[Manrope]">Careers</div>
+    <div class="flex-1 text-h2 tablet:text-h4 font-[Manrope] mobile:mb-5">Careers</div>
     <div class="pr-[3.75rem] tablet:pr-0">
       <div
         class="text-base tablet:text-sm text-light-200 mb-7 font-[Manrope] w-[37rem] tablet:w-[22rem]"
@@ -106,8 +106,8 @@ const { titles } = PageMeta;
       </div>
     </div>
   </div>
-  <div class="flex py-[3.75rem] tablet:py-7 border-b border-b-dark-200">
-    <div class="flex-1 text-h2 tablet:text-h4 font-[Manrope]">Vision</div>
+  <div class="flex mobile:flex-col py-[3.75rem] tablet:py-7 border-b border-b-dark-200">
+    <div class="flex-1 text-h2 tablet:text-h4 font-[Manrope] mobile:mb-5">Vision</div>
     <div class="pr-[3.75rem] tablet:pr-0">
       <div
         class="text-base tablet:text-sm text-light-200 font-[Manrope] w-[37rem] tablet:w-[22rem]"
@@ -119,7 +119,7 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    class="mt-40 border-b border-b-dark-200 tablet:mx-auto tablet:w-[33.125rem] tablet:mb-7 tablet:mt-[3.75rem]"
+    class="mt-40 border-b border-b-dark-200 tablet:mx-auto tablet:w-[33.125rem] tablet:mb-7 tablet:mt-[3.75rem]  mobile:w-full"
   >
     <div class="my-7 py-1.5 flex gap-x-4 justify-center">
       <Icon class="w-7 h-7 tablet:w-5 tablet:h-5" name="brandLogo" />
@@ -137,10 +137,10 @@ const { titles } = PageMeta;
       />
     </div>
     <div
-      class="font-[Manrope] text-2xl leading-9 flex mx-auto w-[50rem] tablet:w-[33.125rem] mb-[6.25rem] tablet:mb-[3.125rem]"
+      class="font-[Manrope] text-2xl leading-9 flex mx-auto w-[50rem] tablet:w-[33.125rem] mb-[6.25rem] tablet:mb-[3.125rem] mobile:w-full"
     >
       <div class="mr-[3.125rem] tablet:mr-5">
-        <Icon class="w-6 h-6" name="quotes" />
+        <Icon class="w-6 h-6 mobile:w-4 mobile:h-4" name="quotes" />
       </div>
       <div class="font-[Manrope] text-center text-s3 tablet:text-sm">
         The name 'Sahara' embodies our commitment to fairness and unity,
@@ -149,10 +149,11 @@ const { titles } = PageMeta;
         found within individuals in society.
       </div>
       <div class="ml-[3.125rem] tablet:ml-5 flex items-end">
-        <Icon class="w-6 h-6 rotate-180" name="quotes" />
+        <Icon class="w-6 h-6 rotate-180 mobile:w-4 mobile:h-4" name="quotes" />
       </div>
     </div>
   </div>
+  <div class="pt-[10.625rem] tablet:pt-[3.75rem]" slot="footer"></div>
 </Layout>
 <script>
   import { gsap } from "gsap";

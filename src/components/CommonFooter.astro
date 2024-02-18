@@ -2,11 +2,15 @@
 import { Icon } from "astro-icon/components";
 import PageMeta from "@/data/footer";
 const { authorization, privacyPolicy, email, subscribe } = PageMeta;
+interface Props {
+  border?: true;
+}
+const { border } = Astro.props;
 ---
 
 <div class="footer px-40 tablet:px-6 mobile:px-3 max-w-[1728px] mx-auto">
   <slot name="footer"></slot>
-  <div class="flex tablet:flex-col tablet:items-center text-base text-light-200 mobile:text-xs justify-between my-[3.75rem] tablet:my-7 pt-[3.75rem] tablet:pt-5 tablet:border-t border-t-dark-200">
+  <div class:list={["flex tablet:flex-col tablet:items-center text-base text-light-200 mobile:text-xs justify-between my-[3.75rem] tablet:my-7 pt-[3.75rem] tablet:pt-5 border-t-dark-200", {'border-t': border}]}>
     <div class="flex tablet:flex-col tablet:items-center">
       <div class="leading-[2.625rem] font-[Manrope] pr-5 whitespace-nowrap">
         Follow us to get the latest updates
