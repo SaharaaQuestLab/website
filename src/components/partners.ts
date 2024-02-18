@@ -8,4 +8,4 @@ import tangent from '@/assets/images/partners/tangent.jpg';
 import motherson from '@/assets/images/partners/motherson.jpg';
 import coho from '@/assets/images/partners/coho.jpg';
 import sandeep from '@/assets/images/partners/sandeep.jpg';
-export default [geekcartel,samsung,nomad,canonical,dispersion,alumni,tangent,motherson,coho,sandeep];
+export default [geekcartel, samsung, nomad, canonical, dispersion, alumni, tangent, motherson, coho, sandeep];

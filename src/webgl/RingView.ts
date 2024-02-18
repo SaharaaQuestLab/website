@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
 import env from '@/utils/bowser.utils';
-// import { EffectPass, EffectComposer, RenderPass } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { CircleRing } from './geometry/CircleRing';
 // import { SpatialControls } from 'spatial-controls';
 import { OutlineEffect } from 'three/examples/jsm/Addons.js';
@@ -80,6 +79,15 @@ export default class RingView {
       this._camera.updateProjectionMatrix();
       if (this._composer) this._composer.setSize(width, height);
     })
+
+    if (import.meta.env.DEV) {
+      window.addEventListener("keydown", (evt) => {
+        if (evt.ctrlKey && evt.shiftKey && evt.key === "R") {
+          evt.preventDefault();
+          this.snapshot();
+        }
+      });
+    }
   }
 
   private createComposer() {
@@ -261,6 +269,11 @@ export default class RingView {
   }
 
   public snapshot() {
+    if (this._composer) {
+      this._composer.render(this._scene, this._camera);
+    } else {
+      this._render.render(this._scene, this._camera);
+    }
     const canvas = this._render.domElement;
     const imgData = canvas.toDataURL('image/png');
 

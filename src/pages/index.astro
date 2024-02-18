@@ -7,22 +7,26 @@ import PageMeta from "@/data/index";
 import { Icon } from "astro-icon/components";
 const { titles } = PageMeta;
 ---
+
 <div
-    class="items-center py-2.5 hidden tablet:flex bg-light-100 relative z-50 justify-center text-dark-400"
-  >
-    Sahara raises $6M in seed round led by Polychain Capital
-    <Icon class="w-5 h-5" name="arrowRightUp" />
-  </div>
+  class="items-center py-2.5 hidden tablet:flex bg-light-100 relative z-50 justify-center text-dark-400"
+>
+  Sahara raises $6M in seed round led by Polychain Capital
+  <Icon class="w-5 h-5" name="arrowRightUp" />
+</div>
 <Layout title="saharaa.ai">
   <slot slot="base-layout">
-    <div id="sectionHero" class="w-screen h-screen first-screen-bottom-mask-wrap"></div>
+    <div
+      id="sectionHero"
+      class="w-screen h-screen first-screen-bottom-mask-wrap"
+    >
+    </div>
     <div
       id="sectionTitle"
       class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
     >
       <TitleComponent titles={titles} />
     </div>
-
   </slot>
 
   <div id="sectionRing" class="w-full bg-[#121315]">
@@ -30,11 +34,9 @@ const { titles } = PageMeta;
   </div>
 
   <div
-    class="flex items-center tablet:flex-col justify-between  tablet:text-h3 pt-[2.25rem] tablet:pt-7 mb-[15.25rem] tablet:mb-[7.5rem] border-t border-t-dark-200 border-opacity-40"
+    class="flex items-center tablet:flex-col justify-between tablet:text-h3 pt-[2.25rem] tablet:pt-7 mb-[15.25rem] tablet:mb-[7.5rem] border-t border-t-dark-200 border-opacity-40"
   >
-    <div
-      class="font-[Manrope] text-s3 tablet:pb-5 tablet:text-base"
-    >
+    <div class="font-[Manrope] text-s3 tablet:pb-5 tablet:text-base">
       Learn more about how you can use Sahara:
     </div>
     <div class="flex w-[40rem] mobile:w-full">
@@ -69,7 +71,9 @@ const { titles } = PageMeta;
     class="flex flex-col items-center font-[Manrope] mt-[20.25rem] tablet:mt-[7.5rem] mb-[4.125rem] tablet:mb-11"
   >
     <h1 class="text-h2 tablet:text-h5 mobile:text-h5">Sahara Roadmap</h1>
-    <div class="w-[28.75rem] text-center mt-10 tablet:mt-4 text-light-200 mobile:text-sm mobile:w-full">
+    <div
+      class="w-[28.75rem] text-center mt-10 tablet:mt-4 text-light-200 mobile:text-sm mobile:w-full"
+    >
       Navigate journey across the digital dunes of innovation in the Sahara of
       tomorrow.
     </div>
@@ -124,10 +128,14 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div slot="footer" class="pt-[7.625rem] tablet:pt-[3.75rem]">
-    <h1 class="text-h1 tablet:text-h3 mobile:text-h4 tablet:text-center font-[Manrope]">
+    <h1
+      class="text-h1 tablet:text-h3 mobile:text-h4 tablet:text-center font-[Manrope]"
+    >
       Start Your
     </h1>
-    <h1 class="text-h1 tablet:text-h3 mobile:text-h4 tablet:text-center font-[Manrope]">
+    <h1
+      class="text-h1 tablet:text-h3 mobile:text-h4 tablet:text-center font-[Manrope]"
+    >
       Sahara Journey
     </h1>
   </div>
@@ -197,5 +205,4 @@ const { titles } = PageMeta;
     });
   }
 </script>
-<style>
-</style>
+<style></style>

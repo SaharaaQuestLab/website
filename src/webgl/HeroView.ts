@@ -90,6 +90,15 @@ export default class HeroView {
       this._camera.updateProjectionMatrix();
       if (this._composer) this._composer.setSize(width, height);
     })
+
+    if (import.meta.env.DEV) {
+      window.addEventListener("keydown", (evt) => {
+        if (evt.ctrlKey && evt.shiftKey && evt.key === "H") {
+          evt.preventDefault();
+          this.snapshot();
+        }
+      });
+    }
   }
 
   private createComposer() {
@@ -288,6 +297,11 @@ export default class HeroView {
   }
 
   public snapshot() {
+    if (this._composer) {
+      this._composer.render(this._clock.getElapsedTime());
+    } else {
+      this._render.render(this._scene, this._camera);
+    }
     const canvas = this._render.domElement;
     const imgData = canvas.toDataURL('image/png');
 
