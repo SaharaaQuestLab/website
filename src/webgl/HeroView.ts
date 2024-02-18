@@ -122,7 +122,10 @@ export default class HeroView {
     const [groundParticles, groundMaterial] = createGroundParticle({
       xCount: heroOptions.ground.xCount,
       yCount: heroOptions.ground.yCount,
-      shaders: heroOptions.ground.shaders
+      shaders: {
+        centerHeight: heroOptions.ground.shaders.centerHeight,
+        sampleBase4Layer1: heroOptions.ground.shaders.sampleBase4Layer1[this._layout]
+      }
     });
 
     this._scene.add(groundParticles);
@@ -145,11 +148,11 @@ export default class HeroView {
 
     // black sphere
     const sphereGeo01 = new THREE.SphereGeometry(
-      heroOptions.sphere1.radius,
+      heroOptions.sphere1.radius[this._layout],
       heroOptions.sphere1.xCount,
       heroOptions.sphere1.yCount);
     const sphereGeo02 = new THREE.SphereGeometry(
-      heroOptions.sphere2.radius,
+      heroOptions.sphere2.radius[this._layout],
       heroOptions.sphere2.xCount,
       heroOptions.sphere2.yCount);
 
@@ -282,7 +285,17 @@ export default class HeroView {
         this._camera.lookAt(new THREE.Vector3(0, y, 0));
       }, { passive: true });
     }
+  }
 
+  public snapshot() {
+    const canvas = this._render.domElement;
+    const imgData = canvas.toDataURL('image/png');
+
+    // 将图像数据保存为文件
+    const a = document.createElement('a');
+    a.href = imgData;
+    a.download = `screenshot-hero.png`;
+    a.click();
   }
 
   public play() {

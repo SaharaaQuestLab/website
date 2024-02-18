@@ -11,7 +11,7 @@ const GaussianRadius = 0.1;
 const GaussianXCount = 30;
 const GaussianYCount = 30;
 
-export const createGroundParticle: (options: { xCount: number, yCount: number, shaders: { centerHeight: number } }) => [THREE.Points, THREE.ShaderMaterial] = ({
+export const createGroundParticle: (options: { xCount: number, yCount: number, shaders: { centerHeight: number, sampleBase4Layer1: number } }) => [THREE.Points, THREE.ShaderMaterial] = ({
   xCount, yCount, shaders
 }) => {
 
@@ -64,6 +64,7 @@ export const createGroundParticle: (options: { xCount: number, yCount: number, s
       'uMouse': { value: new THREE.Vector3(999, 999, 0) },
       'uTouch': { value: null },
       'uCenterHeight': { value: shaders.centerHeight },
+      'uSampleBase4Layer1': { value: shaders.sampleBase4Layer1 }
     },
     vertexShader: VertexShader,
     fragmentShader: FragmentShader,

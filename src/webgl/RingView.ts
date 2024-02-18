@@ -260,6 +260,17 @@ export default class RingView {
     });
   }
 
+  public snapshot() {
+    const canvas = this._render.domElement;
+    const imgData = canvas.toDataURL('image/png');
+
+    // 将图像数据保存为文件
+    const a = document.createElement('a');
+    a.href = imgData;
+    a.download = `screenshot-ring-${this._stage}.png`;
+    a.click();
+  }
+
   public play() {
     this._status = 'playing';
     this._animate();

@@ -16,7 +16,10 @@ export interface HeroOptions {
       z: number
     },
     shaders: {
-      centerHeight: number
+      centerHeight: number,
+      sampleBase4Layer1: {
+        [key in 'one' | 'two']: number
+      }
     }
   }
   sky: {
@@ -32,7 +35,9 @@ export interface HeroOptions {
     }
   },
   sphere1: {
-    radius: number,
+    radius: {
+      [key in 'one' | 'two']: number
+    },
     xCount: number,
     yCount: number,
     position: {
@@ -53,7 +58,9 @@ export interface HeroOptions {
     }
   },
   sphere2: {
-    radius: number,
+    radius: {
+      [key in 'one' | 'two']: number
+    },
     xCount: number,
     yCount: number,
     position: {
@@ -94,7 +101,11 @@ export const DesktopOptions: HeroOptions = {
       z: 0
     },
     shaders: {
-      centerHeight: 4.5
+      centerHeight: 4.5,
+      sampleBase4Layer1: {
+        one: 3.0,
+        two: 3.0
+      }
     }
   },
   sky: {
@@ -110,7 +121,10 @@ export const DesktopOptions: HeroOptions = {
     }
   },
   sphere1: {
-    radius: 0.25,
+    radius: {
+      one: 0.25,
+      two: 0.25
+    },
     xCount: 24,
     yCount: 24,
     position: {
@@ -141,7 +155,10 @@ export const DesktopOptions: HeroOptions = {
     }
   },
   sphere2: {
-    radius: 0.15,
+    radius: {
+      one: 0.15,
+      two: 0.15
+    },
     xCount: 24,
     yCount: 24,
     position: {
@@ -191,7 +208,11 @@ export const MobileOptions: HeroOptions = {
       z: 0
     },
     shaders: {
-      centerHeight: 6.0
+      centerHeight: 6.0,
+      sampleBase4Layer1: {
+        one: 3.0,
+        two: 3.0
+      }
     }
   },
   sky: {
@@ -207,7 +228,10 @@ export const MobileOptions: HeroOptions = {
     }
   },
   sphere1: {
-    radius: 0.35,
+    radius: {
+      one: 0.35,
+      two: 0.35
+    },
     xCount: 32,
     yCount: 32,
     position: {
@@ -239,7 +263,10 @@ export const MobileOptions: HeroOptions = {
     }
   },
   sphere2: {
-    radius: 0.2,
+    radius: {
+      one: 0.2,
+      two: 0.2
+    },
     xCount: 24,
     yCount: 24,
     position: {

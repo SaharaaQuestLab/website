@@ -9,6 +9,7 @@ uniform float uTime;
 uniform float uPixelRatio;
 uniform vec3 uMouse;
 uniform float uCenterHeight;
+uniform float uSampleBase4Layer1;
 
 #include "../../lygia/generative/random.glsl";
 #include "../../lygia/generative/cnoise.glsl";
@@ -47,7 +48,7 @@ void main() {
   float offset_x_layer2 = 0.05 * uTime;
   float offset_x_layer4 = 0.05 * uTime;
   float offset_color = 0.2 * uTime;
-  vec3 sample_pos_layer1 = vec3(v_position.x + offset_x_layer1, v_position.y + 3.0, v_position.z);
+  vec3 sample_pos_layer1 = vec3(v_position.x + offset_x_layer1, v_position.y + uSampleBase4Layer1, v_position.z);
   vec3 sample_pos_layer2 = vec3(v_position.x - offset_x_layer2, v_position.y, v_position.z);
   vec3 sample_pos_layer4 = vec3(v_position.x - offset_x_layer4, v_position.y, v_position.z);
   vec3 sample_pos_color = vec3(v_position.x + 3.0, v_position.y - offset_color, 2.5 * v_position.z);
