@@ -31,19 +31,19 @@ const { titles } = PageMeta;
     class="flex items-center tablet:flex-col justify-between  tablet:text-h3 pt-[2.25rem] tablet:pt-7 mb-[15.25rem] tablet:mb-[7.5rem] border-t border-t-dark-200 border-opacity-40"
   >
     <div
-      class="font-[Manrope] text-[1.563rem] tablet:pb-5 tablet:text-[1.125rem] tablet:leading-[1.75rem]"
+      class="font-[Manrope] text-s3 tablet:pb-5 tablet:text-base"
     >
       Learn more about how you can use Sahara:
     </div>
-    <div class="flex">
+    <div class="flex w-[40rem] mobile:w-full">
       <div
-        class="with-button flex items-center justify-center border border-light-100"
+        class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
       >
         For Personal
         <Icon class="w-5 h-5" name="arrowRightUp" />
       </div>
       <div
-        class="with-button ml-5 flex items-center justify-center border border-light-100"
+        class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-5 mobile:ml-3 flex items-center justify-center border border-light-100"
       >
         For Business
         <Icon class="w-5 h-5" name="arrowRightUp" />
@@ -57,7 +57,7 @@ const { titles } = PageMeta;
     <h1 class="text-h2 tablet:text-h5 text-light-200">An Ecosystem</h1>
     <h1 class="text-h2 tablet:text-h5">for collaborative</h1>
     <h1 class="text-h2 tablet:text-h5">intelligence</h1>
-    <div class="w-[28.75rem] mx-auto mt-10 tablet:mt-4">
+    <div class="w-[28.75rem] mx-auto mt-10 tablet:mt-4 mobile:w-full">
       Your knowledge is part of a broader effort to build the next generation of
       Human-Al collaboration.
     </div>
@@ -66,14 +66,14 @@ const { titles } = PageMeta;
   <div
     class="flex flex-col items-center font-[Manrope] mt-[20.25rem] tablet:mt-[7.5rem] mb-[4.125rem] tablet:mb-11"
   >
-    <h1 class="text-h2 tablet:text-h5">Sahara Roadmap</h1>
-    <div class="w-[28.75rem] text-center mt-10 tablet:mt-4 text-light-200">
+    <h1 class="text-h2 tablet:text-h5 mobile:text-h5">Sahara Roadmap</h1>
+    <div class="w-[28.75rem] text-center mt-10 tablet:mt-4 text-light-200 mobile:text-sm mobile:w-full">
       Navigate journey across the digital dunes of innovation in the Sahara of
       tomorrow.
     </div>
   </div>
   <div
-    class="flex gap-12 px-40  py-[3.125rem] tablet:py-0 mb-[11.875rem] tablet:mb-[7.5rem] font-[Manrope]"
+    class="flex gap-12 mobile:flex-col py-[3.125rem] tablet:py-0 mb-[11.875rem] tablet:mb-[3.75rem] mobile:mb-20 font-[Manrope]"
   >
     <div class="common-up-move flex tablet:flex-col tablet:items-center">
       <div class="w-5 mr-7 tablet:mr-0 tablet:mb-3">
@@ -122,10 +122,10 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div slot="footer" class="pt-[7.625rem] tablet:pt-[3.75rem]">
-    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
+    <h1 class="text-h1 tablet:text-h3 mobile:text-h4 tablet:text-center font-[Manrope]">
       Start Your
     </h1>
-    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
+    <h1 class="text-h1 tablet:text-h3 mobile:text-h4 tablet:text-center font-[Manrope]">
       Sahara Journey
     </h1>
   </div>
@@ -196,14 +196,4 @@ const { titles } = PageMeta;
   }
 </script>
 <style>
-  .with-button {
-    cursor: pointer;
-    padding: 0.563rem 0;
-    text-align: center;
-    font-size: 0.938rem;
-    line-height: 1.5rem;
-    width: 19.375rem;
-    border-radius: 0.75rem;
-    font-family: IBMPlexMono-Medium;
-  }
 </style>
