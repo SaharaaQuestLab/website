@@ -12,15 +12,20 @@ const { titles } = PageMeta;
 ---
 
 <Layout title="saharaa.ai" active="aboutUs">
-  <div id="sectionHero" class="w-screen h-screen first-screen-bottom-mask-wrap"></div>
+  <slot slot="base-layout">
+    <div
+      id="sectionHero"
+      class="w-screen h-screen first-screen-bottom-mask-wrap"
+    >
+    </div>
 
-  <div
-    id="sectionTitle"
-    class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
-  >
-    <TitleComponent titles={titles} />
-  </div>
-
+    <div
+      id="sectionTitle"
+      class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
+    >
+      <TitleComponent titles={titles} />
+    </div>
+  </slot>
   <div
     id="sectionTeam"
     class="text-center mt-40 mb-10 tablet:mt-[3.75rem] tablet:mb-8 tablet:text-h4 text-h2 font-[Manrope]"
@@ -34,11 +39,13 @@ const { titles } = PageMeta;
     years of experience from leading tech companies and distinguished research
     institutions.
   </div>
-  <div
-    class="grid  grid-cols-2 gap-32 font-[Manrope]  tablet:gap-[3.75rem]"
-  >
+  <div class="grid grid-cols-2 gap-32 font-[Manrope] tablet:gap-[3.75rem]">
     <div class="common-up-move">
-      <Image class="w-full mb-11 tablet:mb-2.5 rounded-2xl" src={founder01} alt="" />
+      <Image
+        class="w-full mb-11 tablet:mb-2.5 rounded-2xl"
+        src={founder01}
+        alt=""
+      />
       <div
         class="text-h4 tablet:text-s3 mb-3 tablet:mb-1 flex items-center justify-between"
       >
@@ -51,7 +58,11 @@ const { titles } = PageMeta;
       <div class="text-s3 tablet:text-xs">Co-founder CEO</div>
     </div>
     <div class="common-up-move">
-      <Image class="w-full mb-11 tablet:mb-2.5 rounded-2xl" src={founder02} alt="" />
+      <Image
+        class="w-full mb-11 tablet:mb-2.5 rounded-2xl"
+        src={founder02}
+        alt=""
+      />
       <div
         class="text-h4 tablet:text-s3 mb-3 tablet:mb-1 flex items-center justify-between"
       >
@@ -65,7 +76,7 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    class="common-up-move grid grid-cols-5 gap-7 teamBackground  mt-40 pb-[3.75rem]  tablet:mt-[3.75rem] border-b border-b-dark-200 tablet:border-none tablet:gap-3 tablet:grid-cols-4 tablet:py-5"
+    class="common-up-move grid grid-cols-5 gap-7 teamBackground mt-40 pb-[3.75rem] tablet:mt-[3.75rem] border-b border-b-dark-200 tablet:border-none tablet:gap-3 tablet:grid-cols-4 tablet:py-5"
   >
     {
       teamBackground.map((item) => (
@@ -77,7 +88,7 @@ const { titles } = PageMeta;
   </div>
   <!-- <AutomateSection /> -->
   <div
-    class="flex   mt-40 pb-[3.75rem] tablet:mt-[3.75rem] tablet:pb-7 border-b border-b-dark-200"
+    class="flex mt-40 pb-[3.75rem] tablet:mt-[3.75rem] tablet:pb-7 border-b border-b-dark-200"
   >
     <div class="flex-1 text-h2 tablet:text-h4 font-[Manrope]">Careers</div>
     <div class="pr-[3.75rem] tablet:pr-0">
@@ -95,9 +106,7 @@ const { titles } = PageMeta;
       </div>
     </div>
   </div>
-  <div
-    class="flex   py-[3.75rem] tablet:py-7 border-b border-b-dark-200"
-  >
+  <div class="flex py-[3.75rem] tablet:py-7 border-b border-b-dark-200">
     <div class="flex-1 text-h2 tablet:text-h4 font-[Manrope]">Vision</div>
     <div class="pr-[3.75rem] tablet:pr-0">
       <div
@@ -110,7 +119,7 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    class=" mt-40 border-b border-b-dark-200 tablet:mx-auto tablet:w-[33.125rem] tablet:mb-7 tablet:mt-[3.75rem]"
+    class="mt-40 border-b border-b-dark-200 tablet:mx-auto tablet:w-[33.125rem] tablet:mb-7 tablet:mt-[3.75rem]"
   >
     <div class="my-7 py-1.5 flex gap-x-4 justify-center">
       <Icon class="w-7 h-7 tablet:w-5 tablet:h-5" name="brandLogo" />

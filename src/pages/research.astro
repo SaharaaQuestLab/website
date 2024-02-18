@@ -10,18 +10,25 @@ import { Icon } from "astro-icon/components";
 ---
 
 <Layout title="saharaa.ai" active="research">
-  <div id="sectionHero" class="w-screen h-screen first-screen-bottom-mask-wrap"></div>
+  <slot slot="base-layout">
+    <div
+      id="sectionHero"
+      class="w-screen h-screen first-screen-bottom-mask-wrap"
+    >
+    </div>
 
-  <div
-    id="sectionTitle"
-    class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
-  >
-    <TitleComponent titles={titles} />
-  </div>
-
-  <div id="sectionDescription" class=" mt-40 border-b border-b-dark-200">
+    <div
+      id="sectionTitle"
+      class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
+    >
+      <TitleComponent titles={titles} />
+    </div>
+  </slot>
+  <div id="sectionDescription" class="mt-40 border-b border-b-dark-200">
     <Icon class="w-0 h-0" name="brandLogo" />
-    <div class="mt-10 pt-8 text-light-200 text-sm leading-[2.75rem] text-center">
+    <div
+      class="mt-10 pt-8 text-light-200 text-sm leading-[2.75rem] text-center"
+    >
       Our Reseachers
     </div>
     <div
@@ -42,7 +49,7 @@ import { Icon } from "astro-icon/components";
       </div>
     </div>
   </div>
-  <div class="pt-[9.125rem] mt-[6.125rem] pb-40  font-[Manrope]  tablet:py-20">
+  <div class="pt-[9.125rem] mt-[6.125rem] pb-40 font-[Manrope] tablet:py-20">
     <div
       class="grid gap-x-32 grid-cols-2 mb-20 tablet:flex tablet:items-center flex-col tablet:mb-6"
     >

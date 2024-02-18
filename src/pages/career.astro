@@ -8,17 +8,19 @@ const jobs = ["job1", "job2", "job3", "job4"];
 ---
 
 <Layout title="saharaa.ai" active="aboutUs">
-  <div id="sectionHero" class="w-screen h-screen"></div>
+  <slot slot="base-layout">
+    <div id="sectionHero" class="w-screen h-screen"></div>
 
-  <div
-    id="sectionTitle"
-    class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
-  >
-    <TitleComponent titles={careerTitles} />
-  </div>
+    <div
+      id="sectionTitle"
+      class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
+    >
+      <TitleComponent titles={careerTitles} />
+    </div>
+  </slot>
   <div
     id="sectionCareer"
-    class="text-center pt-[8.625rem] pb-[11rem]  text-s3 font-[Manrope] text-light-200"
+    class="text-center pt-[8.625rem] pb-[11rem] text-s3 font-[Manrope] text-light-200"
   >
     None of these apply to you? We'd still love to stay in touch. Follow Sahara
     on LinkedIn.

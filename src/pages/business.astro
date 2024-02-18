@@ -15,16 +15,20 @@ const { titles } = PageMeta;
 ---
 
 <Layout title="saharaa.ai" active="business">
-  <div id="sectionHero" class="w-screen h-screen first-screen-bottom-mask-wrap">
-  </div>
+  <slot slot="base-layout">
+    <div
+      id="sectionHero"
+      class="w-screen h-screen first-screen-bottom-mask-wrap"
+    >
+    </div>
 
-  <div
-    id="sectionTitle"
-    class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
-  >
-    <TitleComponent titles={titles} />
-  </div>
-
+    <div
+      id="sectionTitle"
+      class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
+    >
+      <TitleComponent titles={titles} />
+    </div>
+  </slot>
   <h1
     id="sectionBusiness"
     class="text-h2 font-[Manrope] text-center pt-[9.125rem] pb-[7.5rem] tablet:text-h5 tablet:pt-[3.75rem] tablet:pb-11"

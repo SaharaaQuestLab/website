@@ -12,16 +12,20 @@ const { titles } = PageMeta;
 ---
 
 <Layout title="saharaa.ai" active="personal">
-  <div id="sectionHero" class="w-screen h-screen first-screen-bottom-mask-wrap">
-  </div>
+  <slot slot="base-layout">
+    <div
+      id="sectionHero"
+      class="w-screen h-screen first-screen-bottom-mask-wrap"
+    >
+    </div>
 
-  <div
-    id="sectionTitle"
-    class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
-  >
-    <TitleComponent titles={titles} />
-  </div>
-
+    <div
+      id="sectionTitle"
+      class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
+    >
+      <TitleComponent titles={titles} />
+    </div>
+  </slot>
   <h1
     id="sectionPersonal"
     class="text-h2 font-[Manrope] text-center pt-[9.125rem] pb-[7.5rem] tablet:text-h5 tablet:pt-[3.75rem] tablet:pb-11"
@@ -32,7 +36,9 @@ const { titles } = PageMeta;
     class="flex gap-x-[3.125rem] font-[Manrope] mb-[3.75rem] tablet:flex-col tablet:items-center tablet:text-center tablet:mb-0"
   >
     <div class="common-up-move flex-1">
-      <div class="w-[7.5rem] mobile:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4">
+      <div
+        class="w-[7.5rem] mobile:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4"
+      >
         <img class="w-full" src={titleIcon_01.src} alt="logo" />
       </div>
       <h2 class="text-h5 tablet:text-s3">Build your</h2>
@@ -45,7 +51,9 @@ const { titles } = PageMeta;
       </div>
     </div>
     <div class="common-up-move flex-1">
-      <div class="w-[7.5rem] mobile:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4">
+      <div
+        class="w-[7.5rem] mobile:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4"
+      >
         <img class="w-full" src={titleIcon_02.src} alt="logo" />
       </div>
       <h2 class="text-h5 tablet:text-s3">Train your</h2>
@@ -59,7 +67,9 @@ const { titles } = PageMeta;
       </div>
     </div>
     <div class="common-up-move flex-1">
-      <div class="w-[7.5rem] mobile:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4">
+      <div
+        class="w-[7.5rem] mobile:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4"
+      >
         <img class="w-full" src={titleIcon_03.src} alt="logo" />
       </div>
       <h2 class="text-h5 tablet:text-s3">Capitalize your</h2>

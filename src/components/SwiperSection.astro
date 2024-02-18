@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import imageList from "./partners";
 const images = imageList;
 ---
-<div class="h-[7.5rem] tablet:h-[4.25rem] slider-container overflow-x-hidden">
+<div class="h-[7.5rem] tablet:h-[4.25rem] slider-container absolute">
   <div class="flex sliders gap-10">
     {
       images.map(item=>(

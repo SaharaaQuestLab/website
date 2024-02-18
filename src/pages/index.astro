@@ -14,14 +14,16 @@ const { titles } = PageMeta;
     <Icon class="w-5 h-5" name="arrowRightUp" />
   </div>
 <Layout title="saharaa.ai">
+  <slot slot="base-layout">
+    <div id="sectionHero" class="w-screen h-screen first-screen-bottom-mask-wrap"></div>
+    <div
+      id="sectionTitle"
+      class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
+    >
+      <TitleComponent titles={titles} />
+    </div>
 
-  <div id="sectionHero" class="w-screen h-screen first-screen-bottom-mask-wrap"></div>
-  <div
-    id="sectionTitle"
-    class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
-  >
-    <TitleComponent titles={titles} />
-  </div>
+  </slot>
 
   <div id="sectionRing" class="w-full bg-[#121315]">
     <Ring3DSection />
@@ -62,7 +64,7 @@ const { titles } = PageMeta;
       Human-Al collaboration.
     </div>
   </div>
-  <SwiperSection />
+  <div class="h-[7.5rem] tablet:h-[4.25rem] relative"><SwiperSection /></div>
   <div
     class="flex flex-col items-center font-[Manrope] mt-[20.25rem] tablet:mt-[7.5rem] mb-[4.125rem] tablet:mb-11"
   >
