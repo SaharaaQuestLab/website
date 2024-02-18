@@ -7,17 +7,15 @@ import PageMeta from "@/data/index";
 import { Icon } from "astro-icon/components";
 const { titles } = PageMeta;
 ---
-
-<Layout title="saharaa.ai">
-  <div
+<div
     class="items-center py-2.5 hidden tablet:flex bg-light-100 relative z-50 justify-center text-dark-400"
   >
     Sahara raises $6M in seed round led by Polychain Capital
     <Icon class="w-5 h-5" name="arrowRightUp" />
   </div>
+<Layout title="saharaa.ai">
 
   <div id="sectionHero" class="w-screen h-screen first-screen-bottom-mask-wrap"></div>
-
   <div
     id="sectionTitle"
     class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
@@ -30,7 +28,7 @@ const { titles } = PageMeta;
   </div>
 
   <div
-    class="flex items-center tablet:flex-col justify-between mx-40 tablet:text-h3 tablet:mx-7 pt-[2.25rem] tablet:pt-7 mb-[15.25rem] tablet:mb-[7.5rem] border-t border-t-dark-200 border-opacity-40"
+    class="flex items-center tablet:flex-col justify-between  tablet:text-h3 pt-[2.25rem] tablet:pt-7 mb-[15.25rem] tablet:mb-[7.5rem] border-t border-t-dark-200 border-opacity-40"
   >
     <div
       class="font-[Manrope] text-[1.563rem] tablet:pb-5 tablet:text-[1.125rem] tablet:leading-[1.75rem]"
@@ -54,9 +52,9 @@ const { titles } = PageMeta;
   </div>
   <div class="text-center font-[Manrope] mx-auto mb-[7.5rem] tablet:mb-7">
     <div class="h-7 mb-10 tablet:mb-4 flex justify-center">
-      <Icon class="w-7 h-7" name="brandLogo" />
+      <Icon class="w-7 h-7 tablet:w-5 tablet:h-5" name="brandLogo" />
     </div>
-    <h1 class="text-h2 tablet:text-h5 text-light-200">An ecosystem</h1>
+    <h1 class="text-h2 tablet:text-h5 text-light-200">An Ecosystem</h1>
     <h1 class="text-h2 tablet:text-h5">for collaborative</h1>
     <h1 class="text-h2 tablet:text-h5">intelligence</h1>
     <div class="w-[28.75rem] mx-auto mt-10 tablet:mt-4">
@@ -75,7 +73,7 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    class="flex gap-12 px-40 tablet:px-7 py-[3.125rem] tablet:py-0 mb-[11.875rem] tablet:mb-[7.5rem] font-[Manrope]"
+    class="flex gap-12 px-40  py-[3.125rem] tablet:py-0 mb-[11.875rem] tablet:mb-[7.5rem] font-[Manrope]"
   >
     <div class="common-up-move flex tablet:flex-col tablet:items-center">
       <div class="w-5 mr-7 tablet:mr-0 tablet:mb-3">
@@ -132,7 +130,7 @@ const { titles } = PageMeta;
     </h1>
   </div>
 </Layout>
-<div
+<!-- <div
   class="border-t border-t-dark-200 fixed bg-dark-400 bottom-0 p-6 w-full hidden tablet:block"
 >
   <div class="font-[Manrope] text-s3 leading-6">Our website uses cookies</div>
@@ -151,7 +149,7 @@ const { titles } = PageMeta;
       Accept cookies<Icon class="w-5 h-5" name="arrowRightUp" />
     </div>
   </div>
-</div>
+</div> -->
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
