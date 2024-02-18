@@ -104,7 +104,7 @@ export const DesktopOptions: HeroOptions = {
       centerHeight: 4.5,
       sampleBase4Layer1: {
         one: 3.0,
-        two: 3.0
+        two: 8.0
       }
     }
   },
@@ -123,7 +123,7 @@ export const DesktopOptions: HeroOptions = {
   sphere1: {
     radius: {
       one: 0.25,
-      two: 0.25
+      two: 0.15
     },
     xCount: 24,
     yCount: 24,
@@ -135,7 +135,7 @@ export const DesktopOptions: HeroOptions = {
       },
       two: {
         x: -0.7,
-        y: 0.2,
+        y: 0.1,
         z: -1.4
       }
     },
@@ -147,8 +147,8 @@ export const DesktopOptions: HeroOptions = {
           z: 4.0
         },
         two: {
-          x: 0.9,
-          y: 0.65,
+          x: 0.5,
+          y: 0.5,
           z: 4.0
         }
       }
@@ -157,7 +157,7 @@ export const DesktopOptions: HeroOptions = {
   sphere2: {
     radius: {
       one: 0.15,
-      two: 0.15
+      two: 0.2
     },
     xCount: 24,
     yCount: 24,
@@ -182,7 +182,7 @@ export const DesktopOptions: HeroOptions = {
         },
         two: {
           x: -0.6,
-          y: -0.45,
+          y: 0.6,
           z: 4.0
         }
       }
@@ -211,7 +211,7 @@ export const MobileOptions: HeroOptions = {
       centerHeight: 6.0,
       sampleBase4Layer1: {
         one: 3.0,
-        two: 3.0
+        two: 8.0
       }
     }
   },
@@ -230,7 +230,7 @@ export const MobileOptions: HeroOptions = {
   sphere1: {
     radius: {
       one: 0.35,
-      two: 0.35
+      two: 0.2
     },
     xCount: 32,
     yCount: 32,
@@ -265,7 +265,7 @@ export const MobileOptions: HeroOptions = {
   sphere2: {
     radius: {
       one: 0.2,
-      two: 0.2
+      two: 0.3
     },
     xCount: 24,
     yCount: 24,
@@ -276,8 +276,8 @@ export const MobileOptions: HeroOptions = {
         z: 0.2
       },
       two: {
-        x: 0.5,
-        y: -0.4,
+        x: 0.65,
+        y: -0.45,
         z: 0.2
       }
     },
@@ -290,7 +290,7 @@ export const MobileOptions: HeroOptions = {
         },
         two: {
           x: -0.4,
-          y: -0.45,
+          y: 0.5,
           z: 4.0
         }
       }
