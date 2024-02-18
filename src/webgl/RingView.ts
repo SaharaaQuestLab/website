@@ -253,6 +253,8 @@ export default class RingView {
 
       ring5.update(0, 0.075)
         .rotateByXYZ(ring5.cacheRotation.x * (1 - progress) + Math.PI / 2 * progress, ring5.cacheRotation.y * (1 - progress), ring5.cacheRotation.z * (-1 + progress));
+
+      this._camera.rotation.z = Math.PI / 16 * progress;
     }
     const ticker = { progress: 0 };
     gsap.to(ticker, {
