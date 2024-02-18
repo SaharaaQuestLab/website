@@ -28,6 +28,7 @@ export default class RingView {
   // private _controls?: SpatialControls;
   // private _isMouseMove?: boolean = false;s
   private _rings: Array<CircleRing> = [];
+  private _container: THREE.Object3D = new THREE.Object3D();
 
   constructor(el: Window | HTMLElement) {
     this._el = el;
@@ -89,6 +90,8 @@ export default class RingView {
   private createRings() {
     this._rings = Array(2).fill(undefined).map(() => new CircleRing({ radius: 0.35, tube: 0.1 }));
     this._rings.push(...Array(3).fill(undefined).map(() => new CircleRing({ radius: 0, tube: 0 })));
+    this._container.add(...this._rings.map(r => r.mesh));
+    this._scene.add(this._container);
   }
 
   // private createControls() {
@@ -118,7 +121,7 @@ export default class RingView {
     ring.update(ringRadius, 0.075).moveTo(0, dy, 0);
   }
 
-  public useSetup() {
+  public useSetup(init: boolean = true) {
 
     // 添加一个定向光源
     // const directionalLight = new THREE.DirectionalLight(0xffffff, 5);
@@ -133,7 +136,7 @@ export default class RingView {
     this._camera.position.set(-2, 2, 3);
     this._camera.lookAt(0, 0, 0);
 
-    this.setSceneOne();
+    if (init) this.setSceneOne();
 
     this._composer = new OutlineEffect(this._render, { defaultColor: [8 / 16, 8 / 16, 8 / 16] });
 
@@ -211,6 +214,18 @@ export default class RingView {
     });
   }
 
+  public setSceneThreeDirect() {
+    if (this._stage === 3) return;
+    this._stage = 3;
+    const [ring1, ring2, ring3, ring4, ring5] = this._rings;
+    ring1.update(0, 0.075).moveTo(0, -0.5, 0).rotateByXYZ(Math.PI / 2, 0, 0);
+    ring2.update(0.35, 0.075).moveTo(0, -0.25, 0).rotateByXYZ(Math.PI / 2, 0, 0);
+    ring3.update(0.5, 0.075).moveTo(0, 0, 0).rotateByXYZ(Math.PI / 2, 0, 0);
+    ring4.update(0.35, 0.075).moveTo(0, 0.25, 0).rotateByXYZ(Math.PI / 2, 0, 0);
+    ring5.update(0, 0.075).moveTo(0, 0.5, 0).rotateByXYZ(Math.PI / 2, 0, 0);
+    this._updateCallback = (ring) => { this.upCircleRing(ring, 0.001) };
+  }
+
   private transToSceneThree() {
     const update = (progress: number) => {
       const [ring1, ring2, ring3, ring4, ring5] = this._rings;
@@ -226,10 +241,10 @@ export default class RingView {
         .rotateByXYZ(ring3.cacheRotation.x * (1 - progress) + Math.PI / 2 * progress, ring3.cacheRotation.y * (1 - progress), ring3.cacheRotation.z * (-1 + progress));
 
       ring4.update(0.35 * progress, 0.075)
-        .rotateByXYZ(ring4.cacheRotation.x * (1 - progress) + Math.PI / 2 * progress, ring4.cacheRotation.y * (1 - progress), ring4.cacheRotation.z * (-1 + progress))
+        .rotateByXYZ(ring4.cacheRotation.x * (1 - progress) + Math.PI / 2 * progress, ring4.cacheRotation.y * (1 - progress), ring4.cacheRotation.z * (-1 + progress));
 
       ring5.update(0, 0.075)
-        .rotateByXYZ(ring5.cacheRotation.x * (1 - progress) + Math.PI / 2 * progress, ring5.cacheRotation.y * (1 - progress), ring5.cacheRotation.z * (-1 + progress))
+        .rotateByXYZ(ring5.cacheRotation.x * (1 - progress) + Math.PI / 2 * progress, ring5.cacheRotation.y * (1 - progress), ring5.cacheRotation.z * (-1 + progress));
     }
     const ticker = { progress: 0 };
     gsap.to(ticker, {

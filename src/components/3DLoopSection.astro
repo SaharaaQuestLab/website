@@ -1,0 +1,39 @@
+---
+
+---
+
+<div class="flex w-[720px] justify-center items-center">
+  <div id="ring-3d" class="w-[720px] h-[720px]"></div>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import RingView from "@/webgl/RingView";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const viewEl = document.getElementById("ring-3d");
+  const viewer = new RingView(viewEl || document.createElement("div"));
+  viewer.useSetup(false);
+  viewer.setSceneThreeDirect();
+
+  ScrollTrigger.create({
+    trigger: "#ring-3d",
+    scrub: true,
+    start: "top bottom",
+    end: "bottom top",
+    onEnter: () => {
+      viewer.play();
+    },
+    onLeave: () => {
+      viewer.stop();
+    },
+    onEnterBack: () => {
+      viewer.play();
+    },
+    onLeaveBack: () => {
+      viewer.stop();
+    },
+  });
+</script>

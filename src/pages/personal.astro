@@ -1,6 +1,6 @@
 ---
 import TitleComponent from "@/components/TitleComponent.astro";
-import Ring3DSection from "@/components/3DRingSection.astro";
+import RingLoop from "@/components/3DLoopSection.astro";
 import TextTyping from "@/components/TextTyping.astro";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/personal";
@@ -12,7 +12,8 @@ const { titles } = PageMeta;
 ---
 
 <Layout title="saharaa.ai" active="personal">
-  <div id="sectionHero" class="w-screen h-screen first-screen-bottom-mask-wrap"></div>
+  <div id="sectionHero" class="w-screen h-screen first-screen-bottom-mask-wrap">
+  </div>
 
   <div
     id="sectionTitle"
@@ -28,7 +29,7 @@ const { titles } = PageMeta;
     Automate yourself
   </h1>
   <div
-    class=" flex gap-x-[3.125rem] font-[Manrope] mb-[3.75rem]  tablet:flex-col tablet:items-center tablet:text-center tablet:mb-0"
+    class="flex gap-x-[3.125rem] font-[Manrope] mb-[3.75rem] tablet:flex-col tablet:items-center tablet:text-center tablet:mb-0"
   >
     <div class="common-up-move flex-1">
       <div class="w-[7.5rem] mobile:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4">
@@ -78,7 +79,7 @@ const { titles } = PageMeta;
     Join waitlist
     <Icon class="w-5 h-5" name="arrowRightUp" />
   </div>
-  <div class="flex  pt-[9.125rem] tablet:mt-[3.75rem] tablet:flex-col">
+  <div class="flex pt-[9.125rem] tablet:mt-[3.75rem] tablet:flex-col">
     <div
       class="py-[9.125rem] w-[40rem] font-[Manrope] tablet:py-[3.75rem] tablet:w-full tablet:text-center"
     >
@@ -97,7 +98,8 @@ const { titles } = PageMeta;
         based on your proprietary knowledge. It can interact with the
         environment and provide personalized adaptability and intelligence.
       </div>
-      <div class="mt-[4.5rem] mb-7 border-t border-t-dark-100 tablet:my-4"></div>
+      <div class="mt-[4.5rem] mb-7 border-t border-t-dark-100 tablet:my-4">
+      </div>
       <div class="tablet:text-base">
         Leveraging proprietary blockchain and AI technology, Sahara KA is
         trained and served in a privacy-preserving, trustless, and decentralized
@@ -110,7 +112,9 @@ const { titles } = PageMeta;
         <Icon class="w-5 h-5" name="arrowRightUp" />
       </div>
     </div>
-    <div class="flex-1 bg-white"></div>
+    <div class="flex-1 bg-white">
+      <RingLoop />
+    </div>
   </div>
   <!-- <AutomateSection /> -->
 </Layout>

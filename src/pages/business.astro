@@ -9,12 +9,14 @@ import titleIcon_02 from "@/assets/icons/titleIcon_02.jpg";
 import titleIcon_03 from "@/assets/icons/titleIcon_03.jpg";
 import graph_01 from "@/assets/icons/graph_01.png";
 import graph_02 from "@/assets/icons/graph_02.png";
+import RingLoop from "@/components/3DLoopSection.astro";
 
 const { titles } = PageMeta;
 ---
 
 <Layout title="saharaa.ai" active="business">
-  <div id="sectionHero" class="w-screen h-screen first-screen-bottom-mask-wrap"></div>
+  <div id="sectionHero" class="w-screen h-screen first-screen-bottom-mask-wrap">
+  </div>
 
   <div
     id="sectionTitle"
@@ -30,7 +32,7 @@ const { titles } = PageMeta;
     Automate Your business
   </h1>
   <div
-    class=" flex gap-x-[3.125rem] font-[Manrope] mb-[3.75rem]  tablet:flex-col tablet:items-center tablet:text-center tablet:mb-0"
+    class="flex gap-x-[3.125rem] font-[Manrope] mb-[3.75rem] tablet:flex-col tablet:items-center tablet:text-center tablet:mb-0"
   >
     <div class="common-up-move flex-1">
       <div class="w-[7.5rem] mb-[3.75rem] tablet:mx-auto tablet:mb-4">
@@ -81,7 +83,7 @@ const { titles } = PageMeta;
     <Icon class="w-5 h-5" name="arrowRightUp" />
   </div>
   <div
-    class="flex  mt-40 mb-[3.75rem] tablet:mt-[3.75rem] tablet:flex-col tablet:mb-0"
+    class="flex mt-40 mb-[3.75rem] tablet:mt-[3.75rem] tablet:flex-col tablet:mb-0"
   >
     <div
       class="py-[7.25rem] w-[40rem] font-[Manrope] tablet:py-[3.75rem] tablet:w-full tablet:text-center"
@@ -105,9 +107,11 @@ const { titles } = PageMeta;
         offer reliable decision-making tailored to specific needs.
       </div>
     </div>
-    <div class="flex-1 bg-white"></div>
+    <div class="flex-1 bg-white">
+      <RingLoop />
+    </div>
   </div>
-  <div class="grid grid-cols-4 font-[Manrope] tablet:grid-cols-2  ">
+  <div class="grid grid-cols-4 font-[Manrope] tablet:grid-cols-2">
     <div class="tablet:pl-[6.25rem] pb-5 tablet:pb-[2.375rem]">
       <Icon class="w-8 h-8" name="lightning" />
       <div class="mt-4 text-s3">Boost conversion rates</div>
@@ -146,9 +150,11 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    class="grid grid-cols-12 tablet:flex tablet:flex-col gap-x-7  py-[3.75rem] font-[Manrope] border-b mb-[7.5rem] border-b-dark-100 tablet:border-none"
+    class="grid grid-cols-12 tablet:flex tablet:flex-col gap-x-7 py-[3.75rem] font-[Manrope] border-b mb-[7.5rem] border-b-dark-100 tablet:border-none"
   >
-    <div class="col-span-4 text-h2 flex flex-col justify-center tablet:items-center">
+    <div
+      class="col-span-4 text-h2 flex flex-col justify-center tablet:items-center"
+    >
       <div class="w-[20rem]">
         <TextTyping text="Sahara Data." />
       </div>
@@ -167,13 +173,15 @@ const { titles } = PageMeta;
         challenging training data demands.
       </div>
       <div>
-        The platform, <span class="text-light-100">decentralized or on-premise,</span> offers an intelligent
-        AI-centered, human-in-the-loop, and privacy-preserving approach to
-        generate <span class="text-light-100">High Value</span> datasets for your AI.
+        The platform, <span class="text-light-100"
+          >decentralized or on-premise,</span
+        > offers an intelligent AI-centered, human-in-the-loop, and privacy-preserving
+        approach to generate <span class="text-light-100">High Value</span> datasets
+        for your AI.
       </div>
     </div>
   </div>
-  <div class="font-[Manrope]  mb-[7.5rem] ">
+  <div class="font-[Manrope] mb-[7.5rem]">
     <div class="text-light-200 text-h5 leading-[3rem] mb-[3.75rem]">
       Sahara Data by Uses
     </div>
@@ -289,9 +297,7 @@ const { titles } = PageMeta;
       </div>
     </div>
   </div>
-  <div
-    class="font-[Manrope]  mb-[16.25rem]  tablet:mb-[3.75rem]"
-  >
+  <div class="font-[Manrope] mb-[16.25rem] tablet:mb-[3.75rem]">
     <div
       class="text-light-200 text-h5 leading-[3rem] mb-[3.75rem] tablet:text-s3 tablet:mb-7"
     >
@@ -321,7 +327,7 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    class="grid grid-cols-12   tablet:flex flex-col items-center py-[3.75rem] font-[Manrope] mb-[4.125rem] tablet:mb-0"
+    class="grid grid-cols-12 tablet:flex flex-col items-center py-[3.75rem] font-[Manrope] mb-[4.125rem] tablet:mb-0"
   >
     <div class="col-span-4 text-h2">
       <div class="tablet:text-center">Why</div>
@@ -343,11 +349,11 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    class="mt-[3.75rem]   border border-light-300 rounded-[3.125rem] font-[Manrope]"
+    class="mt-[3.75rem] border border-light-300 rounded-[3.125rem] font-[Manrope]"
   >
     <div class="flex flex-nowrap overflow-hidden">
       <div
-        class="grid grid-cols-2 col-span-1 gap-x-32 tablet:gap-x-8 min-w-full p-[3.75rem]  tablet:pt-7 pb-0"
+        class="grid grid-cols-2 col-span-1 gap-x-32 tablet:gap-x-8 min-w-full p-[3.75rem] tablet:pt-7 pb-0"
         id="content1"
       >
         <div class="col-span-1 flex items-center">
@@ -413,7 +419,7 @@ const { titles } = PageMeta;
           <div class="flex items-center text-base text-light-200">
             <Icon class="w-7 min-w-7 h-7 mr-7" name="brandLogo" />
             Sahara Data incorporates human input with precision until optimal quality
-            is achieved. This way, you won’t spend extra time or money while still
+            is achieved. This way, you won't spend extra time or money while still
             obtaining the best quality.
           </div>
         </div>
@@ -433,7 +439,7 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    class="mb-[7.5rem] mt-[3.75rem]  py-[3.75rem] font-[Manrope] flex flex-col items-center"
+    class="mb-[7.5rem] mt-[3.75rem] py-[3.75rem] font-[Manrope] flex flex-col items-center"
   >
     <div
       class="bg-dark-200 rounded-[1.25rem] w-[22.5rem] px-5 py-2.5 text-h5 tablet:text-s3 flex justify-center items-center"
