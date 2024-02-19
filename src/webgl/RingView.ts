@@ -231,6 +231,7 @@ export default class RingView {
     ring3.update(0.5, 0.075).moveTo(0, 0, 0).rotateByXYZ(Math.PI / 2, 0, 0);
     ring4.update(0.35, 0.075).moveTo(0, 0.25, 0).rotateByXYZ(Math.PI / 2, 0, 0);
     ring5.update(0, 0.075).moveTo(0, 0.5, 0).rotateByXYZ(Math.PI / 2, 0, 0);
+    this._camera.rotation.z = Math.PI / 16;
     this._updateCallback = (ring) => { this.upCircleRing(ring, 0.001) };
   }
 
