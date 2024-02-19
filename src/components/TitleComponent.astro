@@ -3,6 +3,7 @@ import { Icon } from "astro-icon/components";
 import TextCarousel from "./TextCarousel.astro";
 
 interface Props {
+  isMin?: boolean
   titles: {
     texts: string[];
     subDescriptions?: string[];
@@ -13,6 +14,7 @@ interface Props {
   };
 }
 const { texts, description, button, subDescriptions } = Astro.props.titles;
+const {isMin} = Astro.props;
 ---
 
 <div
@@ -27,7 +29,7 @@ const { texts, description, button, subDescriptions } = Astro.props.titles;
   }
 
   <div
-    class="text-light-200 text-s2 mobile:text-sm mobile:w-[19.75rem] w-[28.75rem] pointer-events-none text-center mt-10 tablet:mt-7 font-[Manrope]"
+    class:list={[{"!text-base !w-[28.75rem]": isMin},"text-light-100 text-s2 mobile:text-sm mobile:w-[19.75rem] w-[52rem] pointer-events-none text-center mt-10 tablet:mt-7 font-[Manrope]"]}
   >
     {description}
   </div>
