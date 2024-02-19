@@ -6,11 +6,6 @@ import { CircleRing } from './geometry/CircleRing';
 import { OutlineEffect } from 'three/examples/jsm/Addons.js';
 import { gsap } from 'gsap';
 
-// import { EffectComposer, OutlineEffect, EffectPass, RenderPass, BlendFunction } from 'postprocessing';
-
-export interface HeroViewOptions {
-  platform?: 'mobile' | 'desktop'
-}
 
 export default class RingView {
   private _el: Window | HTMLElement;
