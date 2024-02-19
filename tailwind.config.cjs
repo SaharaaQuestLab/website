@@ -5,8 +5,8 @@ module.exports = {
 	theme: {
 		screens: {
 			'desktop': { max: '1728px' },
-			'tablet': { max: '768px' },
-			'mobile': { max: '375px' },
+			'tablet': { max: '1280px' },
+			'mobile': { max: '768px' },
 		},
 		fontSize: {
 			h1: ['110px', {
