@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import rings_01 from "@/assets/images/rings_01.jpg";
+import rings_02 from "@/assets/images/rings_02.jpg";
+import rings_03 from "@/assets/images/rings_03.jpg";
+---
+
+<div  class="w-full flex-col items-center relative hidden mobile:flex tablet:flex">
+
+  <div
+    class="  flex-shrink-0 flex-grow-0 w-[46.75rem] font-[Manrope]"
+  >
+    <ul class="w-full text-center tablet:mb-11">
+      <li class="flex flex-col items-center">
+        <div class="w-60 h-60"><Image src={rings_01} alt=""/></div>
+        <h1 class="text-sm mb-7">#1</h1>
+        <h1 class="text-h2 mb-1 tablet:text-h5">
+          <div class="mb-[0.875rem]">Own your</div>
+          <div>knowledge</div>
+        </h1>
+        <div class="mt-7 pr-5 text-base tablet:text-sm tablet:mt-3 tablet:w-[30rem] mobile:w-[22rem]">
+          Use blockchain infrastructure that's trustless, permissionless, and
+          privacy-preserving so your information stays under your control.
+        </div>
+      </li>
+      <li class="h-[60px]"></li>
+      <li class="flex flex-col items-center">
+        <div class="w-60 h-60"><Image src={rings_02} alt=""/></div>
+        <h1 class="text-sm mb-7">#2</h1>
+        <h1 class="text-h2 mb-1 tablet:text-h5">
+          <div class="mb-[0.875rem]">Scale your</div>
+          <div>knowledge</div>
+        </h1>
+        <div class="mt-7 pr-5 text-base tablet:text-sm tablet:mt-3 tablet:w-[30rem] mobile:w-[22rem]">
+          Create autonomous Al agents that expand the impact of your knowledge
+          base, skills, and expertise and are customized to meet your needs.
+        </div>
+      </li>
+      <li class="h-[60px]"></li>
+      <li class="flex flex-col items-center">
+        <div class="w-60 h-60"><Image src={rings_03} alt=""/></div>
+        <h1 class="text-sm mb-7">#3</h1>
+        <h1 class="text-h2 mb-1 tablet:text-h5">
+          <div class="mb-[0.875rem]">Monetize your</div>
+          <div>knowledge</div>
+        </h1>
+        <div class="mt-7 pr-5 text-base tablet:text-sm tablet:mt-3 tablet:w-[30rem] mobile:w-[22rem]">
+          Join the decentralized ecosystem of global knowledge capital to
+          leverage your data for novel income opportunities.
+        </div>
+      </li>
+    </ul>
+  </div>
+  <slot>
+  </slot>
+</div>

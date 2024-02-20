@@ -1,6 +1,7 @@
 ---
 import TitleComponent from "@/components/TitleComponent.astro";
 import Ring3DSection from "@/components/3DRingSection.astro";
+import RingSection from "@/components/RingSection.astro";
 import SwiperSection from "@/components/SwiperSection.astro";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/index";
@@ -56,6 +57,37 @@ const { titles } = PageMeta;
         </div>
       </div>
     </Ring3DSection>
+    <RingSection>
+      <div
+        class="flex w-full items-center tablet:flex-col justify-between tablet:text-h3 pt-[2.25rem] tablet:pt-7 tablet:mt-[3.75rem] border-t border-t-dark-200 border-opacity-40"
+      >
+        <div class="font-[Manrope] text-s3 tablet:pb-5 tablet:text-base">
+          Learn more about how you can use Sahara:
+        </div>
+        <div class="flex w-[40rem] mobile:w-full">
+          <div
+            class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
+          >
+            For Personal
+            <Icon class="w-5 h-5" name="arrowRightUp" />
+          </div>
+          <div class="flex w-[40rem] mobile:w-full">
+            <div
+              class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
+            >
+              For Personal
+              <Icon class="w-5 h-5" name="arrowRightUp" />
+            </div>
+            <div
+              class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-5 mobile:ml-3 flex items-center justify-center border border-light-100"
+            >
+              For Business
+              <Icon class="w-5 h-5" name="arrowRightUp" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </RingSection>
   </div>
 
   <div class="text-center font-[Manrope] mx-auto mb-[7.5rem] tablet:mb-7">
