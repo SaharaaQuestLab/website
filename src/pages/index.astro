@@ -29,31 +29,33 @@ const { titles } = PageMeta;
     </div>
   </slot>
 
-  <div id="sectionRing" class="w-full bg-[#121315] mt-20">
-    <Ring3DSection />
+  <div id="sectionRing" class="w-full bg-[#121315] mt-20 pb-[13.75rem] relative mb-[15.25rem] tablet:mb-[7.5rem]">
+    <Ring3DSection>
+    <div
+          class="flex w-full items-center tablet:flex-col justify-between tablet:text-h3 pt-[2.25rem] tablet:pt-7 absolute bottom-[-13.75rem] border-t border-t-dark-200 border-opacity-40"
+    >
+      <div class="font-[Manrope] text-s3 tablet:pb-5 tablet:text-base">
+        Learn more about how you can use Sahara:
+      </div>
+      <div class="flex w-[40rem] mobile:w-full">
+        <div
+          class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
+        >
+          For Personal
+          <Icon class="w-5 h-5" name="arrowRightUp" />
+        </div>
+        <div
+          class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-5 mobile:ml-3 flex items-center justify-center border border-light-100"
+        >
+          For Business
+          <Icon class="w-5 h-5" name="arrowRightUp" />
+        </div>
+      </div>
+    </div>
+    </Ring3DSection>
   </div>
 
-  <div
-    class="flex items-center tablet:flex-col justify-between tablet:text-h3 pt-[2.25rem] tablet:pt-7 mb-[15.25rem] tablet:mb-[7.5rem] border-t border-t-dark-200 border-opacity-40"
-  >
-    <div class="font-[Manrope] text-s3 tablet:pb-5 tablet:text-base">
-      Learn more about how you can use Sahara:
-    </div>
-    <div class="flex w-[40rem] mobile:w-full">
-      <div
-        class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
-      >
-        For Personal
-        <Icon class="w-5 h-5" name="arrowRightUp" />
-      </div>
-      <div
-        class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-5 mobile:ml-3 flex items-center justify-center border border-light-100"
-      >
-        For Business
-        <Icon class="w-5 h-5" name="arrowRightUp" />
-      </div>
-    </div>
-  </div>
+
   <div class="text-center font-[Manrope] mx-auto mb-[7.5rem] tablet:mb-7">
     <div class="h-7 mb-10 tablet:mb-4 flex justify-center">
       <Icon class="w-7 h-7 tablet:w-5 tablet:h-5" name="brandLogo" />

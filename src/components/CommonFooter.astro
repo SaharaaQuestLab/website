@@ -3,12 +3,13 @@ import { Icon } from "astro-icon/components";
 import PageMeta from "@/data/footer";
 const { authorization, privacyPolicy, email, subscribe } = PageMeta;
 interface Props {
-  border?: true;
+  border?: boolean | true;
+  bgNone?: boolean
 }
-const { border } = Astro.props;
+const { border, bgNone } = Astro.props;
 ---
 
-<div class="w-full footer">
+<div class:list={['w-full footer', {'!bg-none': bgNone}]}>
   <div class=" px-40 tablet:px-6 mobile:px-3 max-w-[1728px] mx-auto">
     <slot name="footer"></slot>
     <div class:list={["flex tablet:flex-col tablet:items-center text-base text-light-200 mobile:text-xs justify-between my-[3.75rem] tablet:my-7 pt-[3.75rem] tablet:pt-5 border-t-dark-200", {'border-t': border}]}>
