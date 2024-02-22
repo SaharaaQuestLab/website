@@ -1,0 +1,92 @@
+{
+  "success": true,
+  "moreDataAvailable": true,
+  "nextCursor": "G8",
+  "syncToken": "jYnEBmjzR",
+  "results": [
+    {
+      "id": "e9ed20fd-d45f-4aad-8a00-a19bfba0083e",
+      "title": "string",
+      "confidential": true,
+      "status": "Draft",
+      "employmentType": "string",
+      "locationId": "e9ed20fd-d45f-4aad-8a00-a19bfba0083e",
+      "departmentId": "e9ed20fd-d45f-4aad-8a00-a19bfba0083e",
+      "defaultInterviewPlanId": "e9ed20fd-d45f-4aad-8a00-a19bfba0083e",
+      "interviewPlanIds": [
+        "e9ed20fd-d45f-4aad-8a00-a19bfba0083e"
+      ],
+      "customFields": [
+        {
+          "id": "650e5f74-32db-4a0a-b61b-b9afece05023",
+          "title": "Expected start date",
+          "value": "2022-11-10T19:47:56.795Z"
+        }
+      ],
+      "jobPostingIds": [
+        "e9ed20fd-d45f-4aad-8a00-a19bfba0083e"
+      ],
+      "customRequisitionId": "e9ed20fd-d45f-4aad-8a00-a19bfba0083e",
+      "hiringTeam": [
+        {
+          "email": "test@ashbyhq.com",
+          "firstName": "Joey",
+          "lastName": "Joe",
+          "role": "Hiring Manager",
+          "userId": "e9ed20fd-d45f-4aad-8a00-a19bfba0083e"
+        }
+      ],
+      "updatedAt": "2022-08-12T20:29:56.964Z",
+      "location": {
+        "id": "e9ed20fd-d45f-4aad-8a00-a19bfba0083e",
+        "name": "Bay Area Office",
+        "isArchived": false,
+        "address": {
+          "postalAddress": {
+            "addressCountry": "United States",
+            "addressRegion": "California",
+            "addressLocality": "San Francisco"
+          }
+        },
+        "isRemote": false
+      },
+      "openings": [
+        {
+          "id": "e9ed20fd-d45f-4aad-8a00-a19bfba0083e",
+          "openedAt": "2022-08-12T20:29:56.964Z",
+          "closedAt": "2022-08-12T20:29:56.964Z",
+          "isArchived": false,
+          "archivedAt": "2022-08-12T20:29:56.964Z",
+          "openingState": "Approved",
+          "latestVersion": {
+            "id": "e9ed20fd-d45f-4aad-8a00-a19bfba0083e",
+            "identifier": "string",
+            "description": "string",
+            "authorId": "e9ed20fd-d45f-4aad-8a00-a19bfba0083e",
+            "createdAt": "2022-08-12T20:29:56.964Z",
+            "teamId": "e9ed20fd-d45f-4aad-8a00-a19bfba0083e",
+            "jobIds": [
+              "e9ed20fd-d45f-4aad-8a00-a19bfba0083e"
+            ],
+            "targetHireDate": "string",
+            "targetStartDate": "string",
+            "isBackfill": true,
+            "employmentType": "FullTime",
+            "locationIds": [
+              "e9ed20fd-d45f-4aad-8a00-a19bfba0083e"
+            ],
+            "hiringTeam": [
+              {
+                "email": "test@ashbyhq.com",
+                "firstName": "Joey",
+                "lastName": "Joe",
+                "role": "Hiring Manager",
+                "userId": "e9ed20fd-d45f-4aad-8a00-a19bfba0083e"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
