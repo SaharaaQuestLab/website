@@ -3,7 +3,8 @@ import { Icon } from "astro-icon/components";
 import TextCarousel from "./TextCarousel.astro";
 
 interface Props {
-  isMin?: boolean
+  className?: string
+  titleClassName?: string
   titles: {
     texts: string[];
     subDescriptions?: string[];
@@ -14,7 +15,7 @@ interface Props {
   };
 }
 const { texts, description, button, subDescriptions } = Astro.props.titles;
-const {isMin} = Astro.props;
+const {className, titleClassName} = Astro.props;
 ---
 
 <div
@@ -22,14 +23,14 @@ const {isMin} = Astro.props;
 >
   {
     texts.map((item) => (
-      <h1 class="text-h2 tablet:text-h3 mobile:text-h4 mobile:whitespace-normal mobile:text-center whitespace-nowrap font-[Manrope] pointer-events-none">
+      <h1 class:list={["text-h2 tablet:text-m1 mobile:text-m2 mobile:whitespace-normal mobile:text-center whitespace-nowrap font-[Manrope] pointer-events-none", titleClassName]}>
         {item}
       </h1>
     ))
   }
 
   <div
-    class:list={[{"!text-base !w-[28.75rem]": isMin},"text-light-200 text-s2 mobile:text-sm mobile:w-[19.75rem] w-[52rem] pointer-events-none text-center mt-10 tablet:mt-7 font-[Manrope]"]}
+    class:list={[ className ,"text-light-200 text-s2 tablet:text-sm tablet:!w-[30rem] mobile:!w-[22rem] w-[52rem] pointer-events-none text-center mt-10 tablet:mt-7 font-[Manrope]"]}
   >
     {description}
   </div>
@@ -38,7 +39,7 @@ const {isMin} = Astro.props;
   <!-- link button -->
   {
     button && (
-      <div class="border w-max whitespace-nowrap mobile:w-[9.125rem] font-[IBMPlexMono-Medium] mobile:text-xs border-light-100 text-base cursor-pointer py-2.5 px-4 flex items-center rounded-xl mt-10 tablet:mt-7 text-[#FFFFFF] pointer-events-auto">{button.text}<Icon class="min-w-5 h-5" name="arrowRightUp" />
+      <div class="border w-max whitespace-nowrap tablet:text-sm tablet:h-11 mobile:w-[9.125rem] font-[IBMPlexMono-Medium] mobile:text-xs border-light-100 text-base cursor-pointer py-2.5 px-4 flex items-center rounded-xl mt-10 tablet:mt-7 text-[#FFFFFF] pointer-events-auto">{button.text}<Icon class="min-w-5 h-5" name="arrowRightUp" />
       </div>
     )
   }

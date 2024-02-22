@@ -13,7 +13,7 @@ import { Icon } from "astro-icon/components";
   <slot slot="base-layout">
     <div
       id="sectionHero"
-      class="w-screen h-screen first-screen-bottom-mask-wrap"
+      class="w-screen h-screen first-screen-bottom-mask-wrap relative"
     >
     </div>
 
@@ -21,10 +21,10 @@ import { Icon } from "astro-icon/components";
       id="sectionTitle"
       class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
     >
-      <TitleComponent isMin={true} titles={titles} />
+      <TitleComponent className="!text-base !w-[28.75rem] mobile:!max-w-[19.75rem] tablet:!text-sm"  titleClassName="tablet:!text-h4 mobile:!text-h5" titles={titles} />
     </div>
   </slot>
-  <div id="sectionDescription" class="mt-40 border-b border-b-dark-200">
+  <div id="sectionDescription" class="mt-40 border-b border-b-dark-200 pt-[6.25rem] tablet:pt-0">
     <Icon class="w-0 h-0" name="brandLogo" />
     <div
       class="mt-10 pt-8 text-light-200 text-sm leading-[2.75rem] text-center"
@@ -231,18 +231,18 @@ import { Icon } from "astro-icon/components";
     });
   }
 
-  const titleEl = document.getElementById("sectionTitle");
-  if (titleEl) {
-    gsap.to(titleEl, {
-      scrollTrigger: {
-        trigger: "#sectionDescription",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
-      },
-      opacity: 0,
-      y: "-50%",
-    });
-  }
+  // const titleEl = document.getElementById("sectionTitle");
+  // if (titleEl) {
+  //   gsap.to(titleEl, {
+  //     scrollTrigger: {
+  //       trigger: "#sectionDescription",
+  //       start: "top bottom",
+  //       end: "top top",
+  //       scrub: true,
+  //     },
+  //     opacity: 0,
+  //     y: "-50%",
+  //   });
+  // }
 </script>
 <style></style>

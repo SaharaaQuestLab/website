@@ -31,7 +31,7 @@ const { titles } = PageMeta;
   </slot>
   <h1
     id="sectionBusiness"
-    class="text-h2 font-[Manrope] text-center pt-[9.125rem] pb-[7.5rem] tablet:text-h5 tablet:pt-[3.75rem] tablet:pb-11"
+    class="text-h2 font-[Manrope] text-center mt-[6.25rem] tablet:mt-0 pt-[9.125rem] pb-[7.5rem] tablet:text-h5 tablet:pt-[3.75rem] tablet:pb-11"
   >
     Automate Your business
   </h1>
@@ -548,19 +548,19 @@ const { titles } = PageMeta;
     });
   }
 
-  const titleEl = document.getElementById("sectionTitle");
-  if (titleEl) {
-    gsap.to(titleEl, {
-      scrollTrigger: {
-        trigger: "#sectionBusiness",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
-      },
-      opacity: 0,
-      y: "-50%",
-    });
-  }
+  // const titleEl = document.getElementById("sectionTitle");
+  // if (titleEl) {
+  //   gsap.to(titleEl, {
+  //     scrollTrigger: {
+  //       trigger: "#sectionBusiness",
+  //       start: "top bottom",
+  //       end: "top top",
+  //       scrub: true,
+  //     },
+  //     opacity: 0,
+  //     y: "-50%",
+  //   });
+  // }
 
   // 获取元素
   const slider1 = document.getElementById("slider1") as HTMLElement;

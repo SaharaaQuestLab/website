@@ -15,7 +15,7 @@ const { titles } = PageMeta;
   <slot slot="base-layout">
     <div
       id="sectionHero"
-      class="w-screen h-screen first-screen-bottom-mask-wrap"
+      class="w-screen h-screen first-screen-bottom-mask-wrap relative"
     >
     </div>
 
@@ -28,7 +28,7 @@ const { titles } = PageMeta;
   </slot>
   <div
     id="sectionTeam"
-    class="text-center mt-40 mb-10 tablet:mt-[3.75rem] tablet:mb-8 tablet:text-h4 text-h2 font-[Manrope]"
+    class="text-center pt-[6.25rem] tablet:pt-0 mt-40 mb-10 tablet:mt-[3.75rem] tablet:mb-8 tablet:text-h4 text-h2 font-[Manrope]"
   >
     Meet The Team
   </div>
@@ -186,19 +186,19 @@ const { titles } = PageMeta;
     });
   }
 
-  const titleEl = document.getElementById("sectionTitle");
-  if (titleEl) {
-    gsap.to(titleEl, {
-      scrollTrigger: {
-        trigger: "#sectionTeam",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
-      },
-      opacity: 0,
-      y: "-30%",
-    });
-  }
+  // const titleEl = document.getElementById("sectionTitle");
+  // if (titleEl) {
+  //   gsap.to(titleEl, {
+  //     scrollTrigger: {
+  //       trigger: "#sectionTeam",
+  //       start: "top bottom",
+  //       end: "top top",
+  //       scrub: true,
+  //     },
+  //     opacity: 0,
+  //     y: "-30%",
+  //   });
+  // }
 </script>
 <style>
   .teamBackground > div {

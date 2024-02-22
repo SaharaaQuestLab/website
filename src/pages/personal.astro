@@ -17,7 +17,7 @@ const { titles } = PageMeta;
   <slot slot="base-layout">
     <div
       id="sectionHero"
-      class="w-screen h-screen first-screen-bottom-mask-wrap"
+      class="w-screen h-screen first-screen-bottom-mask-wrap relative"
     >
     </div>
 
@@ -39,14 +39,14 @@ const { titles } = PageMeta;
   >
     <div class="common-up-move flex-1 border-b border-b-dark-100 tablet:border-none">
       <div
-        class="w-[7.5rem] mobile:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4"
+        class="w-[7.5rem] tablet:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4"
       >
         <img class="w-full" src={titleIcon_01.src} alt="logo" />
       </div>
       <h2 class="text-h5 tablet:text-s3">Build your</h2>
       <h2 class="text-h5 tablet:text-s3">personal knowledge Vault</h2>
       <div
-        class="text-base tablet:text-sm mobile:w-full text-light-200 mt-8 tablet:mt-4 h-[8.75rem]"
+        class="text-base tablet:text-sm tablet:w-[30rem] mobile:w-full text-light-200 mt-8 tablet:mt-4 h-[8.75rem] tablet:h-[6.875rem] mobile:h-[8.125rem]"
       >
         Claim ownership of your knowledge capital with your personal Sahara ID
         and safeguard it within your Knowledge Vault.
@@ -54,14 +54,14 @@ const { titles } = PageMeta;
     </div>
     <div class="common-up-move flex-1 border-b border-b-dark-100 tablet:border-none">
       <div
-        class="w-[7.5rem] mobile:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4"
+        class="w-[7.5rem] tablet:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4"
       >
         <img class="w-full" src={titleIcon_02.src} alt="logo" />
       </div>
       <h2 class="text-h5 tablet:text-s3">Train your</h2>
       <h2 class="text-h5 tablet:text-s3">own AI</h2>
       <div
-        class="text-base tablet:text-sm mobile:w-full text-light-200 mt-8 h-[8.75rem]"
+        class="text-base tablet:text-sm tablet:w-[30rem] mobile:w-full text-light-200 mt-8 h-[8.75rem] tablet:h-[6.875rem] mobile:h-[8.125rem]"
       >
         Create your replica AIs from your Knowledge Vault in a
         privacy-preserving way through Sahara Knowledge Agent’s no-code
@@ -70,14 +70,14 @@ const { titles } = PageMeta;
     </div>
     <div class="common-up-move flex-1 border-b border-b-dark-100 tablet:border-none">
       <div
-        class="w-[7.5rem] mobile:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4"
+        class="w-[7.5rem] tablet:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4"
       >
         <img class="w-full" src={titleIcon_03.src} alt="logo" />
       </div>
       <h2 class="text-h5 tablet:text-s3">Capitalize your</h2>
       <h2 class="text-h5 tablet:text-s3">knowledge at scale</h2>
       <div
-        class="text-base tablet:text-sm mobile:w-full text-light-200 mt-8 h-[8.75rem]"
+        class="text-base tablet:text-sm tablet:w-[30rem] mobile:w-full text-light-200 mt-8 h-[8.75rem] tablet:h-[6.875rem] mobile:h-[8.125rem]"
       >
         Participate in a broader decentralized network that enables cross-agent
         communication, knowledge transfer and capitalization between
@@ -168,18 +168,18 @@ const { titles } = PageMeta;
     });
   }
 
-  const titleEl = document.getElementById("sectionTitle");
-  if (titleEl) {
-    gsap.to(titleEl, {
-      scrollTrigger: {
-        trigger: "#sectionPersonal",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
-      },
-      opacity: 0,
-      y: "-50%",
-    });
-  }
+  // const titleEl = document.getElementById("sectionTitle");
+  // if (titleEl) {
+  //   gsap.to(titleEl, {
+  //     scrollTrigger: {
+  //       trigger: "#sectionPersonal",
+  //       start: "top bottom",
+  //       end: "top top",
+  //       scrub: true,
+  //     },
+  //     opacity: 0,
+  //     y: "-50%",
+  //   });
+  // }
 </script>
 <style></style>

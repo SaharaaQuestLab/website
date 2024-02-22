@@ -9,30 +9,38 @@ import { Icon } from "astro-icon/components";
 const { titles } = PageMeta;
 ---
 
-<div
-  class="items-center py-2.5 hidden tablet:flex bg-light-100 relative z-50 justify-center text-dark-400"
->
-  Sahara raises $6M in seed round led by Polychain Capital
-  <Icon class="w-5 h-5" name="arrowRightUp" />
+<div class="tablet:h-11 mobile:h-6 tablet:block hidden">
+  <div
+    class="items-center py-2.5 hidden font-[Manrope] w-full top-0 left-0 font-bold text-sm mobile:text-min mobile:py-0.5 tablet:flex bg-light-100 fixed z-50 justify-center text-dark-400"
+  >
+    <Icon class="w-0 h-0" name="brandLogo" />
+    Sahara raises $6M in seed round led by Polychain Capital
+    <Icon class="w-5 h-5" name="arrowRightUp" />
+  </div>
 </div>
+
 <Layout title="saharaa.ai">
   <slot slot="base-layout">
     <div
       id="sectionHero"
-      class="w-screen h-screen first-screen-bottom-mask-wrap"
+      class="w-screen h-screen first-screen-bottom-mask-wrap relative"
     >
     </div>
     <div
       id="sectionTitle"
       class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
     >
-      <TitleComponent isMin={true} titles={titles} />
+      <TitleComponent
+        titleClassName="!text-h1 tablet:!text-m1 mobile:!text-m2"
+        className="!text-base !w-[28.75rem] tablet:!text-sm mobile:!max-w-[19.75rem]"
+        titles={titles}
+      />
     </div>
   </slot>
 
   <div
     id="sectionRing"
-    class="w-full bg-[#121315] pb-[13.75rem] relative tablet:mb-[7.5rem]"
+    class="w-full bg-[#121315] pb-[13.75rem] relative tablet:mt-[6.25rem] mobile:mt-[5.375rem] tablet:pb-0 tablet:mb-[7.5rem] mobile:mb-40"
   >
     <Ring3DSection>
       <div
@@ -41,7 +49,7 @@ const { titles } = PageMeta;
         <div class="font-[Manrope] text-s3 tablet:pb-5 tablet:text-base">
           Learn more about how you can use Sahara:
         </div>
-        <div class="flex w-[40rem] mobile:w-full">
+        <div class="flex w-[40rem]">
           <div
             class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
           >
@@ -59,20 +67,20 @@ const { titles } = PageMeta;
     </Ring3DSection>
     <RingSection>
       <div
-        class="flex w-full items-center tablet:flex-col justify-between tablet:text-h3 pt-[2.25rem] tablet:pt-7 tablet:mt-[3.75rem] border-t border-t-dark-200 border-opacity-40"
+        class="flex w-full items-center tablet:flex-col justify-between tablet:text-h3 pt-[2.25rem] tablet:pt-7 tablet:mt-7 border-t border-t-dark-200 border-opacity-40"
       >
         <div class="font-[Manrope] text-s3 tablet:pb-5 tablet:text-base">
           Learn more about how you can use Sahara:
         </div>
-        <div class="flex w-[40rem] mobile:w-full">
+        <div class="flex w-full">
           <div
-            class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
+            class="font-[IBMPlexMono-Medium] h-11 py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
           >
             For Personal
             <Icon class="w-5 h-5" name="arrowRightUp" />
           </div>
           <div
-            class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-5 mobile:ml-3 flex items-center justify-center border border-light-100"
+            class="font-[IBMPlexMono-Medium] h-11 py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-4 mobile:ml-3 flex items-center justify-center border border-light-100"
           >
             For Business
             <Icon class="w-5 h-5" name="arrowRightUp" />
@@ -83,7 +91,7 @@ const { titles } = PageMeta;
   </div>
 
   <div class="text-center font-[Manrope] mx-auto mb-[7.5rem] tablet:mb-7">
-    <div class="h-7 mb-10 tablet:mb-4 flex justify-center">
+    <div class="h-7 mb-10 tablet:h-5 tablet:mb-4 flex justify-center">
       <Icon class="w-7 h-7 tablet:w-5 tablet:h-5" name="brandLogo" />
     </div>
     <h1 class="text-h2 tablet:text-h5 text-light-200">An Ecosystem</h1>
@@ -96,9 +104,9 @@ const { titles } = PageMeta;
   </div>
   <div class="h-[7.5rem] tablet:h-[4.25rem] relative"><SwiperSection /></div>
   <div
-    class="flex flex-col items-center font-[Manrope] mt-[20.25rem] tablet:mt-[7.5rem] mb-[4.125rem] tablet:mb-11"
+    class="flex flex-col items-center font-[Manrope] mt-[20.25rem] tablet:mt-[7.5rem] mobile:mt-40 mb-[4.125rem] tablet:mb-11"
   >
-    <h1 class="text-h2 tablet:text-h5 mobile:text-h5">Sahara Roadmap</h1>
+    <h1 class="text-h2 tablet:text-h4 mobile:text-h5">Sahara Roadmap</h1>
     <div
       class="w-[28.75rem] text-center mt-10 tablet:mt-4 text-light-200 mobile:text-sm mobile:w-full"
     >
@@ -111,14 +119,14 @@ const { titles } = PageMeta;
   >
     <div class="common-up-move flex tablet:flex-col tablet:items-center">
       <div class="w-5 mr-7 tablet:mr-0 tablet:mb-3">
-        <Icon class="w-5 h-5" name="brandLogo" />
+        <Icon class="w-5 h-5 text-light-200" name="brandLogo" />
       </div>
       <div class="tablet:text-center">
         <div class="text-lg mb-2 tablet:text-[0.75rem] tablet:mb-1">
           Q2 2024
         </div>
         <div
-          class="text-[2rem] leading-[3rem] tablet:text-[1.125rem] tablet:leading-[1.75rem]"
+          class="text-s2 tablet:text-base tablet:w-60"
         >
           Sahara Knowledge Vault Sahara Data
         </div>
@@ -126,14 +134,14 @@ const { titles } = PageMeta;
     </div>
     <div class="common-up-move flex tablet:flex-col tablet:items-center">
       <div class="w-5 mr-7 tablet:mr-0 tablet:mb-3">
-        <Icon class="w-5 h-5" name="brandLogo" />
+        <Icon class="w-5 h-5 text-light-200" name="brandLogo" />
       </div>
       <div class="tablet:text-center">
         <div class="text-lg mb-2 tablet:text-[0.75rem] tablet:mb-1">
           Q3 2024
         </div>
         <div
-          class="text-[2rem] leading-[3rem] tablet:text-[1.125rem] tablet:leading-[1.75rem]"
+          class="text-s2 tablet:text-base tablet:w-60"
         >
           Sahara Knowledge Vault Sahara Data
         </div>
@@ -141,14 +149,14 @@ const { titles } = PageMeta;
     </div>
     <div class="common-up-move flex tablet:flex-col tablet:items-center">
       <div class="w-5 mr-7 tablet:mr-0 tablet:mb-3">
-        <Icon class="w-5 h-5" name="brandLogo" />
+        <Icon class="w-5 h-5 text-light-200" name="brandLogo" />
       </div>
       <div class="tablet:text-center">
         <div class="text-lg mb-2 tablet:text-[0.75rem] tablet:mb-1">
           Q4 2024
         </div>
         <div
-          class="text-[2rem] leading-[3rem] tablet:text-[1.125rem] tablet:leading-[1.75rem]"
+          class="text-s2 tablet:text-base tablet:w-60"
         >
           Sahara Knowledge Vault Sahara Data
         </div>
@@ -219,18 +227,18 @@ const { titles } = PageMeta;
     });
   }
 
-  const titleEl = document.getElementById("sectionTitle");
-  if (titleEl) {
-    gsap.to(titleEl, {
-      scrollTrigger: {
-        trigger: "#sectionRing",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
-      },
-      opacity: 0,
-      y: "-30%",
-    });
-  }
+  // const titleEl = document.getElementById("sectionTitle");
+  // if (titleEl) {
+  //   gsap.to(titleEl, {
+  //     scrollTrigger: {
+  //       trigger: "#sectionRing",
+  //       start: "top bottom",
+  //       end: "top top",
+  //       scrub: true,
+  //     },
+  //     opacity: 0,
+  //     y: "-30%",
+  //   });
+  // }
 </script>
 <style></style>

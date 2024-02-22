@@ -18,7 +18,7 @@ const { title, active, bgNone } = Astro.props;
   <LaptopHeader active={active} />
   <MobileHeader />
   <slot name="base-layout"></slot>
-  <div class="max-w-[1728px] mx-auto px-40 tablet:px-6 mobile:px-3"><slot /></div>
+  <div class="max-w-[1408px] w-full mx-auto tablet:px-6 mobile:px-3"><slot /></div>
   <CommonFooter bgNone={bgNone}>
     <slot slot="footer" name="footer" />
   </CommonFooter>
