@@ -23,7 +23,7 @@ const { text = "" } = Astro.props;
     init = () => {
       gsap.registerPlugin(TextPlugin);
 
-      const typewriter = this.querySelector(`#typewriter`);
+      const typewriter = this.querySelector<HTMLSpanElement>(`#typewriter`);
 
       if (typewriter) {
         // 执行打字动画

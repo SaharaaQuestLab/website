@@ -1,6 +1,5 @@
 ---
 import TitleComponent from "@/components/TitleComponent.astro";
-import Hero3DSection from "@/components/3DHeroSection.astro";
 import TextTyping from "@/components/TextTyping.astro";
 // import AutomateSection from "@/components/AutomateSection.astro";
 import Layout from "../layouts/PageLayout.astro";
@@ -21,10 +20,17 @@ import { Icon } from "astro-icon/components";
       id="sectionTitle"
       class="w-screen h-screen absolute left-0 top-0 pointer-events-none"
     >
-      <TitleComponent className="!text-base !w-[28.75rem] mobile:!max-w-[19.75rem] tablet:!text-sm"  titleClassName="tablet:!text-h4 mobile:!text-h5" titles={titles} />
+      <TitleComponent
+        className="!text-base !w-[28.75rem] mobile:!max-w-[19.75rem] tablet:!text-sm"
+        titleClassName="tablet:!text-h4 mobile:!text-h5"
+        titles={titles}
+      />
     </div>
   </slot>
-  <div id="sectionDescription" class="mt-40 border-b border-b-dark-200 pt-[6.25rem] tablet:pt-0">
+  <div
+    id="sectionDescription"
+    class="mt-40 border-b border-b-dark-200 pt-[6.25rem] tablet:pt-0"
+  >
     <Icon class="w-0 h-0" name="brandLogo" />
     <div
       class="mt-10 pt-8 text-light-200 text-sm leading-[2.75rem] text-center"
@@ -37,7 +43,7 @@ import { Icon } from "astro-icon/components";
       <div class="mr-[3.125rem] tablet:mr-5">
         <Icon class="w-6 h-6 mobile:w-4 mobile:h-4" name="quotes" />
       </div>
-      <div class=" text-center tablet:text-sm">
+      <div class="text-center tablet:text-sm">
         AI development is at an inflection point that on many fronts, AI has
         started surpassing human performance and automating more and more parts
         of our life. In the new era, It is critically important to protect the
@@ -45,7 +51,10 @@ import { Icon } from "astro-icon/components";
         establish a decentralized and trustless network of AI and humans.
       </div>
       <div class="ml-[3.125rem] tablet:ml-5 flex items-end">
-        <Icon class="w-6 h-6 rotate-180 mb-[5px] mobile:w-4 mobile:h-4" name="quotes" />
+        <Icon
+          class="w-6 h-6 rotate-180 mb-[5px] mobile:w-4 mobile:h-4"
+          name="quotes"
+        />
       </div>
     </div>
   </div>
@@ -66,8 +75,10 @@ import { Icon } from "astro-icon/components";
         >
           <Icon class="w-full h-full text-light-200" name="brandLogo" />
         </div>
-        <div class="text-h5 mobile:text-s3">Decentralized,  Privacy-first</div>
-        <div class="mb-7 text-h5 mobile:text-s3 mobile:mb-4">Decentralized Learning</div>
+        <div class="text-h5 mobile:text-s3">Decentralized, Privacy-first</div>
+        <div class="mb-7 text-h5 mobile:text-s3 mobile:mb-4">
+          Decentralized Learning
+        </div>
         <div class="mb-7 text-light-200 text-base mobile:mb-4 mobile:text-sm">
           In the ever-progressing field of Large Language Models (LLMs), there
           has been a significant shift towards addressing the critical concerns

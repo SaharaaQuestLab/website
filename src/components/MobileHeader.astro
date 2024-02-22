@@ -5,7 +5,7 @@ import { Icon } from "astro-icon/components";
 interface Props {
   active?: PageRoutes;
 }
-const { active } = Astro.props;
+
 const homeUrl = `${import.meta.env.BASE_URL}`;
 
 const routes: Array<{ name: string; path: string; flag: string }> = [];

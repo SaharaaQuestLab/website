@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
-import env from '@/utils/bowser.utils';
+// import env from '@/utils/bowser.utils';
 import { CircleRing } from './geometry/CircleRing';
 // import { SpatialControls } from 'spatial-controls';
 import { OutlineEffect } from 'three/examples/jsm/Addons.js';
@@ -12,7 +12,7 @@ export default class RingView {
   private _render: WebGLRenderer;
   private _scene: Scene;
   private _camera: PerspectiveCamera;
-  private _clock = new THREE.Clock();
+  // private _clock = new THREE.Clock();
   private _composer?: OutlineEffect;
   private _requestAnimationId?: number;
   private _status: 'playing' | 'pausing' = 'pausing';
@@ -143,7 +143,7 @@ export default class RingView {
 
     this._composer = new OutlineEffect(this._render, { defaultColor: [8 / 16, 8 / 16, 8 / 16] });
 
-    this._requestCallback = (timestamp: number) => {
+    this._requestCallback = () => {
       if (this._updateCallback !== null) {
         for (let i = 0; i < this._rings.length; i++) {
           const ring = this._rings[i];
