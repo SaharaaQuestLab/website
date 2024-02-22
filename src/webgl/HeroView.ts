@@ -123,7 +123,7 @@ export default class HeroView {
     } else {
       this._render.render(this._scene, this._camera);
     }
-    this._requestAnimationId = requestAnimationFrame((time: number) => this._animate())
+    this._requestAnimationId = requestAnimationFrame(() => this._animate())
   }
 
   public useSetup() {

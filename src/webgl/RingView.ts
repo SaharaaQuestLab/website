@@ -85,10 +85,10 @@ export default class RingView {
     }
   }
 
-  private createComposer() {
-    if (this._composer) return;
-    // this._composer = new EffectComposer(this._render);
-  }
+  // private createComposer() {
+  //   if (this._composer) return;
+  //   // this._composer = new EffectComposer(this._render);
+  // }
 
   private createRings() {
     this._rings = Array(2).fill(undefined).map(() => new CircleRing({ radius: 0.35, tube: 0.1 }));
