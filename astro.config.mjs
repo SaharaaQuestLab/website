@@ -5,6 +5,8 @@ import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import glsl from 'vite-plugin-glsl';
 import vue from "@astrojs/vue";
+import react from '@astrojs/react';
+
 const base_url = process.env.BUILD_MODE === "test" ? "test-saharaa/" : "";
 
 
@@ -34,5 +36,5 @@ export default defineConfig({
     developerName: "Null Studio",
     faviconsDarkMode: false,
     background: '#000'
-  }), sitemap(), vue()]
+  }), sitemap(), vue(), react()]
 });

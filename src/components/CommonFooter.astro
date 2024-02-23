@@ -1,11 +1,14 @@
 ---
 import { Icon } from "astro-icon/components";
 import PageMeta from "@/data/footer";
-const { authorization, privacyPolicy, email, subscribe } = PageMeta;
+const { authorization, privacyPolicy, freeNewsletter, subscribe } = PageMeta;
+import EmailSubscribe from '@/components/EmailSubscribe.jsx';
+
 interface Props {
   bgNone?: boolean
 }
 const {  bgNone } = Astro.props;
+
 ---
 
 <div class:list={['w-full footer', {'!bg-none': bgNone}]}>
@@ -31,18 +34,19 @@ const {  bgNone } = Astro.props;
           </a>
         </div>
       </div>
-      <div class=" col-span-6 flex justify-end tablet:w-full">
+      <!-- <div class=" col-span-6 flex justify-end tablet:w-full">
         <div class="border border-light-100 flex px-4 py-2 bg-dark-400 rounded-xl w-full max-w-[40rem] tablet:max-w-full justify-between">
           <div class="text-light-200 flex items-center text-sm mobile:text-xs">
             <Icon class="w-5 h-5 mr-1.5" name="email"/>
-            {email}
+            <input type="text" placeholder={freeNewsletter} value={email} onchange={handleChange} client:load>
           </div>
           <div class="cursor-pointer flex text-light-100 text-sm items-center mobile:text-xs">
             {subscribe}
             <Icon class="w-5 h-5" name="arrowRightUp"/>
           </div>
         </div>
-      </div>
+      </div> -->
+      <EmailSubscribe client:load />
     </div>
     <div class="border-t text-light-200 border-t-dark-100 border-opacity-40 flex justify-between text-sm pb-2.5  mobile:text-xs mt-5">
       <div class="py-2.5">
