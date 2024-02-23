@@ -8,10 +8,10 @@ import type { PageRoutes } from "../data/nav";
 interface Props {
   title: string;
   active?: PageRoutes;
-  bgNone?: boolean
+  isFooterSlot?: boolean
 }
 
-const { title, active, bgNone } = Astro.props;
+const { title, active, isFooterSlot } = Astro.props;
 ---
 
 <BaseLayout title={title} barColor="#000">
@@ -19,7 +19,7 @@ const { title, active, bgNone } = Astro.props;
   <MobileHeader />
   <slot name="base-layout"></slot>
   <div class="max-w-[1408px] w-full mx-auto tablet:px-6 mobile:px-3"><slot /></div>
-  <CommonFooter bgNone={bgNone}>
+  <CommonFooter isSlot={isFooterSlot}>
     <slot slot="footer" name="footer" />
   </CommonFooter>
 </BaseLayout>

@@ -37,7 +37,9 @@ const { titles } = PageMeta;
   <div
     class="flex gap-x-[3.125rem] font-[Manrope] mb-[3.75rem] tablet:flex-col tablet:items-center tablet:text-center tablet:mb-0"
   >
-    <div class="common-up-move flex-1 border-b border-b-dark-100 tablet:border-none">
+    <div
+      class="common-up-move flex-1 border-b border-b-dark-100 tablet:border-none"
+    >
       <div
         class="w-[7.5rem] tablet:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4"
       >
@@ -52,7 +54,9 @@ const { titles } = PageMeta;
         and safeguard it within your Knowledge Vault.
       </div>
     </div>
-    <div class="common-up-move flex-1 border-b border-b-dark-100 tablet:border-none">
+    <div
+      class="common-up-move flex-1 border-b border-b-dark-100 tablet:border-none"
+    >
       <div
         class="w-[7.5rem] tablet:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4"
       >
@@ -68,7 +72,9 @@ const { titles } = PageMeta;
         platform.
       </div>
     </div>
-    <div class="common-up-move flex-1 border-b border-b-dark-100 tablet:border-none">
+    <div
+      class="common-up-move flex-1 border-b border-b-dark-100 tablet:border-none"
+    >
       <div
         class="w-[7.5rem] tablet:w-20 mb-[3.75rem] tablet:mx-auto tablet:mb-4"
       >
@@ -87,25 +93,32 @@ const { titles } = PageMeta;
   </div>
   <div
     id="waitList"
-    class="waitList mx-auto w-[27rem] tablet:w-40 mobile:w-full mobile:text-xs border font-[IBMPlexMono-Medium] whitespace-nowrap border-light-100 text-[0.875rem] cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
+    class="mx-auto w-[27rem] tablet:w-40 mobile:w-full mobile:text-xs border font-[IBMPlexMono-Medium] whitespace-nowrap border-light-100 text-sm h-11 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
   >
     Join waitlist
     <Icon class="w-5 h-5" name="arrowRightUp" />
   </div>
-  <div class="flex pt-[9.125rem] tablet:mt-[3.75rem] tablet:flex-col">
+  <div
+    class="flex pt-[9.125rem] tablet:pt-0 tablet:mt-[3.75rem] tablet:flex-col"
+  >
     <div
       class="py-[9.125rem] relative z-10 w-[40rem] font-[Manrope] tablet:py-[3.75rem] tablet:w-full tablet:text-center"
     >
-      <div class="justify-center hidden tablet:flex">
-        <Image class="w-60 h-60" src={rings_03} alt=""/>
+      <div class="justify-center hidden tablet:flex mb-7">
+        <Image class="w-60 h-60" src={rings_03} alt="" />
       </div>
       <div
-        class="text-h2 whitespace-nowrap font-[Manrope] text-light-200 tablet:text-h4"
+        class="bg-dark-200 w-[7.5rem] text-base mx-auto rounded-[1.25rem] tablet:block hidden mobile:w-[6rem] mobile:text-mx"
       >
-        Sahara Personal
+        Personal
       </div>
       <div
-        class="text-h2 h-[160px] tablet:h-[100px] font-[Manrope] tablet:text-h4 w-[30rem] tablet:w-[21rem] mb-1.5 tablet:mx-auto"
+        class="text-h2 whitespace-nowrap font-[Manrope] text-light-200 tablet:text-h5"
+      >
+        Sahara<span class="tablet:hidden"> Personal</span>
+      </div>
+      <div
+        class="text-h2 h-[160px] tablet:h-[100px] font-[Manrope] tablet:text-h5 w-[30rem] tablet:w-[21rem] mb-1.5 tablet:mx-auto"
       >
         <TextTyping text="Knowledge Agents" />
       </div>
@@ -113,27 +126,31 @@ const { titles } = PageMeta;
         <div class="bg-[#D9D9D9] rounded-full w-2.5 h-2.5 mr-2"></div>
         Coming soon
       </div>
-      <div class="text-light-100 text-s3 tablet:text-sm">
+      <div
+        class="text-light-200 text-s3 tablet:text-sm tablet:w-[30rem] tablet:mx-auto"
+      >
         Sahara Knowledge Agent (KA) Personal is an advanced personal replica
         based on your proprietary knowledge. It can interact with the
         environment and provide personalized adaptability and intelligence.
       </div>
       <div class="mt-[4.5rem] mb-7 border-t border-t-dark-100 tablet:my-4">
       </div>
-      <div class="tablet:text-base text-light-200">
+      <div
+        class="tablet:text-base text-light-100 tablet:w-[30rem] tablet:mx-auto"
+      >
         Leveraging proprietary blockchain and AI technology, Sahara KA is
         trained and served in a privacy-preserving, trustless, and decentralized
         manner.
       </div>
       <div
         id="waitList1"
-        class="waitList mx-auto mt-4 tablet:w-40 tablet:flex border whitespace-nowrap border-dark-100 text-base leading-5 cursor-pointer py-2.5 px-4 hidden items-center justify-center rounded-xl text-light-200"
+        class="mx-auto mt-4 tablet:w-40 tablet:flex border whitespace-nowrap font-[IBMPlexMono-Medium] tablet:text-sm tablet:h-11 border-light-100 text-base cursor-pointer py-2.5 px-4 hidden items-center justify-center rounded-xl text-light-100"
       >
         Join waitlist
-        <Icon class="w-5 h-5" name="arrowRightUp" />
+        <Icon class="min-w-5 h-5" name="arrowRightUp" />
       </div>
     </div>
-    <div class="flex-1 flex justify-center items-center">
+    <div class="flex-1 flex justify-center items-center tablet:hidden">
       <RingLoop />
     </div>
   </div>
@@ -148,12 +165,12 @@ const { titles } = PageMeta;
   gsap.registerPlugin(ScrollTrigger);
   makeCommonAppearEffect();
 
-  function goToWaitList () {
+  function goToWaitList() {
     window.open("https://45253286.hs-sites.com/get-in-touch", "_blank");
   }
 
-  document.getElementById("waitList").addEventListener("click", goToWaitList);
-  document.getElementById("waitList1").addEventListener("click", goToWaitList);
+  document.getElementById("waitList")?.addEventListener("click", goToWaitList);
+  document.getElementById("waitList1")?.addEventListener("click", goToWaitList);
 
   const heroEl = document.getElementById("sectionHero");
   if (heroEl) {

@@ -5,9 +5,7 @@ interface Props {
 const { list } = Astro.props;
 ---
 
-<div
-  class="text-container font-[Manrope] text-s2 relative h-11 w-full overflow-hidden"
->
+<div class="text-container font-[Manrope] text-s2 tablet:text-sm tablet:h-6 relative h-11 w-full overflow-hidden">
   {
     list.map((item) => (
       <div class="line absolute top-0 left-0 opacity-0 text-black w-full flex justify-center">

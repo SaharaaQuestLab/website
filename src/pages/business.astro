@@ -10,11 +10,13 @@ import titleIcon_03 from "@/assets/icons/titleIcon_03.jpg";
 import graph_01 from "@/assets/icons/graph_01.png";
 import graph_02 from "@/assets/icons/graph_02.png";
 import RingLoop from "@/components/3DLoopSection.astro";
+import rings_03 from "@/assets/images/rings_03.jpg";
+import { Image } from "astro:assets";
 
 const { titles } = PageMeta;
 ---
 
-<Layout title="saharaa.ai" active="business">
+<Layout title="saharaa.ai" active="business" isFooterSlot={true}>
   <slot slot="base-layout">
     <div
       id="sectionHero"
@@ -31,7 +33,7 @@ const { titles } = PageMeta;
   </slot>
   <h1
     id="sectionBusiness"
-    class="text-h2 font-[Manrope] text-center mt-[6.25rem] tablet:mt-0 pt-[9.125rem] pb-[7.5rem] tablet:text-h5 tablet:pt-[3.75rem] tablet:pb-11"
+    class="text-h2 font-[Manrope] text-center pt-[15.375rem] pb-[7.5rem] tablet:text-h5 tablet:pt-[3.75rem] tablet:pb-11"
   >
     Automate Your business
   </h1>
@@ -49,7 +51,7 @@ const { titles } = PageMeta;
       <h2 class="text-h5 tablet:text-s3">Create</h2>
       <h2 class="text-h5 tablet:text-s3">Proprietary AI Agents</h2>
       <div
-        class="text-lg text-light-200 mt-8 tablet:mt-4 pb-[3.75rem] mobile:w-full mobile:pb-11"
+        class="text-base tablet:text-sm tablet:w-[30rem] mobile:w-full text-light-200 mt-8 tablet:mt-4 h-[8.75rem] tablet:h-[6.875rem] mobile:h-[8.125rem]"
       >
         Build Sahara Knowledge Agents as custom on-premise AI solutions that
         save costs, drive growth, and enable new business opportunities.
@@ -66,7 +68,7 @@ const { titles } = PageMeta;
       <h2 class="text-h5 tablet:text-s3">Maximize</h2>
       <h2 class="text-h5 tablet:text-s3">Business Efficiency</h2>
       <div
-        class="text-lg text-light-200 mt-8 pb-[3.75rem] mobile:w-full mobile:pb-11 tablet:pb-[4.25rem]"
+        class="text-base tablet:text-sm tablet:w-[30rem] mobile:w-full text-light-200 mt-8 h-[8.75rem] tablet:h-[6.875rem] mobile:h-[8.125rem]"
       >
         Elevate productivity through workflow automation, predictive analytics,
         personalized experiences, resource optimization, and supply chain
@@ -84,7 +86,7 @@ const { titles } = PageMeta;
       <h2 class="text-h5 tablet:text-s3">Leverage</h2>
       <h2 class="text-h5 tablet:text-s3">Global Knowledge Capital</h2>
       <div
-        class="text-lg text-light-200 mt-8 pb-[3.75rem] mobile:w-full mobile:pb-11 tablet:pb-[4.25rem]"
+        class="text-base tablet:text-sm tablet:w-[30rem] mobile:w-full text-light-200 mt-8 h-[8.75rem] tablet:h-[6.875rem] mobile:h-[8.125rem]"
       >
         Participate in Sahara Data, a trustless, permissionless, and
         privacy-preserving platform for high-value datasets and data services to
@@ -94,7 +96,7 @@ const { titles } = PageMeta;
   </div>
   <div
     id="bookDemo2"
-    class="mx-auto w-[27rem] mobile:w-full mobile:text-xs border tablet:w-40 whitespace-nowrap font-[IBMPlexMono-Medium] border-light-100 text-[0.875rem] leading-5 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
+    class="mx-auto w-[27rem] tablet:w-40 mobile:w-full mobile:text-xs border font-[IBMPlexMono-Medium] whitespace-nowrap border-light-100 text-sm  h-11 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
   >
     Book a Demo
     <Icon class="w-5 h-5" name="arrowRightUp" />
@@ -105,31 +107,35 @@ const { titles } = PageMeta;
     <div
       class="py-[7.25rem] w-[40rem] font-[Manrope] tablet:py-[3.75rem] tablet:w-full tablet:text-center"
     >
+    <div class="justify-center hidden tablet:flex mb-7">
+      <Image class="w-60 h-60" src={rings_03} alt=""/>
+    </div>
+    <div class="bg-dark-200 w-[7.5rem] text-base mx-auto rounded-[1.25rem] tablet:block hidden mobile:w-[6rem] mobile:text-mx">Business</div>
       <div
-        class="text-h2 whitespace-nowrap font-[Manrope] text-light-200 tablet:text-h4"
+        class="text-h2 whitespace-nowrap font-[Manrope] text-light-200 tablet:text-h5"
       >
-        Sahara Business
+        Sahara<span class="tablet:hidden"> Business</span>
       </div>
-      <div class="text-h2 whitespace-nowrap font-[Manrope] tablet:text-h4">
+      <div class="text-h2 whitespace-nowrap font-[Manrope] tablet:text-h5">
         Knowledge
       </div>
-      <div class="text-h2 whitespace-nowrap font-[Manrope] tablet:text-h4">
+      <div class="text-h2 whitespace-nowrap font-[Manrope] tablet:text-h5">
         Agent (KA)
       </div>
       <div
-        class="text-light-100 text-s3 mt-[3.75rem] tablet:mt-0 tablet:py-4 tablet:justify-center tablet:text-base"
+        class="text-light-100 text-s3 mt-[3.75rem] tablet:mt-0 tablet:py-4 tablet:justify-center tablet:text-base tablet:w-[30rem] tablet:mx-auto"
       >
         Sahara KA Business extends far beyond conversational capabilities,
         autonomously analyzing both external and internal proprietary data to
         offer reliable decision-making tailored to specific needs.
       </div>
     </div>
-    <div class="flex-1 flex justify-center items-center">
+    <div class="flex-1 flex justify-center items-center tablet:hidden">
       <RingLoop />
     </div>
   </div>
   <div
-    class="grid grid-cols-4 font-[Manrope] tablet:grid-cols-2 text-s3 mobile:text-xs"
+    class="grid grid-cols-4 font-[Manrope] tablet:grid-cols-2 text-s3 tablet:text-mx"
   >
     <div
       class="tablet:pl-[6.25rem] pb-5 tablet:pb-[2.375rem] mobile:py-0 mobile:px-5 mobile:h-[6.25rem]"
@@ -167,7 +173,7 @@ const { titles } = PageMeta;
       Sahara KA Business is live
     </div>
     <div
-      class="text-s3 w-[68rem] text-center tablet:text-xs tablet:w-[25rem] mobile:w-[19.5rem]"
+      class="text-s3 w-[68rem] text-center tablet:text-mx tablet:w-[25rem] mobile:w-[19.5rem]"
     >
       Build your Sahara KAs today as custom on-premise AI solutions that save
       costs, drive growth, and enable new business opportunities.
@@ -186,7 +192,7 @@ const { titles } = PageMeta;
     <div
       class="col-span-4 text-h2 mobile:text-h4 mobile:text-center flex flex-col justify-center tablet:items-center"
     >
-      <div class="w-[20rem]">
+      <div class="w-[20rem] tablet:text-center tablet:text-h4 mobile:text-m2">
         <TextTyping text="Sahara Data." />
       </div>
     </div>
@@ -210,11 +216,11 @@ const { titles } = PageMeta;
     <div
       class="col-span-6 text-light-200 text-s3 mobile:text-sm pl-[54px] tablet:pl-0"
     >
-      <div class="mb-10">
+      <div class="mb-10  tablet:w-[30rem] tablet:mx-auto tablet:text-center">
         Sahara Data is an end-to-end platform designed to meet the most
         challenging training data demands.
       </div>
-      <div>
+      <div class=" tablet:w-[30rem] tablet:mx-auto tablet:text-center">
         The platform, <span class="text-light-100"
           >decentralized or on-premise,</span
         > offers an intelligent AI-centered, human-in-the-loop, and privacy-preserving
@@ -223,7 +229,7 @@ const { titles } = PageMeta;
       </div>
     </div>
   </div>
-  <div class="font-[Manrope] mb-[7.5rem] mobile:mb-[3.75rem]">
+  <div class="font-[Manrope] mb-[7.5rem] tablet:mb-[3.75rem]">
     <div
       class="text-light-200 text-h5 mobile:text-s3 mobile:text-center mb-[3.75rem] mobile:mb-8"
     >
@@ -240,13 +246,13 @@ const { titles } = PageMeta;
         Text
       </div>
       <div
-        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
+        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:pb-3 tablet:pt-2"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-base tablet:text-xs">RLHF for LLM</span>
       </div>
       <div
-        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
+        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:pb-3 tablet:pt-2"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-base tablet:text-xs"
@@ -254,13 +260,13 @@ const { titles } = PageMeta;
         >
       </div>
       <div
-        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
+        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:pb-3 tablet:pt-2"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-base tablet:text-xs">LLM bias detection</span>
       </div>
       <div
-        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
+        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:pb-3 tablet:pt-2"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-base tablet:text-xs">Content moderation</span>
@@ -277,25 +283,25 @@ const { titles } = PageMeta;
         Image & Video
       </div>
       <div
-        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
+        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:pb-3 tablet:pt-2"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-base tablet:text-xs">Objection detection</span>
       </div>
       <div
-        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
+        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:pb-3 tablet:pt-2"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-base tablet:text-xs">Multimedia classification</span>
       </div>
       <div
-        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
+        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:pb-3 tablet:pt-2"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-base tablet:text-xs">Image collection</span>
       </div>
       <div
-        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
+        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:pb-3 tablet:pt-2"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-base tablet:text-xs">Semantic segmentation</span>
@@ -312,13 +318,13 @@ const { titles } = PageMeta;
         Audio
       </div>
       <div
-        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
+        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:pb-3 tablet:pt-2"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-base tablet:text-xs">Text-to-speech</span>
       </div>
       <div
-        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
+        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:pb-3 tablet:pt-2"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-base tablet:text-xs"
@@ -326,13 +332,13 @@ const { titles } = PageMeta;
         </span>
       </div>
       <div
-        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
+        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl mobile:mb-2 border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:pb-3 tablet:pt-2"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-base tablet:text-xs">Audio classification</span>
       </div>
       <div
-        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:py-3"
+        class="col-span-2 tablet:col-span-3 mobile:col-span-12 mobile:h-11 mobile:rounded-xl border border-light-300 rounded-[1.25rem] h-[7.5rem] tablet:h-[5.5rem] flex relative items-end p-4 tablet:pb-3 tablet:pt-2"
       >
         <Icon class="w-5 h-5 absolute top-4 right-4" name="Pin" />
         <span class="text-base tablet:text-xs">Audio transcription</span>
@@ -350,23 +356,23 @@ const { titles } = PageMeta;
     >
       <div>
         <div class="text-h4 tablet:text-h5 mobile:text-s2 pb-3">31+</div>
-        <div class="text-s3 tablet:text-xs">Enterprise Clients</div>
+        <div class="text-s3 tablet:text-mx">Enterprise Clients</div>
       </div>
       <div>
         <div class="text-h4 tablet:text-h5 mobile:text-s2 pb-3">35+</div>
-        <div class="text-s3 tablet:text-xs">Countries</div>
+        <div class="text-s3 tablet:text-mx">Countries</div>
       </div>
       <div>
         <div class="text-h4 tablet:text-h5 mobile:text-s2 pb-3">45+</div>
-        <div class="text-s3 tablet:text-xs">Languages & Dialects</div>
+        <div class="text-s3 tablet:text-mx">Languages & Dialects</div>
       </div>
       <div>
         <div class="text-h4 tablet:text-h5 mobile:text-s2 pb-3">150+</div>
-        <div class="text-s3 tablet:text-xs">Partner providers</div>
+        <div class="text-s3 tablet:text-mx">Partner providers</div>
       </div>
       <div class="mobile:col-span-2">
         <div class="text-h4 tablet:text-h5 mobile:text-s2 pb-3">30,000+</div>
-        <div class="text-s3 tablet:text-xs">Vetted AI Trainers</div>
+        <div class="text-s3 tablet:text-mx">Vetted AI Trainers</div>
       </div>
     </div>
   </div>
@@ -394,7 +400,7 @@ const { titles } = PageMeta;
       />
     </div>
     <div
-      class="col-span-6 text-s3 text-light-200 pl-[3.125rem] flex flex-col justify-center tablet:text-sm tablet:text-center tablet:w-[25rem] mobile:text-sm mobile:pl-0"
+      class="col-span-6 text-s3 text-light-200 pl-[3.125rem] flex flex-col justify-center tablet:text-sm tablet:text-center tablet:w-[30rem] mobile:text-sm tablet:pl-0"
     >
       Sahara Data harnesses advanced AI and blockchain technology to optimize
       labeling workflow and offer unparalleled data quality at a competitive
@@ -406,7 +412,7 @@ const { titles } = PageMeta;
   >
     <div class="flex flex-nowrap overflow-hidden">
       <div
-        class="grid grid-cols-2 col-span-1 gap-x-32 tablet:gap-x-8 min-w-full p-[3.75rem] tablet:pt-7 pb-0 mobile:grid-cols-1 mobile:px-4"
+        class="grid grid-cols-2 col-span-1 gap-x-32 tablet:gap-x-8 min-w-full p-[3.75rem] tablet:pt-7 pb-0 tablet:px-5 mobile:grid-cols-1 mobile:px-4"
         id="content1"
       >
         <div class="col-span-1 flex items-center">
@@ -445,7 +451,7 @@ const { titles } = PageMeta;
           </div>
           <div class="flex items-center text-[2rem] mb-1.5 tablet:text-sm">
             <Icon
-              class="w-7 h-7 mr-7 tablet:min-w-5 tablet:h-5 tablet:mr-3"
+              class="w-7 h-7 mr-7 tablet:w-5 tablet:h-5 tablet:mr-3"
               name="brandLogo"
             />
             Continuous Learning
@@ -459,7 +465,7 @@ const { titles } = PageMeta;
         </div>
       </div>
       <div
-        class="flex col-span-1 gap-x-32 min-w-full p-[3.75rem] pb-0 mobile:flex-col mobile:px-4"
+        class="flex col-span-1 gap-x-32 min-w-full p-[3.75rem] pb-0 mobile:flex-col mobile:px-4 tablet:px-5"
         id="content2"
       >
         <div class="flex-1 flex items-center">
@@ -470,7 +476,7 @@ const { titles } = PageMeta;
             Optimal Balance Between AI and Human Input
           </div>
           <div class="flex items-center text-base text-light-200">
-            <Icon class="w-7 min-w-7 h-7 mr-7" name="brandLogo" />
+            <Icon class="w-7 h-7 mr-7 tablet:min-w-5 tablet:h-5 tablet:mr-3" name="brandLogo" />
             Sahara Data incorporates human input with precision until optimal quality
             is achieved. This way, you won't spend extra time or money while still
             obtaining the best quality.
@@ -492,16 +498,16 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    class="mb-[7.5rem] mt-[3.75rem] py-[3.75rem] font-[Manrope] flex flex-col items-center"
+    class="mb-[7.5rem] mt-[3.75rem] tablet:mt-7 py-[3.75rem] font-[Manrope] flex flex-col items-center"
   >
     <div
-      class="bg-dark-200 rounded-[1.25rem] w-[22.5rem] px-5 py-2.5 text-h5 tablet:text-s3 flex justify-center items-center"
+      class="bg-dark-200 rounded-[1.25rem] w-[22.5rem] tablet:w-[15rem] tablet:px-1 px-5 py-2.5 text-h5 tablet:text-s3 flex justify-center items-center"
     >
-      <div class="w-2.5 h-2.5 bg-light-100 rounded-full mr-4"></div>Sahara Data
+      <div class="w-2.5 h-2.5 tablet:w-2 tablet:h-2 bg-light-100 rounded-full mr-4 tablet:mr-2"></div>Sahara Data
       is live
     </div>
     <div
-      class="my-11 pt-1.5 text-h5 tablet:text-xs tablet:w-[25rem] mobile:w-full text-center"
+      class="my-11 tablet:my-7 pt-1.5 text-h5 tablet:text-mx tablet:w-[30rem] mobile:w-full text-center"
     >
       Talk to us today about the unique data solution for your AI training
       needs.
@@ -516,10 +522,10 @@ const { titles } = PageMeta;
   </div>
   <!-- <AutomateSection /> -->
   <div slot="footer">
-    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
+    <h1 class="text-h1 tablet:text-h3 mobile:text-h4 tablet:text-center font-[Manrope]">
       Your Ultimate Partner
     </h1>
-    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
+    <h1 class="text-h1 tablet:text-h3 mobile:text-h4 tablet:text-center font-[Manrope]">
       for High Value Data
     </h1>
   </div>
@@ -536,9 +542,9 @@ const { titles } = PageMeta;
   function bookDemo () {
     window.open("https://45253286.hs-sites.com/get-in-touch-business", "_blank");
   }
-  document.getElementById("bookDemo").addEventListener("click", bookDemo);
-  document.getElementById("bookDemo1").addEventListener("click", bookDemo);
-  document.getElementById("bookDemo2").addEventListener("click", bookDemo);
+  document.getElementById("bookDemo")?.addEventListener("click", bookDemo);
+  document.getElementById("bookDemo1")?.addEventListener("click", bookDemo);
+  document.getElementById("bookDemo2")?.addEventListener("click", bookDemo);
 
   const heroEl = document.getElementById("sectionHero");
   if (heroEl) {
