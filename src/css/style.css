@@ -40,3 +40,6 @@ body {
   pointer-events: none;
   background: linear-gradient(to top, rgba(18, 19, 21, 1), rgba(18, 19, 21, 0));
 }
+.input-bg{
+  background: none;
+}

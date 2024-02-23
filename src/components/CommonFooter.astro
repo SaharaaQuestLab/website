@@ -38,7 +38,6 @@ const {  bgNone } = Astro.props;
         <div class="border border-light-100 flex px-4 py-2 bg-dark-400 rounded-xl w-full max-w-[40rem] tablet:max-w-full justify-between">
           <div class="text-light-200 flex items-center text-sm mobile:text-xs">
             <Icon class="w-5 h-5 mr-1.5" name="email"/>
-            <input type="text" placeholder={freeNewsletter} value={email} onchange={handleChange} client:load>
           </div>
           <div class="cursor-pointer flex text-light-100 text-sm items-center mobile:text-xs">
             {subscribe}
