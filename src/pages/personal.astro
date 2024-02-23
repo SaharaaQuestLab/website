@@ -86,7 +86,8 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    class="mx-auto w-[27rem] tablet:w-40 mobile:w-full mobile:text-xs border font-[IBMPlexMono-Medium] whitespace-nowrap border-light-100 text-[0.875rem] cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
+    id="waitList"
+    class="waitList mx-auto w-[27rem] tablet:w-40 mobile:w-full mobile:text-xs border font-[IBMPlexMono-Medium] whitespace-nowrap border-light-100 text-[0.875rem] cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
   >
     Join waitlist
     <Icon class="w-5 h-5" name="arrowRightUp" />
@@ -125,7 +126,8 @@ const { titles } = PageMeta;
         manner.
       </div>
       <div
-        class="mx-auto mt-4 tablet:w-40 tablet:flex border whitespace-nowrap border-dark-100 text-base leading-5 cursor-pointer py-2.5 px-4 hidden items-center justify-center rounded-xl text-light-200"
+        id="waitList1"
+        class="waitList mx-auto mt-4 tablet:w-40 tablet:flex border whitespace-nowrap border-dark-100 text-base leading-5 cursor-pointer py-2.5 px-4 hidden items-center justify-center rounded-xl text-light-200"
       >
         Join waitlist
         <Icon class="w-5 h-5" name="arrowRightUp" />
@@ -145,6 +147,13 @@ const { titles } = PageMeta;
 
   gsap.registerPlugin(ScrollTrigger);
   makeCommonAppearEffect();
+
+  function goToWaitList () {
+    window.open("https://45253286.hs-sites.com/get-in-touch", "_blank");
+  }
+
+  document.getElementById("waitList").addEventListener("click", goToWaitList);
+  document.getElementById("waitList1").addEventListener("click", goToWaitList);
 
   const heroEl = document.getElementById("sectionHero");
   if (heroEl) {

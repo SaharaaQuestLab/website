@@ -93,6 +93,7 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
+    id="bookDemo2"
     class="mx-auto w-[27rem] mobile:w-full mobile:text-xs border tablet:w-40 whitespace-nowrap font-[IBMPlexMono-Medium] border-light-100 text-[0.875rem] leading-5 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
   >
     Book a Demo
@@ -172,6 +173,7 @@ const { titles } = PageMeta;
       costs, drive growth, and enable new business opportunities.
     </div>
     <div
+      id="bookDemo1"
       class="mx-auto mt-11 tablet:mt-7 mb-[3.75rem] w-[27rem] font-[IBMPlexMono-Medium] tablet:w-[30rem] mobile:w-[19.5rem] mobile:text-sm mobile:mb-10 flex border whitespace-nowrap border-light-100 text-base leading-5 cursor-pointer py-2.5 px-4 items-center justify-center rounded-xl text-light-100"
     >
       Book a Demo
@@ -505,6 +507,7 @@ const { titles } = PageMeta;
       needs.
     </div>
     <div
+      id="bookDemo"
       class="mx-auto w-[27rem] tablet:w-max border whitespace-nowrap border-light-100 font-[IBMPlexMono-Medium] text-sm leading-6 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
     >
       Book a Demo
@@ -529,6 +532,13 @@ const { titles } = PageMeta;
 
   gsap.registerPlugin(ScrollTrigger);
   makeCommonAppearEffect();
+
+  function bookDemo () {
+    window.open("https://45253286.hs-sites.com/get-in-touch-business", "_blank");
+  }
+  document.getElementById("bookDemo").addEventListener("click", bookDemo);
+  document.getElementById("bookDemo1").addEventListener("click", bookDemo);
+  document.getElementById("bookDemo2").addEventListener("click", bookDemo);
 
   const heroEl = document.getElementById("sectionHero");
   if (heroEl) {

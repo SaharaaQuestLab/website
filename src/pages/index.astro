@@ -51,13 +51,15 @@ const { titles } = PageMeta;
         </div>
         <div class="flex w-[40rem]">
           <div
-            class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
+            id="personal"
+            class="font-[IBMPlexMono-Medium] cursor-pointer py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
           >
             For Personal
             <Icon class="w-5 h-5" name="arrowRightUp" />
           </div>
           <div
-            class="font-[IBMPlexMono-Medium] py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-5 mobile:ml-3 flex items-center justify-center border border-light-100"
+            id="business"
+            class="font-[IBMPlexMono-Medium] cursor-pointer py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-5 mobile:ml-3 flex items-center justify-center border border-light-100"
           >
             For Business
             <Icon class="w-5 h-5" name="arrowRightUp" />
@@ -74,13 +76,15 @@ const { titles } = PageMeta;
         </div>
         <div class="flex w-full">
           <div
-            class="font-[IBMPlexMono-Medium] h-11 py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
+            id="personal1"
+            class="font-[IBMPlexMono-Medium] cursor-pointer h-11 py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
           >
             For Personal
             <Icon class="w-5 h-5" name="arrowRightUp" />
           </div>
           <div
-            class="font-[IBMPlexMono-Medium] h-11 py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-4 mobile:ml-3 flex items-center justify-center border border-light-100"
+            id="business2"
+            class="font-[IBMPlexMono-Medium] cursor-pointer h-11 py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-4 mobile:ml-3 flex items-center justify-center border border-light-100"
           >
             For Business
             <Icon class="w-5 h-5" name="arrowRightUp" />
@@ -226,6 +230,19 @@ const { titles } = PageMeta;
       opacity: 0,
     });
   }
+
+  function goToPersonal () {
+    window.open("https://45253286.hs-sites.com/get-in-touch-personal", "_blank");
+  }
+
+  function goToBusiness () {
+    window.open("https://45253286.hs-sites.com/get-in-touch-business", "_blank");
+  }
+
+  document.getElementById("personal").addEventListener("click", goToPersonal);
+  document.getElementById("personal1").addEventListener("click", goToPersonal);
+  document.getElementById("business").addEventListener("click", goToBusiness);
+  document.getElementById("business1").addEventListener("click", goToBusiness);
 
   // const titleEl = document.getElementById("sectionTitle");
   // if (titleEl) {

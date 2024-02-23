@@ -13,31 +13,23 @@ export default function EmailSubscribe() {
   }
 
   const sendEmail = () => {
-    alert(1)
+    if (!subscribeEmail) return;
+    const requestData = {
+      properties: {
+        email: subscribeEmail,
+      }
+    };
+    fetch('https://job-api.saharaa.info/contact.create', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify(requestData)
+    }).then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => alert(error));
   }
 
-  useEffect(() => {
-    const testSubscibe = async () => {
-      const requestData = {
-        properties: {
-          email: 'xinxin@qq.com',
-        }
-      };
-      fetch(hubSpotUrl, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestData)
-      })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
-    }
-
-    testSubscibe()
-  },[])
 
   return (
     <div className=" col-span-6 flex justify-end tablet:w-full">
