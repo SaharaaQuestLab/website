@@ -129,9 +129,7 @@ const { titles } = PageMeta;
         <div class="text-lg mb-2 tablet:text-[0.75rem] tablet:mb-1">
           Q2 2024
         </div>
-        <div
-          class="text-s2 tablet:text-base tablet:w-60"
-        >
+        <div class="text-s2 tablet:text-base tablet:w-60">
           Sahara Knowledge Vault Sahara Data
         </div>
       </div>
@@ -144,9 +142,7 @@ const { titles } = PageMeta;
         <div class="text-lg mb-2 tablet:text-[0.75rem] tablet:mb-1">
           Q3 2024
         </div>
-        <div
-          class="text-s2 tablet:text-base tablet:w-60"
-        >
+        <div class="text-s2 tablet:text-base tablet:w-60">
           Sahara Knowledge Vault Sahara Data
         </div>
       </div>
@@ -159,9 +155,7 @@ const { titles } = PageMeta;
         <div class="text-lg mb-2 tablet:text-[0.75rem] tablet:mb-1">
           Q4 2024
         </div>
-        <div
-          class="text-s2 tablet:text-base tablet:w-60"
-        >
+        <div class="text-s2 tablet:text-base tablet:w-60">
           Sahara Knowledge Vault Sahara Data
         </div>
       </div>
@@ -231,18 +225,24 @@ const { titles } = PageMeta;
     });
   }
 
-  function goToPersonal () {
-    window.open("https://45253286.hs-sites.com/get-in-touch-personal", "_blank");
+  function goToPersonal() {
+    window.open(
+      "https://45253286.hs-sites.com/get-in-touch-personal",
+      "_blank",
+    );
   }
 
-  function goToBusiness () {
-    window.open("https://45253286.hs-sites.com/get-in-touch-business", "_blank");
+  function goToBusiness() {
+    window.open(
+      "https://45253286.hs-sites.com/get-in-touch-business",
+      "_blank",
+    );
   }
 
-  document.getElementById("personal").addEventListener("click", goToPersonal);
-  document.getElementById("personal1").addEventListener("click", goToPersonal);
-  document.getElementById("business").addEventListener("click", goToBusiness);
-  document.getElementById("business1").addEventListener("click", goToBusiness);
+  document.getElementById("personal")?.addEventListener("click", goToPersonal);
+  document.getElementById("personal1")?.addEventListener("click", goToPersonal);
+  document.getElementById("business")?.addEventListener("click", goToBusiness);
+  document.getElementById("business1")?.addEventListener("click", goToBusiness);
 
   // const titleEl = document.getElementById("sectionTitle");
   // if (titleEl) {
