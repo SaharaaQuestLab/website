@@ -5,8 +5,8 @@ module.exports = {
 	theme: {
 		screens: {
 			'desktop': { max: '1728px' },
-			'tablet': { max: '768px' },
-			'mobile': { max: '375px' },
+			'tablet': { max: '1280px' },
+			'mobile': { max: '768px' },
 		},
 		fontSize: {
 			h1: ['110px', {
@@ -37,10 +37,22 @@ module.exports = {
 				lineHeight: '26.86px'
 			}],
 			sm: ['15px', {
-				lineHeight: '23.7px'
+				lineHeight: '24px'
 			}],
 			xs: ['13px', {
 				lineHeight: '20.54px'
+			}],
+			m1: ['64px', {
+				lineHeight: '58.88px'
+			}],
+			m2: ['45px', {
+				lineHeight: '42px'
+			}],
+			mx: ['12px', {
+				lineHeight: '18px'
+			}],
+			min: ['10px', {
+				lineHeight: '16px'
 			}]
 		},
 		colors: {

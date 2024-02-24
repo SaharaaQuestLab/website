@@ -15,7 +15,7 @@ const { titles } = PageMeta;
   <slot slot="base-layout">
     <div
       id="sectionHero"
-      class="w-screen h-screen first-screen-bottom-mask-wrap"
+      class="w-screen h-screen first-screen-bottom-mask-wrap relative"
     >
     </div>
 
@@ -28,7 +28,7 @@ const { titles } = PageMeta;
   </slot>
   <div
     id="sectionTeam"
-    class="text-center mt-40 mb-10 tablet:mt-[3.75rem] tablet:mb-8 tablet:text-h4 text-h2 font-[Manrope]"
+    class="text-center pt-[6.25rem] tablet:pt-0 mt-40 mb-10 tablet:mt-[3.75rem] tablet:mb-8 tablet:text-h4 text-h2 font-[Manrope]"
   >
     Meet The Team
   </div>
@@ -90,7 +90,7 @@ const { titles } = PageMeta;
   <div
     class="flex mobile:flex-col mt-40 pb-[3.75rem] tablet:mt-[3.75rem] tablet:pb-7 border-b border-b-dark-200"
   >
-    <div class="flex-1 text-h2 tablet:text-h4 font-[Manrope] mobile:mb-5">Careers</div>
+    <div class="flex-1 text-h2 tablet:text-h4 min-w-[25rem] tablet:min-w-0 font-[Manrope] mobile:mb-5">Careers</div>
     <div class="pr-[3.75rem] tablet:pr-0">
       <div
         class="text-base tablet:text-sm text-light-200 mb-7 font-[Manrope] w-[37rem] tablet:w-[22rem]"
@@ -107,7 +107,7 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div class="flex mobile:flex-col py-[3.75rem] tablet:py-7 border-b border-b-dark-200">
-    <div class="flex-1 text-h2 tablet:text-h4 font-[Manrope] mobile:mb-5">Vision</div>
+    <div class="flex-1 text-h2 tablet:text-h4 min-w-[25rem] tablet:min-w-0 font-[Manrope] mobile:mb-5">Vision</div>
     <div class="pr-[3.75rem] tablet:pr-0">
       <div
         class="text-base tablet:text-sm text-light-200 font-[Manrope] w-[37rem] tablet:w-[22rem]"
@@ -186,19 +186,19 @@ const { titles } = PageMeta;
     });
   }
 
-  const titleEl = document.getElementById("sectionTitle");
-  if (titleEl) {
-    gsap.to(titleEl, {
-      scrollTrigger: {
-        trigger: "#sectionTeam",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
-      },
-      opacity: 0,
-      y: "-30%",
-    });
-  }
+  // const titleEl = document.getElementById("sectionTitle");
+  // if (titleEl) {
+  //   gsap.to(titleEl, {
+  //     scrollTrigger: {
+  //       trigger: "#sectionTeam",
+  //       start: "top bottom",
+  //       end: "top top",
+  //       scrub: true,
+  //     },
+  //     opacity: 0,
+  //     y: "-30%",
+  //   });
+  // }
 </script>
 <style>
   .teamBackground > div {

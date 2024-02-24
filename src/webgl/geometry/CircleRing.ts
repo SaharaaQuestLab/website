@@ -1,7 +1,4 @@
-import { AdditiveBlending, Euler, Material, Mesh, NormalBlending, Quaternion, ShaderMaterial, TorusGeometry, Vector3 } from "three";
-import VertexShader from '@/shaders/ring.vert';
-import FragmentShader from "@/shaders/ring.frag";
-import ringMeshTongMaterial from "../material/RingMeshTong";
+import { Euler, Mesh, Quaternion, TorusGeometry, Vector3 } from "three";
 import ringMeshStandardMaterial from "../material/RingMeshTong";
 
 interface CircleRingOptions {

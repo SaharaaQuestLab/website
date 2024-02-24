@@ -1,13 +1,11 @@
 ---
-import JobList from "@/components/JobList.vue";
 import TitleComponent from "@/components/TitleComponent.astro";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/aboutUs";
 const { careerTitles } = PageMeta;
-const jobs = ["job1", "job2", "job3", "job4"];
 ---
 
-<Layout title="saharaa.ai" active="aboutUs">
+<Layout title="saharaa.ai" active="aboutUs"  isFooterSlot={true}>
   <slot slot="base-layout">
     <div id="sectionHero" class="w-screen h-screen"></div>
 
@@ -25,58 +23,60 @@ const jobs = ["job1", "job2", "job3", "job4"];
     None of these apply to you? We'd still love to stay in touch. Follow Sahara
     on LinkedIn.
   </div>
-  <JobList client:load list={jobs} />
-  <div slot="footer" class="mt-[7.5rem]">
-    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
-      Start Your
-    </h1>
-    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
-      Sahara Journey
-    </h1>
+  <!-- <JobList client:load list={jobs} /> -->
+  <div id="ashby_embed">
+    <div slot="footer" class="mt-[7.5rem]">
+      <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
+        Start Your
+      </h1>
+      <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
+        Sahara Journey
+      </h1>
+    </div>
   </div>
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import { makeCommonAppearEffect } from "@/utils/gsap.utils";
+    import HeroView from "@/webgl/HeroView";
+
+    gsap.registerPlugin(ScrollTrigger);
+    makeCommonAppearEffect();
+
+    const heroEl = document.getElementById("sectionHero");
+    if (heroEl) {
+      const viewer = new HeroView(heroEl, { layout: "two" });
+      viewer.useSetup();
+      viewer.play();
+      gsap.to(heroEl, {
+        scrollTrigger: {
+          trigger: "#sectionCareer",
+          start: "top bottom",
+          end: "top top-=30",
+          scrub: true,
+          onEnterBack: () => {
+            viewer.play();
+          },
+          onLeave: () => {
+            viewer.stop();
+          },
+        },
+        opacity: 0,
+      });
+    }
+
+    // const titleEl = document.getElementById("sectionTitle");
+    // if (titleEl) {
+    //   gsap.to(titleEl, {
+    //     scrollTrigger: {
+    //       trigger: "#sectionCareer",
+    //       start: "top bottom",
+    //       end: "top top",
+    //       scrub: true,
+    //     },
+    //     opacity: 0,
+    //     y: "-30%",
+    //   });
+    // }
+  </script>
 </Layout>
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import { makeCommonAppearEffect } from "@/utils/gsap.utils";
-  import HeroView from "@/webgl/HeroView";
-
-  gsap.registerPlugin(ScrollTrigger);
-  makeCommonAppearEffect();
-
-  const heroEl = document.getElementById("sectionHero");
-  if (heroEl) {
-    const viewer = new HeroView(heroEl, { layout: "two" });
-    viewer.useSetup();
-    viewer.play();
-    gsap.to(heroEl, {
-      scrollTrigger: {
-        trigger: "#sectionCareer",
-        start: "top bottom",
-        end: "top top-=30",
-        scrub: true,
-        onEnterBack: () => {
-          viewer.play();
-        },
-        onLeave: () => {
-          viewer.stop();
-        },
-      },
-      opacity: 0,
-    });
-  }
-
-  const titleEl = document.getElementById("sectionTitle");
-  if (titleEl) {
-    gsap.to(titleEl, {
-      scrollTrigger: {
-        trigger: "#sectionCareer",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
-      },
-      opacity: 0,
-      y: "-30%",
-    });
-  }
-</script>

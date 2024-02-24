@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
-import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, DepthEffect, BlendFunction, VignetteEffect, OutlineEffect, } from 'postprocessing';
+import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, BlendFunction, OutlineEffect, } from 'postprocessing';
 import { createGroundParticle } from './geometry/GroundParticle';
 import { createSkyParticle } from './geometry/SkyParticle';
 import { createBackgroundParticle } from './geometry/BackgroundParticle';
@@ -114,7 +114,7 @@ export default class HeroView {
   //   settings.translation.damping = 0.1;
   // }
 
-  private _animate(timestamp?: number) {
+  private _animate() {
     if (this._status === 'pausing') return;
     // if (this._controls) this._controls.update(timestamp || 0);
     if (this._requestCallback) this._requestCallback();
@@ -123,7 +123,7 @@ export default class HeroView {
     } else {
       this._render.render(this._scene, this._camera);
     }
-    this._requestAnimationId = requestAnimationFrame((time: number) => this._animate(time))
+    this._requestAnimationId = requestAnimationFrame(() => this._animate())
   }
 
   public useSetup() {

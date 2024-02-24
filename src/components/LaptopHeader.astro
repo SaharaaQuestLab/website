@@ -31,20 +31,20 @@ navData.nav.forEach((nav) => {
 ---
 
 <div
-  class="px-[1.75rem] pt-6 pb-[3.25rem] header w-screen tablet:hidden flex absolute left-1/2 -translate-x-1/2 z-10 justify-between pointer-events-none max-w-[calc(1728px)]"
+  class="px-[1.75rem] pt-6 pb-[3.25rem] header w-screen tablet:hidden flex absolute left-1/2 -translate-x-1/2 z-10 justify-between pointer-events-none "
 >
   <div class="flex pointer-events-auto">
     <a href={homeUrl} class="logo mr-12 w-11 h-full">
       <Icon class="w-11 h-11 text-white" name="brandLogo" />
     </a>
-    <div class="text-sm py-2.5 px-3 text-light-100">/</div>
+    <div class="text-sm py-2.5 px-3 text-dark-100">/</div>
     {
       routes.map((item) => (
         <a
           href={item.path}
           class:list={[
-            "whitespace-nowrap text-sm leading-6 relative overflow-hidden  px-3 py-2.5 block cursor-pointer hover:overflow-visible hover:border-b hover:border-b-light-300 border-b-light-100",
-            { "border-b": active === item.flag },
+            "whitespace-nowrap text-sm leading-6 relative overflow-hidden  px-3 py-2.5 block cursor-pointer hover:overflow-visible hover:border-b hover:border-b-light-300",
+            { "border-b !border-b-light-100": active === item.flag },
           ]}
         >
           {item.name}
@@ -78,12 +78,24 @@ navData.nav.forEach((nav) => {
   </div>
   <div class="flex-1 pointer-events-none"></div>
   <div
+    id="waitList"
     class="border whitespace-nowrap w-40 border-linght-100 font-[IBMPlexMono-Medium] text-[0.875rem] cursor-pointer py-2.5 px-4 flex items-center rounded-xl text-light-100 pointer-events-auto"
   >
     Join waitlist
     <Icon class="min-w-5 h-5" name="arrowRightUp" />
   </div>
 </div>
+
+<script>
+
+  function goToWaitList () {
+    window.open("https://hi.saharalabs.ai/get-in-touch", "_blank");
+  }
+
+  document.getElementById("waitList")?.addEventListener("click", goToWaitList);
+
+</script>
+
 <style>
   .header {
     background: linear-gradient(

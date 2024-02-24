@@ -4,7 +4,7 @@ export default {
    texts:  [
      'AI is Business'
     ],
-    description: 'Sahara is for individuals who want their own AI',
+    description: 'Sahara is for individuals who want their own AI to',
     remarks: [
       "for work and research"
     ],

@@ -29,12 +29,18 @@
     "vite-plugin-glsl": "^1.2.1"
   },
   "dependencies": {
+    "@astrojs/react": "^3.0.10",
     "bowser": "^2.11.0",
     "eventemitter3": "^5.0.1",
     "gsap": "^3.12.5",
     "postprocessing": "^6.34.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "spatial-controls": "^6.1.1",
     "three": "^0.161.0",
     "vue": "^3.4.18"
+  },
+  "volta": {
+    "node": "21.6.2"
   }
 }

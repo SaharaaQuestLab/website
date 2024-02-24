@@ -37,7 +37,7 @@
   const tl = gsap.timeline({ repeat: -1, delay: 1 });
 
   // 对每一行文本创建动画
-  lines.forEach((line, index) => {
+  lines.forEach((line) => {
     tl.fromTo(
       line as HTMLElement,
       { opacity: 0, y: "100%" },

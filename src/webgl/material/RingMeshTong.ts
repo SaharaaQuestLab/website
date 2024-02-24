@@ -1,55 +1,55 @@
-import { Color, MeshToonMaterial, CanvasTexture, MeshStandardMaterial, AdditiveBlending, DataTexture, NormalBlending } from "three";
+import { MeshStandardMaterial, NormalBlending } from "three";
 // import VertexShader from "@/shaders/ring.vert";
 // import FragmentShader from "@/shaders/ring.frag";
 
-function createStepTexture() {
+// function createStepTexture() {
 
-  const steps = [
-    0x000000,
-    0x222222,
-    0xaaaaaa,
-    0xffffff
-  ]
+//   const steps = [
+//     0x000000,
+//     0x222222,
+//     0xaaaaaa,
+//     0xffffff
+//   ]
 
-  const size = steps.length;
-  const data = new Uint8Array(4 * size);
+//   const size = steps.length;
+//   const data = new Uint8Array(4 * size);
 
-  for (let i = 0; i < size; i++) {
-    const v = steps[i];
-    const stride = i * 4;
-    data[stride] = v;
-    data[stride + 1] = v;
-    data[stride + 2] = v;
-    data[stride + 3] = 255;
+//   for (let i = 0; i < size; i++) {
+//     const v = steps[i];
+//     const stride = i * 4;
+//     data[stride] = v;
+//     data[stride + 1] = v;
+//     data[stride + 2] = v;
+//     data[stride + 3] = 255;
 
-  }
-  const texture = new DataTexture(data, size, 1);
-  texture.needsUpdate = true;
-  return texture;
-}
+//   }
+//   const texture = new DataTexture(data, size, 1);
+//   texture.needsUpdate = true;
+//   return texture;
+// }
 
-function createGradientTexture() {
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-  const gradient = ctx.createLinearGradient(0, 0, 256, 0); // 创建横向渐变
+// function createGradientTexture() {
+//   const canvas = document.createElement('canvas');
+//   const ctx = canvas.getContext('2d');
+//   if (!ctx) return;
+//   const gradient = ctx.createLinearGradient(0, 0, 256, 0); // 创建横向渐变
 
-  // 添加颜色断点
-  gradient.addColorStop(0.5, '#000000');
-  // gradient.addColorStop(0.5, '#aaaaaa');
-  gradient.addColorStop(0.7, '#ffffff');
+//   // 添加颜色断点
+//   gradient.addColorStop(0.5, '#000000');
+//   // gradient.addColorStop(0.5, '#aaaaaa');
+//   gradient.addColorStop(0.7, '#ffffff');
 
-  // 设置canvas大小
-  canvas.width = 256;
-  canvas.height = 1;
+//   // 设置canvas大小
+//   canvas.width = 256;
+//   canvas.height = 1;
 
-  // 填充渐变
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, 256, 1);
+//   // 填充渐变
+//   ctx.fillStyle = gradient;
+//   ctx.fillRect(0, 0, 256, 1);
 
-  // 使用canvas创建纹理
-  return new CanvasTexture(canvas);
-}
+//   // 使用canvas创建纹理
+//   return new CanvasTexture(canvas);
+// }
 
 
 // const ringMeshTongMaterial = new MeshToonMaterial({
@@ -64,10 +64,10 @@ function createGradientTexture() {
 // })
 
 const ringMeshStandardMaterial = new MeshStandardMaterial({
-    color: 0xffffff,
-    flatShading: true,
-    blending: NormalBlending
-  })
+  color: 0xffffff,
+  flatShading: true,
+  blending: NormalBlending
+})
 
 ringMeshStandardMaterial.onBeforeCompile = function (shader) {
   shader.vertexShader = shader.vertexShader.replace(

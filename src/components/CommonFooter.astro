@@ -1,52 +1,58 @@
 ---
 import { Icon } from "astro-icon/components";
 import PageMeta from "@/data/footer";
-const { authorization, privacyPolicy, email, subscribe } = PageMeta;
+const { authorization, privacyPolicy, freeNewsletter, subscribe } = PageMeta;
+import EmailSubscribe from '@/components/EmailSubscribe.jsx';
+
 interface Props {
-  border?: true;
+  isSlot?: boolean
 }
-const { border } = Astro.props;
+const { isSlot } = Astro.props;
 ---
 
-<div class="footer px-40 tablet:px-6 mobile:px-3 max-w-[1728px] mx-auto">
-  <slot name="footer"></slot>
-  <div class:list={["flex tablet:flex-col tablet:items-center text-base text-light-200 mobile:text-xs justify-between my-[3.75rem] tablet:my-7 pt-[3.75rem] tablet:pt-5 border-t-dark-200", {'border-t': border}]}>
-    <div class="flex tablet:flex-col tablet:items-center">
-      <div class="leading-[2.625rem] font-[Manrope] pr-5 whitespace-nowrap">
-        Follow us to get the latest updates
+<div class:list={['w-full footer']}>
+  <div class="max-w-[1408px] w-full tablet:px-6 mobile:px-3  mx-auto">
+    <slot name="footer"></slot>
+    <div class:list={["grid grid-cols-12 tablet:flex flex-col tablet:items-center text-base text-light-200 mobile:text-xs justify-between my-[3.75rem] tablet:mb-7 pt-[3.75rem]  border-t-dark-200 border-t", isSlot ? 'tablet:pt-5 tablet:mt-7': ""]}>
+      <div class="flex col-span-6 tablet:flex-col tablet:items-center">
+        <div class="leading-[2.625rem] font-[Manrope] pr-5 tablet:pr-0 mobile:text-mx tablet:text-sm whitespace-nowrap text-light-100">
+          Follow us to get the latest updates
+        </div>
+        <div class="flex gap-1  ml-5 tablet:ml-0 tablet:mt-4 tablet:mb-5 tablet:items-center">
+          <a class="p-3">
+            <Icon class="w-5 h-5" name="twitter"/>
+          </a>
+          <a class="p-3">
+            <Icon class="w-5 h-5" name="linkedin"/>
+          </a>
+          <a class="p-3">
+            <Icon class="w-5 h-5" name="dicord"/>
+          </a>
+          <a class="p-3">
+            <Icon class="w-5 h-5" name="telegram"/>
+          </a>
+        </div>
       </div>
-      <div class="flex gap-1 ml-5 tablet:ml-0 tablet:mt-4 tablet:mb-5 tablet:items-center">
-        <a class="p-3">
-          <Icon class="w-5 h-5" name="twitter"/>
-        </a>
-        <a class="p-3">
-          <Icon class="w-5 h-5" name="linkedin"/>
-        </a>
-        <a class="p-3">
-          <Icon class="w-5 h-5" name="dicord"/>
-        </a>
-        <a class="p-3">
-          <Icon class="w-5 h-5" name="telegram"/>
-        </a>
-      </div>
+      <!-- <div class=" col-span-6 flex justify-end tablet:w-full">
+        <div class="border border-light-100 flex px-4 py-2 bg-dark-400 rounded-xl w-full max-w-[40rem] tablet:max-w-full justify-between">
+          <div class="text-light-200 flex items-center text-sm mobile:text-xs">
+            <Icon class="w-5 h-5 mr-1.5" name="email"/>
+          </div>
+          <div class="cursor-pointer flex text-light-100 text-sm items-center mobile:text-xs">
+            {subscribe}
+            <Icon class="w-5 h-5" name="arrowRightUp"/>
+          </div>
+        </div>
+      </div> -->
+      <EmailSubscribe client:load />
     </div>
-    <div class="border border-light-100 flex px-4 py-2 bg-dark-400 rounded-xl w-[40rem] tablet:w-full justify-between">
-      <div class="text-light-200 flex items-center text-sm mobile:text-xs">
-        <Icon class="w-5 h-5 mr-1.5" name="email"/>
-        {email}
+    <div class="border-t text-light-200 border-t-dark-100 border-opacity-40 flex justify-between text-sm pb-2.5  mobile:text-xs mt-5">
+      <div class="py-2.5">
+        {authorization}
       </div>
-      <div class="cursor-pointer flex text-light-100 text-sm items-center mobile:text-xs">
-        {subscribe}
-        <Icon class="w-5 h-5" name="arrowRightUp"/>
+      <div class="py-2.5">
+        {privacyPolicy}
       </div>
-    </div>
-  </div>
-  <div class="border-t text-light-200 border-t-dark-100 border-opacity-40 flex justify-between text-sm  mobile:text-xs mt-5">
-    <div class="py-2.5">
-      {authorization}
-    </div>
-    <div class="py-2.5">
-      {privacyPolicy}
     </div>
   </div>
 </div>
@@ -55,5 +61,9 @@ const { border } = Astro.props;
 
 .footer {
   background: linear-gradient(to bottom, rgba(18, 19, 21,1), rgba(18, 19, 21,0));
+  background-image: url(../assets//images/footerBackground.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: left bottom;
 }
 </style>

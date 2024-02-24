@@ -1,18 +1,25 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 import imageList from "./partners";
 const images = imageList;
 ---
-<div class="h-[7.5rem] tablet:h-[4.25rem] slider-container w-screen absolute left-1/2 -translate-x-1/2">
+
+<div
+  class="h-[7.5rem] tablet:h-[4.25rem] slider-container w-screen absolute left-1/2 -translate-x-1/2 overflow-x-hidden"
+>
   <div class="flex sliders w-max" id="sliders">
     {
-      images.map(item=>(
-        <div class="slide  mr-10 tablet:w-[8.25rem] w-[16.25rem] h-[7.5rem] tablet:h-[4.25rem]"><Image src={item} alt=""/></div>
+      images.map((item) => (
+        <div class="slide border border-dark-300 rounded-2xl  mr-10 tablet:mr-3 tablet:w-[8.25rem] w-[16.25rem] h-[7.5rem] tablet:h-[4.25rem]">
+          <Image src={item} alt="" />
+        </div>
       ))
     }
     {
-      images.map(item=>(
-        <div class="slide  mr-10 tablet:w-[8.25rem] w-[16.25rem] h-[7.5rem] tablet:h-[4.25rem]"><Image src={item} alt=""/></div>
+      images.map((item) => (
+        <div class="slide  border border-dark-300 rounded-2xl mr-10 tablet:mr-3 tablet:w-[8.25rem] w-[16.25rem] h-[7.5rem] tablet:h-[4.25rem]">
+          <Image src={item} alt="" />
+        </div>
       ))
     }
   </div>
@@ -24,18 +31,18 @@ const images = imageList;
   gsap.registerPlugin(ScrollToPlugin);
   const sliderContainer = document.querySelector("#sliders") as HTMLDivElement;
   const slideWidth = sliderContainer.offsetWidth / 2;
-  console.log(slideWidth, sliderContainer);
+
   gsap.timeline({ repeat: -1, yoyo: false }).to(sliderContainer, {
-    duration: 10,
+    duration: 50,
     x: -slideWidth,
     ease: "linear",
   });
 </script>
 <style>
   .slide {
-    border: 1px solid #62666d;
-    border-radius: 1.25rem;
     overflow: hidden;
+    display: flex;
+    align-items: center;
   }
   .slide img {
     width: 100%;
