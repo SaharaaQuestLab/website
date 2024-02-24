@@ -47,8 +47,7 @@ const { isSlot } = Astro.props;
       <EmailSubscribe client:load />
     </div>
     <div class="border-t text-light-200 border-t-dark-100 border-opacity-40 flex justify-between text-sm pb-2.5  mobile:text-xs mt-5">
-      <div class="py-2.5">
-        {authorization}
+      <div class="py-2.5" set:html={authorization}>
       </div>
       <div class="py-2.5">
         {privacyPolicy}

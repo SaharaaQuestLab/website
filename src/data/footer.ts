@@ -5,5 +5,5 @@ export default {
   "subscribe": "Subscribe",
   "privacyPolicy": "Privacy policy",
   "freeNewsletter": "Free newsletter",
-  "authorization": "Sahara © 2024"
+  "authorization": "Sahara &#x00A9; 2024"
 }
