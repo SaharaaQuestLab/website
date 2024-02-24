@@ -9,15 +9,13 @@ import { Icon } from "astro-icon/components";
 const { titles } = PageMeta;
 ---
 
-<div class="tablet:h-11 mobile:h-6 tablet:block hidden">
-  <div
-    class="items-center py-2.5 hidden font-[Manrope] w-full top-0 left-0 font-bold text-sm mobile:text-min mobile:py-0.5 tablet:flex bg-light-100 fixed z-50 justify-center text-dark-400"
+<div
+    class="items-center py-2.5 hidden font-[Manrope] w-full top-0 left-0 font-bold text-sm mobile:text-min mobile:py-0.5 tablet:flex bg-light-100 relative z-50 justify-center text-dark-400"
   >
     <Icon class="w-0 h-0" name="brandLogo" />
     Sahara raises $6M in seed round led by Polychain Capital
     <Icon class="w-5 h-5" name="arrowRightUp" />
   </div>
-</div>
 
 <Layout title="saharaa.ai" isFooterSlot={true}>
   <slot slot="base-layout">
@@ -52,14 +50,14 @@ const { titles } = PageMeta;
         <div class="flex w-[40rem]">
           <div
             id="personal"
-            class="font-[IBMPlexMono-Medium] cursor-pointer py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
+            class="common-button py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center"
           >
             For Personal
             <Icon class="w-5 h-5" name="arrowRightUp" />
           </div>
           <div
             id="business"
-            class="font-[IBMPlexMono-Medium] cursor-pointer py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-5 mobile:ml-3 flex items-center justify-center border border-light-100"
+            class="common-button py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-5 mobile:ml-3 flex items-center justify-center"
           >
             For Business
             <Icon class="w-5 h-5" name="arrowRightUp" />
@@ -77,14 +75,14 @@ const { titles } = PageMeta;
         <div class="flex w-full">
           <div
             id="personal1"
-            class="font-[IBMPlexMono-Medium] cursor-pointer h-11 py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center border border-light-100"
+            class="common-button h-11 py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs flex items-center justify-center"
           >
             For Personal
             <Icon class="w-5 h-5" name="arrowRightUp" />
           </div>
           <div
             id="business1"
-            class="font-[IBMPlexMono-Medium] cursor-pointer h-11 py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-4 mobile:ml-3 flex items-center justify-center border border-light-100"
+            class="common-button h-11 py-2.5 rounded-xl flex-1 tablet:text-sm mobile:text-xs ml-4 mobile:ml-3 flex items-center justify-center"
           >
             For Business
             <Icon class="w-5 h-5" name="arrowRightUp" />

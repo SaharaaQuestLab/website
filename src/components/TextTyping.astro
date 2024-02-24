@@ -25,7 +25,7 @@ const { text = "" } = Astro.props;
     init = () => {
       const typewriter = this.querySelector(`#typewriterContent`);
       if (!typewriter) return;
-      const lines = gsap.utils.toArray(this.querySelectorAll(`.typewriter-item`));
+      const lines = gsap.utils.toArray(this.querySelectorAll(`.typewriter-item`)) as HTMLElement[];
       // 创建一个 GSAP 时间线
       const tl = gsap.timeline({
         repeat: 0,

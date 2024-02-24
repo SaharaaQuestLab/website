@@ -66,3 +66,15 @@ body {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
+
+.common-button {
+  @apply border border-light-100 font-[IBMPlexMono-Medium] text-light-100 cursor-pointer bg-dark-400;
+}
+
+.common-button:hover {
+  @apply text-dark-300 bg-light-100;
+}
+
+.common-button:active {
+  @apply border-light-300 bg-dark-100 text-light-100;
+}
