@@ -92,7 +92,7 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    id="waitList"
+    id="joinWaitList"
     class="mx-auto w-[27rem] tablet:w-40 mobile:w-full mobile:text-xs border font-[IBMPlexMono-Medium] whitespace-nowrap border-light-100 text-sm h-11 cursor-pointer py-2.5 px-4 flex items-center justify-center rounded-xl text-light-100"
   >
     Join waitlist
@@ -143,7 +143,6 @@ const { titles } = PageMeta;
         manner.
       </div>
       <div
-        id="waitList1"
         class="mx-auto mt-4 tablet:w-40 tablet:flex border whitespace-nowrap font-[IBMPlexMono-Medium] tablet:text-sm tablet:h-11 border-light-100 text-base cursor-pointer py-2.5 px-4 hidden items-center justify-center rounded-xl text-light-100"
       >
         Join waitlist
@@ -169,7 +168,7 @@ const { titles } = PageMeta;
     window.open("https://45253286.hs-sites.com/get-in-touch", "_blank");
   }
 
-  document.getElementById("waitList")?.addEventListener("click", goToWaitList);
+  document.getElementById("joinWaitList")?.addEventListener("click", goToWaitList);
   document.getElementById("waitList1")?.addEventListener("click", goToWaitList);
 
   const heroEl = document.getElementById("sectionHero");

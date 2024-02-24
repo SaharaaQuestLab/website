@@ -1,33 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PageMeta from "@/data/footer";
-import { hubSpotUrl, accessToken } from "@/utils/api.utils";
 
-const { freeNewsletter, subscribe } = PageMeta;
+const { freeNewsletter } = PageMeta;
 
 export default function EmailSubscribe() {
 
   const [subscribeEmail, setSubscribeEmail] = useState('');
+  const [showLoading, setShowLoading] = useState(false);
 
   const handleChange = (event) => {
     setSubscribeEmail(event.target.value);
   }
 
-  const sendEmail = () => {
-    if (!subscribeEmail) return;
-    const requestData = {
-      properties: {
-        email: subscribeEmail,
-      }
-    };
-    fetch('https://job-api.saharaa.info/contact.create', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify(requestData)
-    }).then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => alert(error));
+  const sendEmail = async () => {
+    try {
+      if (!subscribeEmail) return;
+      setShowLoading(true);
+      const requestData = {
+        properties: {
+          email: subscribeEmail,
+        }
+      };
+      await fetch('https://job-api.saharaa.info/contact.create', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify(requestData)
+      })
+    } catch (error) {
+      console.log('error', error);
+    } finally {
+      setShowLoading(false);
+    }
   }
 
 
@@ -38,9 +43,11 @@ export default function EmailSubscribe() {
           <img className="w-5 h-5 mr-1.5" src='/email.svg' alt="" />
           <input className="input-bg outline-none" type="text" placeholder={freeNewsletter} value={subscribeEmail} onChange={handleChange} />
         </div>
-        <div className="cursor-pointer flex text-light-100 text-sm items-center mobile:text-xs" onClick={() => sendEmail()}>
-          {subscribe}
-          <img className="w-5 h-5" src='/jump.svg' alt="" />
+        <div className={`cursor-pointer flex text-light-100 text-sm items-center mobile:text-xs loading-button ${showLoading ? 'loading' : ''}`} onClick={() => sendEmail()}>
+          {showLoading ? '' : 'Subscribe'}
+          {
+            !showLoading && <img className="w-5 h-5" src='/jump.svg' alt="" />
+          }
         </div>
       </div>
     </div>
