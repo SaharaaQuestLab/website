@@ -2,34 +2,43 @@
 import { Icon } from "astro-icon/components";
 import PageMeta from "@/data/footer";
 const { authorization, privacyPolicy, freeNewsletter, subscribe } = PageMeta;
-import EmailSubscribe from '@/components/EmailSubscribe.jsx';
+import EmailSubscribe from "@/components/EmailSubscribe.jsx";
 
 interface Props {
-  isSlot?: boolean
+  isSlot?: boolean;
 }
 const { isSlot } = Astro.props;
 ---
 
-<div class:list={['w-full footer']}>
-  <div class="max-w-[1408px] w-full tablet:px-6 mobile:px-3  mx-auto">
-    <slot name="footer"></slot>
-    <div class:list={["grid grid-cols-12 tablet:flex flex-col tablet:items-center text-base text-light-200 mobile:text-xs justify-between my-[3.75rem] tablet:mb-7 pt-[3.75rem]  border-t-dark-200 border-t", isSlot ? 'tablet:pt-5 tablet:mt-7': ""]}>
+<div class:list={["w-full footer"]}>
+  <div class="max-w-[1408px] w-full tablet:px-6 mobile:px-3 mx-auto">
+    <slot name="footer" />
+    <div
+      class:list={[
+        "grid grid-cols-12 tablet:flex flex-col tablet:items-center text-base text-light-200 mobile:text-xs justify-between my-[3.75rem] tablet:mb-7 pt-[3.75rem]  border-t-dark-200 border-t",
+        isSlot ? "tablet:pt-5 tablet:mt-7" : "",
+      ]}
+    >
       <div class="flex col-span-6 tablet:flex-col tablet:items-center">
-        <div class="leading-[2.625rem] font-[Manrope] pr-5 tablet:pr-0 mobile:text-mx tablet:text-sm whitespace-nowrap text-light-100">
+        <div
+          class="leading-[2.625rem] font-[Manrope] pr-5 tablet:pr-0 mobile:text-mx tablet:text-sm whitespace-nowrap text-light-100"
+        >
           Follow us to get the latest updates
         </div>
-        <div class="flex gap-1  ml-5 tablet:ml-0 tablet:mt-4 tablet:mb-5 tablet:items-center">
+        <div
+          class="flex gap-1 ml-5 tablet:ml-0 tablet:mt-4 tablet:mb-5 tablet:items-center"
+        >
           <a class="p-3">
-            <Icon class="w-5 h-5" name="twitter"/>
+            <Icon class="w-5 h-5" name="twitter" />
           </a>
           <a class="p-3">
-            <Icon class="w-5 h-5" name="linkedin"/>
+            <Icon class="w-5 h-5" name="linkedin" />
           </a>
           <a class="p-3">
-            <Icon class="w-5 h-5" name="dicord"/>
+            <Icon class="w-5 h-5" name="dicord" />
           </a>
           <a class="p-3">
-            <Icon class="w-5 h-5" name="telegram"/>
+            <Icon class="w-5 h-5" name="telegram" />
           </a>
         </div>
       </div>
@@ -46,9 +55,10 @@ const { isSlot } = Astro.props;
       </div> -->
       <EmailSubscribe client:load />
     </div>
-    <div class="border-t text-light-200 border-t-dark-100 border-opacity-40 flex justify-between text-sm pb-2.5  mobile:text-xs mt-5">
-      <div class="py-2.5" set:html={authorization}>
-      </div>
+    <div
+      class="border-t text-light-200 border-t-dark-100 border-opacity-40 flex justify-between text-sm pb-2.5 mobile:text-xs mt-5"
+    >
+      <div class="py-2.5" set:html={authorization} />
       <div class="py-2.5">
         {privacyPolicy}
       </div>
@@ -57,12 +67,15 @@ const { isSlot } = Astro.props;
 </div>
 
 <style>
-
-.footer {
-  background: linear-gradient(to bottom, rgba(18, 19, 21,1), rgba(18, 19, 21,0));
-  background-image: url(../assets//images/footerBackground.jpg);
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: left bottom;
-}
+  .footer {
+    background: linear-gradient(
+      to bottom,
+      rgba(18, 19, 21, 1),
+      rgba(18, 19, 21, 0)
+    );
+    background-image: url(../assets//images/footerBackground.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: left bottom;
+  }
 </style>

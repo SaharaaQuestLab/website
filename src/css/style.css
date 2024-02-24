@@ -5,19 +5,19 @@
 @font-face {
   font-family: IBMPlexMono;
   font-style: normal;
-  src: url(../assets//fonts/IBMPlexMono-Regular.ttf);
+  src: url(../assets/fonts/IBMPlexMono-Regular.ttf);
 }
 
 @font-face {
   font-family: IBMPlexMono-Medium;
   font-style: normal;
-  src: url(../assets//fonts/IBMPlexMono-Medium.ttf);
+  src: url(../assets/fonts/IBMPlexMono-Medium.ttf);
 }
 
 @font-face {
   font-family: Manrope;
   font-style: normal;
-  src: url(../assets//fonts/Manrope-VariableFont_wght.ttf);
+  src: url(../assets/fonts/Manrope-VariableFont_wght.ttf);
 }
 
 
@@ -40,7 +40,8 @@ body {
   pointer-events: none;
   background: linear-gradient(to top, rgba(18, 19, 21, 1), rgba(18, 19, 21, 0));
 }
-.input-bg{
+
+.input-bg {
   background: none;
 }
 
@@ -63,8 +64,13 @@ body {
 }
 
 @keyframes spin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .common-button {
