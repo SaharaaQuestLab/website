@@ -6,7 +6,7 @@ export default {
       "Sahara is an AI and blockchain-powered network that unlocks fair and universal access to knowledge capital",
     button: {
       text: "Join waitlist",
-      url: "https://45253286.hs-sites.com/get-in-touch",
+      url: "https://hi.saharalabs.ai/get-in-touch",
     },
   },
 };
