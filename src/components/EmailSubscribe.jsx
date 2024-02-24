@@ -7,6 +7,7 @@ export default function EmailSubscribe() {
 
   const [subscribeEmail, setSubscribeEmail] = useState('');
   const [showLoading, setShowLoading] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
   const handleChange = (event) => {
     setSubscribeEmail(event.target.value);
@@ -14,7 +15,7 @@ export default function EmailSubscribe() {
 
   const sendEmail = async () => {
     try {
-      if (!subscribeEmail) return;
+      if (!subscribeEmail || isSubscribed) return;
       setShowLoading(true);
       const requestData = {
         properties: {
@@ -28,6 +29,7 @@ export default function EmailSubscribe() {
         method: 'POST',
         body: JSON.stringify(requestData)
       })
+      setIsSubscribed(true);
     } catch (error) {
       console.log('error', error);
     } finally {
@@ -43,10 +45,10 @@ export default function EmailSubscribe() {
           <img className="w-5 h-5 mr-1.5" src='/email.svg' alt="" />
           <input className="input-bg outline-none" type="text" placeholder={freeNewsletter} value={subscribeEmail} onChange={handleChange} />
         </div>
-        <div className={`cursor-pointer flex text-light-100 text-sm items-center mobile:text-xs loading-button ${showLoading ? 'loading' : ''}`} onClick={() => sendEmail()}>
-          {showLoading ? '' : 'Subscribe'}
+        <div className={`cursor-pointer flex text-sm items-center mobile:text-xs loading-button ${showLoading ? 'loading pr-10' : ''} ${isSubscribed ? 'text-light-300 cursor-not-allowed' : 'text-light-100'}`} onClick={() => sendEmail()}>
+          {showLoading ? '' : isSubscribed ? 'Subscribed':'Subscribe'}
           {
-            !showLoading && <img className="w-5 h-5" src='/jump.svg' alt="" />
+            (!showLoading && !isSubscribed) && <img className="w-5 h-5" src='/jump.svg' alt="" />
           }
         </div>
       </div>
