@@ -200,6 +200,8 @@ const { titles } = PageMeta;
   import HeroView from "@/webgl/HeroView";
   import { makeCommonAppearEffect } from "@/utils/gsap.utils";
 
+  const baseUrl = import.meta.env.BASE_URL;
+
   gsap.registerPlugin(ScrollTrigger);
   makeCommonAppearEffect();
 
@@ -226,17 +228,11 @@ const { titles } = PageMeta;
   }
 
   function goToPersonal() {
-    window.open(
-      "https://hi.saharalabs.ai/get-in-touch-personal",
-      "_blank",
-    );
+    window.location.href = `${baseUrl}personal`;
   }
 
   function goToBusiness() {
-    window.open(
-      "https://hi.saharalabs.ai/get-in-touch-business",
-      "_blank",
-    );
+    window.location.href = `${baseUrl}business`;
   }
 
   document.getElementById("personal")?.addEventListener("click", goToPersonal);
