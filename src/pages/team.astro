@@ -6,8 +6,8 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/aboutUs";
 import { Icon } from "astro-icon/components";
-import founder01 from "@/assets/images/founder01.jpg";
-import founder02 from "@/assets/images/founder02.jpg";
+import founder01 from "@/assets/images/founderPose_01.jpg";
+import founder02 from "@/assets/images/founderPose_02.jpg";
 const { titles } = PageMeta;
 ---
 
@@ -39,21 +39,23 @@ const { titles } = PageMeta;
     years of experience from leading tech companies and distinguished research
     institutions.
   </div>
-  <div class="grid grid-cols-2 gap-32 font-[Manrope] tablet:gap-[3.75rem] mobile:grid-cols-1">
+  <div
+    class="grid grid-cols-2 gap-32 font-[Manrope] tablet:gap-[3.75rem] mobile:grid-cols-1"
+  >
     <div class="common-up-move">
       <Image
         class="w-full mb-11 tablet:mb-2.5 rounded-2xl"
         src={founder01}
-        alt=""
+        alt="Sean Ren"
       />
       <div
         class="text-h4 tablet:text-s3 mb-3 tablet:mb-1 flex items-center justify-between"
       >
         Sean Ren
-        <span class="flex"
-          ><Icon class="w-5 h-5 m-3" name="twitter" />
-          <Icon class="w-5 h-5 m-3" name="linkedin" /></span
-        >
+        <span class="flex">
+          <Icon class="w-5 h-5 m-3" name="twitter" />
+          <Icon class="w-5 h-5 m-3" name="linkedin" />
+        </span>
       </div>
       <div class="text-s3 tablet:text-xs">Co-founder CEO</div>
     </div>
@@ -61,7 +63,7 @@ const { titles } = PageMeta;
       <Image
         class="w-full mb-11 tablet:mb-2.5 rounded-2xl"
         src={founder02}
-        alt=""
+        alt="Tyler Zhou"
       />
       <div
         class="text-h4 tablet:text-s3 mb-3 tablet:mb-1 flex items-center justify-between"
@@ -90,7 +92,11 @@ const { titles } = PageMeta;
   <div
     class="flex mobile:flex-col mt-40 pb-[3.75rem] tablet:mt-[3.75rem] tablet:pb-7 border-b border-b-dark-200"
   >
-    <div class="flex-1 text-h2 tablet:text-h4 min-w-[25rem] tablet:min-w-0 font-[Manrope] mobile:mb-5">Careers</div>
+    <div
+      class="flex-1 text-h2 tablet:text-h4 min-w-[25rem] tablet:min-w-0 font-[Manrope] mobile:mb-5"
+    >
+      Careers
+    </div>
     <div class="pr-[3.75rem] tablet:pr-0">
       <div
         class="text-base tablet:text-sm text-light-200 mb-7 font-[Manrope] w-[37rem] tablet:w-[22rem]"
@@ -106,8 +112,14 @@ const { titles } = PageMeta;
       </div>
     </div>
   </div>
-  <div class="flex mobile:flex-col py-[3.75rem] tablet:py-7 border-b border-b-dark-200">
-    <div class="flex-1 text-h2 tablet:text-h4 min-w-[25rem] tablet:min-w-0 font-[Manrope] mobile:mb-5">Vision</div>
+  <div
+    class="flex mobile:flex-col py-[3.75rem] tablet:py-7 border-b border-b-dark-200"
+  >
+    <div
+      class="flex-1 text-h2 tablet:text-h4 min-w-[25rem] tablet:min-w-0 font-[Manrope] mobile:mb-5"
+    >
+      Vision
+    </div>
     <div class="pr-[3.75rem] tablet:pr-0">
       <div
         class="text-base tablet:text-sm text-light-200 font-[Manrope] w-[37rem] tablet:w-[22rem]"
@@ -119,7 +131,7 @@ const { titles } = PageMeta;
     </div>
   </div>
   <div
-    class="mt-40 border-b border-b-dark-200 tablet:mx-auto tablet:w-[33.125rem] tablet:mb-7 tablet:mt-[3.75rem]  mobile:w-full"
+    class="mt-40 border-b border-b-dark-200 tablet:mx-auto tablet:w-[33.125rem] tablet:mb-7 tablet:mt-[3.75rem] mobile:w-full"
   >
     <div class="my-7 py-1.5 flex gap-x-4 justify-center">
       <Icon class="w-7 h-7 tablet:w-5 tablet:h-5" name="brandLogo" />
