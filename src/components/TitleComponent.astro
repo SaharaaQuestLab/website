@@ -11,11 +11,14 @@ interface Props {
     description: string;
     button?: {
       text: string;
+      url?: string;
     };
   };
 }
 const { texts, description, button, subDescriptions } = Astro.props.titles;
 const {className, titleClassName} = Astro.props;
+
+
 ---
 
 <div
@@ -39,10 +42,26 @@ const {className, titleClassName} = Astro.props;
   <!-- link button -->
   {
     button && (
-      <div class="border w-max whitespace-nowrap tablet:text-sm tablet:h-11 mobile:w-[9.125rem] font-[IBMPlexMono-Medium] mobile:text-xs border-light-100 text-base cursor-pointer py-2.5 px-4 flex items-center rounded-xl mt-10 tablet:mt-7 text-[#FFFFFF] pointer-events-auto">{button.text}<Icon class="min-w-5 h-5" name="arrowRightUp" />
+      <div class="link-btn border w-max whitespace-nowrap tablet:text-sm tablet:h-11 mobile:w-[9.125rem] font-[IBMPlexMono-Medium] mobile:text-xs border-light-100 text-base cursor-pointer py-2.5 px-4 flex items-center rounded-xl mt-10 tablet:mt-7 text-[#FFFFFF] pointer-events-auto" data-link={button.url}>{button.text}<Icon class="min-w-5 h-5" name="arrowRightUp" />
       </div>
     )
   }
 </div>
 
 <style></style>
+
+
+<script>
+  // Find all buttons with the `alert` class on the page.
+  const buttons = document.querySelectorAll('div.link-btn');
+
+  // Handle clicks on each button.
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const url = button.getAttribute('data-link');
+      if (url) {
+        window.open(url, "_blank");
+      }
+    });
+  });
+</script>
