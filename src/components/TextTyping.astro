@@ -13,7 +13,7 @@ const { text = "" } = Astro.props;
         .split("")
         .map((item) => (
           <span
-            class="typewriter-item inline-block h-[1.25em]"
+            class="typewriter-item"
             style="opacity:0"
             set:text={item}
           />
@@ -58,7 +58,7 @@ const { text = "" } = Astro.props;
               line.className = "typewriter-item flash-item";
             },
           },
-          `+=${0.04 + 0.15 / ((index % (lines.length - 5)) + 1)}`,
+          `+=${0.05 + 0.15 / ((index % (lines.length - 5)) + 1)}`,
         );
       });
     };
@@ -66,20 +66,25 @@ const { text = "" } = Astro.props;
   customElements.define("text-typing", TextTyping);
 </script>
 <style>
+  .typewriter-item {
+    display: inline-block;
+    min-width: 0.2em;
+  }
   .flash-item {
     opacity: 1;
-    animation: blink 0.7s; /* 光标闪烁动画 */
+    animation: blink 0.3s; /* 光标闪烁动画 */
   }
 
   /* 光标闪烁关键帧 */
   @keyframes blink {
     0%,
-    50% {
+    100% {
       background: #e1e4e7;
+      color: transparent;
     }
-    50.1%,
+    /* 99.1%,
     100% {
       background: transparent;
-    }
+    } */
   }
 </style>
