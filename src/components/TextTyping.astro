@@ -8,8 +8,17 @@ const { text = "" } = Astro.props;
 
 <text-typing>
   <span data-text={text} id="typewriterContent">
-    {text.split('').map(item => (<span class="typewriter-item" style="opacity
-  :0">{item}</span>))}
+    {
+      text
+        .split("")
+        .map((item) => (
+          <span
+            class="typewriter-item inline-block h-[1.25em]"
+            style="opacity:0"
+            set:text={item}
+          />
+        ))
+    }
   </span>
 </text-typing>
 
@@ -25,7 +34,9 @@ const { text = "" } = Astro.props;
     init = () => {
       const typewriter = this.querySelector(`#typewriterContent`);
       if (!typewriter) return;
-      const lines = gsap.utils.toArray(this.querySelectorAll(`.typewriter-item`)) as HTMLElement[];
+      const lines = gsap.utils.toArray(
+        this.querySelectorAll(`.typewriter-item`),
+      ) as HTMLElement[];
       // 创建一个 GSAP 时间线
       const tl = gsap.timeline({
         repeat: 0,
@@ -33,20 +44,24 @@ const { text = "" } = Astro.props;
         scrollTrigger: {
           trigger: typewriter,
           start: "top bottom",
-        }
+        },
       });
 
       // 对每一行文本创建动画
       lines.forEach((line, index) => {
         tl.to(
           line as HTMLElement,
-          { duration: 0, opacity: 1, onUpdate: () => {
-            line.className = 'typewriter-item flash-item'
-          }},
-          `+=${0.04 + 0.15/(index%(lines.length-5)+1)}`
-        )
+          {
+            duration: 0,
+            opacity: 1,
+            onUpdate: () => {
+              line.className = "typewriter-item flash-item";
+            },
+          },
+          `+=${0.04 + 0.15 / ((index % (lines.length - 5)) + 1)}`,
+        );
       });
-    }
+    };
   }
   customElements.define("text-typing", TextTyping);
 </script>
@@ -60,7 +75,7 @@ const { text = "" } = Astro.props;
   @keyframes blink {
     0%,
     50% {
-      background: #E1E4E7;
+      background: #e1e4e7;
     }
     50.1%,
     100% {

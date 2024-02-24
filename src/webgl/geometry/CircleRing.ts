@@ -16,6 +16,8 @@ export class CircleRing {
   private curQuaternion: Quaternion | null = null;
 
   public cacheRotation: Euler = new Euler();
+  public cacheGeometry: { radius: number, tube: number } = { radius: 0, tube: 0 };
+  public cachePosition: { x: number, y: number, z: number } = { x: 0, y: 0, z: 0 };
   public mesh: Mesh;
   public geometry: TorusGeometry;
   public selfRotateAxis: Vector3;
@@ -59,18 +61,23 @@ export class CircleRing {
   public rotateByAxis(axis: Vector3, angle: number) {
     const quaternion = new Quaternion().setFromAxisAngle(axis, angle);
     this.curQuaternion = this.mesh.quaternion.multiplyQuaternions(quaternion, this.mesh.quaternion);
+    return this;
   }
 
   public rotateByXYZ(x: number, y: number, z: number) {
     // const euler = new Euler(x, y, z);
     const euler = this.mesh.rotation.set(x, y, z);
     this.curQuaternion = new Quaternion().setFromEuler(euler);
+    return this;
     // const quaternion = new Quaternion().setFromEuler(euler);
     // this.curQuaternion = this.mesh.quaternion.multiplyQuaternions(quaternion, this.mesh.quaternion);
   }
 
-  public updateCacheRotation() {
+  public updateCacheStatus() {
     if (this.curQuaternion) this.cacheRotation = new Euler().setFromQuaternion(this.curQuaternion);
+    if (this.curPosition) this.cachePosition = { x: this.curPosition.x, y: this.curPosition.y, z: this.curPosition.z };
+    this.cacheGeometry = { radius: this.geometry.parameters.radius, tube: this.geometry.parameters.tube };
+    return this;
   }
 
 

@@ -16,7 +16,7 @@
   const viewEl = document.getElementById("ring-3d");
   const viewer = new RingView(viewEl || document.createElement("div"));
   viewer.useSetup(false);
-  viewer.setSceneThreeDirect();
+  viewer.scene0To3();
 
   ScrollTrigger.create({
     trigger: "#ring-3d",

@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
-// import env from '@/utils/bowser.utils';
 import { CircleRing } from './geometry/CircleRing';
 // import { SpatialControls } from 'spatial-controls';
 import { OutlineEffect } from 'three/examples/jsm/Addons.js';
@@ -22,7 +21,7 @@ export default class RingView {
   // private _controls?: SpatialControls;
   // private _isMouseMove?: boolean = false;s
   private _rings: Array<CircleRing> = [];
-  private _container: THREE.Object3D = new THREE.Object3D();
+  // private _container: THREE.Object3D = new THREE.Object3D();
 
   constructor(el: Window | HTMLElement) {
     this._el = el;
@@ -93,17 +92,8 @@ export default class RingView {
   private createRings() {
     this._rings = Array(2).fill(undefined).map(() => new CircleRing({ radius: 0.35, tube: 0.1 }));
     this._rings.push(...Array(3).fill(undefined).map(() => new CircleRing({ radius: 0, tube: 0 })));
-    this._container.add(...this._rings.map(r => r.mesh));
-    this._scene.add(this._container);
+    this._scene.add(...this._rings.map(r => r.mesh));
   }
-
-  // private createControls() {
-  //   this._controls = new SpatialControls(this._camera.position, this._camera.quaternion, this._render.domElement);
-  //   const settings = this._controls.settings;
-  //   settings.rotation.sensitivity = 2.2;
-  //   settings.rotation.damping = 0.05;
-  //   settings.translation.damping = 0.1;
-  // }
 
   private _animate(timestamp?: number) {
     if (this._status === 'pausing') return;
@@ -139,7 +129,17 @@ export default class RingView {
     this._camera.position.set(-2, 2, 3);
     this._camera.lookAt(0, 0, 0);
 
-    if (init) this.setSceneOne();
+    // init rings
+    const [ring1, ring2, _, ring4, ring5] = this._rings;
+    ring1.move(-0.175, 0, 0);
+    ring2.rotateByAxis(new THREE.Vector3(1, 0, 0), Math.PI / 2);
+    ring2.move(0.175, 0, 0);
+    ring4.moveTo(0, 0.25, 0);
+    ring4.rotateByAxis(new THREE.Vector3(1, 0, 0), Math.PI / 2);
+    ring5.moveTo(0, 0.5, 0);
+    ring5.rotateByAxis(new THREE.Vector3(1, 0, 0), Math.PI / 2);
+
+    if (init) this.scene0To1();
 
     this._composer = new OutlineEffect(this._render, { defaultColor: [8 / 16, 8 / 16, 8 / 16] });
 
@@ -157,43 +157,22 @@ export default class RingView {
     })
   }
 
-  public setSceneOne() {
-    if (this._stage > 1) return;
+  public scene0To1() {
+    if (this._stage >= 1) return;
     this._stage = 1;
-    this._scene.remove(...this._rings.map(r => r.mesh));
     const [ring1, ring2] = this._rings;
     this._scene.add(ring1.mesh, ring2.mesh);
-    ring1.move(-0.175, 0, 0);
-    ring2.rotateByAxis(new THREE.Vector3(1, 0, 0), Math.PI / 2);
-    ring2.move(0.175, 0, 0);
     this._updateCallback = (ring) => { ring.selfRotate(Math.PI / 480) };
   }
 
-  public setSceneTwo() {
-    if (this._stage > 2) return;
+  public scene1To2() {
+    if (this._stage >= 2) return;
     this._stage = 2;
     this._scene.add(this._rings[2].mesh);
-    this.transToSceneTwo();
+    this.transScene1To2();
   }
 
-  public setSceneThree() {
-    if (this._stage === 3) return;
-    this._stage = 3;
-    const [ring1, ring2, ring3, ring4, ring5] = this._rings;
-    ring1.updateCacheRotation();
-    ring2.updateCacheRotation();
-    ring3.updateCacheRotation();
-    ring4.updateCacheRotation();
-    ring5.updateCacheRotation();
-    this._scene.add(ring4.mesh, ring5.mesh);
-    ring4.moveTo(0, 0.25, 0);
-    ring4.rotateByAxis(new THREE.Vector3(1, 0, 0), Math.PI / 2);
-    ring5.moveTo(0, 0.5, 0);
-    ring5.rotateByAxis(new THREE.Vector3(1, 0, 0), Math.PI / 2);
-    this.transToSceneThree();
-  }
-
-  private transToSceneTwo() {
+  private transScene1To2() {
     const update = (progress: number) => {
       const [ring1, ring2, ring3] = this._rings;
       ring1.update(0.35 + (0.5 - 0.35) * progress, 0.1 - 0.025 * progress)
@@ -212,25 +191,25 @@ export default class RingView {
       duration: 0.5,
       ease: "power2.inOut",
       onUpdate: () => {
-        update(ticker.progress / 100)
+        update(ticker.progress / 100);
       }
     });
   }
 
-  public setSceneThreeDirect() {
+  public scene2To3() {
     if (this._stage === 3) return;
     this._stage = 3;
     const [ring1, ring2, ring3, ring4, ring5] = this._rings;
-    ring1.update(0, 0.075).moveTo(0, -0.5, 0).rotateByXYZ(Math.PI / 2, 0, 0);
-    ring2.update(0.35, 0.075).moveTo(0, -0.25, 0).rotateByXYZ(Math.PI / 2, 0, 0);
-    ring3.update(0.5, 0.075).moveTo(0, 0, 0).rotateByXYZ(Math.PI / 2, 0, 0);
-    ring4.update(0.35, 0.075).moveTo(0, 0.25, 0).rotateByXYZ(Math.PI / 2, 0, 0);
-    ring5.update(0, 0.075).moveTo(0, 0.5, 0).rotateByXYZ(Math.PI / 2, 0, 0);
-    this._camera.rotation.z = Math.PI / 16;
-    this._updateCallback = (ring) => { this.upCircleRing(ring, 0.001) };
+    ring1.updateCacheStatus();
+    ring2.updateCacheStatus();
+    ring3.updateCacheStatus();
+    ring4.updateCacheStatus();
+    ring5.updateCacheStatus();
+    this._scene.add(ring4.mesh, ring5.mesh);
+    this.transScene2To3();
   }
 
-  private transToSceneThree() {
+  private transScene2To3() {
     const update = (progress: number) => {
       const [ring1, ring2, ring3, ring4, ring5] = this._rings;
       ring1.update(0.5 - 0.5 * progress, 0.075)
@@ -245,9 +224,11 @@ export default class RingView {
         .rotateByXYZ(ring3.cacheRotation.x * (1 - progress) + Math.PI / 2 * progress, ring3.cacheRotation.y * (1 - progress), ring3.cacheRotation.z * (-1 + progress));
 
       ring4.update(0.35 * progress, 0.075)
+        .moveTo(0, 0.25 * progress, 0)
         .rotateByXYZ(ring4.cacheRotation.x * (1 - progress) + Math.PI / 2 * progress, ring4.cacheRotation.y * (1 - progress), ring4.cacheRotation.z * (-1 + progress));
 
       ring5.update(0, 0.075)
+        .moveTo(0, 0.5 * progress, 0)
         .rotateByXYZ(ring5.cacheRotation.x * (1 - progress) + Math.PI / 2 * progress, ring5.cacheRotation.y * (1 - progress), ring5.cacheRotation.z * (-1 + progress));
 
       this._camera.rotation.z = Math.PI / 16 * progress;
@@ -258,12 +239,109 @@ export default class RingView {
       duration: 0.5,
       ease: "power2.inOut",
       onUpdate: () => {
-        update(ticker.progress / 100)
+        update(ticker.progress / 100);
       },
       onComplete: () => {
         this._updateCallback = (ring) => { this.upCircleRing(ring, 0.001) };
+        // this._updateCallback = null;
       }
     });
+  }
+
+  public scene3To2() {
+    if (this._stage !== 3) return;
+    this._stage = 2;
+    const [ring1, ring2, ring3, ring4, ring5] = this._rings;
+    ring1.updateCacheStatus();
+    ring2.updateCacheStatus();
+    ring3.updateCacheStatus();
+    ring4.updateCacheStatus();
+    ring5.updateCacheStatus();
+    ring4.update(0, 0.075).moveTo(0, 0.5, 0);
+    ring5.update(0, 0.075).moveTo(0, 0.5, 0);
+    this._scene.remove(ring4.mesh, ring5.mesh);
+    this.transScene3To2();
+  }
+
+  private transScene3To2() {
+    const update = (progress: number) => {
+      const [ring1, ring2, ring3, ring4, ring5] = this._rings;
+      ring1.update(ring1.cacheGeometry.radius + (0.5 - ring1.cacheGeometry.radius) * progress, 0.075)
+        .moveTo(0, ring1.cachePosition.y * (1 - progress), 0)
+        .rotateByXYZ(ring1.cacheRotation.x * (1 - progress), ring1.cacheRotation.y * (1 - progress), ring1.cacheRotation.z * (-1 + progress));
+
+      ring2.update(ring2.cacheGeometry.radius + (0.3 - ring2.cacheGeometry.radius) * progress, 0.075)
+        .moveTo(0, ring2.cachePosition.y * (1 - progress), 0)
+        .rotateByXYZ(ring2.cacheRotation.x * (1 - progress), ring2.cacheRotation.y * (1 - progress), ring2.cacheRotation.z * (-1 + progress));
+
+      ring3.update(ring3.cacheGeometry.radius + (0.1 - ring3.cacheGeometry.radius) * progress, 0.075)
+        .moveTo(0, ring3.cachePosition.y * (1 - progress), 0)
+        .rotateByXYZ(ring3.cacheRotation.x * (1 - progress), ring3.cacheRotation.y * (1 - progress), ring3.cacheRotation.z * (-1 + progress));
+
+      this._camera.rotation.z = Math.PI / 16 * (1 - progress);
+    }
+    const ticker = { progress: 0 };
+    gsap.to(ticker, {
+      progress: 100,
+      duration: 0.5,
+      ease: "power2.inOut",
+      onUpdate: () => {
+        update(ticker.progress / 100);
+      },
+      onComplete: () => {
+        this._updateCallback = (ring) => { ring.selfRotate(Math.PI / 480) };
+      }
+    });
+  }
+
+  public scene2To1() {
+    if (this._stage !== 2) return;
+    this._stage = 1;
+    const [ring1, ring2, ring3] = this._rings;
+    ring1.updateCacheStatus();
+    ring2.updateCacheStatus();
+    this._scene.remove(ring3.mesh);
+    this.transScene2To1();
+  }
+
+  private transScene2To1() {
+    const update = (progress: number) => {
+      const [ring1, ring2] = this._rings;
+      ring1.update(0.5 + (0.35 - 0.5) * progress, 0.075 + 0.025 * progress)
+        .moveTo((-0.175 * progress), 0, 0)
+        .setSelfRotateAxis(1, 0, 0)
+        .rotateByXYZ(ring1.cacheRotation.x * (1 - progress), ring1.cacheRotation.y * (1 - progress), ring1.cacheRotation.z * (-1 + progress))
+      ring2.update(0.3 + (0.35 - 0.3) * progress, 0.075 + 0.025 * progress)
+        .moveTo(0.175 * progress, 0, 0)
+        .setSelfRotateAxis(1, 0, 0)
+        .rotateByXYZ(ring2.cacheRotation.x * (1 - progress) + Math.PI * progress / 2, ring2.cacheRotation.y * (1 - progress), ring2.cacheRotation.z * (-1 + progress))
+    }
+
+    const ticker = { progress: 0 };
+    gsap.to(ticker, {
+      progress: 100,
+      duration: 0.5,
+      ease: "power2.inOut",
+      onUpdate: () => {
+        update(ticker.progress / 100);
+      },
+      onComplete: () => {
+        // this._updateCallback = null;
+      }
+    });
+  }
+
+  public scene0To3() {
+    if (this._stage === 3) return;
+    this._stage = 3;
+    const [ring1, ring2, ring3, ring4, ring5] = this._rings;
+    ring1.update(0, 0.075).moveTo(0, -0.5, 0).rotateByXYZ(Math.PI / 2, 0, 0);
+    ring2.update(0.35, 0.075).moveTo(0, -0.25, 0).rotateByXYZ(Math.PI / 2, 0, 0);
+    ring3.update(0.5, 0.075).moveTo(0, 0, 0).rotateByXYZ(Math.PI / 2, 0, 0);
+    ring4.update(0.35, 0.075).moveTo(0, 0.25, 0).rotateByXYZ(Math.PI / 2, 0, 0);
+    ring5.update(0, 0.075).moveTo(0, 0.5, 0).rotateByXYZ(Math.PI / 2, 0, 0);
+    this._camera.rotation.z = Math.PI / 16;
+    this._updateCallback = (ring) => { this.upCircleRing(ring, 0.001) };
   }
 
   public snapshot() {

@@ -3,7 +3,6 @@ import { gsap } from "gsap";
 export const makeAppearEffect = (el: string | HTMLElement) => {
   const target = el instanceof HTMLElement ? el : document.querySelector(el);
   if (!target) return;
-  console.log('target', target)
   gsap.set(target, { y: '50%', opacity: 0 });
   gsap.to(target, {
     scrollTrigger: {

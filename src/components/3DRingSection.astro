@@ -62,7 +62,6 @@
       <div id="ring-3d" class="w-full h-full"></div>
     </div>
   </div>
-
   <slot />
 </div>
 
@@ -92,123 +91,54 @@
     })
     .to("#scrollSection", {
       duration: 0.75,
-      // opacity: 0.0,
       y: -380 + 160,
-      onComplete: () => {
-        viewer.setSceneTwo();
-        gsap.to("#ringProgress", {
-          duration: 0.5,
-          height: "66.6666%",
-        });
-      },
     })
     .to("#scrollSection", {
       duration: 0.75,
-      // opacity: 0.0,
       y: -380 * 2 + 160,
-      onComplete: () => {
-        viewer.setSceneThree();
-        gsap.to("#ringProgress", {
-          duration: 0.5,
-          height: "100%",
-        });
-      },
     })
     .to("#scrollSection", {
       duration: 0.75,
-      // opacity: 0.0,
       y: -380 * 2,
     });
 
-  //head section
-  // gsap
-  //   .timeline({
-  //     scrollTrigger: {
-  //       trigger: "#ringSection",
-  //       start: () => `top top`,
-  //       end: () => `+=${SCROLL_HEIGHT}px`,
-  //       scrub: true,
-  //       toggleActions: "play none reverse none",
-  //       invalidateOnRefresh: true,
-  //     },
-  //   })
-  //   // .to("#ringSection .section-start", {
-  //   //   duration: 0.5,
-  //   // })
-  //   .to("#ringSection .section-start", {
-  //     duration: 0.75,
-  //     opacity: 0.0,
-  //     y: -320,
-  //   });
-
-  // gsap
-  //   .timeline({
-  //     scrollTrigger: {
-  //       trigger: "#ringSection",
-  //       start: () => `top top`,
-  //       end: () => `+=${SCROLL_HEIGHT * 2}px`,
-  //       scrub: true,
-  //       toggleActions: "play none reverse none",
-  //       invalidateOnRefresh: true,
-  //     },
-  //   })
-  //   .to("#ringProgress", {
-  //     duration: 0.5,
-  //     height: "66.6666%",
-  //   })
-  //   .to("#ringSection .section-mid", {
-  //     duration: 0.75,
-  //     opacity: 1,
-  //     y: 0,
-  //     onComplete: () => {
-  //       viewer.setSceneTwo();
-  //     },
-  //   })
-  //   // .to("#ringSection .section-mid", {
-  //   //   duration: 0.75,
-  //   //   opacity: 1,
-  //   //   y: 0,
-  //   // })
-  //   .to("#ringSection .section-mid", {
-  //     duration: 0.75,
-  //     opacity: 0,
-  //     y: -320,
-  //   });
-
-  // gsap
-  //   .timeline({
-  //     scrollTrigger: {
-  //       trigger: "#ringSection",
-  //       start: () => `top -${SCROLL_HEIGHT * 2 - 460}px`,
-  //       end: () => `+=${SCROLL_HEIGHT}px`,
-  //       scrub: true,
-  //       toggleActions: "play none reverse none",
-  //       invalidateOnRefresh: true,
-  //     },
-  //   })
-  //   .to("#ringProgress", {
-  //     duration: 0.5,
-  //     height: "100%",
-  //   })
-  //   .to("#ringSection .section-end", {
-  //     duration: 0.5,
-  //     opacity: 1,
-  //     y: 0,
-  //     onComplete: () => {
-  //       viewer.setSceneThree();
-  //     },
-  //   });
+  ScrollTrigger.create({
+    trigger: "#ringSection",
+    toggleActions: "play none reverse none",
+    start: () => `top top-=${SCROLL_HEIGHT}px`,
+    onEnter: () => {
+      viewer.scene1To2();
+      gsap.to("#ringProgress", {
+        duration: 0.5,
+        height: "66.6666%",
+      });
+    },
+    onLeaveBack: () => {
+      viewer.scene2To1();
+      gsap.to("#ringProgress", {
+        duration: 0.5,
+        height: "33.3333%",
+      });
+    },
+  });
 
   ScrollTrigger.create({
     trigger: "#ringSection",
-    scrub: true,
-    start: "top bottom",
-    end: "bottom top",
+    toggleActions: "play none reverse none",
+    start: () => `top top-=${SCROLL_HEIGHT * 2}px`,
     onEnter: () => {
-      viewer.play();
+      viewer.scene2To3();
+      gsap.to("#ringProgress", {
+        duration: 0.5,
+        height: "100%",
+      });
     },
     onLeaveBack: () => {
-      viewer.stop();
+      viewer.scene3To2();
+      gsap.to("#ringProgress", {
+        duration: 0.5,
+        height: "66.6666%",
+      });
     },
   });
 
@@ -217,15 +147,27 @@
     scrub: true,
     pin: true,
     start: () => "top top",
-    end: () => `+=${3 * SCROLL_HEIGHT}px`,
-    onEnterBack: () => {
+    end: () => `bottom top`,
+    invalidateOnRefresh: true,
+    anticipatePin: 1,
+  });
+
+  ScrollTrigger.create({
+    trigger: "#ringSection",
+    start: () => "top bottom",
+    end: () => `bottom top-=410`,
+    onEnter: () => {
       viewer.play();
     },
     onLeave: () => {
       viewer.stop();
     },
-    invalidateOnRefresh: true,
-    anticipatePin: 1,
+    onLeaveBack: () => {
+      viewer.stop();
+    },
+    onEnterBack: () => {
+      viewer.play();
+    },
   });
 </script>
 
