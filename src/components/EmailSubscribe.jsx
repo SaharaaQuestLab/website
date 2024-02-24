@@ -14,26 +14,23 @@ export default function EmailSubscribe() {
   }
 
   const sendEmail = async () => {
-    try {
-      if (!subscribeEmail || isSubscribed) return;
-      setShowLoading(true);
-      const requestData = {
-        properties: {
-          email: subscribeEmail,
-        }
-      };
-      await fetch('https://job-api.saharaa.info/contact.create', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify(requestData)
-      })
+    if (!subscribeEmail || isSubscribed) return;
+    setShowLoading(true);
+    const requestData = {
+      properties: {
+        email: subscribeEmail,
+      }
+    };
+    const apiResult = await fetch('https://job-api.saharaa.info/contact.create', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify(requestData)
+    })
+    setShowLoading(false);
+    if (apiResult.status == 200) {
       setIsSubscribed(true);
-    } catch (error) {
-      console.log('error', error);
-    } finally {
-      setShowLoading(false);
     }
   }
 
