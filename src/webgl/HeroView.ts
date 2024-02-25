@@ -6,8 +6,8 @@ import { createSkyParticle } from './geometry/SkyParticle';
 import { createSkyInnerParticle } from './geometry/SkyInnerParticle';
 import { createBackgroundParticle } from './geometry/BackgroundParticle';
 import env from '@/utils/bowser.utils';
-import BlackSphereVertexShader from '@/shaders/black-sphere.vert';
-import BlackSphereFragmentShader from '@/shaders/black-sphere.frag';
+// import BlackSphereVertexShader from '@/shaders/black-sphere.vert';
+// import BlackSphereFragmentShader from '@/shaders/black-sphere.frag';
 import { DesktopOptions, MobileOptions, type HeroOptions } from './HeroOptions';
 
 // import { SpatialControls } from 'spatial-controls';
@@ -142,6 +142,7 @@ export default class HeroView {
     const groundPos = heroOptions.ground.position;
     groundParticles.position.set(groundPos.x, groundPos.y, groundPos.z);
 
+
     // create sky
     const [skyParticles, skyMaterial] = createSkyParticle({
       xCount: heroOptions.sky.xCount,
@@ -161,7 +162,7 @@ export default class HeroView {
     });
     this._scene.add(skyInnerParticles);
     const skyInnerPos = heroOptions.skyInner.position;
-    skyParticles.position.set(skyInnerPos.x, skyInnerPos.y, skyInnerPos.z);
+    skyInnerParticles.position.set(skyInnerPos.x, skyInnerPos.y, skyInnerPos.z);
 
 
     const [backgroundParticles, backgroundMaterial] = createBackgroundParticle();

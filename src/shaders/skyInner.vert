@@ -70,7 +70,7 @@ void main() {
 	// vec3 dest_pos = v_position.xyz + step(0.1, dist) * rnd3 * 2.2;
   vec3 noise_filter = vec3(1.0 - a_is_gaussian, 1.0, 1.0 - a_is_gaussian);
   dest_pos.xyz += noise_pos * noise_filter;
-  dest_pos.xyz = dest_pos.xyz * 1.3 / distance(dest_pos.xyz, vec3(0.0, 0.0, 0.0));
+  dest_pos.xyz = dest_pos.xyz * 1.15 / distance(dest_pos.xyz, vec3(0.0, 0.0, 0.0));
 
 	// detail noise
   vec3 noise_pos_detail = snoise3(v_position.xyz * noise_layer_3_freq) * noise_layer_3_amp;

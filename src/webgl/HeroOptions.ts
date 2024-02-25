@@ -139,8 +139,8 @@ export const DesktopOptions: HeroOptions = {
     }
   },
   skyInner: {
-    xCount: 90,
-    yCount: 90,
+    xCount: 40,
+    yCount: 40,
     position: {
       x: 0,
       y: 0.06,
@@ -149,7 +149,7 @@ export const DesktopOptions: HeroOptions = {
     shaders: {
       centerHeight: 2.5,
       offsetY: 2.9,
-      radius: 1.4
+      radius: 1.33
     }
   },
   sphere1: {
