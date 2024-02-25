@@ -1,11 +1,14 @@
 ---
 import TitleComponent from "@/components/TitleComponent.astro";
+import JobList from "@/components/JobList.jsx";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/aboutUs";
 const { careerTitles } = PageMeta;
+const response = await fetch('https://job-api.saharaa.info');
+console.log(response);
 ---
 
-<Layout title="saharaa.ai" active="aboutUs"  isFooterSlot={true}>
+<Layout title="saharaa.ai" active="aboutUs" isFooterSlot={true}>
   <slot slot="base-layout">
     <div id="sectionHero" class="w-screen h-screen"></div>
 
@@ -16,23 +19,22 @@ const { careerTitles } = PageMeta;
       <TitleComponent titles={careerTitles} />
     </div>
   </slot>
+
+  <JobList client:load  />
   <div
     id="sectionCareer"
-    class="text-center pt-[8.625rem] pb-[11rem] text-s3 font-[Manrope] text-light-200"
+    class="text-center pt-[8.625rem] pb-[11rem] text-s3 font-[Manrope] text-light-200 tablet:hidden"
   >
     None of these apply to you? We'd still love to stay in touch. Follow Sahara
     on LinkedIn.
   </div>
-  <!-- <JobList client:load list={jobs} /> -->
-  <div id="ashby_embed">
-    <div slot="footer" class="mt-[7.5rem]">
-      <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
-        Start Your
-      </h1>
-      <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
-        Sahara Journey
-      </h1>
-    </div>
+  <div slot="footer" class="pt-[7.625rem] tablet:pt-[3.75rem]">
+    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
+      Start Your
+    </h1>
+    <h1 class="text-h1 tablet:text-h3 tablet:text-center font-[Manrope]">
+      Sahara Journey
+    </h1>
   </div>
   <script>
     import { gsap } from "gsap";
