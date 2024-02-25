@@ -4,7 +4,7 @@ import JobList from "@/components/JobList.jsx";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/aboutUs";
 const { careerTitles } = PageMeta;
-const response = await fetch('https://job-api.saharaa.info');
+const response = await fetch("https://job-api.saharaa.info");
 console.log(response);
 ---
 
@@ -20,7 +20,10 @@ console.log(response);
     </div>
   </slot>
 
-  <JobList client:load  />
+  <div id="jobs">
+    <JobList client:load />
+  </div>
+
   <div
     id="sectionCareer"
     class="text-center pt-[8.625rem] pb-[11rem] text-s3 font-[Manrope] text-light-200 tablet:hidden"
@@ -52,7 +55,7 @@ console.log(response);
       viewer.play();
       gsap.to(heroEl, {
         scrollTrigger: {
-          trigger: "#sectionCareer",
+          trigger: "#jobs",
           start: "top bottom",
           end: "top top-=30",
           scrub: true,
