@@ -3,10 +3,10 @@ import VertexShader from '@/shaders/ground.vert';
 import FragmentShader from '@/shaders/ground.frag';
 import { randomGaussian } from '@/utils/gaussian.utils';
 
-const GroundXCount = 140;
-const GroundYCount = 140;
-const GroundWidth = 3.2;
-const GroundHeight = 3.2;
+const GroundXCount = 160;
+const GroundYCount = 160;
+const GroundWidth = 3.4;
+const GroundHeight = 3.4;
 const GaussianRadius = 0.1;
 const GaussianXCount = 30;
 const GaussianYCount = 30;
@@ -21,7 +21,7 @@ export const createGroundParticle: (options: { xCount: number, yCount: number, s
   const groundGeometry = new THREE.PlaneGeometry(GroundWidth, GroundHeight, xCount || GroundXCount, yCount || GroundYCount);
   groundGeometry.rotateX(Math.PI / 2);
   groundGeometry.rotateY(Math.PI / 4);
-  //groundGeometry.rotateX(-Math.PI / 60);
+  groundGeometry.rotateX(-Math.PI / 90);
 
 
   const total_ground = groundGeometry.getAttribute("position").count;

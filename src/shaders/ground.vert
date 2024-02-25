@@ -26,18 +26,18 @@ float up_offset(vec2 pos) {
   return cubicBezier2D(dist_remap, vec2(0.95, 0.05), vec2(0.65, 0.01));
 }
 
-const float noise_layer_1_amp = 0.7;
-const float noise_layer_1_freq = 0.65;
+const float noise_layer_1_amp = 0.82;
+const float noise_layer_1_freq = 0.67;
 const float noise_layer_2_amp = 0.3;
-const float noise_layer_2_freq = 0.6;
-const float noise_layer_3_amp = 0.05;
+const float noise_layer_2_freq = 0.5;
+const float noise_layer_3_amp = 0.015;
 const float noise_layer_3_freq = 50.0;
 const float noise_layer_4_amp = 0.5;
 const float noise_layer_4_freq = 3.0;
 const float noise_scale_amp = 0.9;
 const float noise_scale_freq = 2.0;
-const float noise_color_amp = 2.7;
-const float noise_color_freq = 2.0;
+const float noise_color_amp = 3.0;
+const float noise_color_freq = 3.0;
 const float noise_interact_freq = 5.0;
 
 void main() {
@@ -54,15 +54,15 @@ void main() {
   vec3 sample_pos_color = vec3(v_position.x + 3.0, v_position.y - offset_color, 2.5 * v_position.z);
   vec3 sample_pos_scale = vec3(v_position.x - offset_color, v_position.y + 1.0, v_position.z);
   float noise_layer_1 = snoise(sample_pos_layer1 * noise_layer_1_freq) * noise_layer_1_amp;
-  float noise_layer_2 = snoise(sample_pos_layer2 * noise_layer_2_freq) * noise_layer_2_amp;
+  float noise_layer_2 = snoise(sample_pos_layer2 * noise_layer_2_freq + 0.5) * noise_layer_2_amp;
   float noise_layer_3 = cnoise(v_position.xyz * noise_layer_3_freq) * noise_layer_3_amp;
   float noise_layer_4 = cnoise(sample_pos_layer4 * noise_layer_4_freq) * noise_layer_4_amp;
   float noise_scale = cnoise(sample_pos_scale * noise_scale_freq + 1.0) * noise_scale_amp;
 
   float noise_color = cnoise(sample_pos_color * noise_color_freq) * noise_color_amp;
-  v_color = remap(noise_color, -1.0, 1.0, 0.1, 1.0);
+  v_color = remap(noise_color, -1.0, 1.0, 0.2, 1.0);
 
-  noise_scale = remap(noise_scale, -1.0, 1.0, 0.2, 1.0);
+  noise_scale = remap(noise_scale, -1.0, 1.0, 0.3, 0.9);
   float rnd = random(a_index);
   noise_scale = rnd < 0.00001 ? 3.0 * noise_scale : noise_scale;
 

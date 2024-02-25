@@ -93,8 +93,8 @@ export const DesktopOptions: HeroOptions = {
     focusDistance: 4.5
   },
   ground: {
-    xCount: 140,
-    yCount: 140,
+    xCount: 180,
+    yCount: 180,
     position: {
       x: 0,
       y: -0.05,
@@ -109,8 +109,8 @@ export const DesktopOptions: HeroOptions = {
     }
   },
   sky: {
-    xCount: 100,
-    yCount: 100,
+    xCount: 64,
+    yCount: 64,
     position: {
       x: 0,
       y: 0.05,

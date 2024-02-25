@@ -6,7 +6,7 @@ import { randomGaussian } from '@/utils/gaussian.utils';
 const SphereXCount = 100;
 const SphereYCount = 100;
 const SphereRadius = 1;
-const GaussianRadius = 0.1;
+const GaussianRadius = 0.2;
 const GaussianXCount = 15;
 const GaussianYCount = 15;
 
