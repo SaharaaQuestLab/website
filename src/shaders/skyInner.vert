@@ -24,8 +24,8 @@ float down_offset(vec2 pos) {
 
   float dist = distance(pos, vec2(0.0, 0.0));
   // float dist_remap = smoothstep(0.0, 0.2, dist);
-  float dist_remap = clamp(dist, 0.0, 0.18);
-  dist_remap = mix(0.0, 1.0, dist_remap / 0.18);
+  float dist_remap = clamp(dist, 0.0, 0.13);
+  dist_remap = mix(0.0, 1.0, dist_remap / 0.13);
 
   // dist > 0.1 dist_remap === 1
   // dist < 0.1 dist_remap === dist 
@@ -54,7 +54,10 @@ void main() {
 
   noise_scale = remap(noise_scale, -1.0, 1.0, 0.2, 1.0);
   float rnd = random(a_index);
-  noise_scale = rnd < 0.00001 ? 3.0 * noise_scale : noise_scale;
+	if(rnd * 100000.0 < 1.0){
+    	noise_scale *= 3.5;
+    	v_color = 1.5;
+  	}
   gl_PointSize = 4.0 * uPixelRatio * noise_scale;
 
   // noise and normal
@@ -70,7 +73,7 @@ void main() {
 	// vec3 dest_pos = v_position.xyz + step(0.1, dist) * rnd3 * 2.2;
   vec3 noise_filter = vec3(1.0 - a_is_gaussian, 1.0, 1.0 - a_is_gaussian);
   dest_pos.xyz += noise_pos * noise_filter;
-  dest_pos.xyz = dest_pos.xyz * 1.15 / distance(dest_pos.xyz, vec3(0.0, 0.0, 0.0));
+  dest_pos.xyz = dest_pos.xyz * 1.1 / distance(dest_pos.xyz, vec3(0.0, 0.0, 0.0));
 
 	// detail noise
   vec3 noise_pos_detail = snoise3(v_position.xyz * noise_layer_3_freq) * noise_layer_3_amp;

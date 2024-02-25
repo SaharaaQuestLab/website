@@ -30,7 +30,7 @@ const float noise_layer_1_amp = 0.82;
 const float noise_layer_1_freq = 0.67;
 const float noise_layer_2_amp = 0.3;
 const float noise_layer_2_freq = 0.5;
-const float noise_layer_3_amp = 0.015;
+const float noise_layer_3_amp = 0.016;
 const float noise_layer_3_freq = 50.0;
 const float noise_layer_4_amp = 0.5;
 const float noise_layer_4_freq = 3.0;
@@ -64,12 +64,15 @@ void main() {
 
   noise_scale = remap(noise_scale, -1.0, 1.0, 0.3, 0.9);
   float rnd = random(a_index);
-  noise_scale = rnd < 0.00001 ? 3.0 * noise_scale : noise_scale;
+  if(rnd * 100000.0 < 1.0){
+    noise_scale *= 4.0;
+    v_color = 1.5;
+  }
 
   gl_PointSize = 4.0 * uPixelRatio * noise_scale;
 
   v_position.y += (noise_layer_3 + noise_layer_1 * noise_layer_1);
-  v_position.x += noise_layer_3 * 3.0;
+  v_position.x += noise_layer_3 * 3.3;
 
   noise_layer_4 = remap(noise_layer_4, 0.0, 1.0, 0.15, 1.0);
   v_position.y += up_offset(v_position.xz) * noise_layer_4 * uCenterHeight;

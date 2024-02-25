@@ -139,8 +139,8 @@ export const DesktopOptions: HeroOptions = {
     }
   },
   skyInner: {
-    xCount: 40,
-    yCount: 40,
+    xCount: 72,
+    yCount: 72,
     position: {
       x: 0,
       y: 0.06,

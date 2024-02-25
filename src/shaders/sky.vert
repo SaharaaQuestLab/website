@@ -36,7 +36,7 @@ const float noise_layer_1_amp = 1.0;
 const float noise_layer_1_freq = 0.5;
 const float noise_gaussian_amp = 1.5;
 const float noise_gaussian_freq = 1.0;
-const float noise_layer_3_amp = 0.02;
+const float noise_layer_3_amp = 0.01;
 const float noise_layer_3_freq = 25.0;
 const float noise_layer_4_amp = 0.5;
 const float noise_layer_4_freq = 2.0;
@@ -54,13 +54,16 @@ void main() {
 
 	noise_scale = remap(noise_scale, -1.0, 1.0, 0.2, 1.0);
 	float rnd = random(a_index);
-	noise_scale = rnd < 0.00001 ? 3.0 * noise_scale : noise_scale;
+	if(rnd * 10000.0 < 0.1){
+    	noise_scale *= 4.0;
+    	v_color = 1.5;
+  	}
 	gl_PointSize = 4.0 * uPixelRatio * noise_scale;
 
   // noise and normal
 	vec3 dest_pos = v_position;
 	dest_pos.y -= 1.0;
-	float offset_x_layer1 = 0.02 * uTime;
+	float offset_x_layer1 = 0.04 * uTime;
 	float offset_gaussian = 0.2 * uTime;
 	vec3 sample_pos_layer1 = a_is_gaussian == 0.0 ? vec3(dest_pos.x + offset_x_layer1, dest_pos.y, dest_pos.z) : vec3(dest_pos.x + offset_gaussian, dest_pos.y, dest_pos.z);
 	// vec3 noise_pos = snoise3((dest_pos.xyz + sample_pos_layer1) * noise_layer_1_freq) * noise_layer_1_amp;
