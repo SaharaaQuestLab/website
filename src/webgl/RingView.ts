@@ -360,6 +360,15 @@ export default class RingView {
     a.click();
   }
 
+  public rotateCamera(options: { x?: number, y?: number, z?: number }) {
+    this._camera.position.set(
+      options.x || this._camera.position.x,
+      options.y || this._camera.position.y,
+      options.z || this._camera.position.z,
+    ),
+      this._camera.lookAt(0, 0, 0);
+  }
+
   public play() {
     this._status = 'playing';
     this._animate();

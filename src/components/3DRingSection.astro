@@ -72,9 +72,30 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
+  function easeOutQuad(t: number): number {
+    const x = Math.abs(t);
+    return (1 - (1 - x) * (1 - x)) * Math.sign(t);
+  }
+
   const viewEl = document.getElementById("ring-3d");
   const viewer = new RingView(viewEl || document.createElement("div"));
   viewer.useSetup();
+
+  const ringContainer = document.getElementById("ringSection");
+  if (ringContainer) {
+    let ringRect = ringContainer?.getBoundingClientRect();
+    // ringContainer.addEventListener("pointermove", (event) => {
+    //   if (event.isPrimary === false) return;
+    //   const e = event;
+    //   const normalizeX = ((e.clientX - ringRect.left) / ringRect.width) * 2 - 1;
+    //   const x = 4 * Math.sin((Math.PI * easeOutQuad(normalizeX)) / 20);
+    //   const z = 4 * Math.cos((Math.PI * easeOutQuad(normalizeX)) / 20);
+    //   viewer.rotateCamera({ x, z });
+    // });
+    window.addEventListener("resize", () => {
+      ringRect = ringContainer?.getBoundingClientRect();
+    });
+  }
 
   const SCROLL_HEIGHT = 320 + 30;
 
