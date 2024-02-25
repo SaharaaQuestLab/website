@@ -12,11 +12,7 @@ const { text = "" } = Astro.props;
       text
         .split("")
         .map((item) => (
-          <span
-            class="typewriter-item"
-            style="opacity:0"
-            set:text={item}
-          />
+          <span class="typewriter-item" style="opacity:0" set:text={item} />
         ))
     }
   </span>
@@ -24,6 +20,9 @@ const { text = "" } = Astro.props;
 
 <script>
   import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
 
   // 为我们的新 HTML 自定义元素定义行为。
   class TextTyping extends HTMLElement {
