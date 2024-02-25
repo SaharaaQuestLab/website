@@ -11,6 +11,8 @@ uniform float uTime;
 uniform float uPixelRatio;
 uniform vec3 uMouse;
 uniform float uCenterHeight;
+uniform float uYOffset;
+uniform float uRadius;
 
 #include "../../lygia/generative/snoise.glsl";
 #include "../../lygia/generative/random.glsl";
@@ -23,7 +25,7 @@ float down_offset(vec2 pos) {
 	float dist = distance(pos, vec2(0.0, 0.0));
   // float dist_remap = smoothstep(0.0, 0.2, dist);
 	float dist_remap = clamp(dist, 0.0, 0.18);
-	dist_remap = mix(0.0, 1.0, dist_remap/0.18);
+	dist_remap = mix(0.0, 1.0, dist_remap / 0.18);
 
   // dist > 0.1 dist_remap === 1
   // dist < 0.1 dist_remap === dist 

@@ -1,16 +1,16 @@
 import * as THREE from 'three';
-import VertexShader from '@/shaders/sky.vert';
-import FragmentShader from '@/shaders/sky.frag';
+import VertexShader from '@/shaders/skyInner.vert';
+import FragmentShader from '@/shaders/skyInner.frag';
 import { randomGaussian } from '@/utils/gaussian.utils';
 
-const SphereXCount = 100;
-const SphereYCount = 100;
+const SphereXCount = 64;
+const SphereYCount = 64;
 const SphereRadius = 1;
-const GaussianRadius = 0.2;
-const GaussianXCount = 15;
-const GaussianYCount = 15;
+const GaussianRadius = 0.1;
+const GaussianXCount = 30;
+const GaussianYCount = 30;
 
-export const createSkyParticle: (options: { xCount: number, yCount: number, shaders: { centerHeight: number, offsetY: number, radius: number } }) => [THREE.Points, THREE.ShaderMaterial] = ({
+export const createSkyInnerParticle: (options: { xCount: number, yCount: number, shaders: { centerHeight: number, offsetY: number, radius: number } }) => [THREE.Points, THREE.ShaderMaterial] = ({
   xCount, yCount, shaders
 }) => {
 
@@ -54,7 +54,6 @@ export const createSkyParticle: (options: { xCount: number, yCount: number, shad
   particleGeometry.setAttribute('a_index', new THREE.BufferAttribute(indices, 1, false));
   particleGeometry.setAttribute('position', new THREE.BufferAttribute(point_array, 3));
   particleGeometry.setAttribute('a_is_gaussian', new THREE.BufferAttribute(is_gaussian, 1, false));
-
 
 
   const particleMaterial = new THREE.ShaderMaterial({

@@ -31,7 +31,23 @@ export interface HeroOptions {
       z: number
     },
     shaders: {
-      centerHeight: number
+      centerHeight: number,
+      offsetY: number,
+      radius: number
+    }
+  },
+  skyInner: {
+    xCount: number,
+    yCount: number,
+    position: {
+      x: number,
+      y: number,
+      z: number
+    },
+    shaders: {
+      centerHeight: number,
+      offsetY: number,
+      radius: number
     }
   },
   sphere1: {
@@ -90,34 +106,50 @@ export const DesktopOptions: HeroOptions = {
     z: 4
   },
   dofEffect: {
-    focusDistance: 4.5
+    focusDistance: 5.5
   },
   ground: {
-    xCount: 180,
-    yCount: 180,
+    xCount: 128,
+    yCount: 128,
     position: {
       x: 0,
-      y: -0.05,
+      y: -0.03,
       z: 0
     },
     shaders: {
       centerHeight: 4.5,
       sampleBase4Layer1: {
-        one: 3.0,
-        two: 8.0
+        one: 5.0,
+        two: 35.5
       }
     }
   },
   sky: {
-    xCount: 64,
-    yCount: 64,
+    xCount: 40,
+    yCount: 40,
     position: {
       x: 0,
-      y: 0.05,
+      y: 0.06,
       z: 0
     },
     shaders: {
-      centerHeight: 2.5
+      centerHeight: 2.5,
+      offsetY: 2.9,
+      radius: 1.33
+    }
+  },
+  skyInner: {
+    xCount: 90,
+    yCount: 90,
+    position: {
+      x: 0,
+      y: 0.06,
+      z: 0
+    },
+    shaders: {
+      centerHeight: 2.5,
+      offsetY: 2.9,
+      radius: 1.4
     }
   },
   sphere1: {
@@ -197,11 +229,11 @@ export const MobileOptions: HeroOptions = {
     z: 7
   },
   dofEffect: {
-    focusDistance: 7.0
+    focusDistance: 6.9
   },
   ground: {
-    xCount: 100,
-    yCount: 100,
+    xCount: 90,
+    yCount: 90,
     position: {
       x: 0,
       y: -0.25,
@@ -216,15 +248,31 @@ export const MobileOptions: HeroOptions = {
     }
   },
   sky: {
-    xCount: 50,
-    yCount: 50,
+    xCount: 40,
+    yCount: 40,
     position: {
       x: 0,
-      y: 0.35,
+      y: 0.4,
       z: 0
     },
     shaders: {
-      centerHeight: 4.5
+      centerHeight: 4.5,
+      offsetY: 2.94,
+      radius: 1.32
+    }
+  },
+  skyInner: {
+    xCount: 40,
+    yCount: 40,
+    position: {
+      x: 0,
+      y: 0.4,
+      z: 0
+    },
+    shaders: {
+      centerHeight: 4.5,
+      offsetY: 3.54,
+      radius: 1.4
     }
   },
   sphere1: {

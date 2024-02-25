@@ -3,6 +3,7 @@ import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
 import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, BlendFunction, OutlineEffect, } from 'postprocessing';
 import { createGroundParticle } from './geometry/GroundParticle';
 import { createSkyParticle } from './geometry/SkyParticle';
+import { createSkyInnerParticle } from './geometry/SkyInnerParticle';
 import { createBackgroundParticle } from './geometry/BackgroundParticle';
 import env from '@/utils/bowser.utils';
 import BlackSphereVertexShader from '@/shaders/black-sphere.vert';
@@ -151,53 +152,66 @@ export default class HeroView {
     const skyPos = heroOptions.sky.position;
     skyParticles.position.set(skyPos.x, skyPos.y, skyPos.z);
 
+
+    // create sky inner
+    const [skyInnerParticles, skyInnerMaterial] = createSkyInnerParticle({
+      xCount: heroOptions.skyInner.xCount,
+      yCount: heroOptions.skyInner.yCount,
+      shaders: heroOptions.skyInner.shaders
+    });
+    this._scene.add(skyInnerParticles);
+    const skyInnerPos = heroOptions.skyInner.position;
+    skyParticles.position.set(skyInnerPos.x, skyInnerPos.y, skyInnerPos.z);
+
+
     const [backgroundParticles, backgroundMaterial] = createBackgroundParticle();
     this._scene.add(backgroundParticles);
     backgroundParticles.position.set(0, 0, 0);
 
     // black sphere
-    const sphereGeo01 = new THREE.SphereGeometry(
-      heroOptions.sphere1.radius[this._layout],
-      heroOptions.sphere1.xCount,
-      heroOptions.sphere1.yCount);
-    const sphereGeo02 = new THREE.SphereGeometry(
-      heroOptions.sphere2.radius[this._layout],
-      heroOptions.sphere2.xCount,
-      heroOptions.sphere2.yCount);
+    // const sphereGeo01 = new THREE.SphereGeometry(
+    //   heroOptions.sphere1.radius[this._layout],
+    //   heroOptions.sphere1.xCount,
+    //   heroOptions.sphere1.yCount);
+    // const sphereGeo02 = new THREE.SphereGeometry(
+    //   heroOptions.sphere2.radius[this._layout],
+    //   heroOptions.sphere2.xCount,
+    //   heroOptions.sphere2.yCount);
 
-    const sphere1CamPos = heroOptions.sphere1.shaders.camPosition[this._layout];
-    const sphereMaterial01 = new THREE.ShaderMaterial({
-      uniforms: {
-        outlineColor: {
-          value: new THREE.Color(0x666666)
-        },
-        camPosition: {
-          value: new THREE.Vector3(sphere1CamPos.x, sphere1CamPos.y, sphere1CamPos.z)
-        },
-      },
-      vertexShader: BlackSphereVertexShader,
-      fragmentShader: BlackSphereFragmentShader
-    });
-    const sphere2CamPos = heroOptions.sphere2.shaders.camPosition[this._layout];
-    const sphereMaterial02 = new THREE.ShaderMaterial({
-      uniforms: {
-        outlineColor: {
-          value: new THREE.Color(0x666666)
-        },
-        camPosition: {
-          value: new THREE.Vector3(sphere2CamPos.x, sphere2CamPos.y, sphere2CamPos.z)
-        }
-      },
-      vertexShader: BlackSphereVertexShader,
-      fragmentShader: BlackSphereFragmentShader
-    });
-    const sphere01 = new THREE.Mesh(sphereGeo01, sphereMaterial01);
-    const sphere02 = new THREE.Mesh(sphereGeo02, sphereMaterial02);
+    // const sphere1CamPos = heroOptions.sphere1.shaders.camPosition[this._layout];
+    // const sphereMaterial01 = new THREE.ShaderMaterial({
+    //   uniforms: {
+    //     outlineColor: {
+    //       value: new THREE.Color(0x666666)
+    //     },
+    //     camPosition: {
+    //       value: new THREE.Vector3(sphere1CamPos.x, sphere1CamPos.y, sphere1CamPos.z)
+    //     },
+    //   },
+    //   vertexShader: BlackSphereVertexShader,
+    //   fragmentShader: BlackSphereFragmentShader
+    // });
+    // const sphere2CamPos = heroOptions.sphere2.shaders.camPosition[this._layout];
+    // const sphereMaterial02 = new THREE.ShaderMaterial({
+    //   uniforms: {
+    //     outlineColor: {
+    //       value: new THREE.Color(0x666666)
+    //     },
+    //     camPosition: {
+    //       value: new THREE.Vector3(sphere2CamPos.x, sphere2CamPos.y, sphere2CamPos.z)
+    //     }
+    //   },
+    //   vertexShader: BlackSphereVertexShader,
+    //   fragmentShader: BlackSphereFragmentShader
+    // });
+
+    // const sphere01 = new THREE.Mesh(sphereGeo01, sphereMaterial01);
+    // const sphere02 = new THREE.Mesh(sphereGeo02, sphereMaterial02);
     // this._scene.add(sphere01, sphere02);
-    const sphere1Pos = heroOptions.sphere1.position[this._layout];
-    sphere01.position.set(sphere1Pos.x, sphere1Pos.y, sphere1Pos.z);
-    const sphere2Pos = heroOptions.sphere2.position[this._layout];
-    sphere02.position.set(sphere2Pos.x, sphere2Pos.y, sphere2Pos.z);
+    // const sphere1Pos = heroOptions.sphere1.position[this._layout];
+    // sphere01.position.set(sphere1Pos.x, sphere1Pos.y, sphere1Pos.z);
+    // const sphere2Pos = heroOptions.sphere2.position[this._layout];
+    // sphere02.position.set(sphere2Pos.x, sphere2Pos.y, sphere2Pos.z);
 
     const cameraPosition = heroOptions.cameraPosition;
     this._camera.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
@@ -248,13 +262,15 @@ export default class HeroView {
       const elapse = this._clock.getElapsedTime();
       groundMaterial.uniforms.uTime.value = elapse;
       skyMaterial.uniforms.uTime.value = elapse;
+      skyInnerMaterial.uniforms.uTime.value = elapse;
       backgroundMaterial.uniforms.uTime.value = elapse;
-      sphere01.position.y += Math.sin(elapse) * 0.0005;
+      // sphere01.position.y += Math.sin(elapse) * 0.0005;
     }
 
     window.addEventListener("resize", () => {
       groundMaterial.uniforms.uPixelRatio.value = window.devicePixelRatio;
       skyMaterial.uniforms.uPixelRatio.value = window.devicePixelRatio;
+      skyInnerMaterial.uniforms.uPixelRatio.value = window.devicePixelRatio;
       backgroundMaterial.uniforms.uPixelRatio.value = window.devicePixelRatio;
     })
 
@@ -270,6 +286,7 @@ export default class HeroView {
         this._isMouseMove = false;
         const NonePoint = new THREE.Vector3(999);
         skyMaterial.uniforms.uMouse.value = NonePoint;
+        skyInnerMaterial.uniforms.uMouse.value = NonePoint;
         groundMaterial.uniforms.uMouse.value = NonePoint;
         backgroundMaterial.uniforms.uMouse.value = NonePoint;
       });
@@ -283,6 +300,7 @@ export default class HeroView {
         const targetPoint = new THREE.Vector3();
         raycaster.ray.intersectPlane(interactPlane, targetPoint);
         skyMaterial.uniforms.uMouse.value = targetPoint;
+        skyInnerMaterial.uniforms.uMouse.value = targetPoint;
         groundMaterial.uniforms.uMouse.value = targetPoint;
         backgroundMaterial.uniforms.uMouse.value = targetPoint;
 
