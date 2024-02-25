@@ -124,7 +124,7 @@ export default function JobList() {
           {subscribeTargetDepartment.id ? <span>{subscribeTargetDepartment.name}</span>:<span className="text-light-200">Department</span>}<img
             id="icon"
             className="w-5 h-5 rotate-180 group-hover:rotate-0" src={arrowCorner_768_375.src} alt="" />
-          <div className="absolute left-[-1px] top-11 w-[calc(100%+2px)] bg-dark-400 border-b border-l border-r group-hover:block hidden -mt-0.5 border-light-100 rounded-xl rounded-t-none">
+          <div className="absolute left-[-1px] top-11 w-[calc(100%+2px)] bg-dark-400 border-b border-l border-r group-hover:block hidden -mt-0.5 border-light-100 rounded-xl rounded-t-none overflow-hidden">
             {
               subscribeDepartmentList.map(item=>(
                 <div key={item.id} onClick={()=> {setSubscribeTargetDepartment(item)}} style={ item.id === subscribeTargetDepartment.id ? {display: 'none'} : { display: 'block'} } className="px-4 py-2.5 hover:bg-light-100 hover:text-dark-400">{item.name}</div>
@@ -136,7 +136,7 @@ export default function JobList() {
           {subscribeTargetLocation.id ? <span>{subscribeTargetLocation.name}</span>:<span className="text-light-200">Location</span>}<img
             id="icon"
             className="w-5 h-5 rotate-180 group-hover:rotate-0" src={arrowCorner_768_375.src} alt="" />
-          <div className="absolute left-[-1px] top-11 w-[calc(100%+2px)] bg-dark-400 border-b border-l border-r group-hover:block hidden -mt-0.5 border-light-100 rounded-xl rounded-t-none">
+          <div className="absolute left-[-1px] top-11 w-[calc(100%+2px)] bg-dark-400 border-b border-l border-r group-hover:block hidden -mt-0.5 border-light-100 rounded-xl rounded-t-none overflow-hidden">
             {
               subscribeLocationList.map(item => (
                 <div key={item.id} onClick={()=> {setSubscribeTargetLocation(item)}} className="px-4 py-2.5 hover:bg-light-100 hover:text-dark-400" style={ item.id === subscribeTargetLocation.id ? {display: 'none'} : { display: 'block'} }>{item.name}</div>
@@ -148,7 +148,7 @@ export default function JobList() {
           {subscribeTargetEmploymentType.id ? <span>{subscribeTargetEmploymentType.name}</span> : <span className="text-light-200">Employment Type</span>} <img
             id="icon"
             className="w-5 h-5 rotate-180 group-hover:rotate-0" src={arrowCorner_768_375.src} alt="" />
-          <div className="absolute left-[-1px] top-11 w-[calc(100%+2px)] bg-dark-400 border-b border-l border-r group-hover:block hidden -mt-0.5 border-light-100 rounded-xl rounded-t-none">
+          <div className="absolute left-[-1px] top-11 w-[calc(100%+2px)] bg-dark-400 border-b border-l border-r group-hover:block hidden -mt-0.5 border-light-100 rounded-xl rounded-t-none overflow-hidden">
             {
               subscribeEmploymentType.map(item => (
                 <div key={item.id} onClick={()=> {setSubscribeTargetEmploymentType(item)}} className="px-4 py-2.5 hover:bg-light-100 hover:text-dark-400" style={ item.id === subscribeTargetEmploymentType.id ? {display: 'none'} : { display: 'block'} }>{item.name}</div>
@@ -160,7 +160,7 @@ export default function JobList() {
           Reset<img className="w-5 h-5 ml-1" src={reset.src} alt="" />
         </div>
       </div>
-      <div className="text-light-200 text-sm mb-5">Engineering</div>
+      <div className="text-light-200 text-sm mb-5">{subscribeTargetDepartment.name}</div>
       <div className="grid gap-7 grid-cols-2 tablet:grid-cols-1">
         {
           subscribeSearchList.map(item => (
