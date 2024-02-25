@@ -20,10 +20,10 @@ uniform float uSampleBase4Layer1;
 float up_offset(vec2 pos) {
 
   float dist = distance(pos, vec2(0.0, 0.0));
-  float dist_remap = smoothstep(0.0, 0.1, dist) * 0.1;
+  float dist_remap = smoothstep(0.0, 0.1, dist);
   // dist > 0.1 dist_remap === 1
   // dist < 0.1 dist_remap === dist 
-  return cubicBezier2D(dist_remap / 0.1);
+  return cubicBezier2D(dist_remap, vec2(0.95, 0.05), vec2(0.65, 0.01));
 }
 
 const float noise_layer_1_amp = 0.7;

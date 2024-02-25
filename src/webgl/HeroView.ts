@@ -193,7 +193,7 @@ export default class HeroView {
     });
     const sphere01 = new THREE.Mesh(sphereGeo01, sphereMaterial01);
     const sphere02 = new THREE.Mesh(sphereGeo02, sphereMaterial02);
-    this._scene.add(sphere01, sphere02);
+    // this._scene.add(sphere01, sphere02);
     const sphere1Pos = heroOptions.sphere1.position[this._layout];
     sphere01.position.set(sphere1Pos.x, sphere1Pos.y, sphere1Pos.z);
     const sphere2Pos = heroOptions.sphere2.position[this._layout];

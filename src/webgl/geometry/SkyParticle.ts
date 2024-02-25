@@ -7,8 +7,8 @@ const SphereXCount = 100;
 const SphereYCount = 100;
 const SphereRadius = 1;
 const GaussianRadius = 0.1;
-const GaussianXCount = 0;
-const GaussianYCount = 0;
+const GaussianXCount = 15;
+const GaussianYCount = 15;
 
 export const createSkyParticle: (options: { xCount: number, yCount: number, shaders: { centerHeight: number } }) => [THREE.Points, THREE.ShaderMaterial] = ({
   xCount, yCount, shaders
@@ -24,6 +24,7 @@ export const createSkyParticle: (options: { xCount: number, yCount: number, shad
   const total_gaussian = GaussianXCount * GaussianYCount;
   const total_point = total_sphere + total_gaussian;
   const indices = new Uint16Array(total_point);
+  const is_gaussian = new Uint16Array(total_point);
   const point_array = new Float32Array(total_point * 3);
 
   let i = 0;
@@ -33,6 +34,7 @@ export const createSkyParticle: (options: { xCount: number, yCount: number, shad
   point_array.set(skyGeometry.getAttribute("position").array);
   while (i < total_sphere) {
     indices[j] = j;
+    is_gaussian[j] = 0;
     j++;
     i++;
   }
@@ -41,6 +43,7 @@ export const createSkyParticle: (options: { xCount: number, yCount: number, shad
   i = 0;
   while (i < total_gaussian) {
     indices[j] = j;
+    is_gaussian[j] = 1;
     point_array[j * 3] = randomGaussian(0, 1) * GaussianRadius;
     point_array[j * 3 + 1] = -SphereRadius;
     point_array[j * 3 + 2] = randomGaussian(0, 1) * GaussianRadius;
@@ -50,6 +53,7 @@ export const createSkyParticle: (options: { xCount: number, yCount: number, shad
 
   particleGeometry.setAttribute('a_index', new THREE.BufferAttribute(indices, 1, false));
   particleGeometry.setAttribute('position', new THREE.BufferAttribute(point_array, 3));
+  particleGeometry.setAttribute('a_is_gaussian', new THREE.BufferAttribute(is_gaussian, 1, false));
 
 
 
