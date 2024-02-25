@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PageMeta from "@/data/footer";
+import ImgEmail from "@/assets/images/email.svg";
+import ImgJump from "@/assets/images/jump.svg";
 
 const { freeNewsletter } = PageMeta;
 
@@ -45,13 +47,13 @@ export default function EmailSubscribe() {
     <div className=" col-span-6 flex justify-end tablet:w-full">
       <div className="border border-light-100 flex px-4 py-2 bg-dark-400 rounded-xl w-full max-w-[40rem] tablet:max-w-full justify-between">
         <div className="text-light-200 flex items-center text-sm mobile:text-xs">
-          <img className="w-5 h-5 mr-1.5" src='/email.svg' alt="" />
-          <input className="input-bg outline-none" type="text" placeholder={freeNewsletter} value={subscribeEmail} onChange={handleChange} onKeyDown={handleKeyDown}/>
+          <img className="w-5 h-5 mr-1.5" src={ImgEmail.src} alt="" />
+          <input className="input-bg outline-none" type="text" placeholder={freeNewsletter} value={subscribeEmail} onChange={handleChange} onKeyDown={handleKeyDown} />
         </div>
         <div className={`cursor-pointer flex text-sm items-center mobile:text-xs loading-button ${showLoading ? 'loading pr-10' : ''} ${isSubscribed ? 'text-light-300 cursor-not-allowed' : 'text-light-100'}`} onClick={() => sendEmail()}>
-          {showLoading ? '' : isSubscribed ? 'Subscribed':'Subscribe'}
+          {showLoading ? '' : isSubscribed ? 'Subscribed' : 'Subscribe'}
           {
-            (!showLoading && !isSubscribed) && <img className="w-5 h-5" src='/jump.svg' alt="" />
+            (!showLoading && !isSubscribed) && <img className="w-5 h-5" src={ImgJump.src} alt="" />
           }
         </div>
       </div>
