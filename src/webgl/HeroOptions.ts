@@ -106,7 +106,7 @@ export const DesktopOptions: HeroOptions = {
     z: 4
   },
   dofEffect: {
-    focusDistance: 5.5
+    focusDistance: 4.0
   },
   ground: {
     xCount: 128,
