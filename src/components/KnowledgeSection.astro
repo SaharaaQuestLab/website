@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import imageList from "./partners";
+const images = imageList;
+---
+
+<div class="flex flex-wrap gap-[1.75rem] mobile:grid mobile:grid-cols-2" id="sliders">
+    {
+      images.map((item) => (
+        <div class="slide border border-light-300 rounded-2xl tablet:mr-3 tablet:w-[8.25rem] w-[16rem] h-[7.5rem] tablet:h-[4.25rem] mobile:w-auto">
+          <Image src={item} alt="" />
+        </div>
+      ))
+    }
+</div> 
+
+<style>
+    .slide {
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .slide img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+  
