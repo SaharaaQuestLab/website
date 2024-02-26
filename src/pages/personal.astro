@@ -83,7 +83,7 @@ const { titles } = PageMeta;
       <h2 class="text-h5 tablet:text-s3">Capitalize your</h2>
       <h2 class="text-h5 tablet:text-s3">knowledge at scale</h2>
       <div
-        class="text-base tablet:text-sm tablet:w-[30rem] mobile:w-full text-light-200 mt-8 tablet:mt-4  h-[8.75rem] tablet:h-[6.875rem] mobile:h-[8.125rem]"
+        class="text-base tablet:text-sm tablet:w-[30rem] mobile:w-full text-light-200 mt-8 tablet:mt-4 h-[8.75rem] tablet:h-[6.875rem] mobile:h-[8.125rem]"
       >
         Participate in a broader decentralized network that enables cross-agent
         communication, knowledge transfer and capitalization between
@@ -154,7 +154,10 @@ const { titles } = PageMeta;
       <RingLoop />
     </div>
   </div>
-  <!-- <AutomateSection /> -->
+  <div slot="footer">
+    <div class="placeholder bg-opacity-0 h-[200px] tablet:hidden mobile:hidden">
+    </div>
+  </div>
 </Layout>
 <script>
   import { gsap } from "gsap";
@@ -169,7 +172,9 @@ const { titles } = PageMeta;
     window.open("https://hi.saharalabs.ai/get-in-touch", "_blank");
   }
 
-  document.getElementById("joinWaitList")?.addEventListener("click", goToWaitList);
+  document
+    .getElementById("joinWaitList")
+    ?.addEventListener("click", goToWaitList);
   document.getElementById("waitList1")?.addEventListener("click", goToWaitList);
 
   const heroEl = document.getElementById("sectionHero");
