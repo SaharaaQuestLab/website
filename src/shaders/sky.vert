@@ -32,11 +32,11 @@ float down_offset(vec2 pos) {
 	return cubicBezier2D(dist_remap, vec2(0.0, 0.0), vec2(0.0, 0.0));
 }
 
-const float noise_layer_1_amp = 1.0;
-const float noise_layer_1_freq = 0.5;
+const float noise_layer_1_amp = 7.5;
+const float noise_layer_1_freq = 0.3;
 const float noise_gaussian_amp = 1.5;
 const float noise_gaussian_freq = 1.0;
-const float noise_layer_3_amp = 0.01;
+const float noise_layer_3_amp = 0.015;
 const float noise_layer_3_freq = 25.0;
 const float noise_layer_4_amp = 0.5;
 const float noise_layer_4_freq = 2.0;
@@ -53,7 +53,7 @@ void main() {
 	v_color = noise_color(v_position.xyz);
 
 	noise_scale = remap(noise_scale, -1.0, 1.0, 0.2, 1.0);
-	float rnd = random(a_index);
+	float rnd = random(a_index+0.05);
 	if(rnd * 10000.0 < 0.1){
     	noise_scale *= 4.0;
     	v_color = 1.5;
@@ -62,12 +62,12 @@ void main() {
 
   // noise and normal
 	vec3 dest_pos = v_position;
-	dest_pos.y -= 1.0;
+	dest_pos.y -= 5.2;
 	float offset_x_layer1 = 0.04 * uTime;
 	float offset_gaussian = 0.2 * uTime;
 	vec3 sample_pos_layer1 = a_is_gaussian == 0.0 ? vec3(dest_pos.x + offset_x_layer1, dest_pos.y, dest_pos.z) : vec3(dest_pos.x + offset_gaussian, dest_pos.y, dest_pos.z);
 	// vec3 noise_pos = snoise3((dest_pos.xyz + sample_pos_layer1) * noise_layer_1_freq) * noise_layer_1_amp;
-	vec3 noise_pos = a_is_gaussian == 0.0 ? snoise3((dest_pos.xyz + sample_pos_layer1) * noise_layer_1_freq) * noise_layer_1_amp : snoise3((dest_pos.xyz + sample_pos_layer1) * noise_gaussian_freq) * noise_gaussian_amp;
+	vec3 noise_pos = a_is_gaussian == 0.0 ? snoise3((dest_pos.xyz + sample_pos_layer1) * noise_layer_1_freq + 7.9) * noise_layer_1_amp : snoise3((dest_pos.xyz + sample_pos_layer1) * noise_gaussian_freq) * noise_gaussian_amp;
 
 	// float dist = distance(v_position.xz, vec2(0.0, 0.0));
 	// vec3 dest_pos = v_position.xyz + step(0.1, dist) * rnd3 * 2.2;
@@ -80,7 +80,7 @@ void main() {
 	dest_pos.xyz += noise_pos_detail;
 
 	// move up
-	dest_pos.y += 2.7;
+	dest_pos.y += 2.66;
 
   // fall effect
 	float offset_x_layer4 = 0.005 * uTime;

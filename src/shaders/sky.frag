@@ -5,7 +5,7 @@ varying float v_color;
 
 void main() {
   float dist = length(gl_PointCoord - vec2(0.5, 0.5));
-  float radius = 0.4;
+  float radius = 0.5;
   float edge = 0.05;
   float alpha = 1.0 - 2.0 * smoothstep(radius - edge, radius, dist);
   if(alpha < 0.1)

@@ -106,7 +106,7 @@ export const DesktopOptions: HeroOptions = {
     z: 4
   },
   dofEffect: {
-    focusDistance: 4.0
+    focusDistance: 4.3
   },
   ground: {
     xCount: 128,
@@ -119,14 +119,14 @@ export const DesktopOptions: HeroOptions = {
     shaders: {
       centerHeight: 4.5,
       sampleBase4Layer1: {
-        one: 5.0,
-        two: 35.5
+        one: 12.5,
+        two: 16.5
       }
     }
   },
   sky: {
-    xCount: 40,
-    yCount: 40,
+    xCount: 44,
+    yCount: 44,
     position: {
       x: 0,
       y: 0.06,
@@ -232,11 +232,11 @@ export const MobileOptions: HeroOptions = {
     focusDistance: 6.9
   },
   ground: {
-    xCount: 90,
-    yCount: 90,
+    xCount: 80,
+    yCount: 80,
     position: {
       x: 0,
-      y: -0.25,
+      y: -0.2,
       z: 0
     },
     shaders: {
@@ -248,8 +248,8 @@ export const MobileOptions: HeroOptions = {
     }
   },
   sky: {
-    xCount: 40,
-    yCount: 40,
+    xCount: 32,
+    yCount: 32,
     position: {
       x: 0,
       y: 0.4,
@@ -262,8 +262,8 @@ export const MobileOptions: HeroOptions = {
     }
   },
   skyInner: {
-    xCount: 40,
-    yCount: 40,
+    xCount: 32,
+    yCount: 32,
     position: {
       x: 0,
       y: 0.4,
