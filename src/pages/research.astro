@@ -29,11 +29,11 @@ import { Icon } from "astro-icon/components";
   </slot>
   <div
     id="sectionDescription"
-    class="mt-40 tablet:mt-7 border-b border-b-dark-200 pt-[6.25rem] tablet:pt-0"
+    class="mt-40 tablet:mt-7 border-b border-b-dark-200 pt-[6.25rem]"
   >
     <Icon class="w-0 h-0" name="brandLogo" />
     <div
-      class="mt-10 pt-8 tablet:mt-0 tablet:pt-0 text-light-200 text-sm tablet:text-xs text-center"
+      class="mt-10 pt-8 tablet:mt-0 tablet:pt-0 tablet:pb-5 text-light-200 text-sm tablet:text-xs text-center"
     >
       Sean Ren
     </div>
@@ -58,12 +58,14 @@ import { Icon } from "astro-icon/components";
       </div>
     </div>
   </div>
-  <div class="pt-[9.125rem] mt-[6.125rem] pb-40 font-[Manrope] tablet:mt-7 tablet:py-20 tablet:pb-0">
+  <div
+    class="pt-[9.125rem] mt-[6.125rem] pb-40 font-[Manrope] tablet:mt-7 tablet:py-20 tablet:pb-0"
+  >
     <div
       class="grid gap-x-32 grid-cols-2 mb-20 tablet:flex tablet:items-center flex-col tablet:mb-6"
     >
       <div class="col-span-1 tablet:text-center tablet:mb-11">
-        <div class="text-h2 tablet:text-h4 w-[26rem] mobile:w-[16rem]">
+        <div class="text-h2 tablet:text-h4 mobile:text-h5 w-[26rem] mobile:w-[16rem]">
           <TextTyping text="Research Areas" />
         </div>
       </div>
@@ -79,7 +81,9 @@ import { Icon } from "astro-icon/components";
         <div class="mb-7 text-h5 tablet:text-s3 mobile:mb-4">
           Decentralized Learning
         </div>
-        <div class="mb-7 text-light-200 text-base mobile:mb-4 tablet:text-sm tablet:w-[30rem] mobile:w-full tablet:text-center">
+        <div
+          class="mb-7 text-light-200 text-base mobile:mb-4 tablet:text-sm tablet:w-[30rem] mobile:w-full tablet:text-center"
+        >
           In the ever-progressing field of Large Language Models (LLMs), there
           has been a significant shift towards addressing the critical concerns
           of data privacy and over-centralized model learning. As these models
@@ -88,13 +92,13 @@ import { Icon } from "astro-icon/components";
           becomes paramount.
         </div>
         <div
-          class="border font-[IBMPlexMono] mb-5 border-dark-200 tablet:w-full text-sm cursor-pointer py-3 px-4 flex justify-between items-center rounded-xl text-light-100"
+          class="border font-[IBMPlexMono] mb-5 border-dark-200 tablet:w-full text-sm cursor-pointer py-3 px-4 flex justify-between items-center rounded-xl text-light-100 mobile:text-xs text-left"
         >
           Dataless Knowledge Fusion by Merging Weights of Language Models
           <Icon class="min-w-5 h-5" name="arrowRightUp" />
         </div>
         <div
-          class="border font-[IBMPlexMono] border-dark-200 tablet:w-full text-sm cursor-pointer py-3 px-4 flex justify-between items-center rounded-xl text-light-100"
+          class="border font-[IBMPlexMono] border-dark-200 tablet:w-full text-sm cursor-pointer py-3 px-4 flex justify-between items-center rounded-xl text-light-100 mobile:text-xs text-left"
         >
           FedNLP: Benchmarking Federated Learning Methods for Natural Language
           Processing Tasks
@@ -114,7 +118,9 @@ import { Icon } from "astro-icon/components";
           <Icon class="w-full h-full text-light-200" name="brandLogo" />
         </div>
         <div class="text-h5 mb-7">AI agents</div>
-        <div class="mb-7 text-light-200 text-base tablet:text-sm tablet:w-[30rem] mobile:w-full tablet:text-center">
+        <div
+          class="mb-7 text-light-200 text-base tablet:text-sm tablet:w-[30rem] mobile:w-full tablet:text-center"
+        >
           LLM-powered knowledge agents are offering unprecedented capabilities
           in various applications ranging from personal assistant to autonomous
           research and data analysis. As these agents grow in complexity and
@@ -122,14 +128,14 @@ import { Icon } from "astro-icon/components";
           key to user experience.
         </div>
         <div
-          class="border mb-5 font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+          class="border mb-5 font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100 mobile:text-xs text-left"
         >
           SwiftSage: A Generative Agent with Fast and Slow Thinking for Complex
           Interactive Tasks
           <Icon class="min-w-5 h-5" name="arrowRightUp" />
         </div>
         <div
-          class="border font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+          class="border font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100 mobile:text-xs text-left"
         >
           Bootstrap Your Own Skills: Learning to Solve New Tasks with Large
           Language Model Guidance
@@ -145,7 +151,9 @@ import { Icon } from "astro-icon/components";
           <Icon class="w-full h-full text-light-200" name="brandLogo" />
         </div>
         <div class="text-h5 mb-7 mobile:text-s3">Human-AI collaboration</div>
-        <div class="mb-7 text-light-200 text-base tablet:text-sm tablet:w-[30rem] mobile:w-full tablet:text-center">
+        <div
+          class="mb-7 text-light-200 text-base tablet:text-sm tablet:w-[30rem] mobile:w-full tablet:text-center"
+        >
           The intersection of human intelligence and artificial intelligence,
           particularly in the context of Large Language Models (LLMs), presents
           a landscape rich with opportunities and challenges. Understanding the
@@ -153,20 +161,20 @@ import { Icon } from "astro-icon/components";
           capabilities of LLMs while addressing potential risks.
         </div>
         <div
-          class="border mb-5 font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+          class="border mb-5 font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100 mobile:text-xs text-left"
         >
           Relying on the Unreliable: The Impact of Language Models' Reluctance
           to Express Uncertainty
           <Icon class="min-w-5 h-5" name="arrowRightUp" />
         </div>
         <div
-          class="border mb-5 font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+          class="border mb-5 font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100 mobile:text-xs text-left"
         >
           How FaR Are Large Language Models From Agents with Theory-of-Mind?
           <Icon class="min-w-5 h-5" name="arrowRightUp" />
         </div>
         <div
-          class="border font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+          class="border font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100 mobile:text-xs text-left"
         >
           Refining Language Models with Compositional Explanations
           <Icon class="min-w-5 h-5" name="arrowRightUp" />
@@ -185,7 +193,9 @@ import { Icon } from "astro-icon/components";
           <Icon class="w-full h-full text-light-200" name="brandLogo" />
         </div>
         <div class="text-h5 mb-7 mobile:text-s3">Continuous learning</div>
-        <div class="mb-7 text-light-200 text-base tablet:text-sm tablet:w-[30rem] mobile:w-full tablet:text-center">
+        <div
+          class="mb-7 text-light-200 text-base tablet:text-sm tablet:w-[30rem] mobile:w-full tablet:text-center"
+        >
           The concept of continuous learning represents a pivotal advancement in
           the development and application of Large Language Models (LLMs),
           addressing the need for these models to adapt and evolve in response
@@ -194,14 +204,14 @@ import { Icon } from "astro-icon/components";
           and efficient in real-world applications.
         </div>
         <div
-          class="border mb-5 font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+          class="border mb-5 font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100 mobile:text-xs text-left"
         >
           Lifelong Pretraining: Continually Adapting Language Models to Emerging
           Corpora
           <Icon class="min-w-5 h-5" name="arrowRightUp" />
         </div>
         <div
-          class="border font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100"
+          class="border font-[IBMPlexMono] tablet:w-full border-dark-200 text-sm cursor-pointer py-2.5 px-4 flex justify-between items-center rounded-xl text-light-100 mobile:text-xs text-left"
         >
           On Continual Model Refinement in Out-of-Distribution Data Streams
           <Icon class="min-w-5 h-5" name="arrowRightUp" />
@@ -209,7 +219,10 @@ import { Icon } from "astro-icon/components";
       </div>
     </div>
   </div>
-  <!-- <AutomateSection /> -->
+  <div slot="footer">
+    <div class="placeholder bg-opacity-0 h-[200px] tablet:hidden mobile:hidden">
+    </div>
+  </div>
 </Layout>
 <script>
   import { gsap } from "gsap";

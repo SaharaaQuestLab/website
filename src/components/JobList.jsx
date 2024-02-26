@@ -119,8 +119,8 @@ export default function JobList() {
         <span className="mr-4">Open Positions</span>
         <span className="text-light-300">{subscribeSearchList.length}</span>
       </div>
-      <div className="h-11 mb-[3.75rem] flex gap-x-5">
-        <div className="border flex-1 px-4 text-sm py-2.5 cursor-pointer relative rounded-xl group hover:rounded-b-none hover:border-b-[rgba(0,0,0,0)] border-light-100 flex items-center justify-between">
+      <div className="h-11 mb-[3.75rem] tablet:mb-11 mobile:mb-7 flex gap-x-5 mobile:gap-x-3">
+        <div className="border flex-1 px-4 text-sm mobile:text-xs py-2.5 cursor-pointer relative rounded-xl group hover:rounded-b-none hover:border-b-[rgba(0,0,0,0)] border-light-100 flex items-center justify-between">
           {subscribeTargetDepartment.id ? <span>{subscribeTargetDepartment.name}</span>:<span className="text-light-200">Department</span>}<img
             id="icon"
             className="w-5 h-5 rotate-180 group-hover:rotate-0" src={arrowCorner_768_375.src} alt="" />
@@ -132,7 +132,7 @@ export default function JobList() {
             }
           </div>
         </div>
-        <div className="border flex-1 px-4 text-sm py-2.5 cursor-pointer relative rounded-xl group hover:rounded-b-none hover:border-b-[rgba(0,0,0,0)] border-light-100 flex items-center justify-between">
+        <div className="border flex-1 px-4 text-sm mobile:text-xs py-2.5 cursor-pointer relative rounded-xl group hover:rounded-b-none hover:border-b-[rgba(0,0,0,0)] border-light-100 flex items-center justify-between">
           {subscribeTargetLocation.id ? <span>{subscribeTargetLocation.name}</span>:<span className="text-light-200">Location</span>}<img
             id="icon"
             className="w-5 h-5 rotate-180 group-hover:rotate-0" src={arrowCorner_768_375.src} alt="" />
@@ -144,7 +144,7 @@ export default function JobList() {
             }
           </div>
         </div>
-        <div className="border flex-1 px-4 text-sm py-2.5 cursor-pointer relative rounded-xl group hover:rounded-b-none hover:border-b-[rgba(0,0,0,0)] border-light-100 flex items-center justify-between">
+        <div className="border flex-1 px-4 text-sm mobile:text-xs py-2.5 cursor-pointer relative rounded-xl group hover:rounded-b-none hover:border-b-[rgba(0,0,0,0)] border-light-100 flex items-center justify-between">
           {subscribeTargetEmploymentType.id ? <span>{subscribeTargetEmploymentType.name}</span> : <span className="text-light-200">Employment Type</span>} <img
             id="icon"
             className="w-5 h-5 rotate-180 group-hover:rotate-0" src={arrowCorner_768_375.src} alt="" />
@@ -160,8 +160,8 @@ export default function JobList() {
           Reset<img className="w-5 h-5 ml-1" src={reset.src} alt="" />
         </div>
       </div>
-      <div className="text-light-200 text-sm mb-5">{subscribeTargetDepartment.name}</div>
-      <div className="grid gap-7 grid-cols-2 tablet:grid-cols-1">
+      {subscribeTargetDepartment.name&&(<div className="text-light-200 text-sm mobile:text-xs mb-5 tablet:mb-4 mobile:mb-3">{subscribeTargetDepartment.name}</div>)}
+      <div className="grid gap-7 tablet:gap-4 mobile:gap-3 grid-cols-2 tablet:grid-cols-1 text-sm mobile:text-xs">
         {
           subscribeSearchList.map(item => (
             <div key={item.id} className="border border-dark-200 rounded-xl px-4 py-3 flex justify-between items-center">

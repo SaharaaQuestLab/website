@@ -1,4 +1,6 @@
 // 设置联系方式页的meta信息
+const baseUrl = import.meta.env.BASE_URL;
+
 export default {
   titles: {
     texts:  [
@@ -9,7 +11,7 @@ export default {
     remarks: [],
     button: {
       text: 'Join The Team',
-      path: ''
+      path: `${baseUrl}career`
     }
   },
   careerTitles: {

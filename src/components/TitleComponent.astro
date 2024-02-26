@@ -12,6 +12,7 @@ interface Props {
     button?: {
       text: string;
       url?: string;
+      path?: string;
     };
   };
 }
@@ -42,7 +43,7 @@ const {className, titleClassName} = Astro.props;
   <!-- link button -->
   {
     button && (
-      <div class="link-btn common-button border w-max whitespace-nowrap tablet:text-sm tablet:h-11 mobile:w-[9.125rem] mobile:text-xs text-base py-2.5 px-4 flex items-center rounded-xl mt-10 tablet:mt-7 pointer-events-auto" data-link={button.url}>{button.text}<Icon class="min-w-5 h-5" name="arrowRightUp" />
+      <div class="link-btn common-button border w-max whitespace-nowrap tablet:text-sm tablet:h-11 mobile:w-[9.125rem] mobile:text-xs text-base py-2.5 px-4 flex items-center rounded-xl mt-10 tablet:mt-7 pointer-events-auto" data-link={button.url} data-path={button.path}>{button.text}<Icon class="min-w-5 h-5" name="arrowRightUp" />
       </div>
     )
   }
@@ -59,8 +60,11 @@ const {className, titleClassName} = Astro.props;
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
       const url = button.getAttribute('data-link');
+      const path = button.getAttribute('data-path');
       if (url) {
         window.open(url, "_blank");
+      } else if (path) {
+        window.location.href = path;
       }
     });
   });

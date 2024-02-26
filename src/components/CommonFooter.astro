@@ -6,18 +6,19 @@ import EmailSubscribe from "@/components/EmailSubscribe.jsx";
 
 interface Props {
   isSlot?: boolean;
-  active?: string
+  active?: string;
 }
 const { isSlot, active } = Astro.props;
 ---
 
-<div class:list={["w-full footer"]}>
+<div class="w-full footer">
   <div class="max-w-[1408px] w-full tablet:px-6 mobile:px-3 mx-auto">
     <slot name="footer" />
     <div
       class:list={[
         "grid grid-cols-12 tablet:flex flex-col tablet:items-center text-base text-light-200 mobile:text-xs justify-between my-[3.75rem] tablet:mb-7 pt-[3.75rem]  border-t-dark-200 border-t",
-        isSlot ? "tablet:pt-5 tablet:mt-7" : "", {"border-t-0": active === "aboutUs" &&!isSlot}
+        isSlot ? "tablet:pt-5 tablet:mt-7" : "",
+        { "border-t-0": active === "aboutUs" && !isSlot },
       ]}
     >
       <div class="flex col-span-6 tablet:flex-col tablet:items-center">
