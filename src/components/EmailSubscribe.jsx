@@ -37,7 +37,7 @@ export default function EmailSubscribe() {
       body: JSON.stringify(requestData)
     })
     setShowLoading(false);
-    if (apiResult.status == 200) {
+    if (apiResult.status == 200 || apiResult.status == 201) {
       setIsSubscribed(true);
     }
   }
@@ -50,7 +50,7 @@ export default function EmailSubscribe() {
           <img className="w-5 h-5 mr-1.5" src={ImgEmail.src} alt="" />
           <input className="input-bg outline-none" type="text" placeholder={freeNewsletter} value={subscribeEmail} onChange={handleChange} onKeyDown={handleKeyDown} />
         </div>
-        <div className={`cursor-pointer flex text-sm items-center mobile:text-xs loading-button ${showLoading ? 'loading pr-10' : ''} ${isSubscribed ? 'text-light-300 cursor-not-allowed' : 'text-light-100'}`} onClick={() => sendEmail()}>
+        <div className={`flex text-sm items-center mobile:text-xs loading-button ${showLoading ? 'loading pr-10' : ''} ${isSubscribed ? 'text-light-300 cursor-not-allowed' : 'text-light-100 cursor-pointer'}`} onClick={() => sendEmail()}>
           {showLoading ? '' : isSubscribed ? 'Subscribed' : 'Subscribe'}
           {
             (!showLoading && !isSubscribed) && <img className="w-5 h-5" src={ImgJump.src} alt="" />
