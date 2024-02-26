@@ -84,14 +84,13 @@
   const ringContainer = document.getElementById("ringSection");
   if (ringContainer) {
     let ringRect = ringContainer?.getBoundingClientRect();
-    // ringContainer.addEventListener("pointermove", (event) => {
-    //   if (event.isPrimary === false) return;
-    //   const e = event;
-    //   const normalizeX = ((e.clientX - ringRect.left) / ringRect.width) * 2 - 1;
-    //   const x = 4 * Math.sin((Math.PI * easeOutQuad(normalizeX)) / 20);
-    //   const z = 4 * Math.cos((Math.PI * easeOutQuad(normalizeX)) / 20);
-    //   viewer.rotateCamera({ x, z });
-    // });
+    ringContainer.addEventListener("pointermove", (event) => {
+      if (event.isPrimary === false) return;
+      const e = event;
+      const normalizeX = ((e.clientX - ringRect.left) / ringRect.width) * 2 - 1;
+      const normalizeY = 1 - ((e.clientY - ringRect.top) * 2) / ringRect.height;
+      viewer.onPointMove(normalizeX, normalizeY);
+    });
     window.addEventListener("resize", () => {
       ringRect = ringContainer?.getBoundingClientRect();
     });

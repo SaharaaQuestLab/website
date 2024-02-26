@@ -5,12 +5,17 @@ import { CircleRing } from './geometry/CircleRing';
 import { OutlineEffect } from 'three/examples/jsm/Addons.js';
 import { gsap } from 'gsap';
 
+function easeOutQuad(t: number): number {
+  if (Math.abs(t) > 1) t = Math.sign(t);
+  return 1 * (t - 1) ** 3 + 1;
+}
 
 export default class RingView {
   private _el: Window | HTMLElement;
   private _render: WebGLRenderer;
   private _scene: Scene;
   private _camera: PerspectiveCamera;
+  private _pointLight: THREE.PointLight;
   // private _clock = new THREE.Clock();
   private _composer?: OutlineEffect;
   private _requestAnimationId?: number;
@@ -28,6 +33,7 @@ export default class RingView {
     this._render = this.createRender();
     this._scene = this.createScene();
     this._camera = this.createCamera();
+    this._pointLight = this.createPointLight();
     this.createEvent();
     this.createRings();
   }
@@ -64,6 +70,13 @@ export default class RingView {
     return camera;
   }
 
+  private createPointLight() {
+    const pointLight = new THREE.PointLight(0xffffff, 30.0, 100);
+    pointLight.position.set(-2.0, 1.5, -2.0);
+    this._scene.add(pointLight);
+    return pointLight;
+  }
+
   private createEvent() {
     window.addEventListener("resize", () => {
       const { width, height } = this.renderRect;
@@ -83,11 +96,6 @@ export default class RingView {
       });
     }
   }
-
-  // private createComposer() {
-  //   if (this._composer) return;
-  //   // this._composer = new EffectComposer(this._render);
-  // }
 
   private createRings() {
     this._rings = Array(2).fill(undefined).map(() => new CircleRing({ radius: 0.35, tube: 0.1 }));
@@ -120,11 +128,6 @@ export default class RingView {
     // const directionalLight = new THREE.DirectionalLight(0xffffff, 5);
     // directionalLight.position.set(-3, 1.5, -3); // 设置光源的位置
     // this._scene.add(directionalLight);
-
-    // add point light
-    const pointLight = new THREE.PointLight(0xffffff, 30.0, 100);
-    pointLight.position.set(-2.0, 1.5, -2.0);
-    this._scene.add(pointLight);
 
     this._camera.position.set(-2, 2, 3);
     this._camera.lookAt(0, 0, 0);
@@ -260,6 +263,7 @@ export default class RingView {
     ring4.update(0, 0.075).moveTo(0, 0.5, 0);
     ring5.update(0, 0.075).moveTo(0, 0.5, 0);
     this._scene.remove(ring4.mesh, ring5.mesh);
+    this._pointLight.position.setX(-2);
     this.transScene3To2();
   }
 
@@ -360,13 +364,18 @@ export default class RingView {
     a.click();
   }
 
-  public rotateCamera(options: { x?: number, y?: number, z?: number }) {
-    this._camera.position.set(
-      options.x || this._camera.position.x,
-      options.y || this._camera.position.y,
-      options.z || this._camera.position.z,
-    ),
-      this._camera.lookAt(0, 0, 0);
+  public onPointMove(normalizeX: number, normalizeY: number) {
+    const x = -2 + 0.3 * easeOutQuad(normalizeX);
+    const y = 1.5 + 0.05 * easeOutQuad(normalizeY);
+    this.movePointLight({ x, y });
+  }
+
+  public movePointLight(options: { x: number, y: number }) {
+    this._pointLight.position.set(
+      options.x,
+      options.y,
+      this._pointLight.position.z
+    )
   }
 
   public play() {
