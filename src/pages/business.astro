@@ -20,7 +20,7 @@ const { titles } = PageMeta;
   <slot slot="base-layout">
     <div
       id="sectionHero"
-      class="w-screen h-screen first-screen-bottom-mask-wrap"
+      class="w-screen h-screen first-screen-bottom-mask-wrap relative"
     >
     </div>
 
@@ -192,7 +192,7 @@ const { titles } = PageMeta;
     <div
       class="col-span-4 text-h2 mobile:text-h4 mobile:text-center flex flex-col justify-center tablet:items-center"
     >
-      <div class="w-[20rem] tablet:text-center tablet:text-h4 mobile:text-m2">
+      <div class="w-[21rem] tablet:text-center tablet:text-h4 mobile:text-m2">
         <TextTyping text="Sahara Data." />
       </div>
     </div>
@@ -220,7 +220,7 @@ const { titles } = PageMeta;
         Sahara Data is an end-to-end platform designed to meet the most
         challenging training data demands.
       </div>
-      <div class="tablet:w-[30rem] mobile:w-full tablet:mx-auto tablet:text-center">
+      <div class="tablet:w-[30rem] tablet:text-sm mobile:w-full tablet:mx-auto tablet:text-center">
         The platform, <span class="text-light-100"
           >decentralized or on-premise,</span
         > offers an intelligent AI-centered, human-in-the-loop, and privacy-preserving
@@ -420,7 +420,7 @@ const { titles } = PageMeta;
         </div>
 
         <div class="col-span-1 flex flex-col justify-center">
-          <div class="text-h5 mb-11 tablet:text-s3 tablet:mb-5">
+          <div class="text-h5 mb-11 tablet:text-s3 tablet:mb-5 mobile:pt-7">
             Redefine Human-AI Collaboration
           </div>
           <div class="flex items-center text-[2rem] mb-1.5 tablet:text-sm">
@@ -465,7 +465,7 @@ const { titles } = PageMeta;
         </div>
       </div>
       <div
-        class="flex col-span-1 gap-x-32 min-w-full p-[3.75rem] pb-0 mobile:flex-col mobile:p-3 mobile:px-4 tablet:px-5"
+        class="flex col-span-1 gap-x-32 tablet:gap-x-8 min-w-full p-[3.75rem] pb-0 mobile:flex-col mobile:p-3 mobile:px-4 tablet:px-5"
         id="content2"
       >
         <div class="flex-1 flex items-center">
