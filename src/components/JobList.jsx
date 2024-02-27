@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from "gsap";
 import reset from "@/assets/icons/reset.png";
 import arrowCorner_768_375 from "@/assets/icons/arrowCorner_768_375.svg";
 import arrowRightUp from "@/assets/icons/arrowRightUp-white.svg";
@@ -52,42 +53,39 @@ export default function JobList() {
 
     }
   }
-  const searchList = () => {
 
-  }
   const init = async () => {
     await sendDepartmentList();
     await sendLocationList();
     await sendJobList();
-    // setSubscribeEmploymentType();
-    searchList();
+
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     const map = {};
-    subscribeLocationList.forEach((item)=>{
+    subscribeLocationList.forEach((item) => {
       map[item.id] = item.name;
     });
     setSubscribeLocationMap(map);
-  },[subscribeLocationList]);
+  }, [subscribeLocationList]);
 
-  useEffect(()=>{
+  useEffect(() => {
     let list = subscribeJobList;
-    if(subscribeTargetEmploymentType.id) {
-      list = list.filter(item=>item.employmentType === subscribeTargetEmploymentType.id);
+    if (subscribeTargetEmploymentType.id) {
+      list = list.filter(item => item.employmentType === subscribeTargetEmploymentType.id);
     }
-    if(subscribeTargetLocation.id) {
-      list = list.filter(item=>item.locationId === subscribeTargetLocation.id);
+    if (subscribeTargetLocation.id) {
+      list = list.filter(item => item.locationId === subscribeTargetLocation.id);
     }
-    if(subscribeTargetDepartment.id) {
-      list = list.filter(item=>item.departmentId === subscribeTargetDepartment.id);
+    if (subscribeTargetDepartment.id) {
+      list = list.filter(item => item.departmentId === subscribeTargetDepartment.id);
     }
     setSubscribeSearchList(list)
-  },[subscribeTargetEmploymentType, subscribeTargetLocation, subscribeTargetDepartment]);
-  useEffect(()=>{
+  }, [subscribeTargetEmploymentType, subscribeTargetLocation, subscribeTargetDepartment]);
+  useEffect(() => {
     const map = [];
-    subscribeJobList.forEach((item)=>{
-      if(!map.find(val=> val.id === item.employmentType)) {
+    subscribeJobList.forEach((item) => {
+      if (!map.find(val => val.id === item.employmentType)) {
         map.push({
           id: item.employmentType,
           name: item.employmentType
@@ -96,17 +94,57 @@ export default function JobList() {
     });
     setSubscribeEmploymentType(map);
     setSubscribeSearchList(subscribeJobList)
-  },[subscribeJobList])
-  useEffect(()=>{
+  }, [subscribeJobList]);
+
+  const content = useRef(null);
+  const contentWrap = useRef(null);
+
+  useEffect(() => {
     const map = {};
-    subscribeDepartmentList.forEach((item)=>{
+    subscribeDepartmentList.forEach((item) => {
       map[item.id] = item.name;
     });
     setSubscribeDepartmentMap(map);
-  },[subscribeDepartmentList]);
-  useEffect(()=>{
+  }, [subscribeDepartmentList]);
+  useEffect(() => {
     init();
-  },[]);
+    const draggable = content.current;
+    const el = contentWrap.current;
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+
+    draggable.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        currentX = draggable.offsetLeft;
+    });
+
+    el.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const deltaX = e.touches[0].clientX - startX;
+        let newX = currentX + deltaX;
+        if(-newX >= draggable.clientWidth - el.clientWidth ) {
+          newX = -(draggable.clientWidth - el.clientWidth);
+        }
+        if(newX > 0) {
+          newX = 0
+        }
+        // 使用GSAP来平滑地移动元素
+        gsap.to(draggable, {
+            duration: 0.1,
+            marginLeft: newX,
+            ease: 'power1.out'
+        });
+
+        // 更新起始位置以计算接下来的移动距离
+        // startX = newX;
+    });
+
+    document.addEventListener('touchend', () => {
+        isDragging = false;
+    });
+  }, []);
 
   const resetSearch = () => {
     setSubscribeTargetEmploymentType({});
@@ -114,44 +152,44 @@ export default function JobList() {
     setSubscribeTargetDepartment({});
   }
   return (
-    <div>
+    <div className="w-full overflow-hidden" ref={contentWrap}>
       <div className="mt-40 mb-[3.75rem] mobile:mb-7 text-h3 tablet:text-h4 mobile:text-h5 font-[Manrope]">
         <span className="mr-4">Open Positions</span>
         <span className="text-light-300">{subscribeSearchList.length}</span>
       </div>
-      <div className="h-11 mb-[3.75rem] tablet:mb-11 mobile:mb-7 flex gap-x-5 tablet:gap-x-3">
+      <div className="h-11 mb-[3.75rem] tablet:mb-11 mobile:mb-7 flex gap-x-5 tablet:gap-x-3 min-w-max max-w-max" ref={content}>
         <div className="border flex-1 px-4 text-sm mobile:text-xs py-2.5 cursor-pointer relative rounded-xl group hover:rounded-b-none hover:border-b-[rgba(0,0,0,0)] border-light-100 flex items-center justify-between">
-          {subscribeTargetDepartment.id ? <span className="whitespace-nowrap truncate">{subscribeTargetDepartment.name}</span>:<span className="text-light-200">Department</span>}<img
+          {subscribeTargetDepartment.id ? <span className="whitespace-nowrap truncate">{subscribeTargetDepartment.name}</span> : <span className="text-light-200 whitespace-nowrap truncate">Department</span>}<img
             id="icon"
             className="w-5 h-5 rotate-180 group-hover:rotate-0" src={arrowCorner_768_375.src} alt="" />
           <div className="absolute left-[-1px] top-11 w-[calc(100%+2px)] bg-dark-400 border-b border-l border-r group-hover:block hidden -mt-0.5 border-light-100 rounded-xl rounded-t-none overflow-hidden">
             {
-              subscribeDepartmentList.map(item=>(
-                <div key={item.id} onClick={()=> {setSubscribeTargetDepartment(item)}} style={ item.id === subscribeTargetDepartment.id ? {display: 'none'} : { display: 'block'} } className="px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate">{item.name}</div>
+              subscribeDepartmentList.map(item => (
+                <div key={item.id} onClick={() => { setSubscribeTargetDepartment(item) }} style={item.id === subscribeTargetDepartment.id ? { display: 'none' } : { display: 'block' }} className="px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate">{item.name}</div>
               ))
             }
           </div>
         </div>
         <div className="border flex-1 px-4 text-sm mobile:text-xs py-2.5 cursor-pointer relative rounded-xl group hover:rounded-b-none hover:border-b-[rgba(0,0,0,0)] border-light-100 flex items-center justify-between">
-          {subscribeTargetLocation.id ? <span className="whitespace-nowrap truncate">{subscribeTargetLocation.name}</span>:<span className="text-light-200">Location</span>}<img
+          {subscribeTargetLocation.id ? <span className="whitespace-nowrap truncate">{subscribeTargetLocation.name}</span> : <span className="text-light-200 whitespace-nowrap truncate">Location</span>}<img
             id="icon"
             className="w-5 h-5 rotate-180 group-hover:rotate-0" src={arrowCorner_768_375.src} alt="" />
           <div className="absolute left-[-1px] top-11 w-[calc(100%+2px)] bg-dark-400 border-b border-l border-r group-hover:block hidden -mt-0.5 border-light-100 rounded-xl rounded-t-none overflow-hidden">
             {
               subscribeLocationList.map(item => (
-                <div key={item.id} onClick={()=> {setSubscribeTargetLocation(item)}} className="px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate" style={ item.id === subscribeTargetLocation.id ? {display: 'none'} : { display: 'block'} }>{item.name}</div>
+                <div key={item.id} onClick={() => { setSubscribeTargetLocation(item) }} className="px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate" style={item.id === subscribeTargetLocation.id ? { display: 'none' } : { display: 'block' }}>{item.name}</div>
               ))
             }
           </div>
         </div>
         <div className="border flex-1 px-4 text-sm mobile:text-xs py-2.5 cursor-pointer relative rounded-xl group hover:rounded-b-none hover:border-b-[rgba(0,0,0,0)] border-light-100 flex items-center justify-between">
-          {subscribeTargetEmploymentType.id ? <span className="whitespace-nowrap truncate">{subscribeTargetEmploymentType.name}</span> : <span className="text-light-200">Employment Type</span>} <img
+          {subscribeTargetEmploymentType.id ? <span className="whitespace-nowrap truncate">{subscribeTargetEmploymentType.name}</span> : <span className="text-light-200 whitespace-nowrap truncate">Employment Type</span>} <img
             id="icon"
             className="w-5 h-5 rotate-180 group-hover:rotate-0" src={arrowCorner_768_375.src} alt="" />
           <div className="absolute left-[-1px] top-11 w-[calc(100%+2px)] bg-dark-400 border-b border-l border-r group-hover:block hidden -mt-0.5 border-light-100 rounded-xl rounded-t-none overflow-hidden">
             {
               subscribeEmploymentType.map(item => (
-                <div key={item.id} onClick={()=> {setSubscribeTargetEmploymentType(item)}} className="px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate" style={ item.id === subscribeTargetEmploymentType.id ? {display: 'none'} : { display: 'block'} }>{item.name}</div>
+                <div key={item.id} onClick={() => { setSubscribeTargetEmploymentType(item) }} className="px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate" style={item.id === subscribeTargetEmploymentType.id ? { display: 'none' } : { display: 'block' }}>{item.name}</div>
               ))
             }
           </div>
@@ -160,7 +198,7 @@ export default function JobList() {
           Reset<img className="w-5 h-5 ml-1" src={reset.src} alt="" />
         </div>
       </div>
-      {subscribeTargetDepartment.name&&(<div className="text-light-200 text-sm mobile:text-xs mb-5 tablet:mb-4 mobile:mb-3">{subscribeTargetDepartment.name}</div>)}
+      {subscribeTargetDepartment.name && (<div className="text-light-200 text-sm mobile:text-xs mb-5 tablet:mb-4 mobile:mb-3">{subscribeTargetDepartment.name}</div>)}
       <div className="grid gap-7 tablet:gap-4 mobile:gap-3 grid-cols-2 tablet:grid-cols-1 text-sm mobile:text-xs">
         {
           subscribeSearchList.map(item => (
