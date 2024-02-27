@@ -5,9 +5,11 @@ import CloseImage from "@/assets/icons/close_line_768_375.svg";
 
 interface Props {
   active?: PageRoutes;
+  positionType?: "fixed" | "sticky";
 }
 
 const homeUrl = `${import.meta.env.BASE_URL}`;
+const { positionType = "fixed" } = Astro.props;
 
 const routes: Array<{ name: string; path: string; flag: string }> = [];
 const aboutUsRoutes: Array<{ name: string; path: string; flag: string }> = [];
@@ -31,14 +33,19 @@ navData.nav.forEach((nav) => {
 ---
 
 <div
-  class="px-[1.5rem] pt-3 pb-[0.75rem] header w-screen z-[100] hidden tablet:flex sticky top-0 left-0 justify-between"
+  class="px-[1.5rem] pt-3 w-screen z-[100] hidden tablet:flex top-0 left-0 justify-between"
+  class:list={[
+    positionType === "sticky"
+      ? "sticky h-0 pb-0 bg-[#121315] header-top-mask-wrap"
+      : "fixed pb-[0.75rem] header",
+  ]}
 >
   <div class="flex">
     <a href={homeUrl} class="logo w-8">
       <Icon class="w-8 h-8 text-white" name="brandLogo" />
     </a>
   </div>
-  <div class="flex-1 pointer-events-none"></div>
+  <div class="flex-1 bg-opacity-0 pointer-events-none"></div>
   <div>
     <Icon
       class="w-8 h-8 text-white cursor-pointer"
@@ -56,7 +63,12 @@ navData.nav.forEach((nav) => {
       <Icon class="w-8 h-8 text-white" name="brandLogo" />
     </a>
     <div class="w-8 min-w-2">
-      <img class="w-8 h-8 text-white cursor-pointer" id="mobile-menu-close-btn" src={CloseImage.src} alt="">
+      <img
+        class="w-8 h-8 text-white cursor-pointer"
+        id="mobile-menu-close-btn"
+        src={CloseImage.src}
+        alt="close menu"
+      />
     </div>
   </div>
   <div class="text-s3 font-[Manrope] px-6 py-1.5 border-b border-b-dark-200">
@@ -150,5 +162,19 @@ navData.nav.forEach((nav) => {
       rgba(18, 19, 21, 1),
       rgba(18, 19, 21, 0)
     );
+  }
+  .header-top-mask-wrap::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2rem;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      rgba(18, 19, 21, 1),
+      rgba(18, 19, 21, 0)
+    );
+    z-index: -1;
   }
 </style>
