@@ -35,6 +35,6 @@ export default defineConfig({
     appDescription: "saharaa.ai",
     developerName: "Null Studio",
     faviconsDarkMode: false,
-    background: '#000'
+    background: '#121315'
   }), sitemap(), vue(), react()]
 });
