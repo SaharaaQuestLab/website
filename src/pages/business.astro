@@ -96,7 +96,7 @@ const { titles } = PageMeta;
   </div>
   <div
     id="bookDemo2"
-    class="mx-auto w-[27rem] tablet:w-40 mobile:w-full mobile:text-xs border whitespace-nowrap text-sm  h-11 py-2.5 px-4 flex items-center justify-center rounded-xl common-button"
+    class="mx-auto w-[27rem] tablet:w-40 mobile:w-full mobile:text-xs border whitespace-nowrap text-sm h-11 py-2.5 px-4 flex items-center justify-center rounded-xl common-button"
   >
     Book a Demo
     <Icon class="w-5 h-5" name="arrowRightUp" />
@@ -107,10 +107,14 @@ const { titles } = PageMeta;
     <div
       class="py-[7.25rem] w-[40rem] font-[Manrope] tablet:py-[3.75rem] tablet:w-full tablet:text-center"
     >
-    <div class="justify-center hidden tablet:flex mb-7">
-      <Image class="w-60 h-60" src={rings_03} alt=""/>
-    </div>
-    <div class="bg-dark-200 w-[7.5rem] text-base mx-auto rounded-[1.25rem] tablet:block hidden mobile:w-[6rem] mobile:text-mx">Business</div>
+      <div class="justify-center hidden tablet:flex mb-7">
+        <Image class="w-60 h-60" src={rings_03} alt="" />
+      </div>
+      <div
+        class="bg-dark-200 w-[7.5rem] text-base mx-auto rounded-[1.25rem] tablet:block hidden mobile:w-[6rem] mobile:text-mx"
+      >
+        Business
+      </div>
       <div
         class="text-h2 whitespace-nowrap font-[Manrope] text-light-200 tablet:text-h5"
       >
@@ -216,11 +220,15 @@ const { titles } = PageMeta;
     <div
       class="col-span-6 text-light-200 text-s3 mobile:text-sm pl-[54px] tablet:pl-0"
     >
-      <div class="mb-10 tablet:text-sm tablet:w-[30rem] mobile:w-full tablet:mx-auto tablet:text-center">
+      <div
+        class="mb-10 tablet:text-sm tablet:w-[30rem] mobile:w-full tablet:mx-auto tablet:text-center"
+      >
         Sahara Data is an end-to-end platform designed to meet the most
         challenging training data demands.
       </div>
-      <div class="tablet:w-[30rem] tablet:text-sm mobile:w-full tablet:mx-auto tablet:text-center">
+      <div
+        class="tablet:w-[30rem] tablet:text-sm mobile:w-full tablet:mx-auto tablet:text-center"
+      >
         The platform, <span class="text-light-100"
           >decentralized or on-premise,</span
         > offers an intelligent AI-centered, human-in-the-loop, and privacy-preserving
@@ -471,15 +479,26 @@ const { titles } = PageMeta;
         <div class="flex-1 flex items-center">
           <img class="w-full" src={graph_02.src} alt="" />
         </div>
-        <div class="flex-1 flex flex-col justify-center mobile:justify-start mobile:pt-7">
+        <div
+          class="flex-1 flex flex-col justify-center mobile:justify-start mobile:pt-7"
+        >
           <div class="text-h5 mb-11 tablet:text-s3 tablet:mb-5">
             Optimal Balance Between AI and Human Input
           </div>
-          <div class="flex items-center tablet:items-start mobile:text-mx text-base text-light-200">
-            <Icon class="w-7 h-7 mr-7 tablet:min-w-5 tablet:h-5 tablet:mr-3" name="brandLogo" />
-            Sahara Data incorporates human input with precision until optimal quality
-            is achieved. This way, you won't spend extra time or money while still
-            obtaining the best quality.
+          <div
+            class="flex items-center tablet:items-start mobile:text-mx text-base text-light-200"
+          >
+            <span>
+              <Icon
+                class="w-7 h-7 mr-7 tablet:min-w-5 tablet:h-5 tablet:mr-3"
+                name="brandLogo"
+              />
+            </span>
+            <p>
+              Sahara Data incorporates human input with precision until optimal
+              quality is achieved. This way, you won't spend extra time or money
+              while still obtaining the best quality.
+            </p>
           </div>
         </div>
       </div>
@@ -503,8 +522,10 @@ const { titles } = PageMeta;
     <div
       class="bg-dark-200 rounded-[1.25rem] w-[22.5rem] tablet:w-[15rem] tablet:px-1 px-5 py-2.5 text-h5 tablet:text-s3 flex justify-center items-center"
     >
-      <div class="w-2.5 h-2.5 tablet:w-2 tablet:h-2 bg-light-100 rounded-full mr-4 tablet:mr-2"></div>Sahara Data
-      is live
+      <div
+        class="w-2.5 h-2.5 tablet:w-2 tablet:h-2 bg-light-100 rounded-full mr-4 tablet:mr-2"
+      >
+      </div>Sahara Data is live
     </div>
     <div
       class="my-11 tablet:my-7 pt-1.5 text-h5 tablet:text-mx tablet:w-[30rem] mobile:w-full text-center"
@@ -522,10 +543,14 @@ const { titles } = PageMeta;
   </div>
   <!-- <AutomateSection /> -->
   <div slot="footer">
-    <h1 class="text-h1 tablet:text-h3 mobile:text-h4 tablet:text-center font-[Manrope]">
+    <h1
+      class="text-h1 tablet:text-h3 mobile:text-h4 tablet:text-center font-[Manrope]"
+    >
       Your Ultimate Partner
     </h1>
-    <h1 class="text-h1 tablet:text-h3 mobile:text-h4 tablet:text-center font-[Manrope]">
+    <h1
+      class="text-h1 tablet:text-h3 mobile:text-h4 tablet:text-center font-[Manrope]"
+    >
       for High Value Data
     </h1>
   </div>
@@ -539,7 +564,7 @@ const { titles } = PageMeta;
   gsap.registerPlugin(ScrollTrigger);
   makeCommonAppearEffect();
 
-  function bookDemo () {
+  function bookDemo() {
     window.open("https://hi.saharalabs.ai/get-in-touch-business", "_blank");
   }
   document.getElementById("bookDemo")?.addEventListener("click", bookDemo);
