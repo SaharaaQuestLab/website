@@ -4,13 +4,16 @@ import JobList from "@/components/JobList.jsx";
 import Layout from "../layouts/PageLayout.astro";
 import PageMeta from "@/data/aboutUs";
 const { careerTitles } = PageMeta;
-const response = await fetch("https://job-api.saharaa.info");
-console.log(response);
+// const response = await fetch("https://job-api.saharaa.info");
 ---
 
 <Layout title="saharaa.ai" active="aboutUs" isFooterSlot={true}>
   <slot slot="base-layout">
-    <div id="sectionHero" class="w-screen h-screen"></div>
+    <div
+      id="sectionHero"
+      class="w-screen h-screen first-screen-bottom-mask-wrap relative"
+    >
+    </div>
 
     <div
       id="sectionTitle"
