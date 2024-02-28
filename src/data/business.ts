@@ -2,7 +2,7 @@
 export default {
   titles: {
    texts:  [
-     'AI is Business'
+     'AI Is Business'
     ],
     description: 'Sahara is for individuals who want their own AI to',
     remarks: [

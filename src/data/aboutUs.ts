@@ -4,10 +4,10 @@ const baseUrl = import.meta.env.BASE_URL;
 export default {
   titles: {
     texts: [
-      'The people',
-      'behind sahara'
+      'The People',
+      'Behind Sahara'
     ],
-    description: 'Sahara is a human-AI collaboration network',
+    description: 'Sahara is a Human-AI collaboration network',
     remarks: [],
     button: {
       text: 'Join The Team',
