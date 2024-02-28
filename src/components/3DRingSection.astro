@@ -69,6 +69,7 @@
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import RingView from "@/webgl/RingView";
+  import env from "@/utils/bowser.utils";
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -77,8 +78,11 @@
   viewer.useSetup();
 
   const ringContainer = document.getElementById("ringSection");
+  let mouseX = 0;
+  let mouseY = 0;
+  let ringRect: DOMRect;
   if (ringContainer) {
-    let ringRect = ringContainer?.getBoundingClientRect();
+    ringRect = ringContainer?.getBoundingClientRect();
     ringContainer.addEventListener("pointermove", (event) => {
       if (event.isPrimary === false) return;
       const e = event;
@@ -89,7 +93,19 @@
     window.addEventListener("resize", () => {
       ringRect = ringContainer?.getBoundingClientRect();
     });
+    // 设置事件监听器更新鼠标位置
+    document.addEventListener("mousemove", (event) => {
+      mouseX = event.clientX; // 更新鼠标水平位置
+      mouseY = event.clientY; // 更新鼠标垂直位置
+    });
   }
+
+  const adjustViewer = (clientX: number, clientY: number) => {
+    if (!ringRect) return;
+    const normalizeX = ((clientX - ringRect.left) / ringRect.width) * 2 - 1;
+    const normalizeY = 1 - ((clientY - ringRect.top) * 2) / ringRect.height;
+    viewer.onPointMove(normalizeX, normalizeY);
+  };
 
   const SCROLL_HEIGHT = 320 + 30;
 
@@ -173,6 +189,7 @@
     end: () => `bottom top-=410`,
     onEnter: () => {
       viewer.play();
+      adjustViewer(mouseX, mouseY);
     },
     onLeave: () => {
       viewer.stop();
@@ -182,6 +199,7 @@
     },
     onEnterBack: () => {
       viewer.play();
+      adjustViewer(mouseX, mouseY);
     },
   });
 </script>

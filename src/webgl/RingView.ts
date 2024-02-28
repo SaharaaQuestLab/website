@@ -4,10 +4,11 @@ import { CircleRing } from './geometry/CircleRing';
 // import { SpatialControls } from 'spatial-controls';
 import { OutlineEffect } from 'three/examples/jsm/Addons.js';
 import { gsap } from 'gsap';
+import env from '@/utils/bowser.utils';
 
 function easeOutQuad(t: number): number {
-  if (Math.abs(t) > 1) t = Math.sign(t);
-  return 1 * (t - 1) ** 3 + 1;
+  const x = Math.abs(t);
+  return (1 - (1 - x) * (1 - x)) * Math.sign(t);
 }
 
 export default class RingView {
@@ -15,18 +16,20 @@ export default class RingView {
   private _render: WebGLRenderer;
   private _scene: Scene;
   private _camera: PerspectiveCamera;
+  private _cameraRotateAxis: THREE.Vector3 = new THREE.Vector3(0, 0, 0);
+  private _cameraRotation: number = 0;
+  private _cameraRadius: number = 0;
   private _pointLight: THREE.PointLight;
-  // private _clock = new THREE.Clock();
+
+
   private _composer?: OutlineEffect;
   private _requestAnimationId?: number;
   private _status: 'playing' | 'pausing' = 'pausing';
   private _stage: number = 0;
   private _requestCallback?: (timestamp: number) => void;
   private _updateCallback: ((ring: CircleRing) => void) | null = null;
-  // private _controls?: SpatialControls;
-  // private _isMouseMove?: boolean = false;s
   private _rings: Array<CircleRing> = [];
-  // private _container: THREE.Object3D = new THREE.Object3D();
+
 
   constructor(el: Window | HTMLElement) {
     this._el = el;
@@ -129,8 +132,10 @@ export default class RingView {
     // directionalLight.position.set(-3, 1.5, -3); // 设置光源的位置
     // this._scene.add(directionalLight);
 
-    this._camera.position.set(-2, 2, 3);
-    this._camera.lookAt(0, 0, 0);
+    this._camera.position.set(0, 0, 4);
+    // const { x, y, z } = this._camera.position;
+    // this._cameraRadius = 4;//Math.sqrt(x ** 2 + y ** 2 + z ** 2);
+    // this._camera.lookAt(0, 0, 0);
 
     // init rings
     const [ring1, ring2, _, ring4, ring5] = this._rings;
@@ -143,7 +148,7 @@ export default class RingView {
     ring5.rotateByAxis(new THREE.Vector3(1, 0, 0), Math.PI / 2);
 
     if (init) this.scene0To1();
-
+    this._camera.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI / 12);
     this._composer = new OutlineEffect(this._render, { defaultColor: [8 / 16, 8 / 16, 8 / 16] });
 
     this._requestCallback = () => {
@@ -155,9 +160,17 @@ export default class RingView {
       }
     }
 
-    window.addEventListener("resize", () => {
-
-    })
+    // if (env.platform.type === "desktop") {
+    //   this._render.domElement.addEventListener('pointermove', (event) => {
+    //     if (event.isPrimary === false) return;
+    //     const e = event;
+    //     const normalizeX = ((e.clientX - this.renderRect.left) / this.renderRect.width) * 2 - 1;
+    //     const angle = Math.PI / 6;
+    //     const destAngle = - easeOutQuad(normalizeX) * angle;
+    //     this.rotateAroundWorldAxis(new THREE.Vector3(0.5, 1, 0), destAngle - this._cameraRotation);
+    //     this._cameraRotation = destAngle;
+    //   }, { passive: true });
+    // }
   }
 
   public scene0To1() {
@@ -234,7 +247,7 @@ export default class RingView {
         .moveTo(0, 0.5 * progress, 0)
         .rotateByXYZ(ring5.cacheRotation.x * (1 - progress) + Math.PI / 2 * progress, ring5.cacheRotation.y * (1 - progress), ring5.cacheRotation.z * (-1 + progress));
 
-      this._camera.rotation.z = Math.PI / 16 * progress;
+      // this._camera.rotation.z = Math.PI / 12 * progress;
     }
     const ticker = { progress: 0 };
     gsap.to(ticker, {
@@ -282,7 +295,7 @@ export default class RingView {
         .moveTo(0, ring3.cachePosition.y * (1 - progress), 0)
         .rotateByXYZ(ring3.cacheRotation.x * (1 - progress), ring3.cacheRotation.y * (1 - progress), ring3.cacheRotation.z * (-1 + progress));
 
-      this._camera.rotation.z = Math.PI / 16 * (1 - progress);
+      // this._camera.rotation.z = Math.PI / 16 * (1 - progress);
     }
     const ticker = { progress: 0 };
     gsap.to(ticker, {
@@ -338,6 +351,8 @@ export default class RingView {
   public scene0To3() {
     if (this._stage === 3) return;
     this._stage = 3;
+    this._camera.position.set(-2, 2, 3);
+    this._camera.lookAt(0, 0, 0);
     const [ring1, ring2, ring3, ring4, ring5] = this._rings;
     ring1.update(0, 0.075).moveTo(0, -0.5, 0).rotateByXYZ(Math.PI / 2, 0, 0);
     ring2.update(0.35, 0.075).moveTo(0, -0.25, 0).rotateByXYZ(Math.PI / 2, 0, 0);
@@ -364,10 +379,53 @@ export default class RingView {
     a.click();
   }
 
+  public rotateAroundWorldAxis(axis: THREE.Vector3, radians: number) {
+    const rotationMatrix = new THREE.Matrix4();
+
+    // 旋转的中心点，这里假设为世界坐标原点
+    const center = new THREE.Vector3(0, 0, 0);
+
+    // 计算摄像机相对于旋转中心的位置向量
+    const relativePosition = this._camera.position.clone().sub(center);
+
+    // 使用旋转矩阵对相对位置进行旋转
+    rotationMatrix.makeRotationAxis(axis.normalize(), radians);
+    relativePosition.applyMatrix4(rotationMatrix);
+
+    // 更新摄像机的位置
+    this._camera.position.copy(center.clone().add(relativePosition));
+
+    // 确保摄像机仍然朝向旋转中心
+    this._camera.lookAt(center);
+    this._camera.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI / 12);
+  };
+
+  public rotateLightAroundAxis(axis: THREE.Vector3, radians: number) {
+    const rotationMatrix = new THREE.Matrix4();
+
+    // 旋转的中心点，这里假设为世界坐标原点
+    const center = new THREE.Vector3(0, 0, 0);
+
+    // 计算摄像机相对于旋转中心的位置向量
+    const relativePosition = this._camera.position.clone().sub(center);
+
+    // 使用旋转矩阵对相对位置进行旋转
+    rotationMatrix.makeRotationAxis(axis.normalize(), radians);
+    relativePosition.applyMatrix4(rotationMatrix);
+    this._pointLight.position.copy(center.clone().add(relativePosition));
+  }
+
+
   public onPointMove(normalizeX: number, normalizeY: number) {
-    const x = -2 + 0.3 * easeOutQuad(normalizeX);
-    const y = 1.5 + 0.05 * easeOutQuad(normalizeY);
-    this.movePointLight({ x, y });
+    const angle = Math.PI / 6;
+    // if (this._cameraRotation > angle || this._cameraRotation < -angle) return;
+    const destAngle = - easeOutQuad(normalizeX) * angle;
+    // const normalize = easeOutQuad(normalizeX);
+    // const angleSpan = - Math.PI / 100 * Math.sign(normalizeX) * (1 - Math.abs(normalizeX));
+    // this._cameraRotation += angleSpan;
+    this.rotateAroundWorldAxis(new THREE.Vector3(0.5, 1, 0), destAngle - this._cameraRotation);
+    this._cameraRotation = destAngle;
+    // this.rotateLightAroundAxis(new THREE.Vector3(0, 1, 0), angleSpan);
   }
 
   public movePointLight(options: { x: number, y: number }) {
