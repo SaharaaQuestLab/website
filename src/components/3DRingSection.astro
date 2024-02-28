@@ -69,7 +69,6 @@
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import RingView from "@/webgl/RingView";
-  import env from "@/utils/bowser.utils";
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -79,7 +78,7 @@
 
   const ringContainer = document.getElementById("ringSection");
   let mouseX = 0;
-  let mouseY = 0;
+  // let mouseY = 0;
   let ringRect: DOMRect;
   if (ringContainer) {
     ringRect = ringContainer?.getBoundingClientRect();
@@ -87,8 +86,8 @@
       if (event.isPrimary === false) return;
       const e = event;
       const normalizeX = ((e.clientX - ringRect.left) / ringRect.width) * 2 - 1;
-      const normalizeY = 1 - ((e.clientY - ringRect.top) * 2) / ringRect.height;
-      viewer.onPointMove(normalizeX, normalizeY);
+      // const normalizeY = 1 - ((e.clientY - ringRect.top) * 2) / ringRect.height;
+      viewer.onPointMove(normalizeX);
     });
     window.addEventListener("resize", () => {
       ringRect = ringContainer?.getBoundingClientRect();
@@ -96,15 +95,15 @@
     // 设置事件监听器更新鼠标位置
     document.addEventListener("mousemove", (event) => {
       mouseX = event.clientX; // 更新鼠标水平位置
-      mouseY = event.clientY; // 更新鼠标垂直位置
+      // mouseY = event.clientY; // 更新鼠标垂直位置
     });
   }
 
-  const adjustViewer = (clientX: number, clientY: number) => {
+  const adjustViewer = (clientX: number) => {
     if (!ringRect) return;
     const normalizeX = ((clientX - ringRect.left) / ringRect.width) * 2 - 1;
-    const normalizeY = 1 - ((clientY - ringRect.top) * 2) / ringRect.height;
-    viewer.onPointMove(normalizeX, normalizeY);
+    // const normalizeY = 1 - ((clientY - ringRect.top) * 2) / ringRect.height;
+    viewer.onPointMove(normalizeX);
   };
 
   const SCROLL_HEIGHT = 320 + 30;
@@ -189,7 +188,7 @@
     end: () => `bottom top-=410`,
     onEnter: () => {
       viewer.play();
-      adjustViewer(mouseX, mouseY);
+      adjustViewer(mouseX);
     },
     onLeave: () => {
       viewer.stop();
@@ -199,7 +198,7 @@
     },
     onEnterBack: () => {
       viewer.play();
-      adjustViewer(mouseX, mouseY);
+      adjustViewer(mouseX);
     },
   });
 </script>

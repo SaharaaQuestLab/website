@@ -4,7 +4,7 @@ import { CircleRing } from './geometry/CircleRing';
 // import { SpatialControls } from 'spatial-controls';
 import { OutlineEffect } from 'three/examples/jsm/Addons.js';
 import { gsap } from 'gsap';
-import env from '@/utils/bowser.utils';
+// import env from '@/utils/bowser.utils';
 
 function easeOutQuad(t: number): number {
   const x = Math.abs(t);
@@ -16,9 +16,9 @@ export default class RingView {
   private _render: WebGLRenderer;
   private _scene: Scene;
   private _camera: PerspectiveCamera;
-  private _cameraRotateAxis: THREE.Vector3 = new THREE.Vector3(0, 0, 0);
+  // private _cameraRotateAxis: THREE.Vector3 = new THREE.Vector3(0, 0, 0);
   private _cameraRotation: number = 0;
-  private _cameraRadius: number = 0;
+  // private _cameraRadius: number = 0;
   private _pointLight: THREE.PointLight;
 
 
@@ -416,7 +416,7 @@ export default class RingView {
   }
 
 
-  public onPointMove(normalizeX: number, normalizeY: number) {
+  public onPointMove(normalizeX: number) {
     const angle = Math.PI / 6;
     // if (this._cameraRotation > angle || this._cameraRotation < -angle) return;
     const destAngle = - easeOutQuad(normalizeX) * angle;
