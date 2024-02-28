@@ -62,14 +62,18 @@ const { careerTitles } = PageMeta;
           start: "top bottom",
           end: "top top-=30",
           scrub: true,
-          onEnterBack: () => {
-            viewer.play();
-          },
-          onLeave: () => {
-            viewer.stop();
-          },
         },
         opacity: 0,
+      });
+      ScrollTrigger.create({
+        trigger: "#positions",
+        start: "top-=150 top",
+        onLeaveBack: () => {
+          viewer.play();
+        },
+        onEnter: () => {
+          viewer.stop();
+        },
       });
     }
   </script>

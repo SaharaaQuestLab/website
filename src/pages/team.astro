@@ -1,6 +1,5 @@
 ---
 import TitleComponent from "@/components/TitleComponent.astro";
-// import AutomateSection from "@/components/AutomateSection.astro";
 import teamBackground from "@/components/teamBackground";
 import { Image } from "astro:assets";
 import Layout from "../layouts/PageLayout.astro";
@@ -29,7 +28,7 @@ const BASE_URL = import.meta.env.BASE_URL;
   </slot>
   <div
     id="sectionTeam"
-    class="text-center pt-[6.25rem] tablet:pt-0 mt-40 mb-10 tablet:mt-[3.75rem] tablet:mb-8 tablet:text-h4 mobile:text-h5 text-h2 font-[Manrope]"
+    class="text-center pt-[15.75rem] mb-10 tablet:pt-[3.5rem] tablet:mb-8 tablet:text-h4 mobile:text-h5 text-h2 font-[Manrope]"
   >
     Meet The Team
   </div>
@@ -54,10 +53,10 @@ const BASE_URL = import.meta.env.BASE_URL;
       >
         Sean Ren
         <span class="flex">
-          <a href="https://twitter.com/xiangrenNLP"
+          <a href="https://twitter.com/xiangrenNLP" target="_blank"
             ><Icon class="w-5 h-5 m-3" name="twitter" /></a
           >
-          <a href="https://www.linkedin.com/in/xren7/"
+          <a href="https://www.linkedin.com/in/xren7/" target="_blank"
             ><Icon class="w-5 h-5 m-3" name="linkedin" /></a
           >
         </span>
@@ -75,10 +74,10 @@ const BASE_URL = import.meta.env.BASE_URL;
       >
         Tyler Zhou
         <span class="flex">
-          <a href="https://twitter.com/tz_sahara"
+          <a href="https://twitter.com/tz_sahara" target="_blank"
             ><Icon class="w-5 h-5 m-3" name="twitter" /></a
           >
-          <a href="https://www.linkedin.com/in/tylerzhou/"
+          <a href="https://www.linkedin.com/in/tylerzhou/" target="_blank"
             ><Icon class="w-5 h-5 m-3" name="linkedin" /></a
           >
         </span>
@@ -208,14 +207,19 @@ const BASE_URL = import.meta.env.BASE_URL;
         start: "top bottom",
         end: "top top-=30",
         scrub: true,
-        onEnterBack: () => {
-          viewer.play();
-        },
-        onLeave: () => {
-          viewer.stop();
-        },
       },
       opacity: 0,
+    });
+
+    ScrollTrigger.create({
+      trigger: "#sectionTeam",
+      start: "top-=150 top",
+      onLeaveBack: () => {
+        viewer.play();
+      },
+      onEnter: () => {
+        viewer.stop();
+      },
     });
   }
 

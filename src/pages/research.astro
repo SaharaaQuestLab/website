@@ -29,7 +29,7 @@ import { Icon } from "astro-icon/components";
   </slot>
   <div
     id="sectionDescription"
-    class="mt-40 tablet:mt-7 border-b border-b-dark-200 pt-[6.25rem]"
+    class="tablet:pt-[7.75rem] border-b border-b-dark-200 pt-[16.75rem]"
   >
     <Icon class="w-0 h-0" name="brandLogo" />
     <div
@@ -246,29 +246,20 @@ import { Icon } from "astro-icon/components";
         start: "top bottom",
         end: "top top-=30",
         scrub: true,
-        onEnterBack: () => {
-          viewer.play();
-        },
-        onLeave: () => {
-          viewer.stop();
-        },
       },
       opacity: 0,
     });
-  }
 
-  // const titleEl = document.getElementById("sectionTitle");
-  // if (titleEl) {
-  //   gsap.to(titleEl, {
-  //     scrollTrigger: {
-  //       trigger: "#sectionDescription",
-  //       start: "top bottom",
-  //       end: "top top",
-  //       scrub: true,
-  //     },
-  //     opacity: 0,
-  //     y: "-50%",
-  //   });
-  // }
+    ScrollTrigger.create({
+      trigger: "#sectionDescription",
+      start: "top-=150 top",
+      onLeaveBack: () => {
+        viewer.play();
+      },
+      onEnter: () => {
+        viewer.stop();
+      },
+    });
+  }
 </script>
 <style></style>

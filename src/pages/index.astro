@@ -214,14 +214,18 @@ const { titles } = PageMeta;
         start: "top bottom",
         end: "top top-=30",
         scrub: true,
-        onEnterBack: () => {
-          viewer.play();
-        },
-        onLeave: () => {
-          viewer.stop();
-        },
       },
       opacity: 0,
+    });
+    ScrollTrigger.create({
+      trigger: "#sectionRing",
+      start: "top-=200 top",
+      onLeaveBack: () => {
+        viewer.play();
+      },
+      onEnter: () => {
+        viewer.stop();
+      },
     });
   }
 

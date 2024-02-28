@@ -155,7 +155,7 @@ export default function JobList() {
       <div className="grid gap-7 tablet:gap-4 mobile:gap-3 grid-cols-2 tablet:grid-cols-1 text-sm mobile:text-xs">
         {
           positionList.map(item => (
-            <a key={item.id} href={`https://jobs.ashbyhq.com/Sahara/${item.jobPostingIds[0]}`} className="border border-dark-200 rounded-xl px-4 py-3 flex justify-between items-center">
+            <a key={item.id} href={`https://jobs.ashbyhq.com/Sahara/${item.jobPostingIds[0]}`} target="_blank" className="border border-dark-200 rounded-xl px-4 py-3 flex justify-between items-center">
               <div>
                 <div className="mb-0.5">{item.title}</div>
                 <div>{getDepartmentName(item.departmentId)}.{getLocationName(item.locationId)}.{item.employmentType}</div>
