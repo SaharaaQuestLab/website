@@ -269,7 +269,7 @@ export default class RingView {
 
   private transScene3To2() {
     const update = (progress: number) => {
-      const [ring1, ring2, ring3, ring4, ring5] = this._rings;
+      const [ring1, ring2, ring3] = this._rings;
       ring1.update(ring1.cacheGeometry.radius + (0.5 - ring1.cacheGeometry.radius) * progress, 0.075)
         .moveTo(0, ring1.cachePosition.y * (1 - progress), 0)
         .rotateByXYZ(ring1.cacheRotation.x * (1 - progress), ring1.cacheRotation.y * (1 - progress), ring1.cacheRotation.z * (-1 + progress));

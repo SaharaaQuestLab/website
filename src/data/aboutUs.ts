@@ -3,7 +3,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
 export default {
   titles: {
-    texts:  [
+    texts: [
       'The people',
       'behind sahara'
     ],
@@ -15,14 +15,14 @@ export default {
     }
   },
   careerTitles: {
-    texts:  [
+    texts: [
       'Join Sahara'
     ],
     description: 'Sahara is consistently looking for new talents.Work with the best in the industry today.',
     remarks: [],
     button: {
       text: 'Open Positions',
-      path: ''
+      path: `${baseUrl}career#positions`
     }
   }
 }

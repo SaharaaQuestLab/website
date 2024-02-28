@@ -1,13 +1,14 @@
 ---
 import { Icon } from "astro-icon/components";
 import PageMeta from "@/data/footer";
-const { authorization, privacyPolicy, freeNewsletter, subscribe } = PageMeta;
+const { authorization, privacyPolicy } = PageMeta;
 import EmailSubscribe from "@/components/EmailSubscribe.jsx";
 
 interface Props {
   isSlot?: boolean;
   active?: string;
 }
+const BASE_URL = import.meta.env.BASE_URL;
 const { isSlot, active } = Astro.props;
 ---
 
@@ -30,7 +31,7 @@ const { isSlot, active } = Astro.props;
         <div
           class="flex gap-1 ml-5 tablet:ml-0 tablet:mt-4 tablet:mb-5 tablet:items-center"
         >
-          <a class="p-3">
+          <a class="p-3" href="https://twitter.com/SaharaLabsAI">
             <Icon class="w-5 h-5" name="twitter" />
           </a>
           <a class="p-3">
@@ -44,17 +45,6 @@ const { isSlot, active } = Astro.props;
           </a>
         </div>
       </div>
-      <!-- <div class=" col-span-6 flex justify-end tablet:w-full">
-        <div class="border border-light-100 flex px-4 py-2 bg-dark-400 rounded-xl w-full max-w-[40rem] tablet:max-w-full justify-between">
-          <div class="text-light-200 flex items-center text-sm mobile:text-xs">
-            <Icon class="w-5 h-5 mr-1.5" name="email"/>
-          </div>
-          <div class="cursor-pointer flex text-light-100 text-sm items-center mobile:text-xs">
-            {subscribe}
-            <Icon class="w-5 h-5" name="arrowRightUp"/>
-          </div>
-        </div>
-      </div> -->
       <EmailSubscribe client:load />
     </div>
     <div
@@ -62,7 +52,9 @@ const { isSlot, active } = Astro.props;
     >
       <div class="py-2.5" set:html={authorization} />
       <div class="py-2.5">
-        {privacyPolicy}
+        <a href={`${BASE_URL}sahara-labs-privacy-policy.doc`} target="_blank"
+          >{privacyPolicy}</a
+        >
       </div>
     </div>
   </div>

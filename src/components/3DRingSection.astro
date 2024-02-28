@@ -72,11 +72,6 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  function easeOutQuad(t: number): number {
-    const x = Math.abs(t);
-    return (1 - (1 - x) * (1 - x)) * Math.sign(t);
-  }
-
   const viewEl = document.getElementById("ring-3d");
   const viewer = new RingView(viewEl || document.createElement("div"));
   viewer.useSetup();

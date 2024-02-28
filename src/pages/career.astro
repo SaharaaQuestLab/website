@@ -23,7 +23,7 @@ const { careerTitles } = PageMeta;
     </div>
   </slot>
 
-  <div class="mt-[6.25rem] tablet:mt-0" id="jobs">
+  <div class="pt-[6.25rem] tablet:pt-0" id="positions">
     <JobList client:load />
   </div>
 
@@ -58,7 +58,7 @@ const { careerTitles } = PageMeta;
       viewer.play();
       gsap.to(heroEl, {
         scrollTrigger: {
-          trigger: "#jobs",
+          trigger: "#positions",
           start: "top bottom",
           end: "top top-=30",
           scrub: true,
@@ -72,19 +72,5 @@ const { careerTitles } = PageMeta;
         opacity: 0,
       });
     }
-
-    // const titleEl = document.getElementById("sectionTitle");
-    // if (titleEl) {
-    //   gsap.to(titleEl, {
-    //     scrollTrigger: {
-    //       trigger: "#sectionCareer",
-    //       start: "top bottom",
-    //       end: "top top",
-    //       scrub: true,
-    //     },
-    //     opacity: 0,
-    //     y: "-30%",
-    //   });
-    // }
   </script>
 </Layout>

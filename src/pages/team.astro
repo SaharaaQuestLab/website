@@ -9,6 +9,7 @@ import { Icon } from "astro-icon/components";
 import founder01 from "@/assets/images/founderPose_01.jpg";
 import founder02 from "@/assets/images/founderPose_02.jpg";
 const { titles } = PageMeta;
+const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <Layout title="saharaa.ai" active="aboutUs">
@@ -28,7 +29,7 @@ const { titles } = PageMeta;
   </slot>
   <div
     id="sectionTeam"
-    class="text-center pt-[6.25rem] tablet:pt-0 mt-40 mb-10 tablet:mt-[3.75rem] tablet:mb-8  tablet:text-h4 mobile:text-h5 text-h2 font-[Manrope]"
+    class="text-center pt-[6.25rem] tablet:pt-0 mt-40 mb-10 tablet:mt-[3.75rem] tablet:mb-8 tablet:text-h4 mobile:text-h5 text-h2 font-[Manrope]"
   >
     Meet The Team
   </div>
@@ -53,8 +54,12 @@ const { titles } = PageMeta;
       >
         Sean Ren
         <span class="flex">
-          <Icon class="w-5 h-5 m-3" name="twitter" />
-          <Icon class="w-5 h-5 m-3" name="linkedin" />
+          <a href="https://twitter.com/xiangrenNLP"
+            ><Icon class="w-5 h-5 m-3" name="twitter" /></a
+          >
+          <a href="https://www.linkedin.com/in/xren7/"
+            ><Icon class="w-5 h-5 m-3" name="linkedin" /></a
+          >
         </span>
       </div>
       <div class="text-s3 tablet:text-xs">Co-founder CEO</div>
@@ -69,10 +74,14 @@ const { titles } = PageMeta;
         class="text-h4 tablet:text-s3 mb-3 tablet:mb-1 mobile:mb-0 flex items-center justify-between"
       >
         Tyler Zhou
-        <span class="flex"
-          ><Icon class="w-5 h-5 m-3" name="twitter" />
-          <Icon class="w-5 h-5 m-3" name="linkedin" /></span
-        >
+        <span class="flex">
+          <a href="https://twitter.com/tz_sahara"
+            ><Icon class="w-5 h-5 m-3" name="twitter" /></a
+          >
+          <a href="https://www.linkedin.com/in/tylerzhou/"
+            ><Icon class="w-5 h-5 m-3" name="linkedin" /></a
+          >
+        </span>
       </div>
       <div class="text-s3 tablet:text-xs">Co-founder CEO</div>
     </div>
@@ -81,13 +90,21 @@ const { titles } = PageMeta;
     class="common-up-move grid grid-cols-5 gap-7 mt-40 pb-[3.75rem] tablet:mt-[3.75rem] border-b border-b-dark-200 tablet:border-none tablet:gap-3 tablet:grid-cols-4 tablet:py-5 mobile:pb-20 mobile:grid-cols-2"
   >
     {
-      teamBackground.map((item,index) => (
-      index === 8 ? <div class="hidden tablet:block mobile:hidden"></div><div class="hidden tablet:block mobile:hidden"></div><div class="tablet:h-[4.25rem] tablet:flex tablet:justify-center border border-light-300 rounded-[1.25rem] overflow-hidden">
-          <Image class="tablet:h-full tablet:w-auto" src={item} alt="" />
-        </div>: <div class="tablet:h-[4.25rem] tablet:flex tablet:justify-center border border-light-300 rounded-[1.25rem] overflow-hidden">
-          <Image class="tablet:h-full tablet:w-auto" src={item} alt="" />
-        </div>
-      ))
+      teamBackground.map((item, index) =>
+        index === 8 ? (
+          <>
+            <div class="hidden tablet:block mobile:hidden" />
+            <div class="hidden tablet:block mobile:hidden" />
+            <div class="tablet:h-[4.25rem] tablet:flex tablet:justify-center border border-light-300 rounded-[1.25rem] overflow-hidden">
+              <Image class="tablet:h-full tablet:w-auto" src={item} alt="" />
+            </div>
+          </>
+        ) : (
+          <div class="tablet:h-[4.25rem] tablet:flex tablet:justify-center border border-light-300 rounded-[1.25rem] overflow-hidden">
+            <Image class="tablet:h-full tablet:w-auto" src={item} alt="" />
+          </div>
+        ),
+      )
     }
   </div>
   <!-- <AutomateSection /> -->
@@ -106,12 +123,13 @@ const { titles } = PageMeta;
         Become a part of the team and work with us to build the future of global
         knowledge capital.
       </div>
-      <div
+      <a
+        href={`${BASE_URL}career#positions`}
         class="w-max tablet:w-full border whitespace-nowrap common-button text-sm py-2.5 px-4 flex items-center justify-center rounded-xl"
       >
         Open Positions
         <Icon class="w-5 h-5" name="arrowRightUp" />
-      </div>
+      </a>
     </div>
   </div>
   <div
@@ -151,7 +169,7 @@ const { titles } = PageMeta;
       />
     </div>
     <div
-      class="font-[Manrope] text-h5 flex mx-auto w-[50rem] tablet:w-[33.125rem] mb-[6.25rem] tablet:mb-[3.125rem]  mobile:mb-0 mobile:w-full"
+      class="font-[Manrope] text-h5 flex mx-auto w-[50rem] tablet:w-[33.125rem] mb-[6.25rem] tablet:mb-[3.125rem] mobile:mb-0 mobile:w-full"
     >
       <div class="mr-[3.125rem] tablet:mr-5">
         <Icon class="w-6 h-6 tablet:w-4 tablet:h-4" name="quotes" />
@@ -167,7 +185,8 @@ const { titles } = PageMeta;
       </div>
     </div>
   </div>
-  <div class="pt-[10.625rem] tablet:pt-[3.75rem] mobile:hidden" slot="footer"></div>
+  <div class="pt-[10.625rem] tablet:pt-[3.75rem] mobile:hidden" slot="footer">
+  </div>
 </Layout>
 <script>
   import { gsap } from "gsap";
@@ -214,5 +233,4 @@ const { titles } = PageMeta;
   //   });
   // }
 </script>
-<style>
-</style>
+<style></style>

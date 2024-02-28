@@ -13,7 +13,7 @@ const base_url = process.env.BUILD_MODE === "test" ? "test-saharaa/" : "";
 // https://astro.build/config
 export default defineConfig({
   compressHTML: import.meta.env.PROD,
-  site: 'https://saharaa.ai/',
+  site: 'https://saharalabs.ai/',
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport'
@@ -30,10 +30,10 @@ export default defineConfig({
   }), favicons({
     masterPicture: "./src/assets/favicon.svg",
     emitAssets: true,
-    appName: "saharaa.ai",
-    appShortName: "saharaa.ai",
-    appDescription: "saharaa.ai",
-    developerName: "Null Studio",
+    appName: "Sahara AI",
+    appShortName: "Sahara",
+    appDescription: "Your knowledge, your AI.Build the first decentralized AI network for fair and universal access to global knowledge capital.",
+    developerName: "SaharaLabs",
     faviconsDarkMode: false,
     background: '#121315'
   }), sitemap(), vue(), react()]
