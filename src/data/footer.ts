@@ -3,7 +3,7 @@ export default {
   // "followUs": "Follow us to get the latest updates",
   "email": "Free newsletter",
   "subscribe": "Subscribe",
-  "privacyPolicy": "Privacy policy",
+  "privacyPolicy": "Privacy Policy",
   "freeNewsletter": "Free newsletter",
   "authorization": "Sahara &#x00A9; 2024"
 }

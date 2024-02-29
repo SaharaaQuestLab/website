@@ -88,14 +88,14 @@ export default function JobList() {
 
 
   const blur = () => {
-    select1.current.style.overflow = "hidden";
-    select2.current.style.overflow = "hidden";
-    select3.current.style.overflow = "hidden";
-    setTimeout(() => {
-      select1.current.style.overflow = "visible";
-      select2.current.style.overflow = "visible";
-      select3.current.style.overflow = "visible";
-    }, 20);
+    // select1.current.style.overflow = "hidden";
+    // select2.current.style.overflow = "hidden";
+    // select3.current.style.overflow = "hidden";
+    // setTimeout(() => {
+    //   select1.current.style.overflow = "visible";
+    //   select2.current.style.overflow = "visible";
+    //   select3.current.style.overflow = "visible";
+    // }, 20);
   }
   const resetSearch = () => {
     setSelectEmploymentType({});
@@ -117,7 +117,7 @@ export default function JobList() {
           <div onClick={blur} className="absolute left-[-1px] top-12 bg-dark-400 border group-hover:block min-w-full min-h-10 hidden -mt-0.5 border-light-100 rounded-xl overflow-hidden">
             {
               departmentList.map(item => (
-                <div key={item.id} onClick={() => { setSelectDepartment(item) }} style={item.id === selectDepartment.id ? { display: 'none' } : { display: 'block' }} className="px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate">{item.name}</div>
+                  item.id != selectDepartment.id && <div key={item.id} onClick={() => { setSelectDepartment(item) }} className="block px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate">{item.name}</div>
               ))
             }
           </div>
@@ -130,7 +130,7 @@ export default function JobList() {
           <div onClick={blur} className="absolute left-[-1px] top-12 bg-dark-400 border group-hover:block min-w-full min-h-10 hidden -mt-0.5 border-light-100 rounded-xl overflow-hidden">
             {
               locationList.map(item => (
-                <div key={item.id} onClick={() => { setSelectLocation(item) }} className="px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate" style={item.id === selectLocation.id ? { display: 'none' } : { display: 'block' }}>{item.name}</div>
+                item.id != selectLocation.id && <div key={item.id} onClick={() => { setSelectLocation(item) }} className="px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate" >{item.name}</div>
               ))
             }
           </div>
@@ -138,11 +138,12 @@ export default function JobList() {
         <div ref={select3} className="border flex-1 px-4 text-sm mobile:text-xs py-2.5 cursor-pointer relative rounded-xl group border-light-100 flex items-center justify-between">
           {selectEmploymentType.id ? <span className="whitespace-nowrap truncate">{selectEmploymentType.name}</span> : <span className="text-light-200 whitespace-nowrap truncate">Employment Type</span>} <img
             id="icon"
-            className="w-5 h-5 rotate-180 group-hover:rotate-0" src={arrowCorner_768_375.src} alt="" /><div className="absolute w-full left-[-1px] top-11 h-1"></div>
-          <div onClick={blur} className="absolute left-[-1px] top-12 bg-dark-400 border group-hover:block min-w-full min-h-10 hidden -mt-0.5 border-light-100 rounded-xl overflow-hidden">
+            className="w-5 h-5 rotate-180 group-hover:rotate-0" src={arrowCorner_768_375.src} alt="" />
+            <div className="absolute w-full left-[-1px] top-11 h-1"></div>
+          <div onClick={blur} className="absolute left-[-1px] top-12 bg-dark-400 border group-hover:block min-w-full  hidden -mt-0.5 border-light-100 rounded-xl overflow-hidden">
             {
               employmentTypeList.map(item => (
-                <div key={item.id} onClick={() => { setSelectEmploymentType(item) }} className="px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate" style={item.id === selectEmploymentType.id ? { display: 'none' } : { display: 'block' }}>{item.name}</div>
+                item.id != selectEmploymentType.id ? <div key={item.id} onClick={() => { setSelectEmploymentType(item) }} className="min-h-10 px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate">{item.name}</div> : <></>
               ))
             }
           </div>
