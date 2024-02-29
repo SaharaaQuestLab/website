@@ -1,0 +1,54 @@
+---
+
+---
+
+<div id="ringSection-section" class="flex w-[520px] justify-center items-center">
+  <div id="ring-3d-section" class="w-[520px] h-[520px]"></div>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import RingView from "@/webgl/RingView";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const viewEl = document.getElementById("ring-3d-section");
+  const viewer = new RingView(viewEl || document.createElement("div"));
+  viewer.useSetup(false);
+  viewer.scene0To3();
+
+  // const ringContainer = document.getElementById("ringSection");
+  // if (ringContainer) {
+  //   let ringRect = ringContainer?.getBoundingClientRect();
+  //   ringContainer.addEventListener("pointermove", (event) => {
+  //     if (event.isPrimary === false) return;
+  //     const e = event;
+  //     const normalizeX = ((e.clientX - ringRect.left) / ringRect.width) * 2 - 1;
+  //     const normalizeY = 1 - ((e.clientY - ringRect.top) * 2) / ringRect.height;
+  //     viewer.onPointMove(normalizeX, normalizeY);
+  //   });
+  //   window.addEventListener("resize", () => {
+  //     ringRect = ringContainer?.getBoundingClientRect();
+  //   });
+  // }
+
+  ScrollTrigger.create({
+    trigger: "#ringSection-section",
+    scrub: true,
+    start: "top bottom",
+    end: "bottom top",
+    onEnter: () => {
+      viewer.play();
+    },
+    onLeave: () => {
+      viewer.stop();
+    },
+    onEnterBack: () => {
+      viewer.play();
+    },
+    onLeaveBack: () => {
+      viewer.stop();
+    },
+  });
+</script>
