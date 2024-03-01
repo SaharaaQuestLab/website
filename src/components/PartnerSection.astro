@@ -7,9 +7,12 @@ const images = imageList;
 <div class="gap-[20px] tablet:gap-3 flex justify-center flex-wrap tablet:grid-cols-5 mobile:grid-cols-2 mobile:grid" id="sliders">
     {
       images.map((item) => (
-        <div class="slide border border-light-300 rounded-2xl">
-          <Image class="w-full h-auto" src={item} alt="" />
-        </div>
+        <a href={item.link ? item.link : "#"}>
+          <div class="slide border border-light-300 rounded-2xl">
+            <Image class="w-full h-auto" src={item.image} alt="" />
+          </div>
+        </a>
+        
       ))
     }
 </div>

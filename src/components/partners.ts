@@ -13,4 +13,19 @@ import partner12 from '@/assets/images/partners/partner12.svg';
 import partner13 from '@/assets/images/partners/partner13.svg';
 import partner14 from '@/assets/images/partners/partner14.svg';
 
-export default [partner1, partner2, partner3, partner4, partner5, partner6, partner7, partner8, partner9, partner10, partner11, partner12, partner13, partner14];
+export default [
+    {image: partner1, link: 'https://polychain.capital/'}, 
+    {image: partner2, link: 'https://www.hongshan.com/en/'}, 
+    {image: partner3, link: 'https://www.matrixpartners.com.cn/en/'},
+    {image: partner4, link: 'https://dao5.com/'},
+    {image: partner5, link: 'https://www.geekcartel.org/'},
+    {image: partner6, link: 'https://www.samsungnext.com/'},
+    {image: partner7, link: 'https://www.nomadcapital.io/'},
+    {image: partner8, link: 'https://www.canonical.cc/'},
+    {image: partner9, link: 'https://www.motherson.com/'},
+    {image: partner10, link: 'https://dispersion.xyz/'},
+    {image: partner11, link: 'https://www.av.vc/'},
+    {image: partner12, link: 'https://www.tangent.ventures/'},
+    {image: partner13, link: 'https://www.cohovc.com/'},
+    {image: partner14, link: ''},
+];
