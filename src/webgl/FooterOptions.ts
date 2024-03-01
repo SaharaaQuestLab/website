@@ -48,22 +48,22 @@ export const DesktopOptions: FooterOptions = {
 export const MobileOptions: FooterOptions = {
   cameraPosition: {
     x: 0,
-    y: 0.95,
-    z: 7
+    y: 0.15,
+    z: 2.0
   },
   dofEffect: {
-    focusDistance: 6.9
+    focusDistance: 1.9
   },
   ground: {
     xCount: 80,
     yCount: 80,
     position: {
       x: 0,
-      y: -0.2,
+      y: -0.1,
       z: 0
     },
     shaders: {
-      centerHeight: 6.0,
+      centerHeight: 0.0,
     }
   }
 }
