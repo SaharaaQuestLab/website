@@ -1,0 +1,97 @@
+---
+interface Props {
+  text: string[];
+}
+
+const { text = [""] } = Astro.props;
+---
+
+<text-typing-array data-text={JSON.stringify(text)}>
+    <span id="typewriterContentArray"></span>
+</text-typing-array>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // 为我们的新 HTML 自定义元素定义行为。
+  class TextTypingArray extends HTMLElement {
+    texts;
+    currentIndex = 0;
+    constructor() {
+      super();
+      this.texts = JSON.parse(this.getAttribute('data-text') ?? '[""]');
+      this.init();
+    }
+    init = () => {
+      this.typeText();
+    };
+    typeText = () => {
+      const typewriter = this.querySelector(`#typewriterContentArray`);
+      if (!typewriter) return;
+      typewriter.innerHTML = this.texts[this.currentIndex]
+        .split("")
+        .map((item) => (
+          `<span class="typewriter-item" style="opacity:0">${item}</span>`
+        ))
+        .join("");
+      const lines = gsap.utils.toArray(
+        this.querySelectorAll(`.typewriter-item`),
+      ) as HTMLElement[];
+      // 创建一个 GSAP 时间线
+      const tl = gsap.timeline({
+        onComplete: () => {
+          this.currentIndex = (this.currentIndex + 1) % this.texts.length;
+          setTimeout(() => {
+            this.typeText();
+          }, 4000);
+        },
+      });
+
+      // 对每一行文本创建动画
+      lines.forEach((line, index) => {
+        tl.to(
+          line as HTMLElement,
+          {
+            duration: 0,
+            opacity: 1,
+            onUpdate: () => {
+              line.className = "typewriter-item  flash-item";
+            },
+            onComplete: () => {
+              if (index === lines.length - 1) {
+                line.className = "typewriter-item";
+                setTimeout(() => {
+                  line.className = "typewriter-item";
+                }, 1000);
+              }
+            },
+          },
+          `+=${0.05 + 0.15 / ((index % (lines.length - 5)) + 1)}`,
+        );
+      });
+    };
+  }
+  customElements.define("text-typing-array", TextTypingArray);
+</script>
+<style>
+    .typewriter-item {
+      display: inline-block;
+      min-width: 0.2em;
+    }
+    .flash-item {
+      opacity: 1;
+      animation: blink 0.3s infinite; /* 光标闪烁动画 */
+    }
+  
+    /* 光标闪烁关键帧 */
+    @keyframes blink {
+      0%,
+      100% {
+        background: #e1e4e7;
+        color: transparent;
+      }
+    }
+</style>

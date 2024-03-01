@@ -655,6 +655,8 @@ const { titles } = PageMeta;
   const content1 = document.getElementById("content1");
   const content2 = document.getElementById("content2");
 
+  let isSlider1Active = true;
+  
   // 添加事件监听器
   slider2.addEventListener("click", () => {
     // 使用 GSAP 来平滑地切换内容
@@ -670,6 +672,7 @@ const { titles } = PageMeta;
     });
     slider1.classList.toggle("bg-opacity-40");
     slider2.classList.toggle("bg-opacity-40");
+    isSlider1Active = false;
   });
   // 添加事件监听器
   slider1.addEventListener("click", () => {
@@ -686,6 +689,14 @@ const { titles } = PageMeta;
     });
     slider1.classList.toggle("bg-opacity-40");
     slider2.classList.toggle("bg-opacity-40");
+    isSlider1Active = true;
   });
+  setInterval(() => {
+    if (isSlider1Active) {
+      slider2.click();
+    } else {
+      slider1.click();
+    }
+  }, 4000);
 </script>
 <style></style>
