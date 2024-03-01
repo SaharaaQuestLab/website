@@ -1,12 +1,13 @@
 ---
 interface Props {
   text?: string;
+  delay?: string;
 }
 
-const { text = "" } = Astro.props;
+const { text = "", delay} = Astro.props;
 ---
 
-<text-typing>
+<text-typing data-delay={delay} >
   <span data-text={text} id="typewriterContent">
     {
       text
@@ -39,7 +40,7 @@ const { text = "" } = Astro.props;
       // 创建一个 GSAP 时间线
       const tl = gsap.timeline({
         repeat: -1,
-        delay: 0,
+        delay: Number(this.getAttribute('data-delay')) ?? 0,
         repeatDelay: 3,
         scrollTrigger: {
           trigger: typewriter,
