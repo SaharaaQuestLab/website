@@ -60,7 +60,11 @@ export default function JobList() {
     }
   }
 
-  const getLocationName = (id) => locationList.find(item => item.id === id)?.name || "";
+  // const getLocationName = (id) => locationList.find(item => item.id === id)?.name || "";
+  const getLocationName = (id) => {
+    if (locationList.find(item => item.id === id)?.name === "Remote") return "Fully Remote";
+    return locationList.find(item => item.id === id)?.name || "";
+  }
   const getDepartmentName = (id) => departmentList.find(item => item.id === id)?.name || "";
 
   const init = async () => {
@@ -159,7 +163,7 @@ export default function JobList() {
             <a key={item.id} href={`https://jobs.ashbyhq.com/Sahara/${item.jobPostingIds[0]}`} target="_blank" className="border border-dark-200 rounded-xl px-4 py-3 flex justify-between items-center">
               <div>
                 <div className="mb-0.5">{item.title}</div>
-                <div className="text-light-200">{getDepartmentName(item.departmentId)} · {getLocationName(item.locationId)} · {item.employmentType}</div>
+                <div className="text-light-200">{getDepartmentName(item.departmentId)} · {getLocationName(item.locationId)} · {item.employmentType === 'FullTime' ? 'Full time' : '' }</div>
               </div>
               <img className="w-5 h-5" src={arrowRightUp.src} alt="" />
               {/* <svg> usr</svg> */}
