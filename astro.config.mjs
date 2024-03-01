@@ -4,7 +4,7 @@ import favicons from "astro-favicons";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import glsl from 'vite-plugin-glsl';
-import vue from "@astrojs/vue";
+// import vue from "@astrojs/vue";
 import react from '@astrojs/react';
 
 const base_url = process.env.BUILD_MODE === "test" ? "test-saharaa/" : "";
@@ -36,5 +36,5 @@ export default defineConfig({
     developerName: "SaharaLabs",
     faviconsDarkMode: false,
     background: '#121315'
-  }), sitemap(), vue(), react()]
+  }), sitemap(), react()]
 });

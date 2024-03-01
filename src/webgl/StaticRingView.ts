@@ -1,10 +1,8 @@
 import * as THREE from 'three';
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
 import { CircleRing } from './geometry/CircleRing';
-// import { SpatialControls } from 'spatial-controls';
 import { OutlineEffect } from 'three/examples/jsm/Addons.js';
 import { gsap } from 'gsap';
-// import env from '@/utils/bowser.utils';
 
 function easeOutQuad(t: number): number {
   const x = Math.abs(t);
@@ -16,9 +14,7 @@ export default class RingView {
   private _render: WebGLRenderer;
   private _scene: Scene;
   private _camera: PerspectiveCamera;
-  // private _cameraRotateAxis: THREE.Vector3 = new THREE.Vector3(0, 0, 0);
   private _cameraRotation: number = 0;
-  // private _cameraRadius: number = 0;
   private _pointLight: THREE.PointLight;
 
 
@@ -74,8 +70,8 @@ export default class RingView {
   }
 
   private createPointLight() {
-    const pointLight = new THREE.PointLight(0xffffff, 26.0, 60);
-    pointLight.position.set(-3.0, 1.5, 1.0);
+    const pointLight = new THREE.PointLight(0xffffff, 30.0, 100);
+    pointLight.position.set(-2.0, 1.5, -2.0);
     this._scene.add(pointLight);
     return pointLight;
   }
@@ -89,15 +85,6 @@ export default class RingView {
       this._camera.updateProjectionMatrix();
       if (this._composer) this._composer.setSize(width, height);
     })
-
-    if (import.meta.env.DEV) {
-      window.addEventListener("keydown", (evt) => {
-        if (evt.ctrlKey && evt.shiftKey && evt.key === "R") {
-          evt.preventDefault();
-          this.snapshot();
-        }
-      });
-    }
   }
 
   private createRings() {
@@ -127,15 +114,8 @@ export default class RingView {
 
   public useSetup(init: boolean = true) {
 
-    // 添加一个定向光源
-    // const directionalLight = new THREE.DirectionalLight(0xffffff, 5);
-    // directionalLight.position.set(-3, 1.5, -3); // 设置光源的位置
-    // this._scene.add(directionalLight);
-
-    this._camera.position.set(0, 0, 4);
-    // const { x, y, z } = this._camera.position;
-    // this._cameraRadius = 4;//Math.sqrt(x ** 2 + y ** 2 + z ** 2);
-    // this._camera.lookAt(0, 0, 0);
+    this._camera.position.set(-2, 2, 3);
+    this._camera.lookAt(0, 0, 0);
 
     // init rings
     const [ring1, ring2, _, ring4, ring5] = this._rings;
@@ -159,18 +139,6 @@ export default class RingView {
         }
       }
     }
-
-    // if (env.platform.type === "desktop") {
-    //   this._render.domElement.addEventListener('pointermove', (event) => {
-    //     if (event.isPrimary === false) return;
-    //     const e = event;
-    //     const normalizeX = ((e.clientX - this.renderRect.left) / this.renderRect.width) * 2 - 1;
-    //     const angle = Math.PI / 6;
-    //     const destAngle = - easeOutQuad(normalizeX) * angle;
-    //     this.rotateAroundWorldAxis(new THREE.Vector3(0.5, 1, 0), destAngle - this._cameraRotation);
-    //     this._cameraRotation = destAngle;
-    //   }, { passive: true });
-    // }
   }
 
   public scene0To1() {
@@ -348,11 +316,24 @@ export default class RingView {
     });
   }
 
+  public scene0To2() {
+    if (this._stage === 2) return;
+    this._stage = 2;
+    const [ring1, ring2, ring3] = this._rings;
+    ring1.update(0.5, 0.075)
+      .moveTo(0, 0, 0)
+      .setSelfRotateAxis(-1, 1, 0);
+    ring2.update(0.3, 0.075)
+      .moveTo(0, 0, 0)
+      .setSelfRotateAxis(1, 0, -1);
+    ring3.update(0.1, 0.075)
+      .setSelfRotateAxis(0, 1, 1);
+    this._updateCallback = (ring) => { ring.selfRotate(Math.PI / 480) };
+  }
+
   public scene0To3() {
     if (this._stage === 3) return;
     this._stage = 3;
-    this._camera.position.set(-2, 2, 3);
-    this._camera.lookAt(0, 0, 0);
     const [ring1, ring2, ring3, ring4, ring5] = this._rings;
     ring1.update(0, 0.075).moveTo(0, -0.5, 0).rotateByXYZ(Math.PI / 2, 0, 0);
     ring2.update(0.35, 0.075).moveTo(0, -0.25, 0).rotateByXYZ(Math.PI / 2, 0, 0);

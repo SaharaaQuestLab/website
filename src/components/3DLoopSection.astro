@@ -1,54 +1,59 @@
 ---
+interface Props {
+  scene: "1" | "2" | "3";
+}
 
+const { scene = "3" } = Astro.props;
 ---
 
-<div id="ringSection" class="flex w-[520px] justify-center items-center mobile:w-full">
-  <div id="ring-3d" class="w-[520px] h-[520px] mobile:w-full"></div>
-</div>
+<loop-ring class="flex w-full aspect-square justify-center items-center">
+  <div id="ring-3d" data-scene={scene} class="w-full h-full"></div>
+</loop-ring>
 
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import RingView from "@/webgl/RingView";
+  import RingView from "@/webgl/StaticRingView";
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const viewEl = document.getElementById("ring-3d");
-  const viewer = new RingView(viewEl || document.createElement("div"));
-  viewer.useSetup(false);
-  viewer.scene0To3();
+  class LoopRing extends HTMLElement {
+    constructor() {
+      super();
+      const viewEl = this.querySelector<HTMLDivElement>("#ring-3d");
+      if (viewEl) {
+        const viewer = new RingView(viewEl);
+        viewer.useSetup(false);
+        const scene = viewEl.dataset["scene"] || "3";
+        if (scene === "1") {
+          viewer.scene0To1();
+        } else if (scene === "2") {
+          viewer.scene0To2();
+        } else {
+          viewer.scene0To3();
+        }
 
-  // const ringContainer = document.getElementById("ringSection");
-  // if (ringContainer) {
-  //   let ringRect = ringContainer?.getBoundingClientRect();
-  //   ringContainer.addEventListener("pointermove", (event) => {
-  //     if (event.isPrimary === false) return;
-  //     const e = event;
-  //     const normalizeX = ((e.clientX - ringRect.left) / ringRect.width) * 2 - 1;
-  //     const normalizeY = 1 - ((e.clientY - ringRect.top) * 2) / ringRect.height;
-  //     viewer.onPointMove(normalizeX, normalizeY);
-  //   });
-  //   window.addEventListener("resize", () => {
-  //     ringRect = ringContainer?.getBoundingClientRect();
-  //   });
-  // }
+        ScrollTrigger.create({
+          trigger: viewEl,
+          scrub: true,
+          start: "top bottom",
+          end: "bottom top",
+          onEnter: () => {
+            viewer.play();
+          },
+          onLeave: () => {
+            viewer.stop();
+          },
+          onEnterBack: () => {
+            viewer.play();
+          },
+          onLeaveBack: () => {
+            viewer.stop();
+          },
+        });
+      }
+    }
+  }
 
-  ScrollTrigger.create({
-    trigger: "#ring-3d",
-    scrub: true,
-    start: "top bottom",
-    end: "bottom top",
-    onEnter: () => {
-      viewer.play();
-    },
-    onLeave: () => {
-      viewer.stop();
-    },
-    onEnterBack: () => {
-      viewer.play();
-    },
-    onLeaveBack: () => {
-      viewer.stop();
-    },
-  });
+  customElements.define("loop-ring", LoopRing);
 </script>
