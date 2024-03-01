@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import type { WebGLRenderer, Scene, PerspectiveCamera } from 'three';
 import { DepthOfFieldEffect, EffectPass, EffectComposer, RenderPass, BlendFunction, OutlineEffect, } from 'postprocessing';
-import { createGroundParticle } from './geometry/GroundParticle';
+import { createGroundParticle } from './geometry/FooterGroundParticle';
 import env from '@/utils/bowser.utils';
 import { DesktopOptions, MobileOptions, type FooterOptions } from './FooterOptions';
 
@@ -106,7 +106,6 @@ export default class HeroView {
     const [groundParticles, groundMaterial] = createGroundParticle({
       xCount: footerOptions.ground.xCount,
       yCount: footerOptions.ground.yCount,
-      gCount: 0,
       shaders: {
         centerHeight: footerOptions.ground.shaders.centerHeight,
         sampleBase4Layer1: 12.5
