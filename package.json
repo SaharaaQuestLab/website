@@ -40,6 +40,11 @@
     "three": "^0.161.0",
     "vue": "^3.4.18"
   },
+  "browserslist": [
+    "last 10 versions",
+    "> 1%",
+    "not dead"
+  ],
   "volta": {
     "node": "21.6.2"
   }
