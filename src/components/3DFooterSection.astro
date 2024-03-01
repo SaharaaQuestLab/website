@@ -1,0 +1,31 @@
+---
+
+---
+
+<div id="footerView" class="w-full h-full"></div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import FooterView from "@/webgl/FooterView";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const canvasEl = document.getElementById("footerView");
+
+  if (canvasEl) {
+    const viewer = new FooterView(canvasEl);
+    viewer.useSetup();
+
+    ScrollTrigger.create({
+      trigger: "#footerView",
+      start: "top+=50 bottom",
+      onLeaveBack: () => {
+        viewer.stop();
+      },
+      onEnter: () => {
+        viewer.play();
+      },
+    });
+  }
+</script>

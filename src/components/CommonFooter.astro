@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import PageMeta from "@/data/footer";
 const { authorization, privacyPolicy } = PageMeta;
+import FooterSection from "@/components/3DFooterSection.astro";
 import EmailSubscribe from "@/components/EmailSubscribe.jsx";
 
 interface Props {
@@ -12,7 +13,10 @@ const BASE_URL = import.meta.env.BASE_URL;
 const { isSlot, active } = Astro.props;
 ---
 
-<div class="w-full footer">
+<div class="w-full footer relative">
+  <div class="absolute h-[224px] left-0 right-0 bottom-0 -z-10">
+    <FooterSection />
+  </div>
   <div class="max-w-[1408px] w-full tablet:px-6 mobile:px-3 mx-auto">
     <slot name="footer" />
     <div
@@ -71,7 +75,7 @@ const { isSlot, active } = Astro.props;
       rgba(18, 19, 21, 1),
       rgba(18, 19, 21, 0)
     );
-    background-image: url(../assets/images/footerBackground.jpg);
+    /* background-image: url(../assets/images/footerBackground.jpg); */
     background-repeat: no-repeat;
     background-size: 100% auto;
     background-position: left bottom;

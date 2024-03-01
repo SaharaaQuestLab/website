@@ -8,11 +8,11 @@ const GroundYCount = 160;
 const GroundWidth = 3.6;
 const GroundHeight = 3.6;
 const GaussianRadius = 0.1;
-const GaussianXCount = 30;
-const GaussianYCount = 30;
+// const GaussianXCount = 30;
+// const GaussianYCount = 30;
 
-export const createGroundParticle: (options: { xCount: number, yCount: number, shaders: { centerHeight: number, sampleBase4Layer1: number } }) => [THREE.Points, THREE.ShaderMaterial] = ({
-  xCount, yCount, shaders
+export const createGroundParticle: (options: { xCount: number, yCount: number, gCount?: number, shaders: { centerHeight: number, sampleBase4Layer1: number } }) => [THREE.Points, THREE.ShaderMaterial] = ({
+  xCount, yCount, gCount = 30, shaders
 }) => {
 
   const particleGeometry = new THREE.BufferGeometry();
@@ -25,7 +25,7 @@ export const createGroundParticle: (options: { xCount: number, yCount: number, s
 
 
   const total_ground = groundGeometry.getAttribute("position").count;
-  const total_gaussian = GaussianXCount * GaussianYCount;
+  const total_gaussian = gCount * gCount;
   const total_point = total_ground + total_gaussian;
   const indices = new Uint16Array(total_point);
   const point_array = new Float32Array(total_point * 3);
