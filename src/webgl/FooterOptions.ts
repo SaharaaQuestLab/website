@@ -25,8 +25,8 @@ export interface FooterOptions {
 export const DesktopOptions: FooterOptions = {
   cameraPosition: {
     x: 0,
-    y: 0.75,
-    z: 4
+    y: 0.3,
+    z: 1.4
   },
   dofEffect: {
     focusDistance: 4.3
@@ -40,7 +40,7 @@ export const DesktopOptions: FooterOptions = {
       z: 0
     },
     shaders: {
-      centerHeight: 4.5,
+      centerHeight: 0,
     }
   }
 }
