@@ -10,7 +10,7 @@ export default {
     description: 'Sahara is a Human-AI collaboration network',
     remarks: [],
     button: {
-      text: 'Join The Team',
+      text: 'Join the Team',
       path: `${baseUrl}career`
     }
   },

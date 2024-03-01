@@ -41,7 +41,7 @@ export default function JobList() {
     if (apiResult.status == 200) {
       const data = await apiResult.json();
       const positions = data.results || [];
-      const employTypes = Array.from(new Set(positions.map(p => p.employmentType))).map(type => ({ id: type, name: type }));
+      const employTypes = Array.from(new Set(positions.map(p => p.employmentType))).map((type, index) => ({ id: (index+1), name: type }));
       // setPositionList([...positions]);
       setOrgPositionList([...positions]);
       setEmploymentTypeList(employTypes);
@@ -74,7 +74,7 @@ export default function JobList() {
   useEffect(() => {
     let list = [...orgPositionList];
     if (selectEmploymentType.id) {
-      list = list.filter(item => item.employmentType === selectEmploymentType.id);
+      list = list.filter(item => item.employmentType === selectEmploymentType.name);
     }
     if (selectLocation.id) {
       list = list.filter(item => item.locationId === selectLocation.id);
@@ -159,7 +159,7 @@ export default function JobList() {
             <a key={item.id} href={`https://jobs.ashbyhq.com/Sahara/${item.jobPostingIds[0]}`} target="_blank" className="border border-dark-200 rounded-xl px-4 py-3 flex justify-between items-center">
               <div>
                 <div className="mb-0.5">{item.title}</div>
-                <div>{getDepartmentName(item.departmentId)}.{getLocationName(item.locationId)}.{item.employmentType}</div>
+                <div className="text-light-200">{getDepartmentName(item.departmentId)}.{getLocationName(item.locationId)}.{item.employmentType}</div>
               </div>
               <img className="w-5 h-5" src={arrowRightUp.src} alt="" />
               {/* <svg> usr</svg> */}

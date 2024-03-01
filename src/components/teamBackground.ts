@@ -9,16 +9,17 @@ import A12 from "@/assets/images/teamBackground/A12.jpg";
 import paypal from "@/assets/images/teamBackground/paypal.jpg";
 import binance from "@/assets/images/teamBackground/binance.jpg";
 import snap from "@/assets/images/teamBackground/snap.jpg";
+import nervos from "@/assets/images/teamBackground/nervos.png";
 
 export default [
   USC,
   Stanford,
   Berkeley,
-  illinois,
+  A12,
   toloka,
   Microsoft,
-  A12,
-  paypal,
   binance,
+  paypal,
+  nervos,
   snap
 ];

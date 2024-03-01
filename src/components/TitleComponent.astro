@@ -29,7 +29,7 @@ const {className, titleClassName} = Astro.props;
 >
   {
     texts.map((item) => (
-      <h1 class:list={["text-h2 tablet:text-m1 mobile:text-m2 mobile:whitespace-normal mobile:text-center whitespace-nowrap font-[Manrope] pointer-events-none", titleClassName]}>
+      <h1 class:list={["my-1 text-h2 tablet:text-m1 mobile:text-m2 mobile:whitespace-normal mobile:text-center whitespace-nowrap font-[Manrope] pointer-events-none", titleClassName]}>
         {item}
       </h1>
     ))
