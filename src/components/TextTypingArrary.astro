@@ -33,7 +33,7 @@ const { text = [""] } = Astro.props;
       if (!typewriter) return;
       typewriter.innerHTML = this.texts[this.currentIndex]
         .split("")
-        .map((item) => (
+        .map((item: string) => (
           `<span class="typewriter-item" style="opacity:0">${item}</span>`
         ))
         .join("");
@@ -85,7 +85,7 @@ const { text = [""] } = Astro.props;
       opacity: 1;
       animation: blink 0.3s infinite; /* 光标闪烁动画 */
     }
-  
+
     /* 光标闪烁关键帧 */
     @keyframes blink {
       0%,
