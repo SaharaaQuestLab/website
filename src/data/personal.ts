@@ -8,6 +8,6 @@ export default {
     remarks: [
       "for work and research"
     ],
-    subDescriptions: ['Enhance work productivity', 'Close information gap', 'Monetize personal knowledge', 'Streamline team collaboration']
+    subDescriptions: ['Enhance work productivity', 'Close information gaps', 'Monetize personal knowledge', 'Streamline team collaboration']
   }
  }

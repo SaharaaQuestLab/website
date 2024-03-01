@@ -3,8 +3,8 @@ export default {
   titles: {
    texts:  [
      'Unveiling',
-     'The Synergy',
-     'Of AI And Web3'
+     'the Synergy',
+     'of AI and Web3'
     ],
     description: 'Sahara Research leads innovations on fair access and ownership to global knowledge capital'
   }

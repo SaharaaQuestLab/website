@@ -81,15 +81,28 @@ navData.nav.forEach((nav) => {
     id="waitList"
     class="common-button whitespace-nowrap w-40 text-[0.875rem] py-2.5 px-4 flex items-center rounded-xl pointer-events-auto"
   >
-    Join waitlist
+    <p id="headerButton">Join Waitlist</p>
     <Icon class="min-w-5 h-5" name="arrowRightUp" />
   </div>
 </div>
 
 <script>
 
+  function getCurrentPage () {
+    const path = window.location.pathname;
+    const pathArr = path.split("/");
+    return pathArr[pathArr.length - 1];
+  }
+  
   function goToWaitList () {
     window.open("https://hi.saharalabs.ai/get-in-touch", "_blank");
+  }
+
+  if (getCurrentPage() === "business") {
+    const element = document.getElementById("headerButton");
+    if(element){
+      element.innerHTML = "Book A Demo";
+    }
   }
 
   document.getElementById("waitList")?.addEventListener("click", goToWaitList);

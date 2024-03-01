@@ -3,9 +3,9 @@ export default {
   titles: {
     texts: ["Your Knowledge", "Your AI"],
     description:
-      "Sahara is an AI and blockchain-powered network that unlocks fair and universal access to knowledge capital",
+      "Sahara is a decentralized AI network that unlocks fair and universal access to global knowledge capital",
     button: {
-      text: "Join waitlist",
+      text: "Join Waitlist",
       url: "https://hi.saharalabs.ai/get-in-touch",
     },
   },
