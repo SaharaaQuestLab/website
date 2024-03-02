@@ -98,10 +98,15 @@ navData.nav.forEach((nav) => {
     window.open("https://hi.saharalabs.ai/get-in-touch", "_blank");
   }
 
+  function goToBookDemo () {
+    window.open("https://hi.saharalabs.ai/get-in-touch-business", "_blank");
+  }
+
   if (getCurrentPage() === "business") {
     const element = document.getElementById("headerButton");
     if(element){
       element.innerHTML = "Book A Demo";
+      document.getElementById("waitList")?.addEventListener("click", goToBookDemo);
     }
   }
 
