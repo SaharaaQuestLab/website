@@ -18,7 +18,8 @@ export default {
     texts: [
       'Join Sahara'
     ],
-    description: 'Sahara is consistently looking for new talents.Work with the best in the industry today.',
+    description: 'Sahara is consistently looking for new talents.',
+    description1: 'Work with the best in the industry today.',
     remarks: [],
     button: {
       text: 'Open Positions',

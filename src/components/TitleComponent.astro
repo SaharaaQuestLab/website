@@ -10,6 +10,7 @@ interface Props {
     texts: string[];
     subDescriptions?: string[];
     description: string;
+    description1: string;
     button?: {
       text: string;
       url?: string;
@@ -18,7 +19,7 @@ interface Props {
     typingText?: string;
   };
 }
-const { texts, description, button, typingText, subDescriptions } = Astro.props.titles;
+const { texts, description, button, description1, subDescriptions } = Astro.props.titles;
 const {className, titleClassName} = Astro.props;
 
 
@@ -38,7 +39,7 @@ const {className, titleClassName} = Astro.props;
   <div
     class:list={[ className ,"text-light-200 text-s2 tablet:text-sm tablet:!w-[30rem] mobile:!w-[22rem] w-[52rem] pointer-events-none text-center mt-10 tablet:mt-7 font-[Manrope]"]}
   >
-    {description}
+    {description}<br/>{description1}
   </div>
   <!-- {subDescriptions && <TextCarousel list={subDescriptions} />} -->
   {
