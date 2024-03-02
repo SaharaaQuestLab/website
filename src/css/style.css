@@ -85,8 +85,3 @@ body {
   @apply border-light-300 bg-dark-100 text-light-100;
 }
 
-
-.fund-banner {
-  height: 22px;
-  position: absolute;
-}
