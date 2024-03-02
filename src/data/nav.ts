@@ -21,7 +21,7 @@ const Routes = {
           "path": "team"
         },
         {
-          "name": "Career",
+          "name": "Careers",
           "path": "career"
         }
       ]
