@@ -9,11 +9,11 @@ module.exports = {
 			'mobile': { max: '768px' },
 		},
 		fontSize: {
-			h1: ['110px', {
-				lineHeight: '101.2px'
+			h1: ['100px', {
+				lineHeight: '92px'
 			}],
-			h2: ['90px', {
-				lineHeight: '82.8px'
+			h2: ['80px', {
+				lineHeight: '73.6px'
 			}],
 			h3: ['70px', {
 				lineHeight: '64.4px'

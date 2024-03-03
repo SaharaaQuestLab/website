@@ -13,7 +13,7 @@ const Routes = {
       "path": "research"
     },
     {
-      "name": "About us",
+      "name": "About Us",
       "path": "aboutUs",
       "subPath": [
         {

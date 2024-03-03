@@ -12,7 +12,7 @@ const aboutUsRoutes: Array<{ name: string; path: string; flag: string }> = [];
 
 const homeUrl = `${import.meta.env.BASE_URL}`;
 navData.nav.forEach((nav) => {
-  if (nav.name !== "About us") {
+  if (nav.name !== "About Us") {
     routes.push({
       name: nav.name,
       path: `${import.meta.env.BASE_URL}${nav.path}`,
@@ -63,6 +63,10 @@ navData.nav.forEach((nav) => {
         class=" group-hover:block hidden absolute top-11 left-1/2 -translate-x-1/2 w-[8.125rem] pt-0.5"
       >
       <div class="border rounded-xl text-sm px-4 py-3 border-dark-100 border-opacity-40 bg-dark-400">
+            <a href="https://blog.saharalabs.ai" class="flex items-center">
+              Blog
+              <Icon class="w-5 h-5" name="arrowRightUp" />
+            </a>
         {
           aboutUsRoutes.map((item) => (
             <a href={item.path} class="flex items-center">
@@ -93,7 +97,7 @@ navData.nav.forEach((nav) => {
     const pathArr = path.split("/");
     return pathArr[pathArr.length - 1];
   }
-  
+
   function goToWaitList () {
     window.open("https://hi.saharalabs.ai/get-in-touch", "_blank");
   }
