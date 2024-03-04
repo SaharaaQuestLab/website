@@ -2,12 +2,13 @@
 interface Props {
   text?: string;
   delay?: string;
+  repeatDelay?: number;
 }
 
-const { text = "", delay} = Astro.props;
+const { text = "", delay, repeatDelay = 4} = Astro.props;
 ---
 
-<text-typing data-delay={delay} >
+<text-typing data-delay={delay} data-repeatDelay={repeatDelay}>
   <span data-text={text} id="typewriterContent">
     {
       text
@@ -41,7 +42,7 @@ const { text = "", delay} = Astro.props;
       const tl = gsap.timeline({
         repeat: -1,
         delay: Number(this.getAttribute('data-delay')) ?? 0,
-        repeatDelay: 3,
+        repeatDelay: Number(this.getAttribute('data-repeatDelay')),
         scrollTrigger: {
           trigger: typewriter,
           start: "top bottom",

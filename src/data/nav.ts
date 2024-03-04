@@ -13,6 +13,32 @@ const Routes = {
       "path": "research"
     },
     {
+      "name": "Ecosystem",
+      "path": "ecosystem",
+      "subPath": [
+        {
+          "name": "Blog",
+          "path": "blog",
+          "link": "https://blog.saharalabs.ai"
+        },
+        {
+          "name": "Twitter",
+          "path": "twitter",
+          "link": "https://twitter.com/SaharaLabsAI"
+        },
+        {
+          "name": "Discord",
+          "path": "discord",
+          "link": "https://discord.gg/Sqzx5jgkkN"
+        },
+        {
+          "name": "Linkedin",
+          "path": "linkedin",
+          "link": "https://www.linkedin.com/company/saharalabs-ai/"
+        },
+      ]
+    },
+    {
       "name": "About Us",
       "path": "aboutUs",
       "subPath": [

@@ -12,15 +12,11 @@ const homeUrl = `${import.meta.env.BASE_URL}`;
 const { positionType = "fixed" } = Astro.props;
 
 const routes: Array<{ name: string; path: string; flag: string }> = [];
+const ecosystemRoutes: Array<{ name: string; link: string; flag: string }> = [];
 const aboutUsRoutes: Array<{ name: string; path: string; flag: string }> = [];
+
 navData.nav.forEach((nav) => {
-  if (nav.name !== "About Us") {
-    routes.push({
-      name: nav.name,
-      path: `${import.meta.env.BASE_URL}${nav.path}`,
-      flag: nav.path,
-    });
-  } else {
+  if (nav.name == "About Us") {
     aboutUsRoutes.push(
       ...nav.subPath.map((nav) => ({
         name: nav.name,
@@ -28,6 +24,20 @@ navData.nav.forEach((nav) => {
         flag: nav.path,
       })),
     );
+  } else if (nav.name == "Ecosystem") {
+    ecosystemRoutes.push(
+      ...nav.subPath.map((nav) => ({
+        name: nav.name,
+        link: nav.link,
+        flag: nav.path,
+      })),
+    );
+  } else {
+    routes.push({
+      name: nav.name,
+      path: `${import.meta.env.BASE_URL}${nav.path}`,
+      flag: nav.path,
+    });
   }
 });
 ---
@@ -85,6 +95,24 @@ navData.nav.forEach((nav) => {
     ))
   }
   <div class="border-b text-light-200 text-sm border-b-dark-200">
+    <div class="px-6 py-3 flex justify-between items-center" id="ecosystem">
+      Ecosystem<Icon
+        class="w-4 h-4 rotate-180"
+        id="ecosystem-icon"
+        name="arrowCorner_768_375"
+       />
+    </div>
+    <div class="flex-col hidden" id="ecosystem-menus">
+      {
+        ecosystemRoutes.map((item) => (
+          <a class="px-6 py-3" href={item.link} target="_blank">
+            {item.name}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+  <div class="border-b text-light-200 text-sm border-b-dark-200">
     <div class="px-6 py-3 flex justify-between items-center" id="aboutUs">
       About Us<Icon
         class="w-4 h-4 rotate-180"
@@ -93,9 +121,6 @@ navData.nav.forEach((nav) => {
       />
     </div>
     <div class="flex-col hidden" id="menus">
-          <a class="px-6 py-3" href="https://blog.saharalabs.ai">
-            Blog
-          </a>
       {
         aboutUsRoutes.map((item) => (
           <a class="px-6 py-3" href={item.path}>
@@ -128,9 +153,23 @@ navData.nav.forEach((nav) => {
 
 <script>
   const menuBody = document.getElementById("mobiel-menu-body") as HTMLElement;
+  const ecosystem = document.getElementById("ecosystem") as HTMLElement;
   const aboutUs = document.getElementById("aboutUs") as HTMLElement;
   const menus = document.getElementById("menus") as HTMLElement;
+  const ecosystemMenus = document.getElementById("ecosystem-menus") as HTMLElement;
   const icon = document.getElementById("icon") as HTMLElement;
+  const ecosystemIcon = document.getElementById("ecosystem-icon") as HTMLElement;
+  
+
+  ecosystem.addEventListener(
+    "click",
+    () => {
+      ecosystem.classList.toggle("open");
+      ecosystemIcon.classList.toggle("rotate-180");
+      ecosystemMenus.classList.toggle("!flex");
+    },
+    false,
+  );
   aboutUs.addEventListener(
     "click",
     () => {

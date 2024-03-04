@@ -27,5 +27,5 @@ export default [
     {image: tangent, link: 'https://www.tangent.ventures/'},
     {image: motherson, link: 'https://www.motherson.com/'},
     {image: cohoDeeptech, link: 'https://www.cohovc.com/'},
-    {image: sandeepnailwal, link: 'https://www.linkedin.com/in/sandeep-nailwal-60709a33'},
+    {image: sandeepnailwal, link: ''},
 ];

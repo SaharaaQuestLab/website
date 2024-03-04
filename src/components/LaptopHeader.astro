@@ -8,17 +8,12 @@ interface Props {
 const { active } = Astro.props;
 
 const routes: Array<{ name: string; path: string; flag: string }> = [];
+const ecosystemRoutes: Array<{ name: string; link: string; flag: string }> = [];
 const aboutUsRoutes: Array<{ name: string; path: string; flag: string }> = [];
 
 const homeUrl = `${import.meta.env.BASE_URL}`;
 navData.nav.forEach((nav) => {
-  if (nav.name !== "About Us") {
-    routes.push({
-      name: nav.name,
-      path: `${import.meta.env.BASE_URL}${nav.path}`,
-      flag: nav.path,
-    });
-  } else {
+  if (nav.name == "About Us") {
     aboutUsRoutes.push(
       ...nav.subPath.map((nav) => ({
         name: nav.name,
@@ -26,6 +21,20 @@ navData.nav.forEach((nav) => {
         flag: nav.path,
       })),
     );
+  } else if (nav.name == "Ecosystem") {
+    ecosystemRoutes.push(
+      ...nav.subPath.map((nav) => ({
+        name: nav.name,
+        link: nav.link,
+        flag: nav.path,
+      })),
+    );
+  } else {
+    routes.push({
+      name: nav.name,
+      path: `${import.meta.env.BASE_URL}${nav.path}`,
+      flag: nav.path,
+    });
   }
 });
 ---
@@ -51,6 +60,32 @@ navData.nav.forEach((nav) => {
         </a>
       ))
     }
+
+    <!-- Ecosystem -->
+    <span
+      class:list={[
+        "whitespace-nowrap text-sm relative group px-3 py-2.5 block cursor-pointer hover:border-b border-b-light-100",
+        { "border-b": active === "ecosystem" },
+      ]}
+    >
+      Ecosystem
+      <div
+        class=" group-hover:block hidden absolute top-11 left-1/2 -translate-x-1/2 w-[8.125rem] pt-0.5"
+      >
+      <div class="border rounded-xl text-sm px-4 py-3 border-dark-100 border-opacity-40 bg-dark-400">
+        {
+          ecosystemRoutes.map((item) => (
+            <a href={item.link} target="_blank" class="flex items-center">
+              {item.name}
+              <Icon class="w-5 h-5" name="arrowRightUp" />
+            </a>
+          ))
+        }
+      </div>
+
+      </div>
+    </span>
+
     <!-- about us -->
     <span
       class:list={[
@@ -63,10 +98,6 @@ navData.nav.forEach((nav) => {
         class=" group-hover:block hidden absolute top-11 left-1/2 -translate-x-1/2 w-[8.125rem] pt-0.5"
       >
       <div class="border rounded-xl text-sm px-4 py-3 border-dark-100 border-opacity-40 bg-dark-400">
-            <a href="https://blog.saharalabs.ai" class="flex items-center">
-              Blog
-              <Icon class="w-5 h-5" name="arrowRightUp" />
-            </a>
         {
           aboutUsRoutes.map((item) => (
             <a href={item.path} class="flex items-center">
