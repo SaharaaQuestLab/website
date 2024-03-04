@@ -3,6 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import LaptopHeader from "../components/LaptopHeader.astro";
 import MobileHeader from "../components/MobileHeader.astro";
 import CommonFooter from "../components/CommonFooter.astro";
+import TrackPageView from "../components/TrackPageView.jsx";
 import type { PageRoutes } from "../data/nav";
 
 interface Props {
@@ -16,6 +17,7 @@ const { title, active, isFooterSlot, mobileHeaderType = "fixed" } = Astro.props;
 ---
 
 <BaseLayout title={title} barColor="#000">
+  <TrackPageView client:load />
   <LaptopHeader active={active} />
   <MobileHeader positionType={mobileHeaderType} />
   <slot name="base-layout" />
