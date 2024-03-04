@@ -143,7 +143,7 @@ export default function JobList() {
           <div onClick={blur} className="absolute left-[-1px] top-12 bg-dark-400 border group-hover:block min-w-full  hidden -mt-0.5 border-light-100 rounded-xl overflow-hidden">
             {
               employmentTypeList.map(item => (
-                item.id != selectEmploymentType.id ? <div key={item.id} onClick={() => { setSelectEmploymentType(item) }} className="min-h-10 px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate">{item.name}</div> : <></>
+                item.id != selectEmploymentType.id ? <div key={item.id} onClick={() => { setSelectEmploymentType(item) }} className="min-h-10 px-4 py-2.5 hover:bg-light-100 hover:text-dark-400 whitespace-nowrap truncate">{item.name === 'FullTime' ? 'Full time' : item.name}</div> : <></>
               ))
             }
           </div>
@@ -159,7 +159,7 @@ export default function JobList() {
             <a key={item.id} href={`https://jobs.ashbyhq.com/Sahara/${item.jobPostingIds[0]}`} target="_blank" className="border border-dark-200 rounded-xl px-4 py-3 flex justify-between items-center">
               <div>
                 <div className="mb-0.5">{item.title}</div>
-                <div className="text-light-200">{getDepartmentName(item.departmentId)} · {getLocationName(item.locationId)} · {item.employmentType}</div>
+                <div className="text-light-200">{getDepartmentName(item.departmentId)} · {getLocationName(item.locationId)} · {item.employmentType === 'FullTime' ? 'Full time' : item.employmentType}</div>
               </div>
               <img className="w-5 h-5" src={arrowRightUp.src} alt="" />
               {/* <svg> usr</svg> */}
