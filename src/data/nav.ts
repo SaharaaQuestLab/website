@@ -29,7 +29,7 @@ const Routes = {
         {
           "name": "Discord",
           "path": "discord",
-          "link": "https://discord.gg/Sqzx5jgkkN"
+          "link": "https://discord.gg/wwY5KvYFPC"
         },
         {
           "name": "Linkedin",
