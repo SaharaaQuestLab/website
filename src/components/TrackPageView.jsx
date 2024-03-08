@@ -7,5 +7,5 @@ export default function TrackPageView () {
         ReactGA.initialize("G-8JY051HV2D");
     }, []);
 
-    return null;
+    return <></>;
 }
