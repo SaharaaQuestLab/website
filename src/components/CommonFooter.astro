@@ -53,7 +53,7 @@ const { isSlot, active } = Astro.props;
           </a> -->
         </div>
       </div>
-      <EmailSubscribe client:load />
+      <EmailSubscribe client:only="react" />
     </div>
     <div
       class="border-t text-light-200 border-t-dark-100 border-opacity-40 flex justify-between text-sm pb-2.5 mobile:text-xs mt-5"

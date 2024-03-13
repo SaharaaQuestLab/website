@@ -17,7 +17,7 @@ const { title, active, isFooterSlot, mobileHeaderType = "fixed" } = Astro.props;
 ---
 
 <BaseLayout title={title} barColor="#000">
-  <TrackPageView client:load />
+  <TrackPageView client:only="react" />
   <LaptopHeader active={active} />
   <MobileHeader positionType={mobileHeaderType} />
   <slot name="base-layout" />

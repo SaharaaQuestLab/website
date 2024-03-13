@@ -24,7 +24,7 @@ const { careerTitles } = PageMeta;
   </slot>
 
   <div class="pt-[6.25rem] tablet:pt-0" id="positions">
-    <JobList client:load />
+    <JobList client:only="react" />
   </div>
 
   <div
