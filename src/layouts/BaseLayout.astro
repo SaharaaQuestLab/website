@@ -15,7 +15,6 @@ const { title, description, barColor = "#000" } = Astro.props;
 <!doctype html>
 <html lang="en">
 	<head>
-		<title>Sahara AI - #1 decentralized network for personalized autonomous AI</title>
 		<meta charset="UTF-8" />
 		<meta
 			name="viewport"
@@ -26,11 +25,9 @@ const { title, description, barColor = "#000" } = Astro.props;
 		<meta name="theme-color" content={barColor} />
 		<meta name="apple-mobile-web-app-status-bar-style" content={barColor} />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content="A permissionless, high performance blockchain designed for securely deploying personalized autonomous AI with privacy and provenance">
 		<SEO
-			title={title}
-			description={description || "Sahara AI"}
-			titleDefault="Sahara AI"
+			title="Sahara AI - #1 decentralized network for personalized autonomous AI"
+			description={"A permissionless, high performance blockchain designed for securely deploying personalized autonomous AI with privacy and provenance"}
 		/>
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<style is:global>
